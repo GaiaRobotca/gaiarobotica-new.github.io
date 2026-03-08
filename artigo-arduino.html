@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arduino: Além da Placa de Prototipagem — GAIA Robótica</title>
-<link rel="icon" type="image/png" href="GAIA_MODO_CLARO.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" href="GAIA_MODO_ESCURO.png" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-claro.png" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-escuro.png" media="(prefers-color-scheme: dark)">
+
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
@@ -65,38 +67,6 @@
   /* ===== COMMENTS ===== */
   .comments-section { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border); }
   .comments-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1.5rem; }
-  .comment-form { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
-  .comment-form input, .comment-form textarea { background: var(--white); border: 2px solid var(--border); color: var(--text); padding: 0.9rem 1.25rem; font-family: 'Barlow', sans-serif; font-size: 0.92rem; outline: none; transition: border-color 0.2s; resize: none; border-radius: 0; }
-  .comment-form input:focus, .comment-form textarea:focus { border-color: var(--green); }
-  .btn-comment { align-self: flex-start; background: var(--blue-dark); color: #fff; padding: 0.9rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
-  .btn-comment:hover { background: var(--blue); }
-  
-  .comment-item { margin-bottom: 1.5rem; padding: 1.5rem; background: var(--surface); border-left: 3px solid var(--green); }
-  .comment-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-  .comment-user { font-weight: 800; color: var(--blue-dark); font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; text-transform: uppercase; }
-
-  /* ===== FOOTER & EXTRAS ===== */
-  .next-articles{margin-top:4rem;padding-top:3rem;border-top:2px solid var(--border);}
-  .next-articles h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;}
-  .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-  .next-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.2s;}
-  .next-card:hover{border-color:var(--blue);transform:translateY(-3px);}
-  .next-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
-  .next-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;line-height:1.1;margin-bottom:0.4rem;}
-  .next-desc{font-size:0.83rem;color:var(--muted);}
-  .back-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:2rem 2.5rem;background:var(--blue-dark);margin-top:3rem;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
-  .back-cta p{color:rgba(255,255,255,0.7);font-size:0.9rem;}
-  .back-cta strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#fff;text-transform:uppercase;margin-bottom:0.2rem;}
-  .btn-p{background:var(--green);color:#fff;padding:0.85rem 1.75rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s;white-space:nowrap;}
-  .btn-p:hover{background:var(--green-dark);}
-  
-  footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
-  .fl span{color:var(--green);}
-  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
-  .flinks{display:flex;gap:1.5rem;}
-  .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
-  .flinks a:hover{color:var(--green);}
 
   .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
 
@@ -110,7 +80,6 @@
     .next-grid{grid-template-columns:1fr 1fr;}
     .back-cta{flex-direction:column;text-align:center;}
   }
-  @media(max-width:600px){.next-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -210,33 +179,22 @@ void loop() {
 
   <section class="comments-section">
     <h3>Discussão e Comentários</h3>
-    
-    <form class="comment-form" id="form-comentario">
-      <input type="text" placeholder="Seu Nome" required id="nome-usuario">
-      <textarea rows="4" placeholder="Deixe sua dúvida técnica ou sugestão..." required id="texto-comentario"></textarea>
-      <button type="submit" class="btn-comment">Publicar Comentário</button>
-    </form>
-
-    <div id="comment-list">
-      <p style="color: var(--muted); font-style: italic; font-size: 0.95rem;" id="empty-msg">Seja o primeiro a comentar sobre este artigo!</p>
-    </div>
+    <script src="https://giscus.app/client.js"
+            data-repo="GaiaRobotca/gaiarobotica-new.github.io"
+            data-repo-id="R_kgDORhLuBw"
+            data-category="General"
+            data-category-id="DIC_kwDORhLuB84C37IJ"
+            data-mapping="pathname"
+            data-strict="1"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="light"
+            data-lang="pt"
+            crossorigin="anonymous"
+            async>
+    </script>
   </section>
-
-  <div class="next-articles">
-    <h3>Continue Aprendendo</h3>
-    <div class="next-grid">
-      <a href="artigo-ia.html" class="next-card">
-        <div class="next-cat">IA</div>
-        <div class="next-title">O que é Inteligência Artificial?</div>
-        <p class="next-desc">Como a IA funciona e como a GAIA usa ela nos robôs autônomos.</p>
-      </a>
-      <a href="aprenda.html" class="next-card">
-        <div class="next-cat">Todos os artigos</div>
-        <div class="next-title">Ver todos os temas →</div>
-        <p class="next-desc">Drones, eletrônica, robótica e muito mais no hub de conteúdo.</p>
-      </a>
-    </div>
-  </div>
 
   <div class="back-cta">
     <div>
@@ -246,26 +204,7 @@ void loop() {
     <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">@gaia.robotica →</a>
   </div>
 </div>
-<section class="comments-section">
-  <h3>Discussão e Comentários</h3>
-  
-  <script src="https://giscus.app/client.js"
-        data-repo="GaiaRobotca/gaiarobotica-new.github.io"
-        data-repo-id="R_kgDORhLuBw"
-        data-category="General"
-        data-category-id="DIC_kwDORhLuB84C37IJ"
-        data-mapping="pathname"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="pt"
-        crossorigin="anonymous"
-        async>
-  </script>
-</section>
-  
+
 <footer>
   <div class="fl">GAIA <span>ROBÓTICA</span></div>
   <p>UFTM · Uberaba, MG · 2023</p>
@@ -291,33 +230,6 @@ void loop() {
       menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
     });
   }
-
-  // Lógica de Comentários em Tempo Real da Júlia
-  const form = document.getElementById('form-comentario');
-  const list = document.getElementById('comment-list');
-  const emptyMsg = document.getElementById('empty-msg');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nome = document.getElementById('nome-usuario').value;
-    const texto = document.getElementById('texto-comentario').value;
-    const data = new Date().toLocaleDateString('pt-BR');
-
-    if (emptyMsg) emptyMsg.remove();
-
-    const div = document.createElement('div');
-    div.className = 'comment-item';
-    div.innerHTML = `
-      <div class="comment-header">
-        <span class="comment-user">${nome}</span>
-        <span>${data}</span>
-      </div>
-      <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 0; color: var(--text);">${texto}</p>
-    `;
-
-    list.prepend(div);
-    form.reset();
-  });
 </script>
 
 </body>
