@@ -7,54 +7,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#ffffff;--surface:#f8f9fa;--blue:#1a6fd4;--blue-dark:#0d4fa0;--green:#5cb82e;--text:#2c3e50;--muted:#7f8c8d;--border:#e1e8ed;}
-  *{margin:0;padding:0;box-sizing:border-box;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;line-height:1.8;}
 
-  /* Navegação */
   nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);padding:0 3rem;height:70px;display:flex;justify-content:space-between;align-items:center;}
   .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue-dark);text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
   .nav-logo span{color:var(--green);}
 
-  /* Cabeçalho do Post (Estilo Mectria) */
   .article-header{max-width:900px;margin:4rem auto 2rem;padding:0 2rem;}
   .post-cat{color:var(--blue);font-family:'Space Mono',monospace;font-size:0.8rem;text-transform:uppercase;font-weight:700;}
-  h1{font-family:'Barlow Condensed',sans-serif;font-size:3.5rem;font-weight:900;line-height:1.1;margin:1rem 0;color:#1a1a1a;}
+  h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem, 5vw, 3.5rem);font-weight:900;line-height:1.1;margin:1rem 0;color:#1a1a1a;text-transform:uppercase;}
   .post-meta{display:flex;align-items:center;gap:1rem;color:var(--muted);font-size:0.9rem;}
-  .author-img{width:40px;height:40px;border-radius:50%;background:#ddd;}
+  .author-img{width:40px;height:40px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--blue);border:1px solid var(--border);}
 
-  /* Imagem Principal */
   .main-image{max-width:1100px;margin:2rem auto;padding:0 2rem;}
   .main-image img{width:100%;height:500px;object-fit:cover;border-radius:4px;}
 
-  /* Corpo do Post */
   .post-content{max-width:800px;margin:0 auto;padding:2rem;}
-  h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;margin:2.5rem 0 1rem;color:var(--blue-dark);}
+  h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;margin:2.5rem 0 1rem;color:var(--blue-dark);border-bottom: 2px solid var(--surface); padding-bottom: 0.5rem; text-transform:uppercase;}
   p{margin-bottom:1.5rem;font-size:1.15rem;}
   
-  /* Citação/Destaque */
-  blockquote{border-left:5px solid var(--green);padding-left:1.5rem;margin:2.5rem 0;font-style:italic;font-size:1.3rem;color:var(--blue-dark);}
+  blockquote{border-left:5px solid var(--green);padding:1.5rem;margin:2.5rem 0;font-style:italic;font-size:1.3rem;color:var(--text);background: var(--surface);}
+  .math-box{background:var(--surface);padding:1.5rem;border-radius:8px;margin:2rem 0;text-align:center;border: 1px dashed var(--blue); font-size: 1.2rem;}
 
-  /* Imagens no Corpo */
-  .content-img{margin:3rem 0;text-align:center;}
-  .content-img img{max-width:100%;border-radius:4px;}
-  .img-caption{font-size:0.85rem;color:var(--muted);margin-top:0.5rem;font-family:'Space Mono',monospace;}
-
-  /* Seção de Comentários */
   .comments-section{max-width:800px;margin:5rem auto;padding:3rem 2rem;border-top:1px solid var(--border);}
-  .comments-section h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;margin-bottom:2rem;}
-  
-  .comment-form textarea{width:100%;padding:1rem;border:1px solid var(--border);border-radius:4px;margin-bottom:1rem;font-family:inherit;font-size:1rem;resize:vertical;}
-  .btn-comment{background:var(--blue-dark);color:#fff;padding:0.8rem 2rem;border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;text-transform:uppercase;}
+  .comment-form{display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;}
+  .comment-form input, .comment-form textarea{width:100%;padding:1rem;border:1px solid var(--border);border-radius:4px;font-family:inherit;font-size:1rem; background: var(--surface);}
+  .btn-comment{align-self: flex-start; background:var(--blue-dark);color:#fff;padding:0.8rem 2rem;border:none;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;cursor:pointer;text-transform:uppercase;}
 
-  .comment-list{margin-top:3rem;}
-  .comment-item{display:flex;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid #f0f0f0;}
-  .user-avatar{width:45px;height:45px;border-radius:50%;background:#e1f0ff;display:flex;align-items:center;justify-content:center;font-weight:bold;color:var(--blue-dark);}
-  .comment-text b{display:block;margin-bottom:0.2rem;}
-  .comment-text p{font-size:1rem;margin:0;}
+  .comment-item{margin-bottom:2rem; padding:1.5rem; background: var(--surface); border-radius: 4px; border-left: 3px solid var(--border);}
+  .comment-user{font-weight: 800; color: var(--blue-dark); font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;}
 
-  footer{background:#1a1a1a;color:#fff;padding:4rem 2rem;text-align:center;margin-top:5rem;}
-
-  @media(max-width:768px){h1{font-size:2.5rem;}.main-image img{height:300px;}}
+  footer{background:#040e22;color:#fff;padding:4rem 2rem;text-align:center;}
 </style>
 </head>
 <body>
@@ -68,7 +52,7 @@
     <div class="post-cat">Inteligência Artificial</div>
     <h1>O que é Inteligência Artificial e como ela aprende?</h1>
     <div class="post-meta">
-      <div class="author-img"></div>
+      <div class="author-img">J</div>
       <div>Por <b>Júlia</b> • 8 de Março, 2026 • 6 min de leitura</div>
     </div>
   </header>
@@ -78,65 +62,47 @@
   </div>
 
   <div class="post-content">
-    <p>Diferente do que vemos no cinema, a Inteligência Artificial não é uma consciência em uma caixa metálica. Para nós, na engenharia, a IA é a evolução máxima da modelagem matemática de dados.</p>
-
-    <h2>A Quebra do Código Tradicional</h2>
-    <p>Se você programa em Arduino, sabe que o fluxo é lógico: <i>"Se o sensor X ler valor Y, então faça Z"</i>. Mas como descrever logicamente todos os pixels que compõem um rosto humano? É impossível.</p>
-
-    
+    <p>Na Engenharia Elétrica, lidamos constantemente com sistemas determinísticos. No entanto, a IA surge para resolver problemas onde as regras não podem ser escritas manualmente, como o reconhecimento de padrões em sinais complexos.</p>
 
     <blockquote>
-      "A IA não é programada; ela é treinada. É o processo de ensinar uma máquina a encontrar padrões em meio ao caos de dados brutos."
+      "Diferente da programação comum, na IA nós fornecemos os dados e os resultados, e o sistema descobre a função matemática que os conecta."
     </blockquote>
 
-    <h2>O Neurônio Matemático</h2>
-    <p>A base de tudo é o <strong>Perceptron</strong>. Imagine uma função que recebe sinais, aplica pesos baseados na importância de cada um e gera uma resposta. Matematicamente, estamos resolvendo:</p>
+    <h2>1. O Neurônio Matemático</h2>
+    <p>A base de tudo é o Perceptron, um modelo que realiza uma soma ponderada de entradas ($x$) multiplicadas por pesos ($w$), somadas a um bias ($b$).</p>
     
-    <p style="text-align:center; padding:1.5rem; background:var(--surface); border-radius:8px;">
+    <div class="math-box">
       $$y = \phi \left( \sum_{i=1}^{n} w_i x_i + b \right)$$
-    </p>
-
-    <div class="content-img">
-      
-      <p class="img-caption">Figura 1: Representação simplificada de um neurônio artificial.</p>
     </div>
 
-    <p>No <strong>GAIA Robótica</strong>, aplicamos esses conceitos em nossos drones para que eles possam, por exemplo, identificar a cor de um alvo ou desviar de obstáculos sem intervenção humana.</p>
+    
+
+    <h2>2. Otimização por Gradiente</h2>
+    <p>O aprendizado ocorre através do ajuste de pesos para minimizar uma função de perda. No GAIA, usamos esses modelos para que nossos robôs tomem decisões autônomas baseadas em sensores de telemetria.</p>
   </div>
 </article>
 
 <section class="comments-section">
-  <h3>Comentários</h3>
-  
-  <div class="comment-form">
-    <textarea rows="4" placeholder="O que você achou deste conteúdo?"></textarea>
-    <button class="btn-comment">Publicar Comentário</button>
-  </div>
-
-  <div class="comment-list">
-    <div class="comment-item">
-      <div class="user-avatar">LE</div>
-      <div class="comment-text">
-        <b>Luís Eduardo</b>
-        <p>Excelente explicação! Essa parte do Gradiente Descendente sempre foi confusa, mas a analogia da montanha ajudou muito.</p>
-      </div>
-    </div>
-    <div class="comment-item">
-      <div class="user-avatar">AM</div>
-      <div class="comment-text">
-        <b>Ana Maria</b>
-        <p>Vocês pretendem postar o código de exemplo em Python para o ROS2?</p>
-      </div>
-    </div>
+  <h3>Discussão</h3>
+  <form class="comment-form" id="form-ia">
+    <input type="text" placeholder="Seu Nome" required id="nome-ia">
+    <textarea rows="4" placeholder="Deixe seu comentário..." required id="texto-ia"></textarea>
+    <button type="submit" class="btn-comment">Publicar</button>
+  </form>
+  <div id="lista-ia">
+    <p style="color: var(--muted); font-style: italic;" id="msg-ia">Ainda não há comentários.</p>
   </div>
 </section>
 
-<footer>
-  <p>GAIA Robótica · Projeto de Extensão UFTM · Uberaba, MG</p>
-</footer>
+<footer><p>GAIA Robótica · UFTM · Uberaba, MG</p></footer>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+<script>
+  const f=document.getElementById('form-ia'),l=document.getElementById('lista-ia'),m=document.getElementById('msg-ia');
+  f.addEventListener('submit',(e)=>{e.preventDefault();const n=document.getElementById('nome-ia').value,t=document.getElementById('texto-ia').value;
+  if(m)m.remove();const d=document.createElement('div');d.className='comment-item';
+  d.innerHTML=`<div class="comment-user">${n}</div><p>${t}</p>`;l.prepend(d);f.reset();});
+</script>
 </body>
 </html>
