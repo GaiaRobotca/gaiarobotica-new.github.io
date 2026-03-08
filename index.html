@@ -174,7 +174,6 @@
   .mc-text { font-size:0.82rem; color:rgba(255,255,255,0.58); line-height:1.55; }
 
   /* ===== EQUIPE ===== */
-  /* leadership */
   .leadership { display:grid; grid-template-columns:1fr 2fr; gap:3rem; align-items:start; margin-bottom:3rem; }
 
   .leader-main {
@@ -198,6 +197,14 @@
   .doc-role { font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.3rem; }
   .doc-name { font-family:'Barlow Condensed',sans-serif; font-size:1.15rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.3rem; }
   .doc-desc { font-size:0.83rem; color:var(--muted); line-height:1.55; }
+
+  /* Lista de Membros Simples */
+  .members-section-title { font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:var(--blue-dark); text-transform:uppercase; margin: 3rem 0 1.5rem; }
+  .members-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3rem; }
+  .member-simple-card { background:var(--surface); border:2px solid var(--border); padding:1rem 1.25rem; display:flex; align-items:center; gap:1rem; transition:border-color 0.2s; }
+  .member-simple-card:hover { border-color:var(--blue); }
+  .ms-avatar { width:42px; height:42px; min-width:42px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:900; }
+  .ms-name { font-size:0.92rem; font-weight:600; color:var(--blue-dark); line-height:1.2; }
 
   .hackagis-team { margin-top:2rem; background:var(--blue-dark); padding:2rem 2.5rem; display:flex; align-items:center; gap:2rem; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%); }
   .hk-badge { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:var(--green); line-height:1; }
@@ -268,61 +275,6 @@
   .hero-inner > *:nth-child(5){animation-delay:0.52s}
   .hero-inner > *:nth-child(6){animation-delay:0.64s}
 
-  /* ===== APRENDA ===== */
-  .aprenda-filter{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:2.5rem;}
-  .filter-btn{font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.5rem 1.2rem;border:2px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;}
-  .filter-btn.active,.filter-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--surface);}
-  .aprenda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-  .aprenda-card{background:var(--white);border:2px solid var(--border);overflow:hidden;text-decoration:none;display:block;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;}
-  .aprenda-card:hover{border-color:var(--blue-light);transform:translateY(-5px);box-shadow:0 12px 36px rgba(26,111,212,0.13);}
-  .aprenda-header{background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:1.5rem;position:relative;overflow:hidden;}
-  .aprenda-header.green-h{background:linear-gradient(135deg,var(--green-dark),var(--green));}
-  .aprenda-header.dark-h{background:linear-gradient(135deg,#1a1a2e,#16213e);}
-  .aprenda-level{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.6);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem;}
-  .aprenda-emoji{font-size:2rem;margin-bottom:0.5rem;display:block;}
-  .aprenda-card-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.1;}
-  .aprenda-body{padding:1.25rem 1.5rem;}
-  .aprenda-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem;}
-  .aprenda-meta{display:flex;justify-content:space-between;align-items:center;}
-  .aprenda-tag-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);background:var(--surface);border:1px solid var(--border);padding:0.22rem 0.6rem;text-transform:uppercase;letter-spacing:0.06em;}
-  .aprenda-cta{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:var(--blue);letter-spacing:0.05em;}
-  .aprenda-insta-box{margin-top:3rem;background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);}
-  .aprenda-insta-box h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:0.5rem;}
-  .aprenda-insta-box p{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.6;}
-
-  /* ===== PATROCINE ===== */
-  .numeros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:4rem;}
-  .numero-card{background:var(--white);border:2px solid var(--border);padding:2rem;text-align:center;transition:border-color 0.2s,transform 0.2s;}
-  .numero-card:hover{border-color:var(--blue);transform:translateY(-3px);}
-  .numero-val{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:var(--blue-dark);line-height:1;}
-  .numero-val em{color:var(--green);font-style:normal;}
-  .numero-lbl{font-size:0.82rem;color:var(--muted);margin-top:0.4rem;line-height:1.45;}
-  .cotas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
-  .cota-card{border:3px solid var(--border);background:var(--white);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
-  .cota-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.1);}
-  .cota-card.destaque{border-color:var(--blue);}
-  .cota-card.destaque::before{content:'MAIS POPULAR';position:absolute;top:1.2rem;right:-2.5rem;background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;padding:0.3rem 3.5rem;transform:rotate(45deg);}
-  .cota-card.premium{border-color:var(--green);}
-  .cota-icon{font-size:2.5rem;margin-bottom:1rem;}
-  .cota-name{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
-  .cota-price{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--muted);margin-bottom:1.5rem;}
-  .cota-benefits{list-style:none;text-align:left;margin-bottom:1.5rem;}
-  .cota-benefits li{font-size:0.88rem;color:var(--text);padding:0.4rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:0.6rem;line-height:1.45;}
-  .cota-benefits li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
-  .cota-btn{display:block;text-align:center;padding:0.85rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid var(--border);color:var(--muted);transition:all 0.2s;}
-  .cota-btn.blue-btn{background:var(--blue);border-color:var(--blue);color:#fff;}
-  .cota-btn.green-btn{background:var(--green);border-color:var(--green);color:#fff;}
-  .cota-btn:hover{transform:translateY(-2px);filter:brightness(1.1);}
-  .patrocine-why{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
-  .why-card{background:var(--surface);border:2px solid var(--border);padding:1.75rem;transition:border-color 0.2s;}
-  .why-card:hover{border-color:var(--blue);}
-  .why-icon{font-size:2rem;margin-bottom:0.75rem;}
-  .why-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.4rem;}
-  .why-text{font-size:0.88rem;color:var(--muted);line-height:1.65;}
-  .patrocine-cta{background:var(--blue-dark);padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);}
-  .patrocine-cta h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:#fff;text-transform:uppercase;}
-  .patrocine-cta p{font-size:0.88rem;color:rgba(255,255,255,0.65);margin-top:0.3rem;}
-
   /* ===== RESPONSIVE ===== */
   .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
 
@@ -335,6 +287,7 @@
     .docentes{grid-template-columns:1fr;}
     .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.aprenda-grid,.cotas-grid,.patrocine-why{grid-template-columns:1fr 1fr;}
     .numeros-grid{grid-template-columns:1fr 1fr;}
+    .members-grid { grid-template-columns: 1fr 1fr; }
     .hero{padding:6rem 1.5rem 5rem;}
     .sec{padding:4rem 1.5rem;}
     .kit-banner,.aprenda-insta-box,.patrocine-cta{grid-template-columns:1fr;}
@@ -343,7 +296,7 @@
     .blog-post{grid-template-columns:1fr;gap:0.3rem;}
   }
   @media(max-width:600px){
-    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.aprenda-grid,.cotas-grid,.patrocine-why,.numeros-grid{grid-template-columns:1fr;}
+    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.aprenda-grid,.cotas-grid,.patrocine-why,.numeros-grid,.members-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -606,7 +559,7 @@
       <div class="mc"><div class="mc-icon">🏫</div><div class="mc-title">Escolas Públicas</div><p class="mc-text">Visitamos escolas de Uberaba com kits e demonstrações ao vivo de robôs reais.</p></div>
       <div class="mc"><div class="mc-icon">⚙️</div><div class="mc-title">Prática Real</div><p class="mc-text">Os alunos programam e operam os robôs eles mesmos — aprendendo fazendo.</p></div>
       <div class="mc"><div class="mc-icon">🧠</div><div class="mc-title">IA & Programação</div><p class="mc-text">Introdução à lógica de programação e IA de forma lúdica e acessível.</p></div>
-      <div class="mc"><div class="mc-title">🌱 Extensão Certificada</div><p class="mc-text">Projeto de extensão certificado pela UFTM, unindo universidade e comunidade.</p></div>
+      <div class="mc"><div class="mc-icon">🌱</div><div class="mc-title">Extensão Certificada</div><p class="mc-text">Projeto de extensão certificado pela UFTM, unindo universidade e comunidade.</p></div>
     </div>
   </div>
 </div>
@@ -657,6 +610,70 @@
           <p class="doc-desc">Tesoureiro do GAIA Robótica. Integrou a equipe premiada no 1° HackaGIS da UFTM em outubro de 2023.</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <h3 class="members-section-title">Membros Atuais</h3>
+  <div class="members-grid">
+    <div class="member-simple-card">
+      <div class="ms-avatar">W</div>
+      <div class="ms-name">Wanessa Karoline Oliveira Silva</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">J</div>
+      <div class="ms-name">Júlia da Silva Origuela</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">P</div>
+      <div class="ms-name">Paula Luísa da Silveira Silva</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">C</div>
+      <div class="ms-name">Carlos Rodrigo de Oliveira Ribeiro Bueno</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">E</div>
+      <div class="ms-name">Eloiza Lopes de Souza Silva</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">C</div>
+      <div class="ms-name">Camila Francisca de Oliveira</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">F</div>
+      <div class="ms-name">Felipe Henrique Ferreira Silva</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">G</div>
+      <div class="ms-name">Gabriel de Azevedo Kaneyassu</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">J</div>
+      <div class="ms-name">João Maerbal Nunes Barros</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">G</div>
+      <div class="ms-name">Gabriel Gonzaga dos Santos</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">G</div>
+      <div class="ms-name">Gabriel Pintor Baptista</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">M</div>
+      <div class="ms-name">Murilo Pelegrini Tristão</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">P</div>
+      <div class="ms-name">Pedro Henrique Barbosa de Freitas Soares</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">J</div>
+      <div class="ms-name">João Paulo Andrade Soares</div>
+    </div>
+    <div class="member-simple-card">
+      <div class="ms-avatar">S</div>
+      <div class="ms-name">Stefanny Ariel Teófilo</div>
     </div>
   </div>
 
