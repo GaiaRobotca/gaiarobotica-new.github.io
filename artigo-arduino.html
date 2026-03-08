@@ -5,8 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arduino: Além da Placa de Prototipagem — GAIA Robótica</title>
 
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-claro.png" media="(prefers-color-scheme: light)">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-escuro.png" media="(prefers-color-scheme: dark)">
+<link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
+
+<script>
+  (function() {
+    // Lista com os nomes dos seus arquivos de 40px
+    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
+    
+    // Sorteia um dos ícones
+    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+    
+    // Aplica o ícone sorteado ao carregar a página
+    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
+  })();
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
