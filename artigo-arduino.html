@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O que é Arduino? — GAIA Robótica</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
+  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+  .nav-logo .g{color:var(--green);}
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  nav a:hover{color:var(--blue);}
+  .article-hero{background:linear-gradient(140deg,var(--green-dark),#2a6e1a,var(--blue-dark));padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
+  .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none;}
+  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+  .hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
+  .breadcrumb a:hover{color:var(--green);}
+  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;}
+  .meta-pill.cat{background:rgba(92,184,46,0.25);border:1px solid var(--green);color:var(--green);}
+  .meta-pill.lvl,.meta-pill.time{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
+  .article-hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.72;font-weight:300;}
+  .article-wrap{max-width:780px;margin:0 auto;padding:4rem 3rem;}
+  .share-bar{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:var(--white);border:2px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
+  .share-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
+  .share-btn{font-family:'Space Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:all 0.2s;display:inline-block;}
+  .share-btn:hover{border-color:var(--blue);color:var(--blue);}
+  .share-btn.insta{border-color:var(--green);color:var(--green);}
+  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;line-height:1;}
+  .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
+  .article-content p{font-size:1rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
+  .article-content strong{color:var(--blue-dark);}
+  .highlight-box{background:var(--surface);border-left:4px solid var(--blue);padding:1.5rem 1.75rem;margin:2rem 0;}
+  .highlight-box p{margin:0;color:var(--blue-dark);font-weight:500;}
+  .green-box{background:rgba(92,184,46,0.08);border-left:4px solid var(--green);padding:1.5rem 1.75rem;margin:2rem 0;}
+  .green-box p{margin:0;}
+  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.82rem;line-height:1.75;margin:2rem 0;overflow-x:auto;border-left:4px solid var(--green);}
+  .code-block .comment{color:#5a9a6a;}
+  .code-block .keyword{color:#5bbfea;}
+  .code-block .fn{color:var(--green);}
+  .code-block .num{color:#ffb347;}
+  .parts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0;}
+  .part-card{background:var(--white);border:2px solid var(--border);padding:1.25rem;transition:border-color 0.2s;}
+  .part-card:hover{border-color:var(--green);}
+  .part-icon{font-size:1.6rem;margin-bottom:0.5rem;}
+  .part-name{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.3rem;}
+  .part-desc{font-size:0.82rem;color:var(--muted);line-height:1.55;}
+  .next-articles{margin-top:4rem;padding-top:3rem;border-top:2px solid var(--border);}
+  .next-articles h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;}
+  .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+  .next-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.2s;}
+  .next-card:hover{border-color:var(--blue);transform:translateY(-3px);}
+  .next-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
+  .next-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;line-height:1.1;margin-bottom:0.4rem;}
+  .next-desc{font-size:0.83rem;color:var(--muted);}
+  .back-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:2rem 2.5rem;background:var(--blue-dark);margin-top:3rem;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
+  .back-cta p{color:rgba(255,255,255,0.7);font-size:0.9rem;}
+  .back-cta strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#fff;text-transform:uppercase;margin-bottom:0.2rem;}
+  .btn-p{background:var(--green);color:#fff;padding:0.85rem 1.75rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s;white-space:nowrap;}
+  .btn-p:hover{background:var(--green-dark);}
+  footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
+  .fl span{color:var(--green);}
+  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
+  .flinks{display:flex;gap:1.5rem;}
+  .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+  .flinks a:hover{color:var(--green);}
+  @media(max-width:900px){nav ul{display:none;}nav{padding:0 1.5rem;}.article-wrap{padding:3rem 1.5rem;}.article-hero{padding-left:1.5rem;padding-right:1.5rem;}.parts-grid,.next-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.parts-grid,.next-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <ul>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#eletroquad">Eletroquad</a></li>
+    <li><a href="index.html#conquistas">Conquistas</a></li>
+    <li><a href="aprenda.html">Aprenda</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Arduino</div>
+    <div class="article-meta">
+      <span class="meta-pill cat">Arduino</span>
+      <span class="meta-pill lvl">● Iniciante</span>
+      <span class="meta-pill time">⏱ 6 min de leitura</span>
+    </div>
+    <h1>ARDUINO:<br>O QUE É E<br>COMO FUNCIONA?</h1>
+    <p class="subtitle">A plaquinha que move nossos robôs. Entenda o que é um microcontrolador, como programar do zero e por que o Arduino é a porta de entrada para a robótica.</p>
+  </div>
+</div>
+
+<div class="article-wrap">
+  <div class="share-bar">
+    <span class="share-label">Compartilhe:</span>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="share-btn insta">📸 Instagram</a>
+    <a href="https://wa.me/?text=Aprenda%20o%20que%20%C3%A9%20Arduino%20com%20a%20GAIA%20Rob%C3%B3tica!" target="_blank" class="share-btn">💬 WhatsApp</a>
+    <a href="https://www.linkedin.com/company/gaiarobotica" target="_blank" class="share-btn">💼 LinkedIn</a>
+  </div>
+
+  <div class="article-content">
+    <p>O Arduino é uma das ferramentas mais importantes da robótica moderna. Na GAIA, usamos Arduino no <strong>Robô Corredor</strong>, no <strong>Robô Omnidirecional</strong>, nas oficinas educacionais e como base para aprender eletrônica. Mas o que é, exatamente?</p>
+
+    <div class="highlight-box">
+      <p>💡 <strong>Definição simples:</strong> Arduino é uma placa eletrônica com um microcontrolador que você programa para controlar componentes físicos — LEDs, motores, sensores, buzzers e muito mais.</p>
+    </div>
+
+    <h2>O que tem dentro de um Arduino?</h2>
+    <p>A placa mais famosa, o <strong>Arduino Uno</strong>, parece simples — mas tem tudo que você precisa para começar:</p>
+
+    <div class="parts-grid">
+      <div class="part-card"><div class="part-icon">🧠</div><div class="part-name">Microcontrolador</div><p class="part-desc">O ATmega328P — o "cérebro" da placa. Executa seu código linha por linha.</p></div>
+      <div class="part-card"><div class="part-icon">⚡</div><div class="part-name">Pinos Digitais</div><p class="part-desc">14 pinos que podem ligar (HIGH) ou desligar (LOW) — para controlar LEDs, relés, motores.</p></div>
+      <div class="part-card"><div class="part-icon">📡</div><div class="part-name">Pinos Analógicos</div><p class="part-desc">6 pinos que leem valores variáveis — temperatura, luz, distância via sensores.</p></div>
+      <div class="part-card"><div class="part-icon">🔌</div><div class="part-name">Porta USB</div><p class="part-desc">Para conectar no computador, fazer upload do código e alimentar a placa.</p></div>
+      <div class="part-card"><div class="part-icon">🕐</div><div class="part-name">Clock 16 MHz</div><p class="part-desc">Velocidade de processamento. Executa 16 milhões de instruções por segundo.</p></div>
+      <div class="part-card"><div class="part-icon">💾</div><div class="part-name">Memória Flash</div><p class="part-desc">32KB onde seu código fica salvo mesmo sem energia.</p></div>
+    </div>
+
+    <h2>Seu primeiro código</h2>
+    <p>Todo mundo começa com o mesmo programa: piscar um LED. É o "Olá Mundo" da eletrônica. Veja como é simples:</p>
+
+    <div class="code-block"><span class="comment">// Pisca o LED embutido no pino 13</span>
+
+<span class="keyword">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(<span class="num">13</span>, OUTPUT);  <span class="comment">// define pino 13 como saída</span>
+}
+
+<span class="keyword">void</span> <span class="fn">loop</span>() {
+  <span class="fn">digitalWrite</span>(<span class="num">13</span>, HIGH);  <span class="comment">// liga o LED</span>
+  <span class="fn">delay</span>(<span class="num">1000</span>);              <span class="comment">// espera 1 segundo</span>
+  <span class="fn">digitalWrite</span>(<span class="num">13</span>, LOW);   <span class="comment">// desliga o LED</span>
+  <span class="fn">delay</span>(<span class="num">1000</span>);              <span class="comment">// espera 1 segundo</span>
+}</div>
+
+    <p>Todo programa Arduino tem duas funções principais: <strong>setup()</strong> — que roda uma vez ao ligar — e <strong>loop()</strong> — que fica repetindo para sempre. É o ciclo básico de qualquer robô.</p>
+
+    <h2>Como a GAIA usa Arduino</h2>
+    <p>No <strong>Robô Corredor</strong>, usamos Arduino para ler a bússola e controlar os motores de forma autônoma. O robô segue uma direção específica sem ninguém no controle — tudo programado em C++ rodando no microcontrolador.</p>
+
+    <div class="green-box">
+      <p>🤖 <strong>Na prática:</strong> o Arduino lê o sensor de bússola, compara o ângulo atual com o ângulo desejado, e ajusta os motores automaticamente para manter a trajetória. Isso é robótica real — e você aprende isso nas nossas oficinas!</p>
+    </div>
+
+    <h2>Arduino vs ESP32 — qual a diferença?</h2>
+    <p>Nos projetos mais avançados, usamos também o <strong>ESP32</strong> — um microcontrolador mais poderoso com <strong>Wi-Fi e Bluetooth integrados</strong>. É o que usamos no Veículo Autônomo.</p>
+    <p>Para quem está começando, o Arduino Uno é perfeito. Para projetos com comunicação sem fio ou mais processamento, o ESP32 é a escolha.</p>
+
+    <div class="highlight-box">
+      <p>🛠 <strong>Quer aprender na prática?</strong> A GAIA realiza <strong>Oficinas de Arduino</strong> abertas para estudantes da UFTM e da comunidade. Fique de olho no nosso Instagram para as próximas datas!</p>
+    </div>
+  </div>
+
+  <div class="next-articles">
+    <h3>Continue Aprendendo</h3>
+    <div class="next-grid">
+      <a href="artigo-ia.html" class="next-card">
+        <div class="next-cat">IA</div>
+        <div class="next-title">O que é Inteligência Artificial?</div>
+        <p class="next-desc">Como a IA funciona e como a GAIA usa ela nos robôs autônomos.</p>
+      </a>
+      <a href="aprenda.html" class="next-card">
+        <div class="next-cat">Todos os artigos</div>
+        <div class="next-title">Ver todos os temas →</div>
+        <p class="next-desc">Drones, eletrônica, robótica e muito mais no hub de conteúdo.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="back-cta">
+    <div>
+      <strong>Quer aprender na prática?</strong>
+      <p>Participe das nossas oficinas de Arduino e solda. Siga o Instagram para as próximas datas.</p>
+    </div>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">@gaia.robotica →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">GAIA <span>ROBÓTICA</span></div>
+  <p>UFTM · Uberaba, MG · 2023</p>
+  <div class="flinks">
+    <a href="index.html">Home</a>
+    <a href="aprenda.html">Aprenda</a>
+    <a href="patrocine.html">Patrocine</a>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
+    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
+  </div>
+</footer>
+</body>
+</html>
