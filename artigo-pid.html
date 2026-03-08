@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Controle PID: O Segredo dos Robôs Precisos — GAIA Robótica</title>
+
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
 <script>
   (function() {
@@ -12,6 +13,7 @@
     document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
   })();
 </script>
+
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
@@ -29,99 +31,60 @@
 
   /* ===== HERO ===== */
   .article-hero{background:linear-gradient(140deg,var(--blue-deep),#1a4a8e,#0a2a50);padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-  .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none;}
   .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
-  .breadcrumb a:hover{color:var(--green);}
-  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;}
-  .meta-pill.cat{background:rgba(26,111,212,0.25);border:1px solid var(--blue-light);color:#fff;}
-  .meta-pill.lvl,.meta-pill.time{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
-  .article-hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.72;font-weight:300;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+  .breadcrumb a{color:inherit;text-decoration:none;}
+  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
 
-  /* ===== CONTENT ===== */
-  .article-wrap{max-width:780px;margin:0 auto;padding:4rem 3rem;}
-  .share-bar{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:var(--white);border:2px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
-  .share-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
-  .share-btn{font-family:'Space Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:all 0.2s;display:inline-block;}
-  .share-btn:hover{border-color:var(--blue);color:var(--blue);}
-  .share-btn.insta{border-color:var(--green);color:var(--green);}
+  /* ===== LAYOUT DE DUAS COLUNAS ===== */
+  .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
+  .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
 
-  .main-image { margin: 0 0 3rem; }
-  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; border: 2px solid var(--border); }
+  /* Sidebar de Posts Recentes */
+  .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
+  .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
+  .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
+  .post-recente-item:hover { transform: translateX(5px); }
+  .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
+  .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
 
-  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;line-height:1;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
+  /* Estilos do Conteúdo */
+  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
+  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
   .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
   .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
-  .article-content strong{color:var(--blue-dark);}
-
   blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
-  
-  .content-img { margin: 3rem 0; text-align: center; }
-  .content-img img { max-width: 100%; border-radius: 4px; border: 2px solid var(--border); }
-  .img-caption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
   .math-box { background: var(--surface); padding: 1.5rem; margin: 2rem 0; text-align: center; border: 1px dashed var(--blue); font-size: 1.2rem; font-family: 'Space Mono', monospace; color: var(--blue-dark); overflow-x: auto; }
-
-  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;line-height:1.75;margin:2rem 0;overflow-x:auto;border-left:4px solid var(--green);}
-
-  /* ===== COMMENTS (GISCUS) ===== */
-  .comments-section { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border); }
-  .comments-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1.5rem; }
-
-  /* ===== FOOTER & EXTRAS ===== */
-  .next-articles{margin-top:4rem;padding-top:3rem;border-top:2px solid var(--border);}
-  .next-articles h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;}
-  .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-  .next-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.2s;}
-  .next-card:hover{border-color:var(--blue);transform:translateY(-3px);}
-  .next-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
-  .next-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;line-height:1.1;margin-bottom:0.4rem;}
-  .next-desc{font-size:0.83rem;color:var(--muted);}
-  .back-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:2rem 2.5rem;background:var(--blue-dark);margin-top:3rem;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
-  .back-cta p{color:rgba(255,255,255,0.7);font-size:0.9rem;}
-  .back-cta strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#fff;text-transform:uppercase;margin-bottom:0.2rem;}
-  .btn-p{background:var(--green);color:#fff;padding:0.85rem 1.75rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s;white-space:nowrap;}
-  .btn-p:hover{background:var(--green-dark);}
   
-  footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
-  .fl span{color:var(--green);}
-  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
-  .flinks{display:flex;gap:1.5rem;}
-  .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
-  .flinks a:hover{color:var(--green);}
+  /* Rodapé e CTA */
+  .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: transform 0.2s; }
+  .btn-p:hover { transform: translateY(-3px); background: var(--white); color: var(--blue-dark); }
+  
+  footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
+  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+  .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.95rem; }
 
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width:900px){
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav{padding:0 1.5rem;}
-    .article-wrap{padding:3rem 1.5rem;}
-    .article-hero{padding-left:1.5rem;padding-right:1.5rem;}
-    .next-grid{grid-template-columns:1fr 1fr;}
-    .back-cta{flex-direction:column;text-align:center;}
+  @media(max-width: 1000px) {
+    .container-leitura { grid-template-columns: 1fr; }
+    .sidebar-posts { margin-top: 4rem; position: static; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
   }
-  @media(max-width:600px){.next-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
-  <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
-    <li><a href="index.html#eletroquad">Eletroquad</a></li>
-    <li><a href="index.html#conquistas">Conquistas</a></li>
     <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-    <li><a href="index.html#contato">Contato</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);">Patrocine</a></li>
   </ul>
 </nav>
 
@@ -129,186 +92,109 @@
   <div class="hero-inner">
     <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Controle</div>
     <div class="article-meta">
-      <span class="meta-pill cat">Sistemas & Sinais</span>
-      <span class="meta-pill lvl">● Intermediário</span>
-      <span class="meta-pill time">⏱ 12 min de leitura</span>
-      <span class="meta-pill time">✍️ Por Júlia</span>
+      <span class="meta-pill">Sistemas & Sinais</span>
+      <span class="meta-pill">Intermediário</span>
+      <span class="meta-pill">12 min de leitura</span>
     </div>
     <h1>CONTROLE PID: O SEGREDO<br>DOS ROBÔS PRECISOS</h1>
-    <p class="subtitle">Entenda o algoritmo matemático Proporcional-Integral-Derivativo que faz nossos drones voarem e nossos robôs andarem em linha reta.</p>
   </div>
 </div>
 
 <div class="article-wrap">
-  <div class="share-bar">
-    <span class="share-label">Compartilhe:</span>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="share-btn insta">📸 Instagram</a>
-    <a href="https://wa.me/?text=Descubra%20o%20segredo%20da%20precis%C3%A3o%20dos%20rob%C3%B4s%20com%20a%20GAIA%20Rob%C3%B3tica!" target="_blank" class="share-btn">💬 WhatsApp</a>
-    <a href="https://www.linkedin.com/company/gaiarobotica" target="_blank" class="share-btn">💼 LinkedIn</a>
-  </div>
-
-  <div class="main-image">
-    <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1200" alt="Processamento de Sinais e Controle">
-  </div>
-
-  <div class="post-content">
-    <p>Se você já tentou programar um robô seguidor de linha ou um drone para pairar no ar, sabe que a realidade é cruel. Os motores nunca giram exatamente na mesma velocidade, o vento empurra o drone, e a gravidade é constante. Sem um sistema de controle inteligente, o robô oscila violentamente e o drone caiinstantaneamente.</p>
-
-    <blockquote>
-      "O Controle PID não é apenas matemática; é a capacidade do robô de perceber o próprio erro e corrigi-lo de forma suave, rápida e precisa, imitando o comportamento humano."
-    </blockquote>
-
-    <h2>1. O Problema da Malha Aberta vs. Malha Fechada</h2>
-    <p>Imagine que você quer levar seu robô móvel exatamente a 1 metro de distância. Um controle em **Malha Aberta** simplesmente liga o motor, espera um tempo calculado e desliga. Se houver um tapete no meio ou a bateria estiver fraca, o robô para antes ou depois. É um sistema baseado na fé.</p>
-    
-    <div class="content-img">
+  <div class="container-leitura">
+    <article class="article-content-main">
+      <div class="main-image">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=1200" alt="Controle e Sinais">
+      </div>
       
-      <p class="img-caption">Figura 1: Comparação conceitual entre Malha Aberta (sem feedback) e Malha Fechada (com feedback).</p>
-    </div>
+      <div class="article-content">
+        <p>No <strong>GAIA Robótica</strong>, o PID é a inteligência matemática que permite aos nossos drones pairarem e aos nossos robôs seguirem linhas com precisão milimétrica em Uberaba.</p>
 
-    <p>O **Malha Fechada** (como o PID) usa um **sensor** para medir onde o robô *realmente* está e compara com onde ele *deveria* estar. A diferença é o nosso Erro. MV = Motor PWM. Erro = Setpoint - Variável de Processo.</p>
+        <blockquote>
+          "O Controle PID é a capacidade do robô de perceber o próprio erro e corrigi-lo de forma suave e precisa."
+        </blockquote>
 
-    <h2>2. Decompondo o PID: P, I e D</h2>
-    <p>O PID é composto por três parcelas matemáticas que atuam em paralelo sobre o erro.MV = Motor PWM. MV = Motor PWM. MV = Motor PWM.</p>
+        <h2>1. Malha Aberta vs. Malha Fechada</h2>
+        <p>Enquanto a malha aberta funciona "na base da fé", a malha fechada utiliza sensores para comparar onde o robô está com onde deveria estar, calculando o **Erro**.</p>
 
-    <div class="content-img">
+        <h2>2. As Três Parcelas: P, I e D</h2>
+        <h3>Proporcional (P): O Agora</h3>
+        <p>Atua sobre o erro atual. Quanto maior a distância do alvo, mais força o motor aplica.</p>
+
+        <h3>Integral (I): O Passado</h3>
+        <p>Elimina o erro residual acumulando as pequenas falhas ao longo do tempo para garantir que o alvo seja alcançado exatamente.</p>
+
+        <h3>Derivativo (D): O Futuro</h3>
+        <p>Funciona como um travão, prevendo a velocidade de aproximação para evitar que o robô passe direto pelo objetivo.</p>
+
+        <h2>3. Sintonia de Ganhos</h2>
+        <p>No laboratório da UFTM, utilizamos o método de <strong>Ziegler-Nichols</strong> para encontrar os valores ideais de Kp, Ki e Kd, equilibrando velocidade e estabilidade.</p>
+      </div>
+
+      <section class="comments-section">
+        <h3>Discussão Técnica</h3>
+        <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
+      </section>
+    </article>
+
+    <aside class="sidebar-posts">
+      <h3>Posts Recentes</h3>
       
-      <p class="img-caption">Figura 2: Diagrama de blocos clássico de um controlador PID paralelo.</p>
-    </div>
-
-    <h3>Proporcional (P): O Erro Atual</h3>
-    <p>A parcela Proporcional ($P$) olha para o tamanho do erro agora. Se o erro é grande, o motor gira com muita força; se o erro é pequeno, o motor gira devagar. É o conceito de * "quanto mais longe, mais rápido" *. Analogia: Ao chegar perto de um sinal vermelho com seu carro, você pisa com mais força quanto mais longe você está, e vai soltando o freio.</p>
-
-    <div class="math-box">
-      $$Saída_P = K_p \times Erro(t)$$
-    </div>
-
-    <div class="content-img">
-      [Image illustrating the Proportional term - further car goes faster, closer goes slower]
-      <p class="img-caption">Figura 3: Representação da ação Proporcional: força proporcional à distância do alvo.</p>
-    </div>
-
-    <p>**Problema do P:** Ele nunca chega no alvo exato. Ele para um pouco antes, porque quando o erro fica muito pequeno, a força resultante não é suficiente para vencer o atrito. Isso é chamado de **Erro Residual** (Offset).</p>
-
-    <h3>Integral (I): O Erro Acumulado</h3>
-    <p>A parcela Integral ($I$) resolve o problema do erro residual. Ela não olha apenas para o tamanho do erro agora, mas para quanto erro o sistema acumulou ao longo do tempo. Ela "lembra" do passado. Analogia: Se uma torneira está vazando e você precisa encher um balde até a risca, se você usar apenas o P, você para de abrir a torneira quando o balde está quase cheio. O Integral olha para esse restinho de volume que ainda falta e vai somando ao longo do tempo.</p>
-
-    <div class="math-box">
-      $$Saída_I = K_i \times \sum (Erro \times \Delta t)$$
-    </div>
-
-    <div class="content-img">
-      [Image illustrating the Integral term - small residual error filling a virtual bucket over time to increase correction]
-      <p class="img-caption">Figura 4: Representação da ação Integral: acumulando o erro persistente para garantir que o alvo seja alcançado.</p>
-    </div>
-
-    <h3>Derivativo (D): A Previsão do Futuro</h3>
-    <p>A parcela Derivativa ($D$) é o freio do robô. Ela não olha para o erro, mas para a **velocidade** com que o erro está mudando. Ela prediz o futuro: * "Se eu estou chegando no alvo muito rápido, é melhor eu frear agora para não passar direto" *. Analogia: Ao frear o carro, você freia com mais intensidade se perceber que a sua velocidade está muito alta para a distância, mesmo que ainda esteja longe.</p>
-
-    <div class="math-box">
-      $$Saída_D = K_d \times \frac{\Delta Erro}{\Delta t}$$
-    </div>
-
-    <div class="content-img">
-      [Image illustrating the Derivative term - predicts overshoot and slows down motor based on current velocity]
-      <p class="img-caption">Figura 5: Representação da ação Derivativa: freando a aproximação baseada na taxa de variação.</p>
-    </div>
-
-    <h2>3. O PID na Prática do GAIA: O Seguidor de Linha</h2>
-    <p>No GAIA, usamos PID conceitoialmente em quase tudo. Um seguidor de linha é o exemplo mais didático. O Setpoint é o sensor central exatamente sobre a linha preta. Sensory reading gives PV. Se o erro é right, turn left motor PWM up, right down.</p>
-
-    <div class="content-img">
-      
-      <p class="img-caption">Figura 6: Lógica PID conceitual para o robô seguidor de linha: Setpoint=Centro.</p>
-    </div>
-
-    <h2>4. Sintonia de Ganhos: O Desafio do Engenheiro</h2>
-    <p>Achar os valores perfeitos de $K_p$, $K_i$ e $K_d$ é o que chamamos de **Sintonia**. No laboratório da UFTM em Uberaba, nós raramente usamos fórmulas mágicas no início. Usamos o método prático de Ziegler-Nichols adaptado:</p>
-    <ol>
-        <li>Zere Ki e Kd. Aumente Kp até o robô começar a oscilar (passar direto pelo alvo sem parar).</li>
-        <li>Diminua Kp pela metade.</li>
-        <li>Aumente Ki bem devagar até o robô alcançar o Setpoint exato (eliminar o erro residual).</li>
-        <li>Aumente Kd devagar para suavizar a aproximação e frear a oscilação.</li>
-    </ol>
-    
-    <div class="content-img">
-      
-      <p class="img-caption">Figura 7: Gráfico de resposta temporal de um sistema com sintonia PID ruim vs. boa.</p>
-    </div>
-
-  </div>
-
-  <section class="comments-section">
-    <h3>Discussão e Oficinas</h3>
-    
-    <script src="https://giscus.app/client.js"
-        data-repo="GaiaRobotca/gaiarobotica-new.github.io"
-        data-repo-id="R_kgDORhLuBw"
-        data-category="General"
-        data-category-id="DIC_kwDORhLuB84C37IJ"
-        data-mapping="pathname"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="pt"
-        crossorigin="anonymous"
-        async>
-    </script>
-  </section>
-
-  <div class="next-articles">
-    <h3>Próximos Passos</h3>
-    <div class="next-grid">
-      <a href="artigo-ia.html" class="next-card">
-        <div class="next-cat">Machine Learning</div>
-        <div class="next-title">O que é Inteligência Artificial?</div>
-        <p class="next-desc">Como a IA está mudando a robótica autônoma no GAIA.</p>
+      <a href="artigo-visao.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">O que é Visão Computacional?</span>
       </a>
-      <a href="artigo-drones.html" class="next-card">
-        <div class="next-cat">Aerodinâmica</div>
-        <div class="next-title">Como um drone consegue voar?</div>
-        <p class="next-desc">A física e a propulsão dos quadritores autônomos.</p>
+
+      <a href="artigo-arduino.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Arduino: Além da Prototipagem</span>
       </a>
-    </div>
+
+      <a href="artigo-ia.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Inteligência Artificial na Robótica</span>
+      </a>
+
+      <a href="artigo-drones.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Como um Drone Consegue Voar?</span>
+      </a>
+
+      <a href="artigo-solda.html" class="post-recente-item">
+        <img src="https://image.slidesharecdn.com/gaiasoldafinal-160523235450/85/gaiasoldafinal-15-2048.jpg" class="post-recente-thumb">
+        <span class="post-recente-titulo">Guia de Solda para Iniciantes</span>
+      </a>
+    </aside>
   </div>
 
   <div class="back-cta">
-    <div>
-      <strong>Acompanhe o GAIA</strong>
-      <p>Veja o PID em ação nos nossos drones e seguidores de linha na UFTM.</p>
-    </div>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">@gaia.robotica →</a>
+    <h3>Acompanhe o GAIA</h3>
+    <p>Veja o PID em ação nos nossos drones e robôs na UFTM.</p>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">Acompanhar no Instagram →</a>
   </div>
 </div>
 
 <footer>
-  <div class="fl">GAIA <span>ROBÓTICA</span></div>
-  <p>UFTM · Uberaba, MG · 2026</p>
-  <div class="flinks">
-    <a href="index.html">Home</a>
-    <a href="aprenda.html">Aprenda</a>
-    <a href="patrocine.html">Patrocine</a>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
-    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="fl">GAIA <span>ROBÓTICA</span></span>
+      <p>Desenvolvendo tecnologias autónomas e democratizando o conhecimento na UFTM.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="aprenda.html">Aprenda</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Comunidade</h4>
+      <ul class="footer-links">
+        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
+        <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
-  // Menu Hambúrguer (O código de simulação de comentários foi removido)
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
-  }
-</script>
-
 </body>
 </html>
