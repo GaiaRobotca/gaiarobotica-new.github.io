@@ -1,483 +1,323 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Aprenda — GAIA Robótica</title>
-
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
-
 <script>
-
   (function() {
-
     const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
-
     const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-
     document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
-
   })();
-
 </script>
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
-
   :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
-
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
 
-
-
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
-
   .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
-
   .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
-
   .nav-logo .g{color:var(--green);}
-
   nav ul{list-style:none;display:flex;gap:2.2rem;}
-
   nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-
   nav a:hover,nav a.active{color:var(--blue);}
 
-
-
   /* HERO */
-
   .page-hero{background:linear-gradient(140deg,var(--blue-deep),var(--blue-dark),var(--blue));padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-
   .page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.09) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
-
   .page-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-
   .hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
-
   .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-
   .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
-
   .breadcrumb a:hover{color:var(--green);}
-
   .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,8vw,7rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.9;margin-bottom:1.5rem;}
-
   .page-hero h1 .g{color:var(--green);}
-
   .page-hero p{font-size:1.05rem;color:rgba(255,255,255,0.7);max-width:560px;line-height:1.75;font-weight:300;}
 
-
-
   /* BARRA DE STATS */
-
   .stats-bar{background:var(--blue-deep);padding:0.85rem 3rem;border-bottom:2px solid rgba(255,255,255,0.06);}
-
   .stats-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;}
-
   .sb-item{display:flex;flex-direction:column;gap:0.15rem;}
-
   .sb-num{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#fff;line-height:1;}
-
   .sb-num em{color:var(--green);font-style:normal;}
-
   .sb-lbl{font-family:'Space Mono',monospace;font-size:0.58rem;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.1em;}
-
   .sb-sep{width:1px;height:28px;background:rgba(255,255,255,0.1);flex-shrink:0;}
-
   .sb-trending{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:#fff;line-height:1.2;max-width:300px;}
 
-
-
   /* SEÇÃO */
-
   .sec{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
-
   .sec-tag{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem;}
-
   .sec-tag::before{content:'';width:20px;height:2px;background:var(--green);}
-
   h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.75rem;line-height:1;}
-
   .lead{font-size:1rem;color:var(--muted);max-width:620px;line-height:1.72;margin-bottom:2.5rem;}
 
-
-
   .filter-bar{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:3rem;}
-
   .fbtn{font-family:'Space Mono',monospace;font-size:0.72rem;padding:0.5rem 1.25rem;border:2px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;}
-
   .fbtn.active,.fbtn:hover{border-color:var(--blue);color:var(--blue);background:var(--surface);}
 
-
-
   /* CARDS */
-
   .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 
-
-
   .article-card{background:var(--white);border:2px solid var(--border);overflow:hidden;text-decoration:none;display:block;transition:border-color 0.25s,transform 0.25s,box-shadow 0.25s;position:relative;}
-
   .article-card:hover{border-color:var(--blue-light);transform:translateY(-5px);box-shadow:0 12px 36px rgba(26,111,212,0.13);}
 
-
-
   .ac-header{padding:1.5rem;position:relative;overflow:hidden;}
-
   .ac-header.blue{background:linear-gradient(135deg,var(--blue-dark),var(--blue));}
-
   .ac-header.green{background:linear-gradient(135deg,var(--green-dark),var(--green));}
-
   .ac-header.dark{background:linear-gradient(135deg,#1a1a2e,#2d2d6e);}
-
   .ac-header.teal{background:linear-gradient(135deg,#0d6e6e,#1ab5b5);}
-
   .ac-header.orange{background:linear-gradient(135deg,#a04a0d,#d4732a);}
 
-
-
   .ac-level{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.6);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.4rem;}
-
   .ac-emoji{font-size:2.2rem;margin-bottom:0.5rem;display:block;}
-
   .ac-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.1;}
 
-
-
-  /* badge views no header */
-
   .views-badge{
-
     position:absolute;top:0.8rem;right:0.8rem;
-
     background:rgba(0,0,0,0.38);backdrop-filter:blur(4px);
-
     border:1px solid rgba(255,255,255,0.18);
-
     padding:0.25rem 0.6rem;
-
     font-family:'Space Mono',monospace;font-size:0.62rem;
-
     color:rgba(255,255,255,0.88);
-
     display:flex;align-items:center;gap:0.3rem;
-
   }
-
-
 
   .ac-body{padding:1.25rem 1.5rem;}
-
   .ac-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.1rem;}
-
   .ac-foot{display:flex;justify-content:space-between;align-items:center;}
-
   .ac-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);background:var(--surface);border:1px solid var(--border);padding:0.22rem 0.6rem;text-transform:uppercase;letter-spacing:0.06em;}
-
   .ac-cta{font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;color:var(--blue);letter-spacing:0.05em;}
 
-
-
-  /* linha de views no rodapé do card */
-
   .ac-views-row{
-
     display:flex;align-items:center;gap:0.5rem;
-
     padding:0.6rem 1.5rem;
-
     border-top:1px solid var(--border);
-
     background:var(--surface);
-
   }
-
   .ac-views-num{font-family:'Space Mono',monospace;font-size:0.7rem;font-weight:700;color:var(--blue-dark);}
-
   .ac-views-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
-
   .ac-bar-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-left:auto;}
-
   .ac-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:2px;width:4%;transition:width 0.9s cubic-bezier(.4,0,.2,1);}
 
-
-
-  /* trending badge */
-
+  .article-card.is-trending .trending-tag{display:block;}
   .trending-tag{
-
     display:none;position:absolute;top:0;left:0;
-
     background:var(--green);
-
     font-family:'Space Mono',monospace;font-size:0.58rem;color:#fff;
-
     padding:0.22rem 0.65rem;letter-spacing:0.08em;text-transform:uppercase;
-
     z-index:2;
-
   }
 
-  .article-card.is-trending .trending-tag{display:block;}
-
-
-
-  /* shimmer loading */
-
   .shimmer{display:inline-block;width:28px;height:9px;background:linear-gradient(90deg,rgba(0,0,0,0.06) 25%,rgba(0,0,0,0.12) 50%,rgba(0,0,0,0.06) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:2px;vertical-align:middle;}
-
   .shimmer-light{background:linear-gradient(90deg,rgba(255,255,255,0.1) 25%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.1) 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;}
-
   @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
-
-
   .insta-box{margin-top:3rem;background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:2.5rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%);}
-
   .insta-box h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:0.5rem;}
-
   .insta-box p{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.6;}
-
   .btn-p{background:var(--green);color:#fff;padding:0.9rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s,transform 0.15s;white-space:nowrap;border:none;cursor:pointer;}
 
-  .btn-p:hover{background:var(--green-dark);transform:translateY(-2px);}
-
-
-
   footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-
   .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
-
   .fl span{color:var(--green);}
-
   footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
-
   .flinks{display:flex;gap:1.5rem;}
-
   .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
 
-  .flinks a:hover{color:var(--green);}
-
-
-
   @media(max-width:900px){nav ul{display:none;}nav{padding:0 1.5rem;}.cards-grid{grid-template-columns:1fr 1fr;}.page-hero,.sec,.stats-bar{padding-left:1.5rem;padding-right:1.5rem;}.insta-box{grid-template-columns:1fr;}}
-
   @media(max-width:600px){.cards-grid{grid-template-columns:1fr;}}
-
 </style>
-
 </head>
-
 <body>
 
-
-
 <nav>
-
   <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
-
   <ul>
-
     <li><a href="index.html#sobre">Sobre</a></li>
-
     <li><a href="index.html#eletroquad">Eletroquad</a></li>
-
     <li><a href="index.html#conquistas">Conquistas</a></li>
-
     <li><a href="aprenda.html" class="active">Aprenda</a></li>
-
     <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-
-    <li><a href="index.html#equipe">Equipe</a></li>
-
     <li><a href="index.html#contato">Contato</a></li>
-
   </ul>
-
 </nav>
 
-
-
 <div class="page-hero">
-
   <div class="hero-inner">
-
     <div class="breadcrumb"><a href="index.html">Home</a> › Aprenda</div>
-
     <h1>APRENDA<br>COM A <span class="g">GAIA</span></h1>
-
     <p>Conteúdo técnico simplificado. Viu no Instagram? Aqui você se aprofunda — com código, exemplos e explicações completas.</p>
-
   </div>
-
 </div>
-
-
-
-<!-- BARRA DE STATS GLOBAIS -->
 
 <div class="stats-bar">
-
   <div class="stats-bar-inner">
-
     <div class="sb-item">
-
       <div class="sb-num" id="total-views"><em>—</em></div>
-
       <div class="sb-lbl">visualizações totais</div>
-
     </div>
-
     <div class="sb-sep"></div>
-
     <div class="sb-item">
-
       <div class="sb-num"><em>6</em></div>
-
       <div class="sb-lbl">artigos publicados</div>
-
     </div>
-
     <div class="sb-sep"></div>
-
     <div class="sb-item">
-
       <div class="sb-trending" id="trending-title">—</div>
-
       <div class="sb-lbl">🔥 artigo mais acessado</div>
-
     </div>
-
   </div>
-
 </div>
 
-
-
 <div class="sec">
-
   <div class="sec-tag">// todos os artigos</div>
-
   <h2>Escolha um tema</h2>
-
-  <p class="lead">Do iniciante ao avançado. Cada artigo parte do básico e vai fundo.</p>
-
-
-
   <div class="filter-bar">
-
     <button class="fbtn active" onclick="filterCards(this,'todos')">Todos</button>
-
-    <button class="fbtn" onclick="filterCards(this,'ia')">Inteligência Artificial</button>
-
+    <button class="fbtn" onclick="filterCards(this,'ia')">IA</button>
     <button class="fbtn" onclick="filterCards(this,'arduino')">Arduino</button>
-
     <button class="fbtn" onclick="filterCards(this,'drones')">Drones</button>
-
-    <button class="fbtn" onclick="filterCards(this,'robotica')">Robótica</button>
-
-    <button class="fbtn" onclick="filterCards(this,'eletronica')">Eletrônica</button>
-
   </div>
 
-
-
   <div class="cards-grid">
-
-
-
     <a href="artigo-ia.html" class="article-card" data-cat="ia" data-id="artigo-ia">
-
       <div class="trending-tag">🔥 Mais visto</div>
-
       <div class="ac-header dark">
-
         <div class="ac-level">● Iniciante · 5 min</div>
-
         <span class="ac-emoji">🧠</span>
-
         <div class="ac-title">O que é Inteligência Artificial?</div>
-
-        <div class="views-badge">👁 <span class="vcount" data-id="artigo-ia"><span class="shimmer shimmer-light"></span></span></div>
-
+        <div class="views-badge">👁 <span class="vcount" data-id="artigo-ia"><span class="shimmer"></span></span></div>
       </div>
-
       <div class="ac-body">
-
-        <p class="ac-desc">Você já usou IA hoje sem perceber. Mas o que é isso exatamente? Explicamos do zero, sem jargão, com exemplos do dia a dia.</p>
-
+        <p class="ac-desc">Você já usou IA hoje sem perceber. Explicamos do zero, sem jargão.</p>
         <div class="ac-foot"><span class="ac-cat">IA</span><span class="ac-cta">Ler artigo →</span></div>
-
       </div>
-
       <div class="ac-views-row">
-
         <span class="ac-views-num vcount-full" data-id="artigo-ia">—</span>
-
         <span class="ac-views-lbl">visualizações</span>
-
         <div class="ac-bar-wrap"><div class="ac-bar-fill" data-id="artigo-ia"></div></div>
-
       </div>
-
     </a>
-
-
 
     <a href="artigo-arduino.html" class="article-card" data-cat="arduino" data-id="artigo-arduino">
-
       <div class="trending-tag">🔥 Mais visto</div>
-
       <div class="ac-header green">
-
         <div class="ac-level">● Iniciante · 6 min</div>
-
         <span class="ac-emoji">⚡</span>
-
         <div class="ac-title">Arduino: o que é e como funciona?</div>
-
-        <div class="views-badge">👁 <span class="vcount" data-id="artigo-arduino"><span class="shimmer shimmer-light"></span></span></div>
-
+        <div class="views-badge">👁 <span class="vcount" data-id="artigo-arduino"><span class="shimmer"></span></span></div>
       </div>
-
       <div class="ac-body">
-
-        <p class="ac-desc">A plaquinha que move nossos robôs. Microcontroladores, programação e por que o Arduino é tão popular na robótica.</p>
-
+        <p class="ac-desc">A plaquinha que move nossos robôs. Programação básica de hardware.</p>
         <div class="ac-foot"><span class="ac-cat">Arduino</span><span class="ac-cta">Ler artigo →</span></div>
-
       </div>
-
       <div class="ac-views-row">
-
         <span class="ac-views-num vcount-full" data-id="artigo-arduino">—</span>
-
         <span class="ac-views-lbl">visualizações</span>
-
         <div class="ac-bar-wrap"><div class="ac-bar-fill" data-id="artigo-arduino"></div></div>
-
       </div>
-
     </a>
 
-
-
     <a href="artigo-drones.html" class="article-card" data-cat="drones" data-id="artigo-drones">
-
       <div class="trending-tag">🔥 Mais visto</div>
-
       <div class="ac-header blue">
-
         <div class="ac-level">● Iniciante · 7 min</div>
-
         <span class="ac-emoji">🚁</span>
+        <div class="ac-title">Como um drone consegue voar?</div>
+        <div class="views-badge">👁 <span class="vcount" data-id="artigo-drones"><span class="shimmer"></span></span></div>
+      </div>
+      <div class="ac-body">
+        <p class="ac-desc">Física, hélices e código — tudo para manter uma máquina estável no ar.</p>
+        <div class="ac-foot"><span class="ac-cat">Drones</span><span class="ac-cta">Ler Artigo →</span></div>
+      </div>
+      <div class="ac-views-row">
+        <span class="ac-views-num vcount-full" data-id="artigo-drones">—</span>
+        <span class="ac-views-lbl">visualizações</span>
+        <div class="ac-bar-wrap"><div class="ac-bar-fill" data-id="artigo-drones"></div></div>
+      </div>
+    </a>
+
+    </div>
+</div>
+
+<script>
+const NAMESPACE = 'gaiarobotica-uftm-2025';
+const ARTICLES = {
+  'artigo-ia': 'O que é Inteligência Artificial?',
+  'artigo-arduino': 'Arduino: o que é e como funciona?',
+  'artigo-drones': 'Como um drone consegue voar?',
+  'artigo-visao': 'O que é Visão Computacional?',
+  'artigo-solda': 'Guia de Solda para Iniciantes',
+  'artigo-pid': 'Controle PID: o segredo dos robôs precisos',
+};
+
+function fmt(n) {
+  if (!n && n !== 0) return '—';
+  if (n >= 1000) return (n / 1000).toFixed(1).replace('.0', '') + 'k';
+  return n.toString();
+}
+
+async function getCount(id) {
+  try {
+    const r = await fetch(`https://abacus.jasoncameron.dev/get/${NAMESPACE}/${id}`);
+    const data = await r.json();
+    return data.value || 0;
+  } catch { return 0; }
+}
+
+async function hitCount(id) {
+  try {
+    const r = await fetch(`https://abacus.jasoncameron.dev/hit/${NAMESPACE}/${id}`);
+    const data = await r.json();
+    return data.value || 0;
+  } catch { return 0; }
+}
+
+function renderCounts(counts) {
+  const values = Object.values(counts);
+  const max = Math.max(...values, 1);
+  const total = values.reduce((a, b) => a + b, 0);
+
+  for (const [id, count] of Object.entries(counts)) {
+    document.querySelectorAll(`.vcount[data-id="${id}"]`).forEach(el => el.textContent = fmt(count));
+    document.querySelectorAll(`.vcount-full[data-id="${id}"]`).forEach(el => el.textContent = fmt(count));
+    const fill = document.querySelector(`.ac-bar-fill[data-id="${id}"]`);
+    if (fill) fill.style.width = Math.max(Math.round((count / max) * 100), 4) + '%';
+  }
+  const totalEl = document.getElementById('total-views');
+  if (totalEl) totalEl.innerHTML = `<em>${fmt(total)}</em>`;
+}
+
+async function loadAll() {
+  const counts = {};
+  await Promise.all(Object.keys(ARTICLES).map(async id => { counts[id] = await getCount(id); }));
+  renderCounts(counts);
+}
+
+document.querySelectorAll('.article-card').forEach(card => {
+  card.addEventListener('click', async (e) => {
+    const id = card.dataset.id;
+    const href = card.getAttribute('href');
+    if (!href || href === '#') return;
+    e.preventDefault();
+    await hitCount(id);
+    window.location.href = href;
+  });
+});
+
+function filterCards(btn, cat) {
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(card => {
+    card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+
+loadAll();
+</script>
+</body>
+</html>
