@@ -38,7 +38,6 @@
   .breadcrumb a{color:inherit;text-decoration:none;}
   .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
   .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
-  .meta-pill.cat{background:rgba(26,111,212,0.25);border:1px solid var(--blue-light);color:#fff;}
 
   /* ===== LAYOUT DE DUAS COLUNAS ===== */
   .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
@@ -62,8 +61,7 @@
 
   /* Rodapé e CTA */
   .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
-  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: transform 0.2s; }
-  .btn-p:hover { transform: translateY(-3px); background: var(--white); color: var(--blue-dark); }
+  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
   
   footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
   .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
@@ -93,7 +91,7 @@
   <div class="hero-inner">
     <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Visão</div>
     <div class="article-meta">
-      <span class="meta-pill cat">IA & Sinais</span>
+      <span class="meta-pill">IA & Sinais</span>
       <span class="meta-pill">Intermediário</span>
       <span class="meta-pill">8 min de leitura</span>
     </div>
@@ -109,31 +107,31 @@
       </div>
       
       <div class="article-content">
-        <p>No <strong>GAIA Robótica</strong>, a Visão Computacional é o "olho" que permite aos nossos sistemas interagirem com o ambiente em Uberaba de forma autónoma, transformando luz em significado matemático.</p>
+        <p>No <strong>GAIA Robótica</strong>, a Visão Computacional permite aos nossos sistemas extraírem significado matemático de fluxos de luz, possibilitando interações autónomas com o ambiente em Uberaba.</p>
 
         <blockquote>
-          "Visão Computacional não é sobre capturar fotos bonitas, mas sobre compreender dados matriciais para gerar ações físicas no mundo real."
+          "Visão Computacional é sobre compreender dados matriciais para gerar ações físicas no mundo real."
         </blockquote>
 
         <h2>1. A Imagem como Matriz</h2>
         <div class="math-box">
           $$I = \begin{bmatrix} p_{1,1} & p_{1,2} & \dots \\ p_{2,1} & p_{2,2} & \dots \\ \vdots & \vdots & \ddots \end{bmatrix}$$
         </div>
-        <p>Uma imagem digital é um sinal espacial discreto bidimensional onde cada pixel representa a intensidade luminosa numa matriz numérica.</p>
+        <p>Na Engenharia Elétrica, tratamos imagens como sinais bidimensionais onde cada pixel é um elemento de uma matriz que representa a intensidade da luz.</p>
 
         <h2>2. Matemática da Deteção</h2>
-        <p>Através da **Convolução**, deslizamos uma matriz (Filtro) sobre a imagem para realçar características como linhas verticais ou horizontais, essencial para encontrar obstáculos.</p>
+        <p>Utilizamos a <strong>Convolução</strong> para deslizar filtros sobre as imagens e realçar características críticas, como bordas de obstáculos e linhas de trajetória.</p>
 
         <div class="math-box">
           $$G[i, j] = \sum_{u} \sum_{v} H[u, v] \cdot F[i-u, j-v]$$
         </div>
 
-        <h2>3. Integração com ROS2</h2>
-        <p>Integramos as nossas câmaras ao ecossistema <strong>ROS2</strong>, onde nós processam frames em tempo real utilizando <strong>Python</strong> e <strong>OpenCV</strong>.</p>
+        <h2>3. OpenCV e ROS2</h2>
+        <p>Integramos as câmaras dos drones ao ecossistema <strong>ROS2</strong>, processando os frames em tempo real com <strong>Python</strong> para navegação precisa.</p>
 
         <div class="code-block">
 import cv2
-# Exemplo de deteção de bordas Canny
+# Deteção de bordas em tempo real
 bordas = cv2.Canny(blur, 50, 150)
         </div>
       </div>
@@ -154,7 +152,7 @@ bordas = cv2.Canny(blur, 50, 150)
 
       <a href="artigo-pid.html" class="post-recente-item">
         <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Controle PID: O Segredo da Precisão</span>
+        <span class="post-recente-titulo">Controle PID: Robôs Precisos</span>
       </a>
 
       <a href="artigo-ia.html" class="post-recente-item">
@@ -185,7 +183,7 @@ bordas = cv2.Canny(blur, 50, 150)
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="fl">GAIA <span>ROBÓTICA</span></span>
-      <p>Desenvolvendo tecnologias autónomas e democratizando o conhecimento na UFTM.</p>
+      <p>Tecnologias autónomas e sistemas embarcados na UFTM.</p>
     </div>
     <div class="footer-col">
       <h4>Navegação</h4>
