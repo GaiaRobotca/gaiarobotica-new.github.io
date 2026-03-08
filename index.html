@@ -124,12 +124,18 @@
   /* ===== CONQUISTAS ===== */
   .awards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
 
+  /* Ajuste para tornar os cards de conquista clicáveis */
+  .award-link { text-decoration: none; color: inherit; display: block; }
   .award-card {
     border:2px solid var(--border); background:var(--white);
     padding:0; overflow:hidden;
     transition:border-color 0.25s, transform 0.25s, box-shadow 0.25s;
   }
-  .award-card:hover { border-color:var(--blue-light); transform:translateY(-5px); box-shadow:0 14px 40px rgba(26,111,212,0.13); }
+  .award-link:hover .award-card, .award-card:hover { 
+    border-color:var(--blue-light); 
+    transform:translateY(-5px); 
+    box-shadow:0 14px 40px rgba(26,111,212,0.13); 
+  }
 
   .award-top {
     background:linear-gradient(135deg, var(--blue-dark), var(--blue));
@@ -392,49 +398,56 @@
 <div class="sec" id="conquistas">
   <div class="sec-tag">// resultados</div>
   <h2>Nossas Conquistas</h2>
-  <p class="lead">Em menos de 2 anos, o GAIA já subiu ao pódio em competições regionais e nacionais.</p>
+  <p class="lead">Em menos de 2 anos, o GAIA já subiu ao pódio em competições regionais e nacionais. Clique para saber mais.</p>
+  
   <div class="awards-grid">
-    <div class="award-card">
-      <div class="award-top">
-        <div class="award-place">3°</div>
-        <div>
-          <div class="award-title">SAE Brasil Eletroquad</div>
-          <div class="award-sub">Competição Nacional</div>
+    <a href="conquista-sae.html" class="award-link">
+      <div class="award-card">
+        <div class="award-top">
+          <div class="award-place">3°</div>
+          <div>
+            <div class="award-title">SAE Brasil Eletroquad</div>
+            <div class="award-sub">Competição Nacional</div>
+          </div>
+        </div>
+        <div class="award-body">
+          <p>Terceiro lugar na competição EletroQuad promovida pela SAE Brasil e Eletrobras. Drone quadrotor autônomo desenvolvido do zero pela equipe GAIA Eletroquad.</p>
+          <div class="award-date">Novembro de 2025</div>
         </div>
       </div>
-      <div class="award-body">
-        <p>Terceiro lugar na competição EletroQuad promovida pela SAE Brasil e Eletrobras. Drone quadrotor autônomo desenvolvido do zero pela equipe GAIA Eletroquad.</p>
-        <div class="award-date">Novembro de 2025</div>
-      </div>
-    </div>
+    </a>
 
-    <div class="award-card">
-      <div class="award-top green-t">
-        <div class="award-place">2°</div>
-        <div>
-          <div class="award-title">HackaGIS</div>
-          <div class="award-sub">1° Edição · UFTM/ICTE</div>
+    <a href="conquista-hackagis.html" class="award-link">
+      <div class="award-card">
+        <div class="award-top green-t">
+          <div class="award-place">2°</div>
+          <div>
+            <div class="award-title">HackaGIS</div>
+            <div class="award-sub">1° Edição · UFTM/ICTE</div>
+          </div>
+        </div>
+        <div class="award-body">
+          <p>Segunda colocação no 1° HackaGIS (20 e 21 de outubro de 2023), com a equipe formada por Wanessa Karoline, Valdivino Junior e Gabriel Meireles.</p>
+          <div class="award-date">Outubro de 2023</div>
         </div>
       </div>
-      <div class="award-body">
-        <p>Segunda colocação no 1° HackaGIS (20 e 21 de outubro de 2023), com a equipe formada por Wanessa Karoline, Valdivino Junior e Gabriel Meireles.</p>
-        <div class="award-date">Outubro de 2023</div>
-      </div>
-    </div>
+    </a>
 
-    <div class="award-card">
-      <div class="award-top" style="background:linear-gradient(135deg,#4a2080,#7a40cc);">
-        <div class="award-place">∞</div>
-        <div>
-          <div class="award-title">Escolas Impactadas</div>
-          <div class="award-sub">Missão de Extensão</div>
+    <a href="conquista-escolas.html" class="award-link">
+      <div class="award-card">
+        <div class="award-top" style="background:linear-gradient(135deg,#4a2080,#7a40cc);">
+          <div class="award-place">∞</div>
+          <div>
+            <div class="award-title">Escolas Impactadas</div>
+            <div class="award-sub">Missão de Extensão</div>
+          </div>
+        </div>
+        <div class="award-body">
+          <p>Levamos robótica educacional às escolas públicas de Uberaba e região, impactando centenas de estudantes com kits práticos e demonstrações ao vivo.</p>
+          <div class="award-date">Desde 2023 — em andamento</div>
         </div>
       </div>
-      <div class="award-body">
-        <p>Levamos robótica educacional às escolas públicas de Uberaba e região, impactando centenas de estudantes com kits práticos e demonstrações ao vivo.</p>
-        <div class="award-date">Desde 2023 — em andamento</div>
-      </div>
-    </div>
+    </a>
   </div>
 </div>
 </section>
@@ -743,12 +756,11 @@
   <h2>Blog & Novidades</h2>
   <p class="lead">Acompanhe o que estamos construindo, aprendendo e conquistando.</p>
   <div class="blog-list">
-    <a href="post-sae-brasil.html" class="blog-post"><span class="p-date">Nov 2025</span><span class="p-title">3° lugar na SAE Brasil Eletroquad — um ano de projeto e muita conquista</span><span class="p-cat">Competição</span></a>
-    <a href="post-drone-sae.html" class="blog-post"><span class="p-date">Out 2025</span><span class="p-title">Como desenvolvemos nosso drone quadrotor para a SAE: desafios e soluções</span><span class="p-cat">Hardware</span></a>
-    <a href="post-extensao-escolas.html" class="blog-post"><span class="p-date">Ago 2025</span><span class="p-title">Visitando escolas públicas de Uberaba — robótica na prática para o futuro</span><span class="p-cat">Extensão</span></a>
-    <a href="post-mao-robotica.html" class="blog-post"><span class="p-date">Jun 2025</span><span class="p-title">Mão robótica com atuadores pneumáticos: do conceito à impressão 3D</span><span class="p-cat">Tutorial</span></a>
-    <a href="post-hackagis.html" class="blog-post"><span class="p-date">Out 2023</span><span class="p-title">2° lugar no HackaGIS — Wanessa, Valdivino e Gabriel no pódio da UFTM</span><span class="p-cat">Hackathon</span></a>
-    <a href="post-fundacao.html" class="blog-post"><span class="p-date">Abr 2023</span><span class="p-title">GAIA Robótica é fundado na UFTM — o começo de tudo</span><span class="p-cat">História</span></a>
+    <a href="conquista-sae.html" class="blog-post"><span class="p-date">Nov 2025</span><span class="p-title">3° lugar na SAE Brasil Eletroquad — um ano de projeto e muita conquista</span><span class="p-cat">Competição</span></a>
+    <a href="artigo-drones.html" class="blog-post"><span class="p-date">Out 2025</span><span class="p-title">Como desenvolvemos nosso drone quadrotor para a SAE: desafios e soluções</span><span class="p-cat">Hardware</span></a>
+    <a href="conquista-escolas.html" class="blog-post"><span class="p-date">Ago 2025</span><span class="p-title">Visitando escolas públicas de Uberaba — robótica na prática para o futuro</span><span class="p-cat">Extensão</span></a>
+    <a href="artigo-solda.html" class="blog-post"><span class="p-date">Jun 2025</span><span class="p-title">Mão robótica e montagem: do conceito prático à impressão 3D</span><span class="p-cat">Tutorial</span></a>
+    <a href="conquista-hackagis.html" class="blog-post"><span class="p-date">Out 2023</span><span class="p-title">2° lugar no HackaGIS — Wanessa, Valdivino e Gabriel no pódio da UFTM</span><span class="p-cat">Hackathon</span></a>
   </div>
 </div>
 </section>
