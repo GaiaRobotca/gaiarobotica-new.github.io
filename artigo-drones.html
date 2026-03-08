@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Como um drone consegue voar? — GAIA Robótica</title>
+
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
 <script>
   (function() {
@@ -12,6 +13,7 @@
     document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
   })();
 </script>
+
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
@@ -29,99 +31,61 @@
 
   /* ===== HERO ===== */
   .article-hero{background:linear-gradient(140deg,var(--blue-deep),#1a4a8e,var(--blue-dark));padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-  .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none;}
   .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
-  .breadcrumb a:hover{color:var(--green);}
-  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;}
-  .meta-pill.cat{background:rgba(26,111,212,0.25);border:1px solid var(--blue-light);color:#fff;}
-  .meta-pill.lvl,.meta-pill.time{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
-  .article-hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.72;font-weight:300;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+  .breadcrumb a{color:inherit;text-decoration:none;}
+  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
 
-  /* ===== CONTENT ===== */
-  .article-wrap{max-width:780px;margin:0 auto;padding:4rem 3rem;}
-  .share-bar{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:var(--white);border:2px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
-  .share-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
-  .share-btn{font-family:'Space Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:all 0.2s;display:inline-block;}
-  .share-btn:hover{border-color:var(--blue);color:var(--blue);}
-  .share-btn.insta{border-color:var(--green);color:var(--green);}
+  /* ===== LAYOUT DE DUAS COLUNAS ===== */
+  .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
+  .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
 
-  .main-image { margin: 0 0 3rem; }
-  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; border: 2px solid var(--border); }
+  /* Sidebar */
+  .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
+  .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
+  .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
+  .post-recente-item:hover { transform: translateX(5px); }
+  .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
+  .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
 
-  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;line-height:1;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
-  .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
+  /* Estilos do Conteúdo */
+  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
+  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
   .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
-  .article-content strong{color:var(--blue-dark);}
-
   blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
-  
-  .content-img { margin: 3rem 0; text-align: center; }
-  .content-img img { max-width: 100%; border-radius: 4px; border: 2px solid var(--border); }
-  .img-caption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
   .math-box { background: var(--surface); padding: 1.5rem; margin: 2rem 0; text-align: center; border: 1px dashed var(--blue); font-size: 1.2rem; font-family: 'Space Mono', monospace; color: var(--blue-dark); overflow-x: auto; }
+  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;margin:2rem 0;border-left:4px solid var(--green);overflow-x:auto;}
 
-  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;line-height:1.75;margin:2rem 0;overflow-x:auto;border-left:4px solid var(--green);}
-
-  /* ===== COMMENTS (GISCUS) ===== */
-  .comments-section { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border); }
-  .comments-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1.5rem; }
-
-  /* ===== FOOTER & EXTRAS ===== */
-  .next-articles{margin-top:4rem;padding-top:3rem;border-top:2px solid var(--border);}
-  .next-articles h3{font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;}
-  .next-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
-  .next-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.2s,transform 0.2s;}
-  .next-card:hover{border-color:var(--blue);transform:translateY(-3px);}
-  .next-cat{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem;}
-  .next-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;line-height:1.1;margin-bottom:0.4rem;}
-  .next-desc{font-size:0.83rem;color:var(--muted);}
-  .back-cta{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:2rem 2.5rem;background:var(--blue-dark);margin-top:3rem;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);}
-  .back-cta p{color:rgba(255,255,255,0.7);font-size:0.9rem;}
-  .back-cta strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;color:#fff;text-transform:uppercase;margin-bottom:0.2rem;}
-  .btn-p{background:var(--green);color:#fff;padding:0.85rem 1.75rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s;white-space:nowrap;}
-  .btn-p:hover{background:var(--green-dark);}
+  /* CTA e Rodapé */
+  .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: transform 0.2s; }
+  .btn-p:hover { transform: translateY(-3px); background: var(--white); color: var(--blue-dark); }
   
-  footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
-  .fl span{color:var(--green);}
-  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
-  .flinks{display:flex;gap:1.5rem;}
-  .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
-  .flinks a:hover{color:var(--green);}
+  footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
+  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+  .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
 
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width:900px){
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav{padding:0 1.5rem;}
-    .article-wrap{padding:3rem 1.5rem;}
-    .article-hero{padding-left:1.5rem;padding-right:1.5rem;}
-    .next-grid{grid-template-columns:1fr 1fr;}
-    .back-cta{flex-direction:column;text-align:center;}
+  @media(max-width: 1000px) {
+    .container-leitura { grid-template-columns: 1fr; }
+    .sidebar-posts { margin-top: 4rem; position: static; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
   }
-  @media(max-width:600px){.next-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
-  <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
-    <li><a href="index.html#eletroquad">Eletroquad</a></li>
-    <li><a href="index.html#conquistas">Conquistas</a></li>
     <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-    <li><a href="index.html#contato">Contato</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);">Patrocine</a></li>
   </ul>
 </nav>
 
@@ -129,165 +93,107 @@
   <div class="hero-inner">
     <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Drones</div>
     <div class="article-meta">
-      <span class="meta-pill cat">Aerodinâmica & Sistemas</span>
-      <span class="meta-pill lvl">● Intermediário</span>
-      <span class="meta-pill time">⏱ 7 min de leitura</span>
-      <span class="meta-pill time">✍️ Por Júlia</span>
+      <span class="meta-pill">Aerodinâmica</span>
+      <span class="meta-pill">Intermediário</span>
+      <span class="meta-pill">7 min de leitura</span>
     </div>
     <h1>COMO UM DRONE<br>CONSEGUE VOAR?</h1>
-    <p class="subtitle">Descubra a física das quatro forças de voo, o controle de torque e os desafios de dimensionar o sistema de propulsão para um quadrotor autônomo.</p>
   </div>
 </div>
 
 <div class="article-wrap">
-  <div class="share-bar">
-    <span class="share-label">Compartilhe:</span>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="share-btn insta">📸 Instagram</a>
-    <a href="https://wa.me/?text=Descubra%20como%20um%20drone%20voa%20com%20a%20GAIA%20Rob%C3%B3tica!" target="_blank" class="share-btn">💬 WhatsApp</a>
-    <a href="https://www.linkedin.com/company/gaiarobotica" target="_blank" class="share-btn">💼 LinkedIn</a>
-  </div>
+  <div class="container-leitura">
+    <article class="article-content-main">
+      <div class="main-image">
+        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200" alt="Drone em voo">
+      </div>
+      <div class="article-content">
+        <p>No projeto de extensão da UFTM em Uberaba, a equipe <strong>GAIA</strong> trabalha para transformar a teoria de aerodinâmica em veículos autónomos estáveis. Diferente de aviões, os drones quadritores dependem exclusivamente da variação contínua da velocidade de seus motores para voar.</p>
+        
+        <h2>1. As Quatro Forças do Voo</h2>
+        <p>Quatro vetores fundamentais atuam sobre a aeronave: Tração (hélices), Peso (gravidade), Sustentação e Arrasto. Para pairar no ar (Hover), a tração deve igualar-se ao peso.</p>
 
-  <div class="main-image">
-    <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1200" alt="Drone Quadrotor em Voo">
-  </div>
+        <div class="math-box">
+          $$T_{total} = m \cdot g$$
+        </div>
 
-  <div class="article-content">
-    <p>Manter um quadrotor estável no ar é um exercício de equilíbrio constante entre forças físicas e algoritmos de controle. No projeto de extensão da UFTM em Uberaba, a equipe <strong>GAIA</strong> trabalha para transformar a teoria de sala de aula em veículos autônomos reais.</p>
+        <h2>2. Controle de Torque</h2>
+        <p>Dois motores giram no sentido horário e dois no sentido anti-horário para anular o torque rotacional. Através de uma controladora de voo, variamos estas velocidades para realizar movimentos de Pitch, Roll e Yaw.</p>
 
-    <blockquote>
-      "Diferente de um avião que usa asas fixas para gerar sustentação, os drones quadritores dependem exclusivamente da variação contínua da velocidade de seus motores."
-    </blockquote>
+        <h2>3. Desafio de Dimensionamento</h2>
+        <p>Dimensionar baterias LiPo é crítico. Calcular a corrente máxima segura garante que a tensão não despenque durante manobras em competições SAE.</p>
 
-    <h2>1. As Quatro Forças do Voo</h2>
-    <p>Para que o nosso drone decole, ele precisa dominar a física clássica. Quatro vetores fundamentais atuam sobre o corpo da aeronave a todo momento:</p>
-    <ul>
-        <li><strong>Tração (Thrust):</strong> A força para cima gerada pelas hélices empurrando o ar para baixo.</li>
-        <li><strong>Peso (Weight):</strong> A força da gravidade puxando o equipamento para o solo.</li>
-        <li><strong>Sustentação (Lift):</strong> Gerada pela diferença de pressão aerodinâmica.</li>
-        <li><strong>Arrasto (Drag):</strong> A resistência do ar contra o movimento.</li>
-    </ul>
+        <div class="math-box">
+          $$I_{max} = C \times Q$$
+        </div>
+      </div>
 
-    <div class="math-box">
-      <p>Para o drone pairar estaticamente (Hover), a tração precisa se igualar perfeitamente ao peso:</p>
-      $$T_{total} = m \cdot g$$
-    </div>
+      <section class="comments-section">
+        <h3>Discussão Técnica</h3>
+        <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
+      </section>
+    </article>
 
-    <div class="content-img">
+    <aside class="sidebar-posts">
+      <h3>Posts Recentes</h3>
       
-      <p class="img-caption">Figura 1: Representação vetorial das forças atuantes em um quadrotor.</p>
-    </div>
-
-    <h2>2. Controle de Atitude e Torque</h2>
-    <p>Um drone tem 4 motores, mas eles não giram todos para a mesma direção. Dois motores giram no sentido horário (CW) e dois no sentido anti-horário (CCW). Essa configuração existe para anular o <strong>torque</strong> rotacional.</p>
-
-    <div class="content-img">
-      
-      <p class="img-caption">Figura 2: Eixos de movimento - Pitch (Arfagem), Roll (Rolagem) e Yaw (Guinada).</p>
-    </div>
-
-    <p>Para se mover para frente (Pitch), a controladora de voo diminui a velocidade dos motores dianteiros e aumenta a dos traseiros. O drone inclina, e uma parte da força de tração é vetorizada para a frente.</p>
-
-    <h2>3. O Desafio do Dimensionamento</h2>
-    <p>Como faço parte de um projeto de extensão, preciso dimensionar a bateria necessária para o drone. Para participar de competições, calcular a corrente máxima exigida pelo sistema de propulsão é crítico. Se os motores puxarem mais corrente do que a bateria suporta, a tensão despenca e o drone cai.</p>
-
-    <div class="math-box">
-      <p>A corrente máxima segura da bateria é determinada pelo seu <i>C-Rating</i> e capacidade nominal ($Q$):</p>
-      $$I_{max} = C \times Q$$
-    </div>
-
-    <div class="content-img">
-      
-      <p class="img-caption">Figura 3: Curva de descarga de uma bateria de Polímero de Lítio (LiPo).</p>
-    </div>
-
-    <h2>4. A Controladora de Voo</h2>
-    <p>O cérebro por trás de tudo isso roda um loop de controle PID extremamente rápido. Abaixo, um exemplo conceitual de como o erro de estabilização é calculado no código:</p>
-
-    <div class="code-block">void calcular_PID() {
-  erro = angulo_desejado - angulo_atual_IMU;
-  
-  integral += erro * tempo_decorrido;
-  derivada = (erro - erro_anterior) / tempo_decorrido;
-  
-  sinal_controle = (Kp * erro) + (Ki * integral) + (Kd * derivada);
-  erro_anterior = erro;
-  
-  ajustar_motores(sinal_controle);
-}</div>
-
-  </div>
-
-  <section class="comments-section">
-    <h3>Discussão e Comentários</h3>
-    
-    <script src="https://giscus.app/client.js"
-        data-repo="GaiaRobotca/gaiarobotica-new.github.io"
-        data-repo-id="R_kgDORhLuBw"
-        data-category="General"
-        data-category-id="DIC_kwDORhLuB84C37IJ"
-        data-mapping="pathname"
-        data-strict="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="pt"
-        crossorigin="anonymous"
-        async>
-    </script>
-  </section>
-
-  <div class="next-articles">
-    <h3>Continue Aprendendo</h3>
-    <div class="next-grid">
-      <a href="artigo-arduino.html" class="next-card">
-        <div class="next-cat">Hardware</div>
-        <div class="next-title">O que é Arduino?</div>
-        <p class="next-desc">A placa que controla os sistemas de baixo nível dos nossos robôs.</p>
+      <a href="artigo-visao.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">O que é Visão Computacional?</span>
       </a>
-      <a href="aprenda.html" class="next-card">
-        <div class="next-cat">Todos os artigos</div>
-        <div class="next-title">Ver todos os temas →</div>
-        <p class="next-desc">Drones, eletrônica, robótica e muito mais no hub de conteúdo.</p>
+
+      <a href="artigo-arduino.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Arduino: Além da Prototipagem</span>
       </a>
-    </div>
+
+      <a href="artigo-pid.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Controle PID: Robôs Precisos</span>
+      </a>
+
+      <a href="artigo-ia.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Inteligência Artificial na Robótica</span>
+      </a>
+
+      <a href="artigo-solda.html" class="post-recente-item">
+        <img src="https://image.slidesharecdn.com/gaiasoldafinal-160523235450/85/gaiasoldafinal-15-2048.jpg" class="post-recente-thumb">
+        <span class="post-recente-titulo">Guia de Solda para Iniciantes</span>
+      </a>
+    </aside>
   </div>
 
   <div class="back-cta">
-    <div>
-      <strong>Acompanhe o GAIA</strong>
-      <p>Veja nossos drones voando e acompanhe nosso dia a dia no laboratório da UFTM.</p>
-    </div>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">@gaia.robotica →</a>
+    <h3>Acompanhe o GAIA</h3>
+    <p>Veja nossos drones voando e acompanhe o dia a dia no laboratório da UFTM.</p>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">Acompanhar no Instagram →</a>
   </div>
 </div>
 
 <footer>
-  <div class="fl">GAIA <span>ROBÓTICA</span></div>
-  <p>UFTM · Uberaba, MG · 2026</p>
-  <div class="flinks">
-    <a href="index.html">Home</a>
-    <a href="aprenda.html">Aprenda</a>
-    <a href="patrocine.html">Patrocine</a>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
-    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="fl">GAIA <span>ROBÓTICA</span></span>
+      <p>Desenvolvendo tecnologias autónomas e democratizando o conhecimento na UFTM.</p>
+    </div>
+    
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="aprenda.html">Aprenda</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Comunidade</h4>
+      <ul class="footer-links">
+        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
+        <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
-  // Menu Hambúrguer (O código falso de comentários foi removido!)
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
-  }
-</script>
-
 </body>
 </html>
