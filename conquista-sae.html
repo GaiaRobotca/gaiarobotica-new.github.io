@@ -20,6 +20,7 @@
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
   
+  /* ===== NAV ===== */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
   .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
   .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
@@ -28,6 +29,7 @@
   nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
   nav a:hover{color:var(--blue);}
 
+  /* ===== HERO CONQUISTA ===== */
   .article-hero{background:linear-gradient(140deg,var(--blue-dark),var(--blue-deep),#051633);padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
   .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
   .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
@@ -39,9 +41,11 @@
   .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
   .article-hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.72;max-width:800px;}
 
+  /* ===== LAYOUT DE DUAS COLUNAS ===== */
   .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
   .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
 
+  /* Sidebar */
   .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
   .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
   .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
@@ -49,8 +53,9 @@
   .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
   .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
 
-  .main-image img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
-  .inline-img { width: 100%; height: auto; border-radius: 6px; margin: 1.5rem 0; border: 1px solid var(--border); }
+  /* Conteúdo Principal */
+  .main-image img { width: 100%; height: 450px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); background-color: var(--surface); }
+  .inline-img { width: 100%; height: auto; border-radius: 6px; margin: 1.5rem 0; border: 1px solid var(--border); background-color: var(--surface); }
   
   .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
   .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
@@ -64,7 +69,7 @@
   .carousel-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; text-align: center; margin-bottom: 1.5rem; }
   .carousel-container { overflow: hidden; width: 100%; border-radius: 4px; position: relative; }
   .carousel-track { display: flex; transition: transform 0.4s ease-in-out; }
-  .carousel-slide { min-width: 100%; height: 400px; object-fit: cover; }
+  .carousel-slide { min-width: 100%; height: 400px; object-fit: cover; background-color: var(--border); }
   
   /* Botões da Roleta */
   .carousel-btn { 
@@ -101,6 +106,27 @@
     .carousel-slide { height: 280px; }
   }
 </style>
+
+<script>
+  function handleImageError(img) {
+    // Evita loop infinito se ambas as extensões falharem
+    if (img.dataset.retried) {
+      return;
+    }
+    
+    img.dataset.retried = "true";
+    let currentSrc = img.getAttribute('src');
+    
+    if (currentSrc.endsWith('.jpg')) {
+      img.src = currentSrc.replace('.jpg', '.JPG');
+    } else if (currentSrc.endsWith('.JPG')) {
+      img.src = currentSrc.replace('.JPG', '.jpg');
+    } else if (currentSrc.endsWith('.heic') || currentSrc.endsWith('.HEIC')) {
+      // Tenta forçar a busca pela versão JPG se o ficheiro ainda estiver como HEIC no HTML
+      img.src = currentSrc.replace(/\.heic$/i, '.jpg');
+    }
+  }
+</script>
 </head>
 <body>
 
@@ -131,7 +157,7 @@
     <article class="article-content-main">
       
       <div class="main-image">
-        <img src="Drone.JPG" alt="Drone GAIA Eletroquad na pista de decolagem">
+        <img src="Drone.jpg" alt="Drone GAIA Eletroquad na pista de decolagem" onerror="handleImageError(this)">
       </div>
       
       <div class="article-content">
@@ -144,7 +170,7 @@
         <h2>Os Dias de Competição</h2>
         <p>Durante o evento, a pressão era constante. A competição exigia não apenas que o drone voasse, mas que operasse com autonomia, navegasse por coordenadas, reconhecesse alvos no solo e realizasse o acionamento de mecanismos (como a nossa garra mecânica) no tempo exato. A estabilidade do sinal de telemetria e o ajuste fino do controle PID sob condições climáticas adversas foram os nossos maiores desafios em campo.</p>
 
-        <img src="Preparosparaacompeticao.JPG" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada">
+        <img src="Preparosparaacompeticao.jpg" class="inline-img" alt="Equipe preparando o drone e ajustando o código na bancada" onerror="handleImageError(this)">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem; margin-bottom: 2rem;">Ajuste fino de código e calibração de hardware momentos antes do voo oficial.</p>
 
         <div class="carousel-wrap">
@@ -152,10 +178,10 @@
           <div class="carousel-container">
             <button class="carousel-btn prev">&#10094;</button>
             <div class="carousel-track">
-              <img src="36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.jpg" class="carousel-slide" alt="Visita técnica à Embraer">
-              <img src="IMG_7633.JPG" class="carousel-slide" alt="Inspeção técnica do Drone">
-              <img src="Júlia e Wanessa.jpg" class="carousel-slide" alt="Membros do GAIA com o drone Eletroquad">
-              <img src="IMG_3194.JPG" class="carousel-slide" alt="Palco e encerramento">
+              <img src="36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.jpg" class="carousel-slide" alt="Visita técnica à Embraer" onerror="handleImageError(this)">
+              <img src="IMG_7633.jpg" class="carousel-slide" alt="Inspeção técnica do Drone" onerror="handleImageError(this)">
+              <img src="Júlia e Wanessa.jpg" class="carousel-slide" alt="Membros do GAIA com o drone Eletroquad" onerror="handleImageError(this)">
+              <img src="IMG_3194.jpg" class="carousel-slide" alt="Palco e encerramento" onerror="handleImageError(this)">
             </div>
             <button class="carousel-btn next">&#10095;</button>
           </div>
@@ -186,7 +212,7 @@
         <h2>O Impacto do Pódio</h2>
         <p>Essa vitória impulsiona o GAIA Robótica para um novo patamar dentro e fora da UFTM. Mostrou à comunidade acadêmica a capacidade da equipe de trabalhar com o estado da arte em sistemas de voo autônomo e abre portas para parcerias com indústrias do setor de inovação e agronegócio no Triângulo Mineiro.</p>
         
-        <img src="Equipe.JPG" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando">
+        <img src="Equipe.jpg" class="inline-img" alt="Equipe GAIA Robótica reunida celebrando" onerror="handleImageError(this)">
         <p style="text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-top: -1rem;">A equipe reunida: o motor humano por trás do projeto autônomo.</p>
 
       </div>
