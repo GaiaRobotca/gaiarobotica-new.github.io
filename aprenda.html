@@ -347,21 +347,21 @@ function fmt(n) {
 // ─── Busca contagem (GET — só lê, não incrementa) ────────────────────────────
 async function getCount(id) {
   try {
-    const r = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${id}`);
+    const r = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${id}`);
     const data = await r.json();
-    return data.value || 0;
+    return data.count || 0; // Mudou de data.value para data.count
   } catch { return 0; }
 }
 
 // ─── Incrementa contagem ao clicar (HIT — lê e adiciona +1) ─────────────────
 async function hitCount(id) {
   try {
-    const r = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${id}`);
+    const r = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${id}/up`);
     const data = await r.json();
-    return data.value || 0;
+    return data.count || 0; // Mudou de data.value para data.count
   } catch { return 0; }
 }
-
+  
 // ─── Atualiza UI ──────────────────────────────────────────────────────────────
 function renderCounts(counts) {
   const values = Object.values(counts);
