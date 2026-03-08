@@ -62,18 +62,9 @@
 
   .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;line-height:1.75;margin:2rem 0;overflow-x:auto;border-left:4px solid var(--green);}
 
-  /* ===== COMMENTS ===== */
+  /* ===== COMMENTS (GISCUS) ===== */
   .comments-section { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border); }
   .comments-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1.5rem; }
-  .comment-form { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
-  .comment-form input, .comment-form textarea { background: var(--white); border: 2px solid var(--border); color: var(--text); padding: 0.9rem 1.25rem; font-family: 'Barlow', sans-serif; font-size: 0.92rem; outline: none; transition: border-color 0.2s; resize: none; border-radius: 0; }
-  .comment-form input:focus, .comment-form textarea:focus { border-color: var(--green); }
-  .btn-comment { align-self: flex-start; background: var(--blue-dark); color: #fff; padding: 0.9rem 2rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.2s; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); }
-  .btn-comment:hover { background: var(--blue); }
-  
-  .comment-item { margin-bottom: 1.5rem; padding: 1.5rem; background: var(--surface); border-left: 3px solid var(--green); }
-  .comment-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
-  .comment-user { font-weight: 800; color: var(--blue-dark); font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; text-transform: uppercase; }
 
   /* ===== FOOTER & EXTRAS ===== */
   .next-articles{margin-top:4rem;padding-top:3rem;border-top:2px solid var(--border);}
@@ -223,15 +214,21 @@
   <section class="comments-section">
     <h3>Discussão e Comentários</h3>
     
-    <form class="comment-form" id="form-comentario">
-      <input type="text" placeholder="Seu Nome" required id="nome-usuario">
-      <textarea rows="4" placeholder="Deixe sua dúvida técnica ou sugestão sobre o dimensionamento do drone..." required id="texto-comentario"></textarea>
-      <button type="submit" class="btn-comment">Publicar Comentário</button>
-    </form>
-
-    <div id="comment-list">
-      <p style="color: var(--muted); font-style: italic; font-size: 0.95rem;" id="empty-msg">Seja o primeiro a comentar sobre este artigo!</p>
-    </div>
+    <script src="https://giscus.app/client.js"
+        data-repo="GaiaRobotca/gaiarobotica-new.github.io"
+        data-repo-id="R_kgDORhLuBw"
+        data-category="General"
+        data-category-id="DIC_kwDORhLuB84C37IJ"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="pt"
+        crossorigin="anonymous"
+        async>
+    </script>
   </section>
 
   <div class="next-articles">
@@ -275,7 +272,7 @@
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <script>
-  // Menu Hambúrguer
+  // Menu Hambúrguer (O código falso de comentários foi removido!)
   const menuToggle = document.querySelector('.menu-toggle');
   const navMenu = document.querySelector('nav ul');
   if(menuToggle && navMenu) {
@@ -284,33 +281,6 @@
       menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
     });
   }
-
-  // Lógica de Comentários em Tempo Real
-  const form = document.getElementById('form-comentario');
-  const list = document.getElementById('comment-list');
-  const emptyMsg = document.getElementById('empty-msg');
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nome = document.getElementById('nome-usuario').value;
-    const texto = document.getElementById('texto-comentario').value;
-    const data = new Date().toLocaleDateString('pt-BR');
-
-    if (emptyMsg) emptyMsg.remove();
-
-    const div = document.createElement('div');
-    div.className = 'comment-item';
-    div.innerHTML = `
-      <div class="comment-header">
-        <span class="comment-user">${nome}</span>
-        <span>${data}</span>
-      </div>
-      <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 0; color: var(--text);">${texto}</p>
-    `;
-
-    list.prepend(div);
-    form.reset();
-  });
 </script>
 
 </body>
