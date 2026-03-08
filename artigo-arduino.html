@@ -6,7 +6,6 @@
 <title>Arduino: Além da Placa de Prototipagem — GAIA Robótica</title>
 
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
-
 <script>
   (function() {
     const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
@@ -21,7 +20,7 @@
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
   
-  /* ===== NAVEGAÇÃO ===== */
+  /* ===== NAV ===== */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
   .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
   .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
@@ -30,193 +29,48 @@
   nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
   nav a:hover{color:var(--blue);}
 
-  /* ===== CABEÇALHO DO ARTIGO (HERO) ===== */
+  /* ===== HERO ===== */
   .article-hero{background:linear-gradient(140deg,var(--green-dark),#2a6e1a,var(--blue-dark));padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-  .article-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none;}
   .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:780px;margin:0 auto;position:relative;z-index:1;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
-  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
-  .breadcrumb a:hover{color:var(--green);}
-  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;}
-  .meta-pill.cat{background:rgba(92,184,46,0.25);border:1px solid var(--green);color:var(--green);}
-  .meta-pill.lvl,.meta-pill.time{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
+  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
   .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
-  .article-hero .subtitle{font-size:1.1rem;color:rgba(255,255,255,0.7);line-height:1.72;font-weight:300;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+  .breadcrumb a{color:inherit;text-decoration:none;}
+  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
 
-  /* ===== CONTEÚDO DO POST ===== */
-  .article-wrap{max-width:780px;margin:0 auto;padding:4rem 3rem;}
-  .share-bar{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:var(--white);border:2px solid var(--border);margin-bottom:3rem;flex-wrap:wrap;}
-  .share-label{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;}
-  .share-btn{font-family:'Space Mono',monospace;font-size:0.7rem;padding:0.4rem 1rem;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;text-decoration:none;text-transform:uppercase;letter-spacing:0.08em;transition:all 0.2s;display:inline-block;}
-  .share-btn:hover{border-color:var(--blue);color:var(--blue);}
-  .share-btn.insta{border-color:var(--green);color:var(--green);}
+  /* ===== LAYOUT DE DUAS COLUNAS ===== */
+  .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
+  .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
 
-  .main-image { margin: 0 0 3rem; }
-  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; border: 2px solid var(--border); }
+  /* Sidebar */
+  .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
+  .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
+  .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
+  .post-recente-item:hover { transform: translateX(5px); }
+  .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
+  .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: #8b2020; line-height: 1.3; }
 
-  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;line-height:1;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
-  .article-content h3{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 0.75rem;}
+  /* Estilos do Conteúdo */
+  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
+  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
   .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
-  .article-content strong{color:var(--blue-dark);}
+  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;margin:2rem 0;border-left:4px solid var(--green);overflow-x:auto;}
 
-  blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
+  /* Rodapé e CTA Profissional */
+  .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
+  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
   
-  .content-img { margin: 3rem 0; text-align: center; }
-  .content-img img { max-width: 100%; border-radius: 4px; border: 2px solid var(--border); }
-  .img-caption { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--muted); margin-top: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
+  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+  .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; }
 
-  .math-box { background: var(--surface); padding: 1.5rem; margin: 2rem 0; text-align: center; border: 1px dashed var(--blue); font-size: 1.2rem; font-family: 'Space Mono', monospace; color: var(--blue-dark); overflow-x: auto; }
-
-  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;line-height:1.75;margin:2rem 0;overflow-x:auto;border-left:4px solid var(--green);}
-
-  /* ===== NOVO CTA (Acompanhe o GAIA) ===== */
-  .back-cta {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep));
-    padding: 4rem 2rem;
-    margin-top: 5rem;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  }
-  .back-cta::after {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: var(--green);
-    filter: blur(120px);
-    opacity: 0.1;
-    bottom: -150px;
-    right: -150px;
-    pointer-events: none;
-  }
-  .back-cta h3 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.2rem;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-  }
-  .back-cta p {
-    color: rgba(255, 255, 255, 0.85);
-    max-width: 600px;
-    font-size: 1.1rem;
-    margin: 0 auto;
-  }
-  .btn-p {
-    background: var(--green);
-    color: #fff;
-    padding: 1rem 2.5rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
-    z-index: 1;
-  }
-  .btn-p:hover {
-    background: var(--white);
-    color: var(--blue-dark);
-    transform: translateY(-3px);
-  }
-
-  /* ===== COMENTÁRIOS ===== */
-  .comments-section { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--border); }
-  .comments-section h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1.5rem; }
-
-  /* ===== NOVO RODAPÉ (FOOTER) EM COLUNAS ===== */
-  footer {
-    background: #020817;
-    padding: 6rem 3rem 3rem;
-    color: #fff;
-    margin-top: 4rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-  .footer-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 4rem;
-    margin-bottom: 5rem;
-  }
-  .footer-brand .fl {
-    font-size: 1.8rem;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 900;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-  .footer-brand .fl span { color: var(--green); }
-  .footer-brand p {
-    font-size: 0.95rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 320px;
-  }
-  .footer-col h4 {
-    font-family: 'Barlow Condensed', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    margin-bottom: 1.8rem;
-    color: var(--green);
-    font-weight: 800;
-  }
-  .footer-links {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .footer-links a {
-    color: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-  }
-  .footer-links a:hover {
-    color: var(--white);
-    padding-left: 5px;
-  }
-  .footer-bottom {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.3);
-  }
-
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width:900px){
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav{padding:0 1.5rem;}
-    .article-wrap{padding:3rem 1.5rem;}
-    .article-hero{padding-left:1.5rem;padding-right:1.5rem;}
-    .footer-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-    .footer-brand p { margin: 0 auto; }
-    .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+  @media(max-width: 1000px) {
+    .container-leitura { grid-template-columns: 1fr; }
+    .sidebar-posts { margin-top: 4rem; position: static; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
   }
 </style>
 </head>
@@ -224,169 +78,93 @@
 
 <nav>
   <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
-  <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
-    <li><a href="index.html#eletroquad">Eletroquad</a></li>
-    <li><a href="index.html#conquistas">Conquistas</a></li>
     <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-    <li><a href="index.html#contato">Contato</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);">Patrocine</a></li>
   </ul>
 </nav>
 
 <div class="article-hero">
   <div class="hero-inner">
     <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Arduino</div>
-    <div class="article-meta">
-      <span class="meta-pill cat">Hardware & Embarcados</span>
-      <span class="meta-pill lvl">● Intermediário</span>
-      <span class="meta-pill time">⏱ 8 min de leitura</span>
-      <span class="meta-pill time">✍️ Por Júlia</span>
-    </div>
-    <h1>ARDUINO:<br>A PONTE ENTRE A LÓGICA E A ELETRÔNICA FÍSICA</h1>
-    <p class="subtitle">Mais do que uma placa azul. Entenda o ATmega328P, conversão analógica, PWM e como a GAIA utiliza essa plataforma na prática.</p>
+    <div class="article-meta"><span class="meta-pill">Hardware</span> <span class="meta-pill">8 min</span></div>
+    <h1>ARDUINO:<br>A PONTE ENTRE A LÓGICA E A ELETRÔNICA</h1>
   </div>
 </div>
 
 <div class="article-wrap">
-  <div class="share-bar">
-    <span class="share-label">Compartilhe:</span>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="share-btn insta">📸 Instagram</a>
-    <a href="https://wa.me/?text=Aprenda%20o%20que%20%C3%A9%20Arduino%20com%20a%20GAIA%20Rob%C3%B3tica!" target="_blank" class="share-btn">💬 WhatsApp</a>
-    <a href="https://www.linkedin.com/company/gaiarobotica" target="_blank" class="share-btn">💼 LinkedIn</a>
-  </div>
+  <div class="container-leitura">
+    <article class="article-content-main">
+      <div class="main-image">
+        <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=1200" alt="Arduino Uno">
+      </div>
+      <div class="article-content">
+        <p>O Arduino é o cérebro dos nossos projetos na <strong>GAIA Robótica</strong>. Usamos esta plataforma para controlar desde os motores do Robô Omnidirecional até a telemetria básica dos nossos drones em Uberaba.</p>
+        
+        <h2>O Cérebro: ATMega328P</h2>
+        <p>Este microcontrolador de 8 bits permite a execução de instruções em um único ciclo de clock, abstraindo funções complexas em código legível.</p>
 
-  <div class="main-image">
-    <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=1200" alt="Placa Arduino Uno em Laboratório">
-  </div>
+        <div class="code-block">
+void setup() { pinMode(13, OUTPUT); }
+void loop() { digitalWrite(13, HIGH); delay(1000); }
+        </div>
+      </div>
 
-  <div class="article-content">
-    <p>O Arduino é mais do que uma placa de circuitos azul; é um ecossistema que democratizou o acesso a microcontroladores. Na <strong>GAIA Robótica</strong>, utilizamos essa plataforma como base para nossos protótipos, desde o controle de motores no Robô Omnidirecional até a leitura de telemetria básica em nossos drones.</p>
+      <section class="comments-section">
+        <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
+      </section>
+    </article>
 
-    <blockquote>
-      "O grande diferencial do Arduino não está no processamento bruto, mas na sua capacidade de abstrair registradores complexos em funções legíveis e eficientes."
-    </blockquote>
-
-    <h2>1. O Cérebro: ATMega328P</h2>
-    <p>Enquanto muitos veem apenas a placa, na Engenharia Elétrica olhamos para o <strong>ATmega328P</strong>. Este microcontrolador de 8 bits possui uma arquitetura RISC avançada, permitindo a execução de instruções em um único ciclo de clock.</p>
-
-    <div class="content-img">
-      <img src="https://placehold.co/800x400/0d2a50/c8dff5?text=Diagrama+ATMega328P" alt="Diagrama de blocos do Arduino">
-      <p class="img-caption">Figura 1: Diagrama de blocos e componentes principais do Arduino Uno.</p>
-    </div>
-
-    <h2>2. Conversão Analógico-Digital (ADC)</h2>
-    <p>O mundo físico é analógico, mas o processamento é digital. O Arduino Uno possui um conversor ADC de 10 bits. Isso significa que ele mapeia uma tensão de entrada (0 a 5V) em uma escala numérica de 0 a 1023.</p>
-
-    <div class="math-box">
-      <p>A resolução do sinal pode ser calculada como:</p>
-      $$Valor_{Digital} = \frac{V_{In}}{V_{Ref}} \times (2^{10} - 1)$$
-    </div>
-
-    <div class="content-img">
-      <img src="https://placehold.co/800x400/0d2a50/c8dff5?text=Quantização+Analógica" alt="Processo de quantização">
-      <p class="img-caption">Figura 2: Processo de quantização e amostragem de sinais analógicos.</p>
-    </div>
-
-    <h2>3. PWM e o Controle de Atuadores</h2>
-    <p>Como o Arduino não possui saídas analógicas puras (DAC), ele utiliza a <strong>Modulação por Largura de Pulso (PWM)</strong>. Ao variar o <i>Duty Cycle</i> de um sinal de 490Hz (ou 980Hz), conseguimos controlar a velocidade de motores DC e o brilho de LEDs como se estivéssemos variando a tensão média.</p>
-
-    <div class="content-img">
-      <img src="https://placehold.co/800x400/0d2a50/c8dff5?text=Sinais+PWM+Duty+Cycle" alt="Sinais PWM">
-      <p class="img-caption">Figura 3: Sinais PWM com duty cycles de 25%, 50% e 75%.</p>
-    </div>
-
-    <h2>Seu Primeiro Script: O Blink</h2>
-    <p>Para testar a integridade da placa e a comunicação serial, o código clássico de "piscar um LED" define a estrutura básica de qualquer firmware Arduino:</p>
-
-    <div class="code-block">void setup() {
-  pinMode(13, OUTPUT); // Configura o pino 13 como saída digital
-}
-
-void loop() {
-  digitalWrite(13, HIGH); // Satura a saída em 5V
-  delay(1000);            // Aguarda 1000ms
-  digitalWrite(13, LOW);  // Corta a saída para 0V
-  delay(1000);
-}</div>
-
-    <h2>Aplicação Prática no GAIA</h2>
-    <p>Em nosso <strong>Robô Corredor</strong>, o Arduino processa os dados de encoders ópticos para calcular a odometria em tempo real. Essa precisão é o que permite que o robô mantenha sua trajetória em alta velocidade sem auxílio externo.</p>
+    <aside class="sidebar-posts">
+      <h3>Posts Recentes</h3>
+      <a href="artigo-visao.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">O que é Visão Computacional?</span>
+      </a>
+      <a href="artigo-pid.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Controle PID: O Segredo da Precisão</span>
+      </a>
+      <a href="artigo-ia.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Inteligência Artificial na Robótica</span>
+      </a>
+      <a href="artigo-drones.html" class="post-recente-item">
+        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=80" class="post-recente-thumb">
+        <span class="post-recente-titulo">Como um Drone Consegue Voar?</span>
+      </a>
+    </aside>
   </div>
 
   <div class="back-cta">
     <h3>Quer aprender na prática?</h3>
-    <p>Participe das nossas oficinas presenciais de Arduino, eletrônica e solda na UFTM. Siga o GAIA para não perder as próximas datas.</p>
+    <p>Participe das nossas oficinas de Arduino e solda na UFTM.</p>
     <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">Acompanhar no Instagram →</a>
   </div>
 </div>
-
-<section class="comments-section" style="max-width: 780px; margin: 0 auto; padding: 0 3rem;">
-  <h3>Discussão Técnica</h3>
-  <script src="https://giscus.app/client.js"
-          data-repo="GaiaRobotca/gaiarobotica-new.github.io"
-          data-repo-id="R_kgDORhLuBw"
-          data-category="General"
-          data-category-id="DIC_kwDORhLuB84C37IJ"
-          data-mapping="pathname"
-          data-strict="1"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="light"
-          data-lang="pt"
-          crossorigin="anonymous"
-          async>
-  </script>
-</section>
 
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="fl">GAIA <span>ROBÓTICA</span></span>
-      <p>Desenvolvendo tecnologias autônomas e democratizando o conhecimento em robótica e sistemas embarcados na UFTM.</p>
+      <p>Tecnologias autônomas e sistemas embarcados na UFTM.</p>
     </div>
-    
     <div class="footer-col">
       <h4>Navegação</h4>
       <ul class="footer-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="aprenda.html">Aprenda</a></li>
-        <li><a href="patrocine.html">Patrocine</a></li>
       </ul>
     </div>
-
     <div class="footer-col">
       <h4>Comunidade</h4>
       <ul class="footer-links">
-        <li><a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a></li>
-        <li><a href="https://github.com/gaiarobotica" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/company/gaiarobotica" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
+        <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
       </ul>
     </div>
   </div>
-
-  <div class="footer-bottom">
-    <div>&copy; 2026 GAIA ROBÓTICA · UFTM</div>
-    <div>UBERABA · MINAS GERAIS · BRAZIL</div>
-  </div>
 </footer>
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-<script>
-  // Menu Hambúrguer para Celulares
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
-  }
-</script>
-
 </body>
 </html>
