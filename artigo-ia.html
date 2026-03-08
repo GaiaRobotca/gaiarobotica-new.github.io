@@ -3,106 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Drone Quadrotor SAE — GAIA Robótica</title>
+<title>O que é Inteligência Artificial? — GAIA Robótica</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f0f7ff;--white:#fff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
+  :root{--bg:#f0f7ff;--white:#fff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
   *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;}
   
+  /* NAVBAR */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
-  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;display:flex;align-items:center;gap:0.6rem;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
   .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
   .nav-logo .g{color:var(--green);}
-  
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  nav a:hover{color:var(--blue);}
+
+  /* HERO */
   .post-hero{background:linear-gradient(140deg,#0a0a1a,#1a1a4e,#2d2d8e);padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
+  .post-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.09) 1.5px,transparent 1.5px);background-size:28px 28px;}
   .post-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
   .hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1;}
-  .post-cat{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--green);text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
+  .post-cat{font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
   .post-cat::before{content:'';width:16px;height:2px;background:var(--green);}
   .post-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:1;margin-bottom:1.5rem;}
-  
+  .post-meta{display:flex;gap:2rem;color:rgba(255,255,255,0.5);font-family:'Space Mono',monospace;font-size:0.68rem;text-transform:uppercase;}
+
+  /* CONTEÚDO */
   .post-body{max-width:800px;margin:0 auto;padding:4rem 3rem 6rem;}
-  .post-body h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:2.5rem 0 1rem;}
-  .post-body p{font-size:1.1rem;line-height:1.8;margin-bottom:1.5rem;}
+  .post-body h2{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:2.5rem 0 1rem;line-height:1;}
+  .post-body p{font-size:1.1rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;}
   
-  .highlight-box{background:var(--blue-dark);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);padding:2rem;margin:2.5rem 0;color:#fff;}
-  
-  .specs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:2rem 0;}
-  .spec-item{background:var(--white);border:2px solid var(--border);padding:1.25rem;}
-  .spec-label{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);text-transform:uppercase;}
-  .spec-val{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue-dark);}
+  .highlight-box{background:var(--blue-dark);clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);padding:2rem;margin:2.5rem 0;color:white;}
+  .highlight-box strong{color:var(--green);}
 
-  .code-block{background:var(--blue-deep);border-left:4px solid var(--green);padding:1.5rem;margin:2rem 0;font-family:'Space Mono',monospace;font-size:0.85rem;color:#e4f0ff;overflow-x:auto;white-space:pre;border-radius:0 4px 4px 0;}
+  .code-block{background:var(--blue-deep);border-left:3px solid var(--green);padding:1.5rem;margin:2rem 0;font-family:'Space Mono',monospace;font-size:0.85rem;color:rgba(255,255,255,0.9);line-height:1.6;overflow-x:auto;white-space:pre;border-radius:0 4px 4px 0;}
 
-  footer{background:#040e22;padding:3rem;text-align:center;color:#fff;}
-  .back-link{display:inline-block;margin-top:3rem;color:var(--blue);text-decoration:none;font-weight:700;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;}
+  .tag-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin:2.5rem 0;}
+  .tag{font-family:'Space Mono',monospace;font-size:0.62rem;padding:0.35rem 0.8rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;}
+
+  .nav-back{margin-top:4rem;padding-top:2rem;border-top:2px solid var(--border);}
+  .btn-back{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--blue);text-decoration:none;text-transform:uppercase;letter-spacing:0.05em;transition:transform 0.2s;}
+  .btn-back:hover{transform:translateX(-5px);}
+
+  /* FOOTER */
+  footer{background:#040e22;padding:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;}
+  .fl span{color:var(--green);}
+  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
+
+  @media(max-width:900px){nav ul{display:none;}nav{padding:0 1.5rem;}.post-hero,.post-body{padding-left:1.5rem;padding-right:1.5rem;}}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="aprenda.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <ul>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="aprenda.html">Aprenda</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
 </nav>
 
 <div class="post-hero">
   <div class="hero-inner">
-    <div class="post-cat">Hardware & Controle</div>
-    <h1>Desenvolvimento do Quadrotor SAE</h1>
-    <p style="color:rgba(255,255,255,0.7)">Da teoria de controle ao pódio na competição.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › IA</div>
+    <div class="post-cat">Inteligência Artificial</div>
+    <h1>O que é Inteligência Artificial?</h1>
+    <div class="post-meta">
+      <span>Março de 2026</span>
+      <span>•</span>
+      <span>5 min de leitura</span>
+    </div>
   </div>
 </div>
 
 <div class="post-body">
-  <p>Construir um drone para a competição SAE exige mais do que apenas montar peças. É um desafio de <strong>sincronização</strong>. Cada milissegundo conta quando o computador de bordo precisa decidir a trajetória enquanto processa imagens em tempo real.</p>
+  <p>Você provavelmente interage com uma Inteligência Artificial (IA) dezenas de vezes por dia: ao desbloquear o celular com o rosto ou ao ver uma recomendação de música. Mas, na <strong>GAIA Robótica</strong>, olhamos para a IA como uma poderosa ferramenta de engenharia para resolver problemas complexos.</p>
 
   <div class="highlight-box">
-    <h3 style="color:var(--green); margin-bottom:0.5rem;">O desafio da autonomia</h3>
-    <p>Diferente de drones recreativos, o nosso sistema opera sob <strong>ROS2 (Robot Operating System)</strong>, permitindo que múltiplos processos (nós) conversem entre si para garantir estabilidade e precisão.</p>
+    <p><strong>A definição real:</strong> IA é a capacidade de um sistema computacional de simular processos de inteligência humana, como aprender com a experiência e reconhecer padrões para tomar decisões autônomas.</p>
   </div>
 
-  <h2>1. Dimensionamento de Bateria</h2>
-  <p>Um erro comum é ignorar a taxa de descarga. Para o nosso drone, calculamos a corrente máxima exigida pelos motores em regime de pico ($I_{max}$) usando a capacidade nominal ($Q$) e o C-rating da bateria:</p>
+  <h2>1. Programação Tradicional vs. IA</h2>
+  <p>Na programação comum (como um script de Arduino), o engenheiro escreve as regras explicitamente. Na IA, nós invertemos a ordem: damos os <strong>dados</strong> e o <strong>resultado esperado</strong>, e o computador "descobre" a regra matemática.</p>
   
-  <p style="text-align:center; background:var(--surface); padding:1rem; border-radius:8px;">
-    $$I_{max} = C \times Q$$
-  </p>
-
   
-
-  <h2>2. Algoritmo de Navegação</h2>
-  <p>Para o pouso de precisão, utilizamos a distância Euclidiana entre o centro do alvo detectado pela câmera ($x_t, y_t$) e a posição atual do drone ($x_d, y_d$):</p>
-  
-  <p style="text-align:center; background:var(--surface); padding:1rem; border-radius:8px;">
-    $$d = \sqrt{(x_t - x_d)^2 + (y_t - y_d)^2}$$
-  </p>
 
   <div class="code-block">
-// Snippet: Lógica de aproximação em ROS2
-auto message = geometry_msgs::msg::Twist();
-
-if (target_acquired) {
-    float error_x = target_x - current_x;
-    message.linear.x = error_x * Kp_gain; // Controle Proporcional
-    publisher_->publish(message);
+// Programação Comum: Regras fixas
+if (sensor_distancia < 10) {
+    parar_motor();
 }</div>
 
-  <div class="specs-grid">
-    <div class="spec-item"><div class="spec-label">Processador</div><div class="spec-val">Raspberry Pi 4 / Jetson</div></div>
-    <div class="spec-item"><div class="spec-label">Firmware</div><div class="spec-val">PX4 Autopilot</div></div>
-    <div class="spec-item"><div class="spec-label">Comunicação</div><div class="spec-val">MAVLink Protocol</div></div>
-    <div class="spec-item"><div class="spec-label">Sensores</div><div class="spec-val">LiDAR + GPS RTK</div></div>
+  <h2>2. Como a IA "Aprende"?</h2>
+  <p>A base da IA moderna é o <strong>Machine Learning</strong>. No fundo, é matemática pura. Um neurônio artificial calcula uma soma ponderada de suas entradas e aplica uma função de ativação:</p>
+
+  <p style="text-align:center; background:var(--surface); padding:1.5rem; border-radius:8px; margin:2rem 0; font-size:1.2rem;">
+    $$y = \sigma \left( \sum_{i=1}^{n} w_i x_i + b \right)$$
+  </p>
+
+  
+
+  <h2>3. Aplicações no GAIA</h2>
+  <p>No nosso projeto de extensão na <strong>UFTM</strong>, usamos IA para transformar máquinas em agentes inteligentes:</p>
+  <ul>
+    <li><strong>Visão Computacional:</strong> Identificação de alvos para pouso de drones.</li>
+    <li><strong>Navegação:</strong> Desvio de obstáculos em ambientes desconhecidos.</li>
+    <li><strong>Sinais:</strong> Filtragem inteligente de ruídos em sensores de telemetria.</li>
+  </ul>
+
+  <div class="tag-list">
+    <span class="tag">Machine Learning</span>
+    <span class="tag">Engenharia Elétrica</span>
+    <span class="tag">Deep Learning</span>
+    <span class="tag">UFTM</span>
   </div>
 
-  <h2>3. O que aprendemos?</h2>
-  <p>A maior lição na Engenharia Elétrica aplicada à robótica aérea é a <strong>gestão de ruído</strong>. Filtros de Kalman são essenciais para fundir dados de GPS e IMU, garantindo que o drone não "drifte" durante a missão.</p>
-
-  <a href="aprenda.html" class="back-link">← Voltar para os artigos</a>
+  <div class="nav-back">
+    <a href="aprenda.html" class="btn-back">← Voltar para a lista de artigos</a>
+  </div>
 </div>
 
 <footer>
-  <div class="fl" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.5rem;">GAIA <span style="color:var(--green)">ROBÓTICA</span></div>
-  <p style="font-family:'Space Mono',monospace; font-size:0.7rem; opacity:0.4; margin-top:0.5rem;">UFTM · Uberaba, MG · 2026</p>
+  <div class="fl">GAIA <span>ROBÓTICA</span></div>
+  <p>Projeto de Extensão · UFTM · Uberaba, MG</p>
 </footer>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
