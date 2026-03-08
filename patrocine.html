@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patrocine — GAIA Robótica</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
+  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+  .nav-logo .g{color:var(--green);}
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  nav a:hover{color:var(--blue);}
+
+  /* HERO */
+  .page-hero{background:linear-gradient(140deg,var(--blue-deep),var(--blue-dark) 50%,#1a6f1a);padding:8rem 3rem 6rem;position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1.5px,transparent 1.5px);background-size:28px 28px;pointer-events:none;}
+  .page-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+  .hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none;}
+  .breadcrumb a:hover{color:var(--green);}
+  .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3rem,9vw,8rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.9;margin-bottom:1.5rem;}
+  .page-hero h1 .g{color:var(--green);}
+  .page-hero .sub{font-size:1.1rem;color:rgba(255,255,255,0.7);max-width:580px;line-height:1.75;font-weight:300;}
+
+  /* SHARED */
+  .sec{max-width:1100px;margin:0 auto;padding:5rem 3rem;}
+  .sec-tag{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--green);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem;}
+  .sec-tag::before{content:'';width:20px;height:2px;background:var(--green);}
+  h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.75rem;line-height:1;}
+  .lead{font-size:1rem;color:var(--muted);max-width:620px;line-height:1.72;margin-bottom:2.5rem;}
+  .btn-p{background:var(--green);color:#fff;padding:0.9rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);transition:background 0.2s,transform 0.15s;display:inline-block;border:none;cursor:pointer;white-space:nowrap;}
+  .btn-p:hover{background:var(--green-dark);transform:translateY(-2px);}
+
+  /* NUMBERS */
+  .nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-bottom:4rem;}
+  .num-card{background:var(--white);border:2px solid var(--border);padding:2rem;text-align:center;transition:border-color 0.2s,transform 0.2s;}
+  .num-card:hover{border-color:var(--blue);transform:translateY(-3px);}
+  .num-val{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;color:var(--blue-dark);line-height:1;}
+  .num-val em{color:var(--green);font-style:normal;}
+  .num-lbl{font-size:0.82rem;color:var(--muted);margin-top:0.4rem;line-height:1.45;}
+
+  /* WHY */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4rem;}
+  .why-card{background:var(--surface);border:2px solid var(--border);padding:1.75rem;transition:border-color 0.2s,transform 0.2s;}
+  .why-card:hover{border-color:var(--blue);transform:translateY(-3px);}
+  .why-icon{font-size:2.2rem;margin-bottom:0.75rem;}
+  .why-title{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.5rem;}
+  .why-text{font-size:0.9rem;color:var(--muted);line-height:1.65;}
+
+  /* COTAS */
+  .cotas{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:3rem;}
+  .cota{border:3px solid var(--border);background:var(--white);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
+  .cota:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.1);}
+  .cota.mid{border-color:var(--blue);}
+  .cota.mid::before{content:'RECOMENDADO';position:absolute;top:1.2rem;right:-2.8rem;background:var(--blue);color:#fff;font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.1em;padding:0.3rem 4rem;transform:rotate(45deg);}
+  .cota.top{border-color:var(--green);}
+  .cota-icon{font-size:2.8rem;margin-bottom:1rem;}
+  .cota-name{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.05em;line-height:1;margin-bottom:0.5rem;}
+  .cota-tagline{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;}
+  .cota-list{list-style:none;text-align:left;margin-bottom:2rem;}
+  .cota-list li{font-size:0.88rem;color:var(--text);padding:0.45rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:0.6rem;line-height:1.45;}
+  .cota-list li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+  .cota-btn{display:block;text-align:center;padding:0.9rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid var(--border);color:var(--muted);transition:all 0.2s;}
+  .cota-btn.b{background:var(--blue);border-color:var(--blue);color:#fff;}
+  .cota-btn.g{background:var(--green);border-color:var(--green);color:#fff;}
+  .cota-btn:hover{transform:translateY(-2px);filter:brightness(1.1);}
+
+  /* CONTACT CTA */
+  .cta-box{background:linear-gradient(135deg,var(--blue-dark),var(--blue));padding:3.5rem;text-align:center;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,0 100%);position:relative;overflow:hidden;}
+  .cta-box::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1.5px,transparent 1.5px);background-size:22px 22px;}
+  .cta-box h2{color:#fff;position:relative;z-index:1;margin-bottom:0.75rem;}
+  .cta-box p{color:rgba(255,255,255,0.68);font-size:1rem;max-width:520px;margin:0 auto 2rem;line-height:1.72;position:relative;z-index:1;}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;position:relative;z-index:1;flex-wrap:wrap;}
+  .btn-o{background:transparent;color:#fff;padding:0.9rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:2px solid rgba(255,255,255,0.4);transition:border-color 0.2s,background 0.2s;}
+  .btn-o:hover{border-color:#fff;background:rgba(255,255,255,0.1);}
+
+  /* CONTACT FORM */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .c-info h3{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1rem;}
+  .c-info p{color:var(--muted);font-size:0.95rem;line-height:1.72;margin-bottom:1.5rem;}
+  .c-links{display:flex;flex-direction:column;gap:0.75rem;}
+  .c-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--white);border:2px solid var(--border);color:var(--text);text-decoration:none;font-size:0.9rem;transition:border-color 0.2s;}
+  .c-link:hover{border-color:var(--blue);}
+  .c-icon{width:32px;height:32px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;}
+  .cf{display:flex;flex-direction:column;gap:1rem;}
+  .cf input,.cf textarea,.cf select{background:var(--white);border:2px solid var(--border);color:var(--text);padding:0.9rem 1.25rem;font-family:'Barlow',sans-serif;font-size:0.92rem;outline:none;transition:border-color 0.2s;resize:none;}
+  .cf input:focus,.cf textarea:focus,.cf select:focus{border-color:var(--blue);}
+  .cf label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:-0.5rem;}
+
+  footer{background:#040e22;padding:2.5rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
+  .fl span{color:var(--green);}
+  footer p{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.3);}
+  .flinks{display:flex;gap:1.5rem;}
+  .flinks a{font-family:'Space Mono',monospace;font-size:0.66rem;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s;}
+  .flinks a:hover{color:var(--green);}
+
+  @media(max-width:900px){nav ul{display:none;}nav{padding:0 1.5rem;}.nums,.cotas,.why-grid{grid-template-columns:1fr 1fr;}.page-hero,.sec{padding-left:1.5rem;padding-right:1.5rem;}.contact-grid{grid-template-columns:1fr;gap:2rem;}}
+  @media(max-width:600px){.nums,.cotas,.why-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <ul>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#eletroquad">Eletroquad</a></li>
+    <li><a href="index.html#conquistas">Conquistas</a></li>
+    <li><a href="aprenda.html">Aprenda</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine ●</a></li>
+    <li><a href="index.html#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> › Patrocine</div>
+    <h1>SEJA<br><span class="g">PATRO</span>CINADOR</h1>
+    <p class="sub">Invista no futuro da robótica brasileira. Sua empresa ao lado de estudantes da UFTM que já estão no pódio nacional — e que estão transformando a educação pública de Uberaba.</p>
+  </div>
+</div>
+
+<!-- NÚMEROS -->
+<section style="background:var(--white);">
+<div class="sec">
+  <div class="sec-tag">// nosso impacto</div>
+  <h2>Números que falam</h2>
+  <p class="lead">Dois anos de projeto, resultados concretos e crescimento contínuo.</p>
+  <div class="nums">
+    <div class="num-card">
+      <div class="num-val">3<em>°</em></div>
+      <div class="num-lbl">Lugar na SAE Brasil 2025 — competição nacional de drones</div>
+    </div>
+    <div class="num-card">
+      <div class="num-val">2<em>°</em></div>
+      <div class="num-lbl">Lugar no HackaGIS 2023 — hackathon da UFTM/ICTE</div>
+    </div>
+    <div class="num-card">
+      <div class="num-val">5<em>+</em></div>
+      <div class="num-lbl">Plataformas ativas: Instagram, LinkedIn, GitHub, Facebook, site</div>
+    </div>
+    <div class="num-card">
+      <div class="num-val">7<em>+</em></div>
+      <div class="num-lbl">Robôs desenvolvidos do zero pela equipe GAIA</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- POR QUE -->
+<section style="background:var(--surface);">
+<div class="sec">
+  <div class="sec-tag">// por que apoiar</div>
+  <h2>Por que a GAIA?</h2>
+  <p class="lead">Seu investimento gera retorno real — em visibilidade, impacto social e acesso a talentos.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Associação com Excelência</div>
+      <p class="why-text">Apoie uma equipe que já subiu ao pódio nacional. 3° SAE Brasil e 2° HackaGIS — sua marca associada a resultados reais de engenharia.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Alcance Digital</div>
+      <p class="why-text">Instagram, LinkedIn, GitHub e site próprio com conteúdo técnico. Público jovem, qualificado e engajado — o consumidor de tecnologia do futuro.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌱</div>
+      <div class="why-title">Impacto Social (ESG)</div>
+      <p class="why-text">Seu nome em um projeto que leva robótica às escolas públicas de Uberaba. ESG com evidência concreta, certificada pela UFTM.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎓</div>
+      <div class="why-title">Visibilidade Universitária</div>
+      <p class="why-text">Presença em eventos da UFTM, competições nacionais e materiais acadêmicos. Sua marca vista por estudantes, professores e parceiros institucionais.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Pipeline de Talentos</div>
+      <p class="why-text">Acesso privilegiado a estudantes de engenharia altamente qualificados da UFTM. Identifique futuros colaboradores antes de todo mundo.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚙️</div>
+      <div class="why-title">P&D Colaborativo</div>
+      <p class="why-text">Traga desafios reais da sua empresa para serem trabalhados pela equipe GAIA. Pesquisa aplicada com custo de extensão universitária.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- COTAS -->
+<section style="background:var(--white);">
+<div class="sec">
+  <div class="sec-tag">// modalidades</div>
+  <h2>Cotas de Patrocínio</h2>
+  <p class="lead">Escolha o nível de envolvimento que faz sentido para sua empresa. Toda parceria começa com uma conversa.</p>
+
+  <div class="cotas">
+    <div class="cota">
+      <div class="cota-icon">🌱</div>
+      <div class="cota-name">Apoiador</div>
+      <div class="cota-tagline">Primeiro passo. Ideal para empresas locais.</div>
+      <ul class="cota-list">
+        <li>Logo no site da GAIA</li>
+        <li>Menção em 2 posts nas redes sociais</li>
+        <li>Certificado oficial de apoio ao projeto</li>
+        <li>Agradecimento em eventos e apresentações</li>
+      </ul>
+      <a href="#contato-form" class="cota-btn">Quero ser Apoiador</a>
+    </div>
+
+    <div class="cota mid">
+      <div class="cota-icon">🚀</div>
+      <div class="cota-name">Parceiro</div>
+      <div class="cota-tagline">Visibilidade real. Ideal para empresas de tecnologia.</div>
+      <ul class="cota-list">
+        <li>Logo em destaque no site e materiais</li>
+        <li>Menção em 6 posts + stories mensais</li>
+        <li>Logo na camiseta oficial da equipe</li>
+        <li>Presença em eventos e competições</li>
+        <li>Relatório de impacto semestral</li>
+        <li>Acesso a demos e apresentações técnicas</li>
+      </ul>
+      <a href="#contato-form" class="cota-btn b">Quero ser Parceiro</a>
+    </div>
+
+    <div class="cota top">
+      <div class="cota-icon">⭐</div>
+      <div class="cota-name">Master</div>
+      <div class="cota-tagline">Parceria estratégica. Máxima visibilidade.</div>
+      <ul class="cota-list">
+        <li>Logo principal em todos os materiais</li>
+        <li>Presença permanente nas redes sociais</li>
+        <li>Naming rights em um projeto ou robô</li>
+        <li>Workshop exclusivo com a equipe</li>
+        <li>Acesso privilegiado a talentos da UFTM</li>
+        <li>Co-criação de conteúdo técnico</li>
+        <li>Reuniões periódicas com a liderança</li>
+        <li>Destaque em publicações acadêmicas</li>
+      </ul>
+      <a href="#contato-form" class="cota-btn g">Quero ser Master</a>
+    </div>
+  </div>
+
+  <div class="cta-box">
+    <h2 style="color:#fff;">Não sabe qual cota escolher?</h2>
+    <p>Sem problema. Manda uma mensagem explicando sua empresa e o que você busca — a gente monta uma proposta personalizada.</p>
+    <div class="cta-btns">
+      <a href="#contato-form" class="btn-p">Montar Proposta →</a>
+      <a href="https://wa.me/55?text=Ol%C3%A1!%20Tenho%20interesse%20em%20patrocinar%20o%20projeto%20GAIA%20Rob%C3%B3tica%20da%20UFTM." target="_blank" class="btn-o">WhatsApp Direto</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTATO -->
+<section style="background:var(--surface);">
+<div class="sec" id="contato-form">
+  <div class="sec-tag">// vamos conversar</div>
+  <h2>Entre em Contato</h2>
+  <p class="lead">Preencha o formulário ou use um dos contatos diretos. Retornamos em até 48h.</p>
+
+  <div class="contact-grid">
+    <div class="c-info">
+      <h3>Contatos Diretos</h3>
+      <p>Prefere ir direto ao ponto? Fala com a gente pelas redes ou WhatsApp. A Wanessa, capitã do projeto, está à disposição.</p>
+      <div class="c-links">
+        <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="c-link"><span class="c-icon">📸</span>@gaia.robotica — Instagram</a>
+        <a href="https://www.linkedin.com/company/gaiarobotica" target="_blank" class="c-link"><span class="c-icon">💼</span>linkedin.com/company/gaiarobotica</a>
+        <a href="mailto:gaiarobotica@uftm.edu.br" class="c-link"><span class="c-icon">✉</span>gaiarobotica@uftm.edu.br</a>
+        <a href="index.html#contato" class="c-link"><span class="c-icon">🔗</span>Formulário no site principal</a>
+      </div>
+    </div>
+    <div class="cf" id="form">
+      <label>Seu nome / empresa</label>
+      <input type="text" placeholder="Ex: João Silva — TechCo Uberaba">
+      <label>E-mail para contato</label>
+      <input type="email" placeholder="seu@email.com">
+      <label>Cota de interesse</label>
+      <select>
+        <option value="">Selecione uma opção</option>
+        <option>🌱 Apoiador</option>
+        <option>🚀 Parceiro</option>
+        <option>⭐ Master</option>
+        <option>💬 Quero uma proposta personalizada</option>
+      </select>
+      <label>Mensagem</label>
+      <textarea rows="4" placeholder="Conte um pouco sobre sua empresa e o que busca com a parceria..."></textarea>
+      <button class="btn-p" style="align-self:flex-start;">Enviar Proposta →</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="fl">GAIA <span>ROBÓTICA</span></div>
+  <p>UFTM · Uberaba, MG · 2023</p>
+  <div class="flinks">
+    <a href="index.html">Home</a>
+    <a href="aprenda.html">Aprenda</a>
+    <a href="patrocine.html">Patrocine</a>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
+    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+</body>
+</html>
