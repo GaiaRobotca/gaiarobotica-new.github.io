@@ -177,22 +177,8 @@
   <div class="exmembros-grid">
     
     <div class="exmembros-card">
-      <img src="paula.jpg" class="ex-avatar" alt="Paula Luísa" onerror="this.src='https://ui-avatars.com/api/?name=Paula+Luisa&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Paula Luísa</div>
-      <div class="ex-role">Membro da Equipe</div>
-      <div class="ex-years">2023 - 2025</div>
-    </div>
-
-    <div class="exmembros-card">
-      <img src="pintor.jpg" class="ex-avatar" alt="Gabriel Pintor" onerror="this.src='https://ui-avatars.com/api/?name=Gabriel+Pintor&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Gabriel Pintor</div>
-      <div class="ex-role">Membro da Equipe</div>
-      <div class="ex-years">2024 - 2025</div>
-    </div>
-
-    <div class="exmembros-card">
-      <img src="stefanny.jpg" class="ex-avatar" alt="Stefanny Ariel" onerror="this.src='https://ui-avatars.com/api/?name=Stefanny+Ariel&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Stefanny Ariel</div>
+      <img src="camila.jpg" class="ex-avatar" alt="Camila Oliveira" onerror="this.src='https://ui-avatars.com/api/?name=Camila+Oliveira&background=e4f0ff&color=0d4fa0'">
+      <div class="ex-name">Camila Oliveira</div>
       <div class="ex-role">Membro da Equipe</div>
       <div class="ex-years">2024 - 2025</div>
     </div>
@@ -205,256 +191,27 @@
     </div>
 
     <div class="exmembros-card">
-      <img src="camila.jpg" class="ex-avatar" alt="Camila Oliveira" onerror="this.src='https://ui-avatars.com/api/?name=Camila+Oliveira&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Camila Oliveira</div>
+      <img src="pintor.jpg" class="ex-avatar" alt="Gabriel Pintor" onerror="this.src='https://ui-avatars.com/api/?name=Gabriel+Pintor&background=e4f0ff&color=0d4fa0'">
+      <div class="ex-name">Gabriel Pintor</div>
+      <div class="ex-role">Membro da Equipe</div>
+      <div class="ex-years">2024 - 2025</div>
+    </div>
+
+    <div class="exmembros-card">
+      <img src="paula.jpg" class="ex-avatar" alt="Paula Luísa" onerror="this.src='https://ui-avatars.com/api/?name=Paula+Luisa&background=e4f0ff&color=0d4fa0'">
+      <div class="ex-name">Paula Luísa</div>
+      <div class="ex-role">Membro da Equipe</div>
+      <div class="ex-years">2023 - 2025</div>
+    </div>
+
+    <div class="exmembros-card">
+      <img src="stefanny.jpg" class="ex-avatar" alt="Stefanny Ariel" onerror="this.src='https://ui-avatars.com/api/?name=Stefanny+Ariel&background=e4f0ff&color=0d4fa0'">
+      <div class="ex-name">Stefanny Ariel</div>
       <div class="ex-role">Membro da Equipe</div>
       <div class="ex-years">2024 - 2025</div>
     </div>
 
   </div>
-</div>
-</section>
-
-<footer>
-  <div class="fl">GAIA <span>ROBÓTICA</span></div>
-  <p>UFTM · Uberaba, MG · Fundado em 2023</p>
-  <div class="footer-links">
-    <a href="index.html#conquistas">Conquistas</a>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
-    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
-  </div>
-</footer>
-
-<script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  const navLinks = document.querySelectorAll('nav ul li a');
-
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-          menuToggle.textContent = '☰';
-        }
-      });
-    });
-  }
-</script>
-</body>
-</html><!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ex-membros — GAIA Robótica</title>
-<link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
-<script>
-  (function() {
-    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
-    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
-  })();
-</script>
-
-<script>
-  function handleImageError(element) {
-    if (element.dataset.retried) return;
-    element.dataset.retried = "true";
-    
-    // Fallback para tags <img>
-    if (element.tagName === 'IMG') {
-      let currentSrc = element.getAttribute('src');
-      if (currentSrc.endsWith('.jpg')) element.src = currentSrc.replace('.jpg', '.JPG');
-      else if (currentSrc.endsWith('.JPG')) element.src = currentSrc.replace('.JPG', '.jpg');
-      else if (currentSrc.endsWith('.png')) element.src = currentSrc.replace('.png', '.PNG');
-      else if (currentSrc.endsWith('.PNG')) element.src = currentSrc.replace('.PNG', '.png');
-      else element.src = 'https://ui-avatars.com/api/?name=Ex+Membro&background=0d4fa0&color=fff';
-    } 
-  }
-</script>
-
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root { --bg: #f0f7ff; --white: #ffffff; --blue: #1a6fd4; --blue-light: #3d9bff; --blue-mid: #2980e8; --blue-dark: #0d4fa0; --blue-deep: #071f4a; --green: #5cb82e; --green-dark: #3d8a1a; --text: #0d2a50; --muted: #5a7a9a; --border: #c8dff5; --surface: #e4f0ff; }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; overflow-x:hidden; }
-
-  /* ===== NAV ===== */
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(16px); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 3rem; height:68px; }
-  .nav-logo { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.5rem; color:var(--blue-dark); text-decoration:none; letter-spacing:0.05em; display:flex; align-items:center; gap:0.6rem; }
-  .nav-dot { width:10px; height:10px; background:var(--green); border-radius:50%; }
-  .nav-logo .g { color:var(--green); }
-  nav ul { list-style:none; display:flex; gap:1.8rem; }
-  nav a { font-size:0.83rem; font-weight:600; color:var(--muted); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
-  nav a:hover, nav a.active { color:var(--blue); }
-
-  /* ===== HERO INTERNAL ===== */
-  .hero-internal { background:linear-gradient(140deg, var(--blue-deep) 0%, var(--blue-dark) 60%, var(--blue) 100%); padding:9rem 3rem 5rem; position:relative; overflow:hidden; text-align:center; }
-  .hero-internal::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.09) 1.5px,transparent 1.5px); background-size:28px 28px; pointer-events:none; }
-  .hero-internal::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:40px; background:var(--bg); clip-path:polygon(0 100%, 100% 0%, 100% 100%); }
-  .hi-inner { max-width:900px; margin:0 auto; position:relative; z-index:1; }
-  .hi-tag { font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--green); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:1rem; display:inline-block; }
-  .hero-internal h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(3.5rem,8vw,5.5rem); font-weight:900; line-height:0.9; color:#fff; text-transform:uppercase; margin-bottom:1rem;}
-  .hero-internal h1 .g { color:var(--green); }
-  .hi-sub { font-size:1.1rem; color:rgba(255,255,255,0.75); font-weight:300; line-height:1.7; max-width:650px; margin:0 auto; }
-
-  /* ===== SHARED ===== */
-  .sec { max-width:1100px; margin:0 auto; padding:5rem 3rem; }
-  .sec-tag { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--green); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem; }
-  .sec-tag::before { content:''; width:20px; height:2px; background:var(--green); }
-  h2 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:900; color:var(--blue-dark); text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:0.75rem; line-height:1; }
-  .lead { font-size:1rem; color:var(--muted); max-width:620px; line-height:1.72; margin-bottom:3rem; }
-
-  /* ===== FUNDADORES E CAPITÃES ===== */
-  .founders-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 2rem; }
-  .founder-card { background: var(--blue-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 2.5rem; display: flex; gap: 2rem; align-items: center; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
-  .founder-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green); }
-  .founder-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(13, 79, 160, 0.2); border-color: rgba(255,255,255,0.25); }
-  
-  .founder-avatar { width: 110px; height: 110px; min-width: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green); padding: 4px; background: var(--white); }
-  .founder-info { flex: 1; }
-  .founder-role { font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--green); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem; display: inline-block; background: rgba(92,184,46,0.15); padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid rgba(92,184,46,0.3); }
-  .founder-name { font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:0.5rem; line-height:1.1; }
-  .founder-desc { font-size:0.85rem; color:rgba(255,255,255,0.7); line-height:1.6; }
-  .founder-years { font-family:'Space Mono',monospace; font-size:0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.8rem; display: block; }
-
-  /* ===== EX-MEMBROS GERAIS ===== */
-  .exmembros-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:1.5rem; }
-  .exmembros-card { background:var(--white); border:1px solid var(--border); padding:1.5rem; border-radius: 12px; display:flex; flex-direction: column; align-items:center; text-align: center; transition:all 0.2s ease; }
-  .exmembros-card:hover { border-color:var(--blue-light); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(26,111,212,0.08); }
-  
-  .ex-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--surface); padding: 3px; }
-  .ex-name { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; line-height:1.1; margin-bottom:0.3rem; }
-  .ex-role { font-size:0.85rem; color:var(--muted); line-height:1.4; margin-bottom: 0.8rem; }
-  .ex-years { font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--blue); background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 4px; }
-
-  /* ===== FOOTER ===== */
-  footer { background:#040e22; padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-  .fl { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem; color:#fff; letter-spacing:0.08em; }
-  .fl span { color:var(--green); }
-  footer p { font-family:'Space Mono',monospace; font-size:0.66rem; color:rgba(255,255,255,0.3); }
-  .footer-links { display:flex; gap:1.5rem; }
-  .footer-links a { font-family:'Space Mono',monospace; font-size:0.66rem; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--green); }
-
-  /* ===== RESPONSIVE ===== */
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width:1050px){
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav{padding:0 1.5rem;}
-    .founders-grid { grid-template-columns: 1fr; }
-    .sec{padding:4rem 1.5rem;}
-    footer{flex-direction:column;text-align:center;}
-    .footer-links{justify-content:center;}
-  }
-  @media(max-width:600px){
-    .founder-card { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
-    .founder-card::before { width: 100%; height: 4px; }
-  }
-</style>
-</head>
-<body>
-
-<nav>
-  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
-  <button class="menu-toggle">☰</button>
-  <ul>
-    <li><a href="index.html#sobre">Sobre</a></li>
-    <li><a href="index.html#eletroquad">Eletroquad</a></li>
-    <li><a href="index.html#robotica">Robótica</a></li>
-    <li><a href="index.html#conquistas">Conquistas</a></li>
-    <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-    <li><a href="index.html#equipe" class="active">Equipe</a></li>
-  </ul>
-</nav>
-
-<section class="hero-internal">
-  <div class="hi-inner">
-    <div class="hi-tag">// Nossa História</div>
-    <h1>Ex-membros <span class="g">GAIA</span></h1>
-    <p class="hi-sub">A história da GAIA Robótica foi escrita por dezenas de mãos. Prestamos aqui nossa homenagem e gratidão aos membros, capitães e fundadores que ajudaram a construir o nosso legado.</p>
-  </div>
-</section>
-
-<section style="background:var(--bg);">
-<div class="sec">
-  <div class="sec-tag">// O início de tudo</div>
-  <h2>Fundadores & Capitães</h2>
-  <p class="lead">Pessoas visionárias que deram o pontapé inicial ou guiaram as nossas equipes em competições e projetos marcantes.</p>
-
-  <div class="founders-grid">
-    <div class="founder-card">
-      <img src="valdivino.jpg" class="founder-avatar" alt="Valdivino Junior" onerror="this.src='https://ui-avatars.com/api/?name=Valdivino+Junior&background=e4f0ff&color=0d4fa0&bold=true'">
-      <div class="founder-info">
-        <div class="founder-role">👑 Co-Fundador</div>
-        <div class="founder-name">Valdivino Junior</div>
-        <p class="founder-desc">Um dos idealizadores originais do projeto GAIA. Fundamental para a estruturação da equipe, primeiros projetos em robótica e conquista no HackaGIS.</p>
-        <span class="founder-years">Membro ativo: 2023 - 2024</span>
-      </div>
-    </div>
-
-    <div class="founder-card">
-      <img src="gabriel_meireles.jpg" class="founder-avatar" alt="Gabriel Meireles" onerror="this.src='https://ui-avatars.com/api/?name=Gabriel+Meireles&background=e4f0ff&color=0d4fa0&bold=true'">
-      <div class="founder-info">
-        <div class="founder-role">⚙️ Líder Técnico Anteriror</div>
-        <div class="founder-name">Gabriel Meireles</div>
-        <p class="founder-desc">Liderou frentes técnicas complexas e ajudou a estruturar as bases de programação embarcada da equipe inicial. Vice-campeão HackaGIS 2023.</p>
-        <span class="founder-years">Membro ativo: 2023 - 2024</span>
-      </div>
-    </div>
-    
-    </div>
-</div>
-</section>
-
-<section style="background:var(--surface);">
-<div class="sec">
-  <div class="sec-tag">// O Time</div>
-  <h2>Hall de Ex-membros</h2>
-  <p class="lead">O nosso muito obrigado a todos os estudantes da UFTM que deixaram sua marca no laboratório, nos códigos e nas estruturas dos nossos robôs.</p>
-
-  <div class="exmembros-grid">
-    
-    <div class="exmembros-card">
-      <img src="exmembro1.jpg" class="ex-avatar" alt="Nome do Ex Membro" onerror="this.src='https://ui-avatars.com/api/?name=Nome+Sobrenome&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Nome Ex-membro</div>
-      <div class="ex-role">Projetista Mecânico</div>
-      <div class="ex-years">2023 - 2024</div>
-    </div>
-
-    <div class="exmembros-card">
-      <img src="exmembro2.jpg" class="ex-avatar" alt="Nome do Ex Membro" onerror="this.src='https://ui-avatars.com/api/?name=Outro+Membro&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Outro Ex-membro</div>
-      <div class="ex-role">Equipe Eletroquad</div>
-      <div class="ex-years">2024 - 2025</div>
-    </div>
-
-    <div class="exmembros-card">
-      <img src="exmembro3.jpg" class="ex-avatar" alt="Nome do Ex Membro" onerror="this.src='https://ui-avatars.com/api/?name=Terceiro+Membro&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Terceiro Ex-membro</div>
-      <div class="ex-role">Eletrônica e Solda</div>
-      <div class="ex-years">2023 - 2024</div>
-    </div>
-    
-    <div class="exmembros-card">
-      <img src="exmembro4.jpg" class="ex-avatar" alt="Nome do Ex Membro" onerror="this.src='https://ui-avatars.com/api/?name=Quarto+Membro&background=e4f0ff&color=0d4fa0'">
-      <div class="ex-name">Quarto Ex-membro</div>
-      <div class="ex-role">Desenvolvedor ROS</div>
-      <div class="ex-years">2024 - 2024</div>
-    </div>
-
-    </div>
 </div>
 </section>
 
