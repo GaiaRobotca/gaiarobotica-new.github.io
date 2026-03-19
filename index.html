@@ -187,6 +187,15 @@
   .member-simple-card:hover { border-color:var(--green); background:var(--surface); transform: translateX(5px); }
   .ms-name { font-size:0.92rem; font-weight:600; color:var(--blue-dark); line-height:1.2; }
 
+  /* ===== ENGENHARIAS (CURSOS) ===== */
+  .eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+  .eng-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; transition: all 0.3s ease; }
+  .eng-card:hover { border-color: var(--blue-light); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(26,111,212,0.1); }
+  .eng-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .eng-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1rem; }
+  .eng-card p { font-size: 0.92rem; color: var(--text); line-height: 1.6; margin-bottom: 0.8rem; }
+  .eng-card p strong { color: var(--blue); }
+
   .hackagis-team { margin-top:2rem; background:var(--blue-dark); padding:2rem 2.5rem; display:flex; align-items:center; gap:2rem; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%); }
   .hk-badge { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:var(--green); line-height:1; }
   .hk-info strong { display:block; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em; }
@@ -255,7 +264,7 @@
     nav{padding:0 1.5rem;}
     .about-grid,.missao-grid,.leadership,.contato-wrapper{grid-template-columns:1fr;gap:2rem;}
     .docentes{grid-template-columns:1fr;}
-    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid{grid-template-columns:1fr 1fr;}
+    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.eng-grid{grid-template-columns:1fr 1fr;}
     .members-grid { grid-template-columns: 1fr 1fr; }
     .hero{padding:6rem 1.5rem 5rem;}
     .sec{padding:4rem 1.5rem;}
@@ -263,6 +272,9 @@
     footer{flex-direction:column;text-align:center;}
     .footer-links{justify-content:center;}
     .blog-post{grid-template-columns:1fr;gap:0.3rem;}
+  }
+  @media(max-width:768px) {
+    .eng-grid { grid-template-columns: 1fr; }
   }
   @media(max-width:600px){
     .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.members-grid{grid-template-columns:1fr;}
@@ -633,9 +645,7 @@
       <img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Pedro+Henrique&background=1a6fd4&color=fff'">
       <div class="ms-name">Pedro Henrique</div>
     </div>
-
-
-  <div style="background:var(--surface); border:1px solid var(--border); padding:3rem; border-radius:12px; text-align:center; margin-bottom: 3rem;">
+  </div> <div style="background:var(--surface); border:1px solid var(--border); padding:3rem; border-radius:12px; text-align:center; margin-bottom: 3rem;">
     <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:900; color:var(--blue-dark); text-transform:uppercase; margin-bottom:1rem;">Nossa História · Ex-membros</h3>
     <p style="font-size:1rem; color:var(--muted); line-height:1.7; max-width:700px; margin:0 auto 2rem;">A equipa GAIA Robótica expressa a sua profunda gratidão a todos os membros que dedicaram o seu tempo, conhecimento e paixão ao projeto. Cada linha de código, cada peça construída e cada escola visitada carrega um pouco de vocês.</p>
     <a href="ex-membros.html" class="btn-p" style="display:inline-block;">Conhecer os Ex-membros →</a>
@@ -646,6 +656,39 @@
     <div class="hk-info">
       <strong>Time HackaGIS 2023 — Wanessa, Valdivino & Gabriel</strong>
       <span>Conquistaram o 2° lugar no 1° HackaGIS · UFTM/ICTE · Outubro de 2023</span>
+    </div>
+  </div>
+
+  <h3 class="members-section-title" style="text-align:center; margin-top:5rem;">O Seu Curso no GAIA</h3>
+  <p style="text-align:center; color:var(--muted); max-width:600px; margin:0 auto 2rem; line-height: 1.6;">Descubra como você pode aplicar a teoria do seu curso de engenharia na prática, desenvolvendo soluções de impacto e tecnologia de ponta com a gente.</p>
+  
+  <div class="eng-grid">
+    <div class="eng-card">
+      <div class="eng-icon">⚙️</div>
+      <h4>Engenharia Mecânica</h4>
+      <p><strong>No GAIA:</strong> Você é o responsável por dar forma e movimento às ideias. Vai aplicar cinemática e dinâmica no design de braços robóticos, estudar aerodinâmica e resistência dos materiais para o chassi do drone quadrotor (Eletroquad) e dominar a manufatura aditiva (impressão 3D).</p>
+      <p><strong>Para o curso e para a vida:</strong> A teoria da sala de aula ganha vida quando você precisa garantir que um componente aguente o impacto de um pouso ou levante uma carga específica. Você sairá do projeto com uma visão espacial apurada, fluência em modelagem 3D (CAD/CAM) e a capacidade de projetar soluções físicas reais para problemas complexos, habilidades disputadíssimas na indústria.</p>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-icon">⚡</div>
+      <h4>Engenharia Elétrica</h4>
+      <p><strong>No GAIA:</strong> Você projeta o "coração e o sistema nervoso" dos robôs. Vai trabalhar com dimensionamento de potência (baterias para drones), integração de sensores, atuadores, microcontroladores (Arduino/ESP) e desenvolvimento de placas de circuito impresso (PCBs).</p>
+      <p><strong>Para o curso e para a vida:</strong> É a chance de colocar a mão na massa, soldar componentes e ver a eletrônica de potência e os sistemas de controle funcionando na prática. No mercado de trabalho, a experiência com sistemas embarcados, IoT e troubleshooting elétrico em tempo real te colocará passos à frente na engenharia de desenvolvimento e automação.</p>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-icon">🧪</div>
+      <h4>Engenharia Química</h4>
+      <p><strong>No GAIA:</strong> A robótica moderna é altamente dependente da ciência dos materiais e da energia. Você pode atuar na pesquisa de polímeros mais eficientes para a impressão 3D, no estudo de termodinâmica para dissipação de calor em componentes eletrônicos e no entendimento do ciclo de vida e eficiência das baterias de Li-Po dos drones.</p>
+      <p><strong>Para o curso e para a vida:</strong> O projeto treina a sua visão analítica. Compreender como os materiais se comportam sob estresse físico e elétrico é essencial. Profissionalmente, isso te conecta diretamente com a Indústria 4.0, inovação em novos materiais e processos focados em tecnologia e automação.</p>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-icon">📊</div>
+      <h4>Engenharia de Produção</h4>
+      <p><strong>No GAIA:</strong> Um robô não sai do papel sem gestão. Você será a peça-chave na otimização de recursos, controle de orçamento, prazos (cronograma para a SAE Brasil, por exemplo), aplicação de metodologias ágeis (Scrum/Kanban) e gestão de qualidade dos componentes.</p>
+      <p><strong>Para o curso e para a vida:</strong> O GAIA é a sua "mini-empresa". Liderar equipes multidisciplinares, garantir que as entregas sejam feitas no prazo e gerenciar a cadeia de suprimentos (compra de peças da China, por exemplo) são desafios reais. Essa experiência de liderança e visão sistêmica é exatamente o que grandes empresas procuram em um Engenheiro de Produção.</p>
     </div>
   </div>
 
