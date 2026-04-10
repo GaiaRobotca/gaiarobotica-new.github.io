@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robô Seguidor de Linha — GAIA Robótica</title>
+<link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;--orange:#d4732a;--orange-dark:#a04a0d;--teal:#1ab5b5;--teal-dark:#0d6e6e;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
+  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+  .nav-logo .g{color:var(--green);}
+  nav ul{list-style:none;display:flex;gap:1.8rem;}
+  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  nav a:hover,nav a.active{color:var(--blue);}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.8rem;color:var(--blue-dark);cursor:pointer;}
+
+  /* HERO DO ARTIGO */
+  .article-hero{background:linear-gradient(140deg,#1a1a2e,#2d2d6e,#1a3a8a);padding:9rem 3rem 6rem;position:relative;overflow:hidden;}
+  .article-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
+  .breadcrumb a:hover{color:#fff;}
+  .breadcrumb span{opacity:0.4;}
+  .badge-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .badge{font-family:'Space Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.35rem 0.85rem;border:1.5px solid;}
+  .badge-orange{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .badge-outline{background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.92;margin-bottom:1.5rem;}
+  .article-hero h1 .g{color:var(--green);}
+  .hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.62);line-height:1.7;max-width:600px;}
+  .hero-meta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12);}
+  .meta-item{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;}
+  .meta-item strong{color:rgba(255,255,255,0.75);display:block;font-size:0.82rem;margin-bottom:0.1rem;}
+
+  /* LAYOUT PRINCIPAL */
+  .article-layout{max-width:1100px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;}
+
+  /* CONTEÚDO */
+  .article-content{}
+  .section-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+  .section-label::before{content:'';width:20px;height:2px;background:var(--blue);}
+  h2.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;line-height:1;}
+  h3.sub-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 1rem;}
+  p.body-text{font-size:0.97rem;line-height:1.78;color:var(--text);margin-bottom:1.25rem;}
+  p.body-text strong{color:var(--blue-dark);}
+
+  .article-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--border);}
+  .article-section:last-child{border-bottom:none;}
+
+  /* CALLOUT BOXES */
+  .callout{border-left:4px solid var(--blue);background:var(--surface);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 4px 4px 0;}
+  .callout.green{border-color:var(--green);background:rgba(92,184,46,0.07);}
+  .callout.orange{border-color:var(--orange);background:rgba(212,115,42,0.07);}
+  .callout.dark{border-color:var(--blue-deep);background:rgba(7,31,74,0.06);}
+  .callout-label{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);font-weight:700;margin-bottom:0.4rem;}
+  .callout.green .callout-label{color:var(--green-dark);}
+  .callout.orange .callout-label{color:var(--orange-dark);}
+  .callout p{font-size:0.9rem;line-height:1.65;color:var(--text);margin:0;}
+
+  /* CODE BLOCK */
+  .code-wrap{background:#0d1b2a;border:2px solid rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin:1.5rem 0;}
+  .code-header{background:#07101a;padding:0.65rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.07);}
+  .code-lang{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green);text-transform:uppercase;letter-spacing:0.12em;}
+  .code-fname{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.3);}
+  pre{padding:1.5rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.78rem;line-height:1.75;color:#a8d4ff;}
+  .kw{color:#7ec8e3;}
+  .fn{color:#ffe566;}
+  .cm{color:#4a7a6a;font-style:italic;}
+  .st{color:#a8ff8a;}
+  .nm{color:#ffa07a;}
+  .pp{color:#c084fc;}
+
+  /* COMPONENTS / PARTS TABLE */
+  .parts-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
+  .parts-table th{background:var(--blue-deep);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.75rem 1rem;text-align:left;font-size:0.95rem;}
+  .parts-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
+  .parts-table tr:nth-child(even) td{background:var(--surface);}
+  .parts-table tr:hover td{background:var(--border);}
+  .parts-table td:last-child{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--blue-dark);font-weight:700;}
+  .total-row td{background:var(--blue-deep) !important;color:#fff !important;font-weight:700;}
+  .total-row td:last-child{color:var(--green) !important;}
+
+  /* STEPS */
+  .steps-list{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
+  .step-item{display:flex;gap:1.25rem;align-items:flex-start;}
+  .step-num{min-width:2.2rem;height:2.2rem;background:var(--blue-dark);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step-content{}
+  .step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.35rem;}
+  .step-text{font-size:0.9rem;line-height:1.65;color:var(--muted);}
+
+  /* DIAGRAM SCHEMATIC */
+  .schematic-box{background:var(--blue-deep);border:2px solid rgba(255,255,255,0.08);padding:2rem;margin:1.5rem 0;position:relative;overflow:hidden;}
+  .schematic-box::before{content:'ESQUEMA ELETRÔNICO';position:absolute;top:0.6rem;left:1rem;font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.25);letter-spacing:0.15em;}
+  .schematic-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;}
+  .sch-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:1rem;text-align:center;}
+  .sch-emoji{font-size:1.8rem;display:block;margin-bottom:0.5rem;}
+  .sch-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;margin-bottom:0.4rem;}
+  .sch-pins{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);line-height:1.6;}
+  .sch-arrow{display:flex;align-items:center;justify-content:center;color:var(--green);font-size:1.5rem;font-weight:900;}
+  .sch-full{grid-column:1/-1;background:rgba(92,184,46,0.08);border-color:rgba(92,184,46,0.2);}
+  .sch-full .sch-pins{color:rgba(255,255,255,0.6);}
+
+  /* PID DIAGRAM */
+  .pid-diagram{background:var(--blue-deep);padding:2rem;margin:1.5rem 0;overflow-x:auto;}
+  .pid-flow{display:flex;align-items:center;gap:0.5rem;min-width:600px;}
+  .pid-block{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);padding:0.75rem 1.25rem;text-align:center;flex:1;}
+  .pid-block.highlight{background:rgba(26,111,212,0.3);border-color:var(--blue-light);}
+  .pid-block.green{background:rgba(92,184,46,0.2);border-color:var(--green);}
+  .pid-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;}
+  .pid-sub{font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;}
+  .pid-arrow{color:rgba(255,255,255,0.4);font-size:1.2rem;flex-shrink:0;}
+
+  /* TIPS GRID */
+  .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+  .tip-card{border:2px solid var(--border);padding:1.25rem;background:var(--white);}
+  .tip-card.good{border-color:var(--green);background:rgba(92,184,46,0.05);}
+  .tip-card.bad{border-color:#e05252;background:rgba(224,82,82,0.05);}
+  .tip-header{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;}
+  .tip-card.good .tip-header{color:var(--green-dark);}
+  .tip-card.bad .tip-header{color:#c04040;}
+  .tip-text{font-size:0.88rem;line-height:1.6;color:var(--muted);}
+
+  /* SIDEBAR */
+  .article-sidebar{position:sticky;top:90px;}
+  .sidebar-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;margin-bottom:1.5rem;}
+  .sidebar-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:2px solid var(--border);}
+  .toc-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+  .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.5rem;transition:all 0.2s;border-left:2px solid transparent;}
+  .toc-list a:hover{color:var(--blue);border-left-color:var(--blue);background:var(--surface);}
+  .toc-num{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue);min-width:1.2rem;}
+  .sidebar-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;padding:0.25rem 0.6rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);margin:0.2rem 0.2rem 0.2rem 0;}
+  .related-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0;border-bottom:1px solid var(--border);text-decoration:none;}
+  .related-item:last-child{border-bottom:none;}
+  .ri-emoji{font-size:1.4rem;min-width:2rem;text-align:center;}
+  .ri-title{font-size:0.82rem;font-weight:600;color:var(--blue-dark);}
+  .ri-cat{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--muted);text-transform:uppercase;}
+  .related-item:hover .ri-title{color:var(--blue);}
+
+  /* PROGRESS BAR */
+  .reading-progress{position:fixed;top:68px;left:0;right:0;height:3px;background:transparent;z-index:99;}
+  .rp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue-light));width:0%;transition:width 0.1s;}
+
+  /* FOOTER */
+  footer{background:#020817;padding:5rem 3rem 3rem;color:#fff;margin-top:auto;}
+  .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;}
+  .footer-col h4{color:var(--green);margin-bottom:1.5rem;text-transform:uppercase;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.8rem;}
+  .footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:#fff;}
+  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
+  .fl span{color:var(--green);}
+
+  /* RESPONSIVE */
+  @media(max-width:1050px){
+    .menu-toggle{display:block;}
+    nav ul{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);padding:2rem;border-bottom:2px solid var(--border);box-shadow:0 10px 20px rgba(0,0,0,0.1);text-align:center;}
+    nav ul.active{display:flex;}
+    nav{padding:0 1.5rem;}
+    .article-layout{grid-template-columns:1fr;gap:2rem;}
+    .article-sidebar{position:static;}
+    .footer-grid{grid-template-columns:1fr;text-align:center;}
+    .schematic-inner{grid-template-columns:1fr 1fr;}
+    .tips-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    .article-layout{padding:3rem 1.5rem;}
+    .schematic-inner{grid-template-columns:1fr;}
+    .sch-arrow{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <button class="menu-toggle">☰</button>
+  <ul>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#eletroquad">Eletroquad</a></li>
+    <li><a href="index.html#robotica">Robótica</a></li>
+    <li><a href="index.html#conquistas">Conquistas</a></li>
+    <li><a href="aprenda.html" class="active">Aprenda</a></li>
+    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
+    <li><a href="index.html#equipe">Equipe</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="aprenda.html">Aprenda</a>
+      <span>›</span>
+      Robótica
+    </div>
+    <div class="badge-row">
+      <span class="badge badge-orange">Robótica</span>
+      <span class="badge badge-outline">Intermediário</span>
+      <span class="badge badge-outline">⏱ 15 min leitura</span>
+      <span class="badge badge-outline">🏁 Trainee 2026.1</span>
+    </div>
+    <h1>🤖 ROBÔ <span class="g">SEGUIDOR</span><br>DE LINHA</h1>
+    <p class="hero-sub">Do zero ao relatório: tudo que você precisa saber para montar, programar e documentar seu seguidor de linha no Desafio de Nivelamento.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>GAIA Robótica</strong>Equipe UFTM</div>
+      <div class="meta-item"><strong>Abr 2026</strong>Publicado</div>
+      <div class="meta-item"><strong>Trainee</strong>Público-alvo</div>
+    </div>
+  </div>
+</div>
+
+<div class="article-layout">
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="article-content">
+
+    <!-- 1. VISÃO GERAL -->
+    <div class="article-section" id="visao-geral">
+      <div class="section-label">01 — Visão Geral</div>
+      <h2 class="sec-title">O que é um seguidor de linha?</h2>
+      <p class="body-text">Um <strong>robô seguidor de linha</strong> é um sistema autônomo capaz de detectar e percorrer uma trajetória marcada no chão — geralmente uma faixa preta sobre fundo branco — sem intervenção humana. É o "Olá Mundo" da robótica autônoma: simples o suficiente para aprender em dias, mas complexo o suficiente para ensinar os fundamentos reais do trabalho em equipe de engenharia.</p>
+      <p class="body-text">No Desafio de Nivelamento 2026.1, vocês precisam <strong>projetar, simular e documentar</strong> um seguidor de linha em grupo, cobrindo quatro frentes: Gestão, Mecânica, Eletrônica e Programação. Este artigo vai destrinchar cada uma delas.</p>
+
+      <div class="callout green">
+        <div class="callout-label">✅ Boa notícia</div>
+        <p>A entrega física <strong>não é obrigatória</strong>. Simulações em Tinkercad, Webots, Fusion 360 ou qualquer software são totalmente aceitas. Foque na qualidade do relatório.</p>
+      </div>
+
+      <h3 class="sub-title">Como o robô "enxerga" a linha?</h3>
+      <p class="body-text">A magia toda está no <strong>sensor infravermelho (IR)</strong>. Ele emite luz IR e mede o quanto é refletido de volta: superfície branca reflete muito (sinal alto), superfície preta absorve quase tudo (sinal baixo). Com dois ou mais sensores posicionados embaixo do chassi, o Arduino consegue saber se o robô está sobre a linha, saindo pela esquerda ou saindo pela direita.</p>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Sensor lê a pista</div>
+            <div class="step-text">Os sensores IR apontam para o chão e retornam valores digitais (0 ou 1) indicando se estão sobre linha preta ou fundo branco.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Arduino processa</div>
+            <div class="step-text">O microcontrolador lê os pinos de entrada, compara os estados dos sensores e calcula o erro de posição em relação à linha.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Motores corrigem</div>
+            <div class="step-text">Via Ponte H (L298N), o Arduino ajusta a velocidade de cada motor para curvar o robô de volta à linha.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. COMPONENTES -->
+    <div class="article-section" id="componentes">
+      <div class="section-label">02 — Lista de Materiais</div>
+      <h2 class="sec-title">Componentes e orçamento</h2>
+      <p class="body-text">Abaixo está uma lista de referência com os componentes mais comuns para um seguidor de linha básico. Os preços são estimativas de mercado (mercadolivre/robocore) — use esses valores para montar sua lista no relatório.</p>
+
+      <table class="parts-table">
+        <thead>
+          <tr>
+            <th>Componente</th>
+            <th>Qtd</th>
+            <th>Função</th>
+            <th>Preço est.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Arduino Uno R3</td><td>1</td><td>Cérebro: processa sensores e controla motores</td><td>R$ 55,00</td></tr>
+          <tr><td>Sensor IR TCRT5000 (módulo)</td><td>2–5</td><td>Detecta linha preta/branca</td><td>R$ 8,00 un.</td></tr>
+          <tr><td>Ponte H L298N</td><td>1</td><td>Controla direção e velocidade dos motores DC</td><td>R$ 20,00</td></tr>
+          <tr><td>Motor DC com caixa de redução</td><td>2</td><td>Locomoção do robô</td><td>R$ 18,00 un.</td></tr>
+          <tr><td>Roda de borracha + cubo</td><td>2</td><td>Contato com o solo</td><td>R$ 7,00 un.</td></tr>
+          <tr><td>Roda boba (caster wheel)</td><td>1</td><td>Terceiro ponto de apoio</td><td>R$ 9,00</td></tr>
+          <tr><td>Bateria 9V ou pack 18650</td><td>1</td><td>Alimentação do sistema</td><td>R$ 20,00</td></tr>
+          <tr><td>Chave liga/desliga</td><td>1</td><td>Controle de energia</td><td>R$ 3,00</td></tr>
+          <tr><td>Jumpers e protoboard</td><td>—</td><td>Conexões provisórias</td><td>R$ 15,00</td></tr>
+          <tr><td>Chassi (acrílico/MDF/impressão 3D)</td><td>1</td><td>Estrutura mecânica</td><td>R$ 30,00</td></tr>
+          <tr class="total-row"><td colspan="3"><strong>TOTAL ESTIMADO</strong></td><td><strong>≈ R$ 200,00</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout orange">
+        <div class="callout-label">📋 Dica para o relatório</div>
+        <p>Inclua links dos produtos, compare preços em pelo menos dois fornecedores e justifique cada escolha. Isso demonstra maturidade na gestão de projeto.</p>
+      </div>
+    </div>
+
+    <!-- 3. ELETRÔNICA -->
+    <div class="article-section" id="eletronica">
+      <div class="section-label">03 — Eletrônica</div>
+      <h2 class="sec-title">Esquema de ligações</h2>
+      <p class="body-text">O esquemático é o mapa do seu circuito. Abaixo está o diagrama de blocos das conexões principais. Para o relatório, você pode reproduzir isso no <strong>Tinkercad Circuits</strong> (gratuito, no navegador) ou no <strong>Fritzing</strong>.</p>
+
+      <div class="schematic-box">
+        <div class="schematic-inner">
+          <div class="sch-block">
+            <span class="sch-emoji">🔋</span>
+            <div class="sch-name">Bateria 9V</div>
+            <div class="sch-pins">VCC → L298N<br>GND → GND comum</div>
+          </div>
+          <div class="sch-arrow">→</div>
+          <div class="sch-block">
+            <span class="sch-emoji">⚙️</span>
+            <div class="sch-name">L298N</div>
+            <div class="sch-pins">ENA → Pin 5 (PWM)<br>IN1 → Pin 6<br>IN2 → Pin 7<br>ENB → Pin 10 (PWM)<br>IN3 → Pin 8<br>IN4 → Pin 9<br>5V out → Arduino Vin</div>
+          </div>
+          <div class="sch-arrow">→</div>
+          <div class="sch-block">
+            <span class="sch-emoji">⚡</span>
+            <div class="sch-name">Motores DC</div>
+            <div class="sch-pins">Motor A: OUT1 / OUT2<br>Motor B: OUT3 / OUT4</div>
+          </div>
+          <div class="sch-block">
+            <span class="sch-emoji">👁️</span>
+            <div class="sch-name">Sensor IR Esq.</div>
+            <div class="sch-pins">VCC → 5V Arduino<br>GND → GND<br>OUT → Pin A0 (ou D2)</div>
+          </div>
+          <div class="sch-arrow">→</div>
+          <div class="sch-block">
+            <span class="sch-emoji">🧠</span>
+            <div class="sch-name">Arduino Uno</div>
+            <div class="sch-pins">Entradas: A0, A1 (sensores)<br>Saídas: 5–10 (motores)<br>Alimentação via L298N</div>
+          </div>
+          <div class="sch-arrow">←</div>
+          <div class="sch-block">
+            <span class="sch-emoji">👁️</span>
+            <div class="sch-name">Sensor IR Dir.</div>
+            <div class="sch-pins">VCC → 5V Arduino<br>GND → GND<br>OUT → Pin A1 (ou D3)</div>
+          </div>
+          <div class="sch-block sch-full">
+            <div class="sch-name">⚠️ Atenção: GND Comum</div>
+            <div class="sch-pins">O GND da bateria, do L298N e do Arduino DEVEM estar todos conectados no mesmo ponto (GND comum). Sem isso, o circuito não funciona.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Por que usar Ponte H (L298N)?</h3>
+      <p class="body-text">Motores DC consomem corrente demais para serem ligados diretamente nos pinos do Arduino (que suportam no máximo ~40mA). A Ponte H é um circuito de potência que deixa o Arduino <strong>controlar</strong> sem <strong>alimentar</strong> diretamente os motores. Ela também permite inverter o sentido de rotação (necessário para curvas e ré).</p>
+      <p class="body-text">O controle de velocidade é feito via <strong>PWM</strong> (Pulse Width Modulation): o Arduino "pulsa" o sinal em alta frequência e a variação da largura do pulso define a velocidade média do motor.</p>
+    </div>
+
+    <!-- 4. MECÂNICA -->
+    <div class="article-section" id="mecanica">
+      <div class="section-label">04 — Estrutura e Mecânica</div>
+      <h2 class="sec-title">Chassi e posicionamento</h2>
+      <p class="body-text">O chassi é a espinha dorsal do robô. Para o Desafio, você pode projetar em <strong>Fusion 360</strong>, <strong>Tinkercad 3D</strong>, ou até desenhar à mão com cotações. O importante é que o projeto seja justificado.</p>
+
+      <h3 class="sub-title">Configuração de acionamento: diferencial</h3>
+      <p class="body-text">A configuração mais simples — e recomendada — é a <strong>acionamento diferencial</strong>: dois motores nas laterais traseiras + uma roda boba na frente. Para virar, basta aplicar velocidades diferentes nos dois motores.</p>
+
+      <div class="callout">
+        <div class="callout-label">📐 Altura dos sensores</div>
+        <p>Mantenha os sensores IR entre <strong>3mm e 10mm</strong> do chão. Muito alto → leitura imprecisa. Muito baixo → pode raspar na pista. Sensor na linha central entre as rodas funciona bem como ponto de partida.</p>
+      </div>
+
+      <h3 class="sub-title">Material do chassi</h3>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">A</div>
+          <div class="step-content">
+            <div class="step-title">Acrílico cortado a laser</div>
+            <div class="step-text">Profissional, leve e fácil de furar. Precisa de acesso a uma cortadora. Excelente para portfólio.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">B</div>
+          <div class="step-content">
+            <div class="step-title">MDF (6mm)</div>
+            <div class="step-text">Barato, fácil de trabalhar com ferramentas básicas. Pode ser cortado com estilete e furadeira. Boa opção para prototipagem.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">C</div>
+          <div class="step-content">
+            <div class="step-title">Impressão 3D (PLA)</div>
+            <div class="step-text">Máxima liberdade geométrica. Se o grupo tem acesso a impressora 3D, é a melhor escolha para demonstrar habilidade em CAD.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. PROGRAMAÇÃO -->
+    <div class="article-section" id="programacao">
+      <div class="section-label">05 — Programação</div>
+      <h2 class="sec-title">Lógica e código C/C++</h2>
+      <p class="body-text">O código é o coração do robô. Vamos do mais simples ao mais sofisticado, para vocês escolherem o nível certo para o relatório.</p>
+
+      <h3 class="sub-title">Nível 1: Controle Bang-Bang (Liga/Desliga)</h3>
+      <p class="body-text">A abordagem mais direta: <em>se o sensor esquerdo detectar linha, vira à esquerda; se for o direito, vira à direita</em>. Funciona, mas causa um movimento ziguezagueante.</p>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <span class="code-lang">C/C++ — Arduino</span>
+          <span class="code-fname">seguidor_bangbang.ino</span>
+        </div>
+        <pre><span class="cm">// ============================================
+// GAIA Robótica — Seguidor de Linha Bang-Bang
+// Trainee 2026.1
+// ============================================</span>
+
+<span class="cm">// Pinos dos sensores IR (0 = linha, 1 = branco)</span>
+<span class="kw">const int</span> SENSOR_ESQ = A0;
+<span class="kw">const int</span> SENSOR_DIR = A1;
+
+<span class="cm">// Pinos de controle dos motores (via L298N)</span>
+<span class="kw">const int</span> ENA = 5;   <span class="cm">// PWM Motor A (esquerdo)</span>
+<span class="kw">const int</span> IN1 = 6;
+<span class="kw">const int</span> IN2 = 7;
+<span class="kw">const int</span> ENB = 10;  <span class="cm">// PWM Motor B (direito)</span>
+<span class="kw">const int</span> IN3 = 8;
+<span class="kw">const int</span> IN4 = 9;
+
+<span class="kw">const int</span> VEL_BASE = 180;  <span class="cm">// 0-255</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  pinMode(SENSOR_ESQ, INPUT);
+  pinMode(SENSOR_DIR, INPUT);
+  pinMode(ENA, OUTPUT); pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(ENB, OUTPUT); pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+}
+
+<span class="cm">// Funções auxiliares de movimento</span>
+<span class="kw">void</span> <span class="fn">frente</span>(<span class="kw">int</span> vel) {
+  analogWrite(ENA, vel); analogWrite(ENB, vel);
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);  <span class="cm">// Motor A frente</span>
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);  <span class="cm">// Motor B frente</span>
+}
+
+<span class="kw">void</span> <span class="fn">viraEsq</span>() {
+  analogWrite(ENA, VEL_BASE / 2);  <span class="cm">// Reduz motor esquerdo</span>
+  analogWrite(ENB, VEL_BASE);
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+}
+
+<span class="kw">void</span> <span class="fn">viraDir</span>() {
+  analogWrite(ENA, VEL_BASE);
+  analogWrite(ENB, VEL_BASE / 2);  <span class="cm">// Reduz motor direito</span>
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> esq = digitalRead(SENSOR_ESQ);  <span class="cm">// 0 = linha</span>
+  <span class="kw">int</span> dir = digitalRead(SENSOR_DIR);
+
+  <span class="kw">if</span> (!esq && !dir)  <span class="fn">frente</span>(VEL_BASE);   <span class="cm">// Ambos na linha → reto</span>
+  <span class="kw">else if</span> (!esq && dir)  <span class="fn">viraEsq</span>();      <span class="cm">// Só esquerdo → vira esq</span>
+  <span class="kw">else if</span> (esq && !dir)  <span class="fn">viraDir</span>();      <span class="cm">// Só direito → vira dir</span>
+  <span class="kw">else</span>               <span class="fn">frente</span>(VEL_BASE);   <span class="cm">// Nenhum → continua</span>
+}</pre>
+      </div>
+
+      <h3 class="sub-title">Nível 2: Controle Proporcional (P)</h3>
+      <p class="body-text">Usando <strong>sensores analógicos</strong> em vez de digitais, conseguimos calcular um <em>erro</em> contínuo e corrigir os motores proporcionalmente — o robô curvará suave quando estiver levemente desviado e bruscamente quando estiver muito fora.</p>
+
+      <div class="pid-diagram">
+        <div class="pid-flow">
+          <div class="pid-block">
+            <div class="pid-label">Referência</div>
+            <div class="pid-sub">Posição ideal (centro)</div>
+          </div>
+          <div class="pid-arrow">→</div>
+          <div class="pid-block highlight">
+            <div class="pid-label">Erro</div>
+            <div class="pid-sub">ref − leitura atual</div>
+          </div>
+          <div class="pid-arrow">→</div>
+          <div class="pid-block highlight">
+            <div class="pid-label">Controlador P</div>
+            <div class="pid-sub">correção = Kp × erro</div>
+          </div>
+          <div class="pid-arrow">→</div>
+          <div class="pid-block">
+            <div class="pid-label">Motores</div>
+            <div class="pid-sub">vel_esq ± correção</div>
+          </div>
+          <div class="pid-arrow">→</div>
+          <div class="pid-block green">
+            <div class="pid-label">Robô na linha</div>
+            <div class="pid-sub">erro → 0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-wrap">
+        <div class="code-header">
+          <span class="code-lang">C/C++ — Arduino</span>
+          <span class="code-fname">seguidor_proporcional.ino</span>
+        </div>
+        <pre><span class="cm">// Seguidor com controle Proporcional (P)
+// Usa sensores analógicos para erro contínuo</span>
+
+<span class="kw">const float</span> Kp = <span class="nm">0.5</span>;   <span class="cm">// Constante proporcional — AJUSTE isto!</span>
+<span class="kw">const int</span>   VEL_BASE = <span class="nm">160</span>;
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> leitura_esq = analogRead(SENSOR_ESQ);  <span class="cm">// 0-1023</span>
+  <span class="kw">int</span> leitura_dir = analogRead(SENSOR_DIR);
+
+  <span class="cm">// Erro: positivo = desviou pra direita, negativo = pra esquerda</span>
+  <span class="kw">int</span> erro = leitura_dir - leitura_esq;
+
+  <span class="kw">int</span> correcao = (<span class="kw">int</span>)(Kp * erro);
+
+  <span class="kw">int</span> vel_esq = constrain(VEL_BASE + correcao, <span class="nm">0</span>, <span class="nm">255</span>);
+  <span class="kw">int</span> vel_dir = constrain(VEL_BASE - correcao, <span class="nm">0</span>, <span class="nm">255</span>);
+
+  <span class="fn">moverMotores</span>(vel_esq, vel_dir);
+}</pre>
+      </div>
+
+      <div class="callout dark">
+        <div class="callout-label">🚀 Diferencial no relatório</div>
+        <p>Para pontuação extra em <strong>Criatividade e Resolução de Problemas</strong>, implemente ou ao menos descreva um controlador PID completo. Explique o que é a parcela integrativa (I) e derivativa (D) — o artigo sobre <a href="artigo-pid.html" style="color:var(--blue);">Controle PID</a> aqui no site cobre isso em detalhe.</p>
+      </div>
+    </div>
+
+    <!-- 6. GESTÃO -->
+    <div class="article-section" id="gestao">
+      <div class="section-label">06 — Gestão do Projeto</div>
+      <h2 class="sec-title">Organização e cronograma</h2>
+      <p class="body-text">Com apenas <strong>4 dias</strong> entre início e entrega (02/10 a 05/10), a gestão eficiente é o que separa grupos que entregam dos que ficam com um documento incompleto às 23h50 do prazo.</p>
+
+      <h3 class="sub-title">Sugestão de divisão de tarefas</h3>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">D1</div>
+          <div class="step-content">
+            <div class="step-title">Kickoff e divisão (02/10)</div>
+            <div class="step-text">Definir quem faz cada frente (Gestão, Mecânica, Eletrônica, Programação). Abrir o documento do relatório com a estrutura já montada. Cada responsável começa sua seção.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">D2</div>
+          <div class="step-content">
+            <div class="step-title">Desenvolvimento (03/10)</div>
+            <div class="step-text">Mecânica: CAD do chassi. Eletrônica: esquemático no Tinkercad. Programação: escrever e comentar o código. Gestão: lista de materiais + cronograma detalhado.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">D3</div>
+          <div class="step-content">
+            <div class="step-title">Integração e simulação (04/10)</div>
+            <div class="step-text">Juntar todas as partes no relatório. Rodar simulações e capturar prints/gifs. Revisar o texto e verificar se todos os tópicos obrigatórios estão cobertos.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">D4</div>
+          <div class="step-content">
+            <div class="step-title">Revisão final e envio (05/10)</div>
+            <div class="step-text">Revisar formatação, capa com nomes/RA, exportar PDF. Enviar para gaia.robotica.uftm@gmail.com <strong>antes das 23h59</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout orange">
+        <div class="callout-label">⚠️ Atenção ao prazo</div>
+        <p>O não envio dentro do prazo implica <strong>desclassificação</strong>. Não deixem para a última hora. Enviem uma versão "boa o suficiente" às 22h e melhorem até 23h30 se necessário.</p>
+      </div>
+    </div>
+
+    <!-- 7. RELATÓRIO -->
+    <div class="article-section" id="relatorio">
+      <div class="section-label">07 — Relatório Técnico</div>
+      <h2 class="sec-title">Como estruturar o documento</h2>
+      <p class="body-text">O relatório é o produto final avaliado. Segue um checklist baseado nos critérios obrigatórios definidos no edital do desafio:</p>
+
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">✓</div>
+          <div class="step-content">
+            <div class="step-title">Capa</div>
+            <div class="step-text">Nome completo e RA de todos os integrantes, título do projeto, data. Simples, mas eliminatório se faltar.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✓</div>
+          <div class="step-content">
+            <div class="step-title">Introdução</div>
+            <div class="step-text">O que é um seguidor de linha? Como funciona o sensor IR? Qual a aplicação real desse tipo de robô? Cite exemplos industriais (AGVs em fábricas, por exemplo).</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✓</div>
+          <div class="step-content">
+            <div class="step-title">Desenvolvimento</div>
+            <div class="step-text">Esquema eletrônico (print do Tinkercad), concepção mecânica (render/foto do CAD), lista de materiais com custos, dificuldades encontradas e como foram resolvidas.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">✓</div>
+          <div class="step-content">
+            <div class="step-title">Conclusão</div>
+            <div class="step-text">Código comentado completo, prints/gifs da simulação funcionando, propostas de melhoria (ex.: adicionar PID completo, mais sensores, Bluetooth para tuning remoto). Se houver artistas no grupo: protótipos visuais do robô.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">Dicas de escrita técnica</h3>
+      <div class="tips-grid">
+        <div class="tip-card good">
+          <div class="tip-header">✅ Faça</div>
+          <p class="tip-text">Explique o porquê de cada decisão. "Escolhemos o L298N pois suporta até 2A por canal, suficiente para os motores utilizados."</p>
+        </div>
+        <div class="tip-card bad">
+          <div class="tip-header">❌ Evite</div>
+          <p class="tip-text">Descrições genéricas sem justificativa. "Usamos o L298N porque é um componente comum em projetos de robótica."</p>
+        </div>
+        <div class="tip-card good">
+          <div class="tip-header">✅ Faça</div>
+          <p class="tip-text">Documente os problemas reais que tiveram. "O sensor direito retornava ruído excessivo — adicionamos um capacitor de 100nF para filtrar."</p>
+        </div>
+        <div class="tip-card bad">
+          <div class="tip-header">❌ Evite</div>
+          <p class="tip-text">Fingir que tudo correu perfeito. Avaliadores sabem que projetos sempre têm problemas. Honestidade técnica é um diferencial.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. PRÓXIMOS PASSOS -->
+    <div class="article-section" id="proximos">
+      <div class="section-label">08 — Indo além</div>
+      <h2 class="sec-title">Melhorias e próximos passos</h2>
+      <p class="body-text">Se você quer se destacar — ou simplesmente tem curiosidade — aqui estão ideias de melhorias que podem ser descritas na seção de conclusão do relatório:</p>
+
+      <div class="callout green">
+        <div class="callout-label">🚀 Ideias de melhoria</div>
+        <p><strong>+ Sensores:</strong> Usar 5 sensores em vez de 2 aumenta muito a precisão da detecção.<br><br>
+        <strong>PID completo:</strong> Implementar as parcelas I e D para eliminar o oscilação no Bang-Bang.<br><br>
+        <strong>Bluetooth:</strong> Adicionar módulo HC-05 para ajustar Kp/Ki/Kd via serial sem precisar regravar o firmware.<br><br>
+        <strong>Sensor de fim de pista:</strong> Detector de quando não há mais linha (robô saiu da pista) para parar os motores automaticamente.</p>
+      </div>
+
+      <p class="body-text">Para aprofundar nos conceitos técnicos, leia os outros artigos da GAIA — especialmente o de <strong>Controle PID</strong> e <strong>Arduino e Hardware</strong>, que complementam direto o que foi visto aqui.</p>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Neste artigo</h4>
+      <ul class="toc-list">
+        <li><a href="#visao-geral"><span class="toc-num">01</span>Visão Geral</a></li>
+        <li><a href="#componentes"><span class="toc-num">02</span>Componentes</a></li>
+        <li><a href="#eletronica"><span class="toc-num">03</span>Eletrônica</a></li>
+        <li><a href="#mecanica"><span class="toc-num">04</span>Mecânica</a></li>
+        <li><a href="#programacao"><span class="toc-num">05</span>Programação</a></li>
+        <li><a href="#gestao"><span class="toc-num">06</span>Gestão</a></li>
+        <li><a href="#relatorio"><span class="toc-num">07</span>Relatório</a></li>
+        <li><a href="#proximos"><span class="toc-num">08</span>Indo além</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Tags</h4>
+      <span class="sidebar-tag">Arduino</span>
+      <span class="sidebar-tag">C/C++</span>
+      <span class="sidebar-tag">Sensores IR</span>
+      <span class="sidebar-tag">Ponte H</span>
+      <span class="sidebar-tag">PWM</span>
+      <span class="sidebar-tag">Controle P</span>
+      <span class="sidebar-tag">CAD</span>
+      <span class="sidebar-tag">Trainee</span>
+    </div>
+
+    <div class="sidebar-card">
+      <h4>Posts Relacionados</h4>
+      <a href="artigo-arduino.html" class="related-item">
+        <span class="ri-emoji">⚡</span>
+        <div><div class="ri-title">Arduino e Hardware</div><div class="ri-cat">Hardware</div></div>
+      </a>
+      <a href="artigo-pid.html" class="related-item">
+        <span class="ri-emoji">🤖</span>
+        <div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div>
+      </a>
+      <a href="artigo-ia.html" class="related-item">
+        <span class="ri-emoji">🧠</span>
+        <div><div class="ri-title">Inteligência Artificial</div><div class="ri-cat">IA</div></div>
+      </a>
+    </div>
+
+    <div class="sidebar-card" style="background:var(--blue-deep);border-color:rgba(255,255,255,0.1);">
+      <h4 style="color:var(--green);border-color:rgba(255,255,255,0.1);">📬 Prazo</h4>
+      <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.6;">Envio do relatório até<br><strong style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;">05/10/2025 · 23h59</strong></p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:0.75rem;font-family:'Space Mono',monospace;">gaia.robotica.uftm@gmail.com</p>
+    </div>
+  </aside>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="fl">GAIA <span>ROBÓTICA</span></span>
+      <p style="margin-top:1rem;color:rgba(255,255,255,0.6);font-size:0.9rem;">Desenvolvendo tecnologias autônomas na UFTM.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="aprenda.html">Aprenda</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Social</h4>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
+        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Barra de progresso de leitura
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('rp').style.width = Math.round((scrolled / total) * 100) + '%';
+});
+
+// Menu mobile
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+if(menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+  });
+}
+
+// Highlight ativo no TOC com IntersectionObserver
+const sections = document.querySelectorAll('.article-section[id]');
+const tocLinks = document.querySelectorAll('.toc-list a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      tocLinks.forEach(a => a.style.color = '');
+      const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+      if(active) { active.style.color = 'var(--blue)'; active.style.borderLeftColor = 'var(--blue)'; }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
