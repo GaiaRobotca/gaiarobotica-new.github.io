@@ -7,278 +7,277 @@
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
 <script>
   (function() {
-    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
-    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
+    const icons = ['favicon-verde.png','favicon-azul.png','favicon-branco.png'];
+    document.getElementById('dynamic-favicon').setAttribute('href', icons[Math.floor(Math.random()*icons.length)]);
   })();
-</script>
-
-<script>
-  function handleImageError(element) {
-    if (element.dataset.retried) return;
-    element.dataset.retried = "true";
-    
-    // Fallback para tags <img>
-    if (element.tagName === 'IMG') {
-      let currentSrc = element.getAttribute('src');
-      if (currentSrc.endsWith('.jpg')) element.src = currentSrc.replace('.jpg', '.JPG');
-      else if (currentSrc.endsWith('.JPG')) element.src = currentSrc.replace('.JPG', '.jpg');
-      else if (currentSrc.endsWith('.png')) element.src = currentSrc.replace('.png', '.PNG');
-      else if (currentSrc.endsWith('.PNG')) element.src = currentSrc.replace('.PNG', '.png');
-      else element.src = 'https://placehold.co/600x400/0d4fa0/ffffff?text=GAIA+Robótica';
-    } 
-    // Fallback para divs com background-image (Cards de Robôs)
-    else {
-      element.style.backgroundImage = "url('https://placehold.co/600x400/0d4fa0/ffffff?text=Em+Breve')";
-    }
+  function handleImageError(el) {
+    if(el.dataset.retried) return; el.dataset.retried="true";
+    if(el.tagName==='IMG'){
+      let s=el.getAttribute('src');
+      if(s.endsWith('.jpg')) el.src=s.replace('.jpg','.JPG');
+      else if(s.endsWith('.JPG')) el.src=s.replace('.JPG','.jpg');
+      else if(s.endsWith('.png')) el.src=s.replace('.png','.PNG');
+      else if(s.endsWith('.PNG')) el.src=s.replace('.PNG','.png');
+      else el.src='https://placehold.co/600x400/0d4fa0/ffffff?text=GAIA+Robótica';
+    } else { el.style.backgroundImage="url('https://placehold.co/600x400/0d4fa0/ffffff?text=Em+Breve')"; }
   }
 </script>
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #f0f7ff; --white: #ffffff; --blue: #1a6fd4; --blue-light: #3d9bff; --blue-mid: #2980e8; --blue-dark: #0d4fa0; --blue-deep: #071f4a; --green: #5cb82e; --green-dark: #3d8a1a; --text: #0d2a50; --muted: #5a7a9a; --border: #c8dff5; --surface: #e4f0ff; }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'Barlow',sans-serif; overflow-x:hidden; }
+:root{
+  --bg:#f0f7ff;--white:#ffffff;
+  --blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;
+  --green:#5cb82e;--green-dark:#3d8a1a;
+  --text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;
+  --orange:#d4732a;
+}
+*{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
 
-  /* ===== NAV ===== */
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(16px); border-bottom:2px solid var(--border); display:flex; justify-content:space-between; align-items:center; padding:0 3rem; height:68px; }
-  .nav-logo { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.5rem; color:var(--blue-dark); text-decoration:none; letter-spacing:0.05em; display:flex; align-items:center; gap:0.6rem; }
-  .nav-dot { width:10px; height:10px; background:var(--green); border-radius:50%; }
-  .nav-logo .g { color:var(--green); }
-  nav ul { list-style:none; display:flex; gap:1.8rem; }
-  nav a { font-size:0.83rem; font-weight:600; color:var(--muted); text-decoration:none; letter-spacing:0.06em; text-transform:uppercase; transition:color 0.2s; }
-  nav a:hover { color:var(--blue); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:64px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.06em;display:flex;align-items:center;gap:0.5rem;}
+.nav-dot{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0;}
+.nav-logo .g{color:var(--green);}
+nav ul{list-style:none;display:flex;gap:2rem;align-items:center;}
+nav a{font-size:0.78rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+nav a:hover{color:var(--blue-dark);}
+.nav-cta{background:var(--green);color:#fff !important;padding:0.4rem 1.1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.1em;}
+.nav-cta:hover{background:var(--green-dark) !important;}
+.menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--blue-dark);cursor:pointer;}
 
-  /* ===== HERO ===== */
-  .hero { background:linear-gradient(140deg, var(--blue-deep) 0%, var(--blue-dark) 45%, var(--blue) 80%, var(--blue-light) 100%); min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:8rem 3rem 7rem; position:relative; overflow:hidden; }
-  .hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.09) 1.5px,transparent 1.5px); background-size:28px 28px; pointer-events:none; }
-  .hero::after { content:''; position:absolute; bottom:-1px; left:0; right:0; height:90px; background:var(--bg); clip-path:polygon(0 65%,100% 0%,100% 100%,0% 100%); }
-  .hero-inner { max-width:1100px; margin:0 auto; width:100%; position:relative; z-index:1; }
-  .hero-supertag { font-family:'Space Mono',monospace; font-size:0.68rem; color:rgba(255,255,255,0.5); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:0.6rem; }
-  .hero-tag { font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--green); letter-spacing:0.22em; text-transform:uppercase; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.75rem; }
-  .hero-tag::before { content:''; width:24px; height:2px; background:var(--green); }
-  .hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(4.5rem,12vw,10rem); font-weight:900; line-height:0.88; color:#fff; text-transform:uppercase; letter-spacing:-0.01em; }
-  .hero h1 .g { color:var(--green); }
-  .hero-sub { font-size:1.05rem; color:rgba(255,255,255,0.72); max-width:560px; margin:2rem 0 2.5rem; font-weight:300; line-height:1.75; }
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--blue-deep) 0%,#0a3070 40%,#0e5aab 80%,#1a7ad4 100%);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 6rem;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(92,184,46,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:var(--bg);clip-path:polygon(0 70%,100% 0%,100% 100%,0% 100%);}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(5rem,13vw,11rem);font-weight:900;line-height:0.86;color:#fff;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.15em;}
+.hero h1 .g{color:var(--green);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.65);max-width:520px;margin:2rem 0 2.5rem;font-weight:300;line-height:1.8;}
+.hero-sub strong{color:rgba(255,255,255,0.9);font-weight:500;}
 
-  .hero-projects { display:flex; gap:1rem; margin-bottom:2.5rem; flex-wrap:wrap; }
-  .hero-pill { display:flex; align-items:center; gap:0.6rem; padding:0.6rem 1.25rem; border:2px solid rgba(255,255,255,0.25); color:#fff; text-decoration:none; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; transition:background 0.2s, border-color 0.2s; }
-  .hero-pill:hover { background:rgba(255,255,255,0.12); border-color:#fff; }
-  .hero-pill .dot { width:8px; height:8px; border-radius:50%; }
-  .hero-pill .dot.blue { background:var(--blue-light); }
-  .hero-pill .dot.green { background:var(--green); }
+.pill-row{display:flex;gap:0.75rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.pill{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
+.pill:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06);}
+.pill-dot{width:6px;height:6px;border-radius:50%;}
+.pill-dot.g{background:var(--green);}
+.pill-dot.b{background:#5bb3ff;}
 
-  .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
-  .btn-p { background:var(--green); color:#fff; padding:0.9rem 2.2rem; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border:none; cursor:pointer; clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,0 100%); transition:background 0.2s,transform 0.15s; }
-  .btn-p:hover { background:var(--green-dark); transform:translateY(-2px); }
-  .btn-o { background:transparent; color:#fff; padding:0.9rem 2.2rem; font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border:2px solid rgba(255,255,255,0.35); transition:border-color 0.2s,background 0.2s; }
-  .btn-o:hover { border-color:#fff; background:rgba(255,255,255,0.1); }
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-p{background:var(--green);color:#fff;padding:0.85rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);}
+.btn-p:hover{background:var(--green-dark);transform:translateY(-2px);}
+.btn-o{background:transparent;color:#fff;padding:0.85rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.3);transition:border-color 0.2s,background 0.2s;}
+.btn-o:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
 
-  .hero-stats { display:flex; gap:3rem; margin-top:5rem; padding-top:2.5rem; border-top:1px solid rgba(255,255,255,0.18); flex-wrap:wrap; }
-  .s-num { font-family:'Barlow Condensed',sans-serif; font-size:2.8rem; font-weight:900; color:#fff; line-height:1; }
-  .s-num em { color:var(--green); font-style:normal; }
-  .s-lbl { font-size:0.75rem; color:rgba(255,255,255,0.52); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.3rem; font-weight:500; }
+.hero-stats{display:flex;gap:3rem;margin-top:4.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;}
+.stat-item{}
+.s-num{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:#fff;line-height:1;}
+.s-num em{color:var(--green);font-style:normal;}
+.s-lbl{font-size:0.72rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;}
 
-  /* ===== SHARED ===== */
-  .sec { max-width:1100px; margin:0 auto; padding:6rem 3rem; }
-  .sec-tag { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--green); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem; }
-  .sec-tag::before { content:''; width:20px; height:2px; background:var(--green); }
-  h2 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:900; color:var(--blue-dark); text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:0.75rem; line-height:1; }
-  .lead { font-size:1rem; color:var(--muted); max-width:620px; line-height:1.72; margin-bottom:3rem; }
+/* SEÇÕES */
+.sec{max-width:1100px;margin:0 auto;padding:6rem 3rem;}
+.sec-tag{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;}
+.sec-tag::before{content:'';width:16px;height:2px;background:var(--green);}
+h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.6rem;line-height:1;}
+.lead{font-size:0.96rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:3rem;}
 
-  /* ===== SOBRE (GAIA) ===== */
-  .about-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:4rem; align-items:start; }
-  .about-text p { color:var(--text); margin-bottom:1.2rem; line-height:1.75; }
-  .about-text strong { color:var(--blue); }
+/* SOBRE */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start;}
+.about-text p{color:var(--text);margin-bottom:1.25rem;line-height:1.8;font-size:0.96rem;}
+.about-text strong{color:var(--blue-dark);}
+.about-text em{font-style:italic;color:var(--muted);}
 
-  .timeline { display:flex; flex-direction:column; }
-  .tl-item { display:flex; gap:1.25rem; align-items:flex-start; padding:1.25rem 0; border-bottom:1px solid var(--border); }
-  .tl-item:last-child { border-bottom:none; }
-  .tl-icon { width:42px; height:42px; min-width:42px; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Space Mono',monospace; font-size:0.6rem; font-weight:700; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%); text-align:center; }
-  .tl-icon.green-bg { background:var(--green); }
-  .tl-text strong { display:block; font-weight:600; color:var(--blue-dark); margin-bottom:0.2rem; }
-  .tl-text span { font-size:0.87rem; color:var(--muted); line-height:1.55; }
+.timeline{display:flex;flex-direction:column;}
+.tl-item{display:flex;gap:1.25rem;align-items:flex-start;padding:1.1rem 0;border-bottom:1px solid var(--border);}
+.tl-item:last-child{border-bottom:none;}
+.tl-icon{min-width:42px;height:42px;background:var(--blue-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:0.55rem;font-weight:700;text-align:center;line-height:1.3;flex-shrink:0;}
+.tl-icon.g{background:var(--green);}
+.tl-text strong{display:block;font-weight:600;color:var(--blue-dark);margin-bottom:0.2rem;font-size:0.94rem;}
+.tl-text span{font-size:0.85rem;color:var(--muted);line-height:1.6;}
 
-  /* ===== DIVIDER SECTION TITLE ===== */
-  .section-divider { background:linear-gradient(135deg, var(--blue-deep), var(--blue-dark)); padding:3rem; text-align:center; position:relative; overflow:hidden; }
-  .section-divider::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1.5px,transparent 1.5px); background-size:22px 22px; }
-  .section-divider h3 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.6rem,4vw,2.8rem); font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:0.05em; position:relative; z-index:1; }
-  .section-divider h3 span { color:var(--green); }
-  .section-divider p { font-size:0.9rem; color:rgba(255,255,255,0.55); margin-top:0.5rem; position:relative; z-index:1; }
+/* CONQUISTAS */
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.award-link{text-decoration:none;color:inherit;display:block;}
+.award-card{border:1px solid var(--border);background:var(--white);overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;height:100%;}
+.award-img-wrap{width:100%;height:190px;position:relative;overflow:hidden;background:var(--blue-deep);}
+.award-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+.award-link:hover .award-card{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,111,212,0.12);}
+.award-link:hover .award-img-wrap img{transform:scale(1.06);}
+.award-badge{position:absolute;top:0;left:0;background:var(--blue-dark);color:#fff;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;padding:0.35rem 0.75rem;letter-spacing:0.08em;}
+.award-body{padding:1.5rem;flex-grow:1;display:flex;flex-direction:column;}
+.award-title{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.6rem;}
+.award-body p{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem;}
+.award-date{margin-top:auto;font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);text-transform:uppercase;}
 
-  /* ===== CONQUISTAS ===== */
-  .awards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-  .award-link { text-decoration: none; color: inherit; display: block; }
-  .award-card { border: 1px solid var(--border); background: var(--white); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.3s ease; height: 100%; }
-  .award-img-header { width: 100%; height: 180px; position: relative; overflow: hidden; background: var(--blue-deep); }
-  .award-img-header img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-  .award-link:hover .award-card { border-color:var(--blue-light); transform:translateY(-5px); box-shadow:0 14px 40px rgba(26,111,212,0.13); }
-  .award-link:hover .award-img-header img { transform: scale(1.1); }
-  .award-badge { position: absolute; top: 1rem; left: 1rem; background: var(--blue-dark); color: #fff; font-family: 'Space Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 0.4rem 0.8rem; border-radius: 4px; letter-spacing: 0.05em; }
-  .award-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-  .award-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 0.75rem; }
-  .award-body p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
-  .award-date { margin-top: auto; font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--blue); text-transform: uppercase; font-weight: 700; }
+/* DIVISOR */
+.section-divider{background:linear-gradient(135deg,var(--blue-deep),#0a3575);padding:2.75rem 3rem;position:relative;overflow:hidden;}
+.section-divider::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.section-divider-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.section-divider h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
+.section-divider h3 span{color:var(--green);}
+.section-divider p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-top:0.4rem;}
 
-  /* ===== ATIVIDADES ===== */
-  .ativ-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-  .ativ-card { background:var(--white); border:2px solid var(--border); padding:2rem; transition:border-color 0.25s,transform 0.25s; position:relative; overflow:hidden; }
-  .ativ-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--green); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
-  .ativ-card:hover { border-color:var(--blue); transform:translateY(-4px); }
-  .ativ-card:hover::after { transform:scaleX(1); }
-  .ativ-icon { font-size:2.2rem; margin-bottom:1rem; }
-  .ativ-title { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.5rem; }
-  .ativ-desc { font-size:0.9rem; color:var(--muted); line-height:1.65; }
+/* ATIVIDADES */
+.ativ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.ativ-card{background:var(--white);border:1px solid var(--border);padding:1.75rem;transition:border-color 0.25s,transform 0.25s;position:relative;overflow:hidden;}
+.ativ-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+.ativ-card:hover{border-color:var(--blue-light);transform:translateY(-3px);}
+.ativ-card:hover::after{transform:scaleX(1);}
+.ativ-icon{font-size:1.8rem;margin-bottom:0.85rem;}
+.ativ-title{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.45rem;}
+.ativ-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;}
 
-  /* ===== PROJETOS (FOTOS) ===== */
-  .proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-  .proj-card { background:var(--white); border:1px solid var(--border); border-radius: 8px; overflow:hidden; transition:all 0.3s ease; display: flex; flex-direction: column; }
-  .proj-card:hover { border-color:var(--blue-light); transform:translateY(-5px); box-shadow:0 14px 40px rgba(26,111,212,0.15); }
-  
-  .ph { padding:1.75rem; height: 180px; position: relative; overflow: hidden; background-size: cover; background-position: center; border-bottom: 3px solid var(--blue); }
-  .ph.gr { border-bottom-color: var(--green); }
-  .ph::before { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(7,31,74,0.95) 0%, rgba(7,31,74,0.2) 100%); z-index: 1; }
-  
-  .ph-badge { font-family:'Space Mono',monospace; font-size:0.63rem; color:rgba(255,255,255,0.8); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem; position: relative; z-index: 2; display: block;}
-  .ph-title { font-family:'Barlow Condensed',sans-serif; font-size:1.7rem; font-weight:900; color:#fff; text-transform:uppercase; line-height:1.05; position: relative; z-index: 2;}
-  
-  .pb { padding:1.4rem 1.75rem; flex-grow: 1; display: flex; flex-direction: column;}
-  .pb-desc { font-size:0.9rem; color:var(--muted); line-height:1.65; margin-bottom:1.2rem; }
-  .tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top: auto;}
-  .tag { font-family:'Space Mono',monospace; font-size:0.62rem; padding:0.25rem 0.65rem; background:var(--surface); border:1px solid var(--border); color:var(--blue); text-transform:uppercase; letter-spacing:0.06em; }
+/* PROJETOS */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.proj-card{background:var(--white);border:1px solid var(--border);overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column;}
+.proj-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,111,212,0.13);}
+.ph{padding:1.5rem;height:175px;position:relative;overflow:hidden;background-size:cover;background-position:center;}
+.ph::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,31,74,0.92) 0%,rgba(7,31,74,0.15) 100%);z-index:1;}
+.ph-badge{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;position:relative;z-index:2;display:block;}
+.ph-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.05;position:relative;z-index:2;}
+.ph-border{border-bottom:2px solid var(--blue);}
+.ph-border-g{border-bottom:2px solid var(--green);}
+.pb{padding:1.25rem 1.5rem;flex-grow:1;display:flex;flex-direction:column;}
+.pb-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;}
+.tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:auto;}
+.tag{font-family:'Space Mono',monospace;font-size:0.58rem;padding:0.2rem 0.55rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;}
 
-  .kit-banner { margin-top:1.5rem; background:var(--blue-dark); padding:2.5rem; display:grid; grid-template-columns:auto 1fr; gap:2rem; align-items:center; clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,0 100%); }
-  .kit-label { font-family:'Space Mono',monospace; font-size:0.66rem; color:var(--green); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:0.5rem; }
-  .kit-title { font-family:'Barlow Condensed',sans-serif; font-size:2.2rem; font-weight:900; color:#fff; text-transform:uppercase; line-height:1.05; }
+.kit-banner{margin-top:1.5rem;background:var(--blue-dark);padding:2.25rem 2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;border-left:4px solid var(--green);}
+.kit-label{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
+.kit-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;}
 
-  /* ===== MISSÃO ===== */
-  .missao-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; }
-  .missao-text p { color:rgba(255,255,255,0.78); font-size:1rem; line-height:1.75; margin-bottom:1.2rem; }
-  .mc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-  .mc { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.13); padding:1.5rem; transition:background 0.2s; }
-  .mc:hover { background:rgba(255,255,255,0.13); }
-  .mc-icon { font-size:1.7rem; margin-bottom:0.75rem; }
-  .mc-title { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.35rem; }
-  .mc-text { font-size:0.82rem; color:rgba(255,255,255,0.58); line-height:1.55; }
+/* MISSÃO */
+.missao-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.missao-text p{color:rgba(255,255,255,0.72);font-size:0.96rem;line-height:1.8;margin-bottom:1.25rem;}
+.mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.mc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:1.4rem;transition:background 0.2s;}
+.mc:hover{background:rgba(255,255,255,0.09);}
+.mc-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+.mc-title{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;}
+.mc-text{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;}
 
-  /* ===== EQUIPE ===== */
-  .leadership { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: stretch; margin-bottom: 3rem;}
-  .leader-main { background: var(--blue-dark); clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%); padding: 3rem 2rem; text-align: center; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(255,255,255,0.1); }
-  .leader-avatar, .docente-avatar, .ms-avatar { border-radius: 50%; object-fit: cover; border: 3px solid var(--green); padding: 4px; background: var(--white); transition: transform 0.3s ease; }
-  .leader-avatar { width: 140px; height: 140px; margin: 0 auto 1.5rem; }
-  .docente-avatar { width: 70px; height: 70px; min-width: 70px; border-color: var(--blue-light); }
-  .ms-avatar { width: 50px; height: 50px; min-width: 50px; border: 2px solid var(--blue); padding: 2px; }
-  .member-simple-card:hover .ms-avatar, .docente-card:hover .docente-avatar { transform: scale(1.1) rotate(5deg); }
-  
-  .leader-role-tag { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--green); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.5rem; }
-  .leader-name { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:0.05em; }
+/* EQUIPE */
+.leadership{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:stretch;margin-bottom:3rem;}
+.leader-main{background:var(--blue-dark);padding:2.5rem 2rem;text-align:center;display:flex;flex-direction:column;justify-content:center;border-left:3px solid var(--green);}
+.leader-avatar{border-radius:50%;object-fit:cover;border:3px solid var(--green);padding:3px;background:var(--white);width:120px;height:120px;margin:0 auto 1.25rem;}
+.docente-avatar{border-radius:50%;object-fit:cover;border:2px solid var(--blue-light);padding:3px;background:var(--white);width:64px;height:64px;min-width:64px;transition:transform 0.3s;}
+.ms-avatar{border-radius:50%;object-fit:cover;border:2px solid var(--border);padding:2px;background:var(--white);width:44px;height:44px;min-width:44px;transition:transform 0.3s;}
+.leader-role-tag{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
+.leader-name{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
+.docentes{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.docente-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;display:flex;gap:1.25rem;align-items:center;transition:all 0.2s;}
+.docente-card:hover{background:var(--white);border-color:var(--blue);}
+.docente-card:hover .docente-avatar{transform:scale(1.08) rotate(3deg);}
+.doc-role{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem;}
+.doc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.25rem;}
+.doc-desc{font-size:0.82rem;color:var(--muted);line-height:1.55;}
+.members-section-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1.25rem;}
+.members-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem;}
+.member-card{background:var(--white);border:1px solid var(--border);padding:0.75rem 1rem;display:flex;align-items:center;gap:0.85rem;transition:all 0.2s;border-radius:40px;}
+.member-card:hover{border-color:var(--green);background:var(--surface);transform:translateX(3px);}
+.member-card:hover .ms-avatar{transform:scale(1.1) rotate(4deg);border-color:var(--green);}
+.ms-name{font-size:0.9rem;font-weight:600;color:var(--blue-dark);line-height:1.25;}
 
-  .docentes { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
-  .docente-card { background:var(--surface); border:1px solid var(--border); padding:1.5rem; display:flex; gap:1.5rem; align-items:center; border-radius: 8px; transition:all 0.2s ease; }
-  .docente-card:hover { background: var(--white); border-color:var(--blue); box-shadow: 0 10px 25px rgba(26,111,212,0.1); }
-  .doc-role { font-family:'Space Mono',monospace; font-size:0.65rem; color:var(--blue); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.3rem; }
-  .doc-name { font-family:'Barlow Condensed',sans-serif; font-size:1.15rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.3rem; }
-  .doc-desc { font-size:0.83rem; color:var(--muted); line-height:1.55; }
+.eng-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;}
+.eng-card{background:var(--surface);border:1px solid var(--border);padding:2rem;transition:all 0.3s;}
+.eng-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 10px 28px rgba(26,111,212,0.09);}
+.eng-icon{font-size:2rem;margin-bottom:0.85rem;}
+.eng-card h4{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.85rem;}
+.eng-card p{font-size:0.9rem;color:var(--text);line-height:1.7;margin-bottom:0.75rem;}
+.eng-card p strong{color:var(--blue-dark);}
 
-  .members-section-title { font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:900; color:var(--blue-dark); text-transform:uppercase; margin: 3rem 0 1.5rem; }
-  .members-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-bottom:3rem; }
-  .member-simple-card { background:var(--white); border:1px solid var(--border); padding:0.8rem 1rem; border-radius: 50px; display:flex; align-items:center; gap:1rem; transition:all 0.2s ease; }
-  .member-simple-card:hover { border-color:var(--green); background:var(--surface); transform: translateX(5px); }
-  .ms-name { font-size:0.92rem; font-weight:600; color:var(--blue-dark); line-height:1.2; }
+.hackagis-banner{background:var(--blue-dark);padding:1.75rem 2.25rem;display:flex;align-items:center;gap:2rem;border-left:4px solid var(--green);margin-top:2rem;}
+.hk-badge{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;color:var(--green);line-height:1;}
+.hk-info strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
+.hk-info span{font-size:0.82rem;color:rgba(255,255,255,0.55);}
 
-  /* ===== ENGENHARIAS (CURSOS) ===== */
-  .eng-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-  .eng-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; border-radius: 12px; transition: all 0.3s ease; }
-  .eng-card:hover { border-color: var(--blue-light); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(26,111,212,0.1); }
-  .eng-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-  .eng-card h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 1rem; }
-  .eng-card p { font-size: 0.92rem; color: var(--text); line-height: 1.6; margin-bottom: 0.8rem; }
-  .eng-card p strong { color: var(--blue); }
+.join-box{background:var(--surface);border:1px dashed var(--border);padding:2rem;text-align:center;margin-top:2rem;}
+.join-box p{color:var(--muted);margin-bottom:1rem;font-size:0.94rem;}
 
-  .hackagis-team { margin-top:2rem; background:var(--blue-dark); padding:2rem 2.5rem; display:flex; align-items:center; gap:2rem; clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%); }
-  .hk-badge { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:var(--green); line-height:1; }
-  .hk-info strong { display:block; font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; font-weight:700; color:#fff; text-transform:uppercase; letter-spacing:0.05em; }
-  .hk-info span { font-size:0.83rem; color:rgba(255,255,255,0.6); }
+/* PARCEIROS */
+.parc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:520px;}
+.parc-card{background:var(--white);border:1px solid var(--border);padding:2rem;text-align:center;transition:border-color 0.2s;}
+.parc-card:hover{border-color:var(--blue);}
+.parc-icon{font-size:2.2rem;margin-bottom:0.75rem;}
+.parc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.15rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.07em;}
+.parc-desc{font-size:0.83rem;color:var(--muted);margin-top:0.4rem;line-height:1.55;}
 
-  .join-box { background:var(--surface); border:2px dashed var(--border); padding:2rem; text-align:center; margin-top:2rem; }
-  .join-box p { color:var(--muted); margin-bottom:1rem; }
+/* GAIA NOME */
+.nome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.06);}
+.nome-card{background:#0a3070;padding:2.25rem;position:relative;overflow:hidden;transition:background 0.2s;}
+.nome-card:hover{background:#0d4fa0;}
+.nome-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);}
+.nome-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:0.5rem;}
+.nome-card p{font-size:0.93rem;color:rgba(255,255,255,0.72);line-height:1.7;}
+.nome-card p strong{color:#fff;}
 
-  /* ===== PARCEIROS ===== */
-  .parc-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; max-width:560px; }
-  .parc-card { background:var(--white); border:2px solid var(--border); padding:2rem; text-align:center; transition:border-color 0.2s; }
-  .parc-card:hover { border-color:var(--blue); }
-  .parc-name { font-family:'Barlow Condensed',sans-serif; font-size:1.2rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; letter-spacing:0.08em; }
-  .parc-desc { font-size:0.83rem; color:var(--muted); margin-top:0.5rem; line-height:1.55; }
+/* BLOG */
+.blog-list{display:flex;flex-direction:column;}
+.blog-post{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:2rem;padding:1.5rem 1.25rem;background:var(--white);border-bottom:1px solid var(--border);text-decoration:none;transition:background 0.2s,padding-left 0.2s;}
+.blog-post:first-child{border-top:1px solid var(--border);}
+.blog-post:hover{background:var(--surface);padding-left:2rem;}
+.p-date{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);}
+.p-title{font-weight:500;color:var(--blue-dark);font-size:0.94rem;line-height:1.5;}
+.p-cat{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-dark);text-transform:uppercase;letter-spacing:0.08em;background:rgba(92,184,46,0.1);padding:0.25rem 0.6rem;white-space:nowrap;}
 
-  /* ===== NOME ===== */
-  .nome-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,0.08); }
-  .nome-card { background:var(--blue-dark); padding:2.25rem; position:relative; overflow:hidden; transition:background 0.2s; }
-  .nome-card:hover { background:var(--blue); }
-  .nome-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--green); }
-  .nome-num { font-family:'Barlow Condensed',sans-serif; font-size:3.5rem; font-weight:900; color:rgba(255,255,255,0.07); line-height:1; margin-bottom:0.5rem; }
-  .nome-card p { font-size:0.95rem; color:rgba(255,255,255,0.8); line-height:1.65; }
-  .nome-card p strong { color:#fff; }
+/* CONTATO */
+.contato-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2rem;}
+.ps-banner{background:var(--green);color:#fff;padding:1.35rem 1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:2rem;text-decoration:none;transition:background 0.2s;}
+.ps-banner:hover{background:var(--green-dark);}
+.ps-banner-icon{font-size:1.8rem;}
+.ps-banner-title{font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:0.88rem;}
+.ps-banner-sub{font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:0.1rem;}
+.c-links{display:flex;flex-direction:column;gap:0.85rem;}
+.c-link{display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.93rem;transition:color 0.2s;}
+.c-link:hover{color:#fff;}
+.c-icon{font-size:1rem;width:1.4rem;text-align:center;}
+.msg-box{background:rgba(255,255,255,0.04);padding:3rem;border:1px dashed rgba(255,255,255,0.15);text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.msg-title{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;margin-bottom:0.85rem;text-transform:uppercase;}
+.msg-p{color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:0.92rem;line-height:1.65;max-width:300px;}
 
-  /* ===== BLOG ===== */
-  .blog-list { display:flex; flex-direction:column; }
-  .blog-post { display:grid; grid-template-columns:100px 1fr auto; align-items:center; gap:2rem; padding:1.75rem 1.5rem; background:var(--white); border:2px solid transparent; border-bottom:2px solid var(--border); text-decoration:none; transition:border-color 0.2s,background 0.2s,padding-left 0.25s; }
-  .blog-post:first-child { border-top:2px solid var(--border); }
-  .blog-post:hover { border-color:var(--blue-light); background:#e8f3ff; padding-left:2.5rem; }
-  .p-date { font-family:'Space Mono',monospace; font-size:0.7rem; color:var(--muted); }
-  .p-title { font-weight:600; color:var(--blue-dark); font-size:0.97rem; }
-  .p-cat { font-family:'Space Mono',monospace; font-size:0.62rem; color:var(--green-dark); text-transform:uppercase; letter-spacing:0.1em; background:rgba(92,184,46,0.12); padding:0.28rem 0.65rem; white-space:nowrap; }
+/* EXPLORE */
+.explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.explore-card{text-decoration:none;display:block;padding:2.5rem;border-left:4px solid transparent;transition:transform 0.25s,box-shadow 0.25s;}
+.explore-card:hover{transform:translateY(-4px);}
+.explore-card.blue{background:var(--blue-deep);border-left-color:var(--blue-light);}
+.explore-card.green{background:linear-gradient(135deg,#1a4d0d,#2a7a12);border-left-color:var(--green);}
+.explore-card:hover{box-shadow:0 16px 48px rgba(0,0,0,0.25);}
+.ec-tag{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.45);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
+.ec-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;margin-bottom:0.75rem;}
+.ec-desc{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.5rem;}
+.ec-cta{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:0.1em;text-transform:uppercase;}
 
-  /* ===== CONTATO ===== */
-  .contato-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
-  .ps-banner { background: var(--green); color: #fff; padding: 1.5rem; border-radius: 8px; display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; text-decoration: none; transition: transform 0.2s; }
-  .ps-banner:hover { transform: translateY(-3px); }
-  .ps-banner-icon { font-size: 2rem; }
-  .ps-banner-title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.9rem; }
-  .ps-banner-link { font-size: 0.8rem; color: rgba(255,255,255,0.8); }
-  .c-links { display: flex; flex-direction: column; gap: 1rem; }
-  .c-link { display: flex; align-items: center; gap: 0.75rem; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-  .c-link:hover { color: #fff; }
-  .c-icon { font-size: 1.1rem; width: 1.5rem; text-align: center; }
+/* FOOTER */
+footer{background:#030c1e;padding:2.25rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.25rem;color:#fff;letter-spacing:0.08em;}
+.fl span{color:var(--green);}
+footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.25);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--green);}
 
-  .msg-box { background: rgba(255,255,255,0.05); padding: 3rem; border: 1px dashed rgba(255,255,255,0.2); text-align: center; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-  .msg-title { color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; margin-bottom: 1rem; text-transform: uppercase;}
-  .msg-p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 0.95rem; line-height: 1.6; max-width: 320px;}
-
-  /* ===== FOOTER ===== */
-  footer { background:#040e22; padding:2.5rem 3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-  .fl { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem; color:#fff; letter-spacing:0.08em; }
-  .fl span { color:var(--green); }
-  footer p { font-family:'Space Mono',monospace; font-size:0.66rem; color:rgba(255,255,255,0.3); }
-  .footer-links { display:flex; gap:1.5rem; }
-  .footer-links a { font-family:'Space Mono',monospace; font-size:0.66rem; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--green); }
-
-  /* ===== RESPONSIVE ===== */
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width:1050px){
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav{padding:0 1.5rem;}
-    .about-grid,.missao-grid,.leadership,.contato-wrapper{grid-template-columns:1fr;gap:2rem;}
-    .docentes{grid-template-columns:1fr;}
-    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.eng-grid{grid-template-columns:1fr 1fr;}
-    .members-grid { grid-template-columns: 1fr 1fr; }
-    .hero{padding:6rem 1.5rem 5rem;}
-    .sec{padding:4rem 1.5rem;}
-    .kit-banner{grid-template-columns:1fr;}
-    footer{flex-direction:column;text-align:center;}
-    .footer-links{justify-content:center;}
-    .blog-post{grid-template-columns:1fr;gap:0.3rem;}
-  }
-  @media(max-width:768px) {
-    .eng-grid { grid-template-columns: 1fr; }
-  }
-  @media(max-width:600px){
-    .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.members-grid{grid-template-columns:1fr;}
-  }
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .menu-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);padding:2rem;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(0,0,0,0.08);text-align:center;}
+  nav ul.active{display:flex;}
+  nav{padding:0 1.5rem;}
+  .about-grid,.missao-grid,.leadership,.contato-wrapper,.explore-grid{grid-template-columns:1fr;gap:2rem;}
+  .docentes{grid-template-columns:1fr;}
+  .awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.eng-grid{grid-template-columns:1fr 1fr;}
+  .members-grid{grid-template-columns:1fr 1fr;}
+  .hero{padding:6rem 1.5rem 5rem;}
+  .sec{padding:4rem 1.5rem;}
+  .kit-banner{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+  .footer-links{justify-content:center;}
+  .blog-post{grid-template-columns:1fr;gap:0.3rem;}
+}
+@media(max-width:768px){.eng-grid{grid-template-columns:1fr;}}
+@media(max-width:600px){.awards-grid,.ativ-grid,.proj-grid,.nome-grid,.parc-grid,.mc-grid,.docentes,.members-grid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -292,34 +291,31 @@
     <li><a href="#robotica">Robótica</a></li>
     <li><a href="#conquistas">Conquistas</a></li>
     <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
     <li><a href="#equipe">Equipe</a></li>
-    <li><a href="contato.html">Contato</a></li>
+    <li><a href="patrocine.html" class="nav-cta">Patrocine</a></li>
   </ul>
 </nav>
 
 <section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
   <div class="hero-inner">
-    <div class="hero-supertag">UFTM · Universidade Federal do Triângulo Mineiro</div>
-    <div class="hero-tag">Projeto de Extensão em Robótica · Fundado em 03 Abr 2023</div>
+    <div class="hero-eyebrow">UFTM · Universidade Federal do Triângulo Mineiro · Uberaba, MG</div>
     <h1>GAIA<br><span class="g">ROBÓTICA</span></h1>
-    <p class="hero-sub">Projeto de extensão e pesquisa da UFTM. Desenvolvemos robótica aplicada, levamos tecnologia às escolas públicas de Uberaba — e competimos em alto nível.</p>
-
-    <div class="hero-projects">
-      <a href="#eletroquad" class="hero-pill"><span class="dot green"></span>GAIA Eletroquad</a>
-      <a href="#robotica" class="hero-pill"><span class="dot blue"></span>GAIA Robótica</a>
+    <p class="hero-sub">Projeto de extensão da UFTM. Desenvolvemos robótica aplicada, competimos em nível nacional e <strong>levamos tecnologia às escolas públicas</strong> de Uberaba.</p>
+    <div class="pill-row">
+      <a href="#eletroquad" class="pill"><span class="pill-dot g"></span>GAIA Eletroquad</a>
+      <a href="#robotica" class="pill"><span class="pill-dot b"></span>GAIA Robótica</a>
     </div>
-
-    <div class="hero-btns">
+    <div class="btn-row">
       <a href="#conquistas" class="btn-p">Ver Conquistas →</a>
-      <a href="#sobre" class="btn-o">Conheça o GAIA</a>
+      <a href="#sobre" class="btn-o">Conheça o projeto</a>
     </div>
-
     <div class="hero-stats">
-      <div><div class="s-num">3<em>°</em></div><div class="s-lbl">SAE Brasil Eletroquad 2025</div></div>
-      <div><div class="s-num">2<em>°</em></div><div class="s-lbl">HackaGIS 2023</div></div>
-      <div><div class="s-num">7<em>+</em></div><div class="s-lbl">Robôs desenvolvidos</div></div>
-      <div><div class="s-num">2<em>anos</em></div><div class="s-lbl">De inovação na UFTM</div></div>
+      <div class="stat-item"><div class="s-num">3<em>°</em></div><div class="s-lbl">SAE Brasil 2025</div></div>
+      <div class="stat-item"><div class="s-num">2<em>°</em></div><div class="s-lbl">HackaGIS 2023</div></div>
+      <div class="stat-item"><div class="s-num">7<em>+</em></div><div class="s-lbl">Robôs construídos</div></div>
+      <div class="stat-item"><div class="s-num">2<em>anos</em></div><div class="s-lbl">De projetos reais</div></div>
     </div>
   </div>
 </section>
@@ -328,33 +324,33 @@
 <div class="sec">
   <div class="sec-tag">// história</div>
   <h2>Quem Somos</h2>
-  <p class="lead">Nascemos na UFTM para unir engenharia, robótica e impacto social. Hoje somos dois projetos que se complementam — Eletroquad e Robótica — sob o mesmo propósito.</p>
+  <p class="lead">Nascemos na UFTM para unir engenharia, robótica e impacto social. Dois projetos, um propósito.</p>
   <div class="about-grid">
     <div class="about-text">
-      <p>O <strong>GAIA</strong> é um projeto de extensão e pesquisa em Robótica e Automação da <strong>Universidade Federal do Triângulo Mineiro (UFTM)</strong>. Fundado em 3 de abril de 2023, reúne estudantes apaixonados por tecnologia com um objetivo claro: aprender fazendo e impactar a comunidade.</p>
-      <p>O nome <strong>GAIA</strong> foi inspirado na inteligência artificial dos jogos <em>Horizon Zero Dawn</em> e <em>Horizon Forbidden West</em> — a IA responsável por supervisionar o Projeto Zero Dawn e terraformar a Terra. Como personificação da Mãe Natureza, carrega a missão de transformar o ambiente ao redor.</p>
-      <p>Dentro do GAIA, existem dois projetos principais: o <strong>GAIA Eletroquad</strong> — focado em drones e competição SAE — e o <strong>GAIA Robótica</strong> — voltado para extensão educacional, robótica geral e hackathons.</p>
+      <p>O <strong>GAIA</strong> é um projeto de extensão e pesquisa em Robótica e Automação da <strong>Universidade Federal do Triângulo Mineiro</strong>. Fundado em 3 de abril de 2023, reúne estudantes com um objetivo direto: aprender fazendo — e deixar um rastro real no caminho.</p>
+      <p>O nome foi inspirado na IA da saga <em>Horizon Zero Dawn</em> — a inteligência responsável por supervisionar o Projeto Zero Dawn e restaurar o mundo. Aqui, a missão é menor em escala mas igualmente séria: formar engenheiros que transformam o que aprendem.</p>
+      <p>Dentro do GAIA existem dois projetos: o <strong>GAIA Eletroquad</strong> — competição SAE Brasil com drones — e o <strong>GAIA Robótica</strong> — extensão educacional, hackathons e formação técnica na UFTM.</p>
     </div>
     <div class="timeline">
       <div class="tl-item">
         <div class="tl-icon">ABR<br>2023</div>
-        <div class="tl-text"><strong>Fundação do GAIA Robótica</strong><span>Criado pelos discentes Valdivino Junior e Wanessa Karoline, e pelos docentes Vinícius Abrão e Fabian Molina, na UFTM, Uberaba.</span></div>
+        <div class="tl-text"><strong>Fundação do GAIA Robótica</strong><span>Criado pelos discentes Valdivino Junior e Wanessa Karoline, com orientação dos docentes Vinícius Abrão e Fabian Molina.</span></div>
       </div>
       <div class="tl-item">
-        <div class="tl-icon green-bg">▲</div>
-        <div class="tl-text"><strong>Parceria com Triângulo Aéreo</strong><span>União que originou o GAIA Eletroquad, unindo expertise em robótica terrestre e sistemas aéreos autônomos.</span></div>
+        <div class="tl-icon g">▲</div>
+        <div class="tl-text"><strong>Parceria com Triângulo Aéreo</strong><span>União que originou o GAIA Eletroquad, juntando robótica terrestre com sistemas aéreos autônomos.</span></div>
       </div>
       <div class="tl-item">
         <div class="tl-icon">OUT<br>2023</div>
-        <div class="tl-text"><strong>2° lugar no HackaGIS</strong><span>Wanessa Karoline, Valdivino Junior e Gabriel Meireles conquistaram a 2ª colocação no 1° HackaGIS da UFTM/ICTE.</span></div>
+        <div class="tl-text"><strong>2° lugar no HackaGIS</strong><span>Wanessa, Valdivino e Gabriel conquistaram vice no 1° HackaGIS da UFTM/ICTE.</span></div>
       </div>
       <div class="tl-item">
-        <div class="tl-icon green-bg">SAE</div>
-        <div class="tl-text"><strong>Competição SAE Brasil</strong><span>Participação com drone quadrotor na competição EletroQuad da SAE Brasil.</span></div>
+        <div class="tl-icon g">SAE</div>
+        <div class="tl-text"><strong>Estreia na SAE Brasil</strong><span>Primeira participação com drone quadrotor autônomo na competição EletroQuad.</span></div>
       </div>
       <div class="tl-item">
         <div class="tl-icon">🏆</div>
-        <div class="tl-text"><strong>3° lugar — Novembro/2025</strong><span>Marco de 1 ano do Eletroquad. Criatividade, engenharia e trabalho em equipe transformados em tecnologia real.</span></div>
+        <div class="tl-text"><strong>3° lugar — Nov 2025</strong><span>Um ano de Eletroquad. Resultado nacional conquistado com engenharia feita do zero, na universidade pública.</span></div>
       </div>
     </div>
   </div>
@@ -364,48 +360,45 @@
 <section style="background:var(--surface);" id="conquistas">
 <div class="sec">
   <div class="sec-tag">// resultados</div>
-  <h2>Nossas Conquistas</h2>
-  <p class="lead">Em menos de 2 anos, o GAIA já subiu ao pódio em competições regionais e nacionais. Clique para ver os detalhes de cada vitória.</p>
-  
+  <h2>Conquistas</h2>
+  <p class="lead">Em dois anos, o GAIA já subiu ao pódio em competições regionais e nacionais.</p>
   <div class="awards-grid">
     <a href="conquista-sae.html" class="award-link">
       <div class="award-card">
-        <div class="award-img-header">
-          <img src="IMG_7491.jpg" alt="Equipe SAE Brasil" onerror="handleImageError(this)">
-          <div class="award-badge">3° LUGAR</div>
+        <div class="award-img-wrap">
+          <img src="IMG_7491.jpg" alt="SAE Brasil 2025" onerror="handleImageError(this)">
+          <div class="award-badge">3° Lugar Nacional</div>
         </div>
         <div class="award-body">
           <div class="award-title">SAE Brasil Eletroquad</div>
-          <p>Bronze nacional com o drone quadrotor autônomo desenvolvido do zero pela nossa equipe de engenharia.</p>
+          <p>Bronze nacional com drone quadrotor desenvolvido do zero pela equipe. Um ano de projeto, resultado concreto.</p>
           <div class="award-date">Novembro de 2025</div>
         </div>
       </div>
     </a>
-
     <a href="conquista-hackagis.html" class="award-link">
       <div class="award-card">
-        <div class="award-img-header">
-          <img src="hackagis-equipe.png" alt="Equipe HackaGIS 2023" onerror="handleImageError(this)">
-          <div class="award-badge" style="background:var(--green);">2° LUGAR</div>
+        <div class="award-img-wrap">
+          <img src="hackagis-equipe.png" alt="HackaGIS 2023" onerror="handleImageError(this)">
+          <div class="award-badge" style="background:var(--green);">2° Lugar</div>
         </div>
         <div class="award-body">
           <div class="award-title">HackaGIS 2023</div>
-          <p>Vice-campeões na 1ª Edição do HackaGIS da UFTM, focada em soluções inteligentes e geoprocessamento.</p>
+          <p>Vice-campeões na 1ª edição do HackaGIS da UFTM — soluções inteligentes com geoprocessamento.</p>
           <div class="award-date">Outubro de 2023</div>
         </div>
       </div>
     </a>
-
     <a href="conquista-escolas.html" class="award-link">
       <div class="award-card">
-        <div class="award-img-header">
-          <img src="escola-6.jpg" alt="Projeto Escolas" onerror="handleImageError(this)">
-          <div class="award-badge" style="background:#4a2080;">EXTENSÃO</div>
+        <div class="award-img-wrap">
+          <img src="escola-6.jpg" alt="Extensão Escolas" onerror="handleImageError(this)">
+          <div class="award-badge" style="background:#4a2080;">Extensão Ativa</div>
         </div>
         <div class="award-body">
           <div class="award-title">Escolas Impactadas</div>
-          <p>Impacto social contínuo levando robótica e tecnologia para centenas de alunos da rede pública de Uberaba.</p>
-          <div class="award-date">Desde 2023 — Ativo</div>
+          <p>Robótica nas escolas públicas de Uberaba — tecnologia real nas mãos de quem mais precisa de acesso.</p>
+          <div class="award-date">Desde 2023 — Em andamento</div>
         </div>
       </div>
     </a>
@@ -414,30 +407,32 @@
 </section>
 
 <div class="section-divider" id="eletroquad">
-  <h3>GAIA <span>ELETROQUAD</span></h3>
-  <p>Drones, voo autônomo e competição SAE Brasil</p>
+  <div class="section-divider-inner">
+    <h3>GAIA <span>ELETROQUAD</span></h3>
+    <p>Drones, voo autônomo e competição SAE Brasil</p>
+  </div>
 </div>
 
 <section style="background:var(--white);">
 <div class="sec">
   <div class="sec-tag">// gaia eletroquad · objetivos</div>
   <h2>Drone Quadrotor Autônomo</h2>
-  <p class="lead">Parceria entre GAIA Robótica e Triângulo Aéreo. Desenvolvemos um drone do tipo quadrotor para a competição SAE Brasil, integrando IA, GPS e visão computacional.</p>
+  <p class="lead">Parceria entre GAIA Robótica e Triângulo Aéreo. Um drone desenvolvido do zero para a SAE Brasil, com IA, GPS e visão computacional.</p>
   <div class="ativ-grid">
     <div class="ativ-card">
       <div class="ativ-icon">🚁</div>
       <div class="ativ-title">Competição SAE Brasil</div>
-      <p class="ativ-desc">Participação na competição EletroQuad da SAE Brasil. Drone quadrotor autônomo competindo em missões de navegação e entrega.</p>
+      <p class="ativ-desc">Drone quadrotor autônomo competindo em missões de navegação e entrega na maior competição de engenharia do país.</p>
     </div>
     <div class="ativ-card">
       <div class="ativ-icon">🛸</div>
       <div class="ativ-title">Voo Autônomo</div>
-      <p class="ativ-desc">Desenvolvimento de sistema de voo autônomo com GPS, integração de sensores e navegação sem intervenção humana.</p>
+      <p class="ativ-desc">Sistema de voo sem piloto — GPS, fusão de sensores e navegação em tempo real sem intervenção humana.</p>
     </div>
     <div class="ativ-card">
       <div class="ativ-icon">👁️</div>
       <div class="ativ-title">Visão & IA</div>
-      <p class="ativ-desc">Visão computacional e inteligência artificial para detecção de objetos, navegação e tomada de decisão em tempo real.</p>
+      <p class="ativ-desc">Visão computacional para detecção de objetos, tomada de decisão e controle de trajetória em voo real.</p>
     </div>
   </div>
 </div>
@@ -445,115 +440,96 @@
 
 <section style="background:var(--surface);">
 <div class="sec">
-  <div class="sec-tag">// gaia eletroquad · robôs</div>
+  <div class="sec-tag">// gaia eletroquad · hardware</div>
   <h2>Robôs Desenvolvidos</h2>
-  <p class="lead">Do drone de competição à mão robótica bioinspirada — a GAIA constrói, experimenta e inova.</p>
+  <p class="lead">Do drone de competição à mão bioinspirada — a GAIA constrói tecnologia que funciona.</p>
   <div class="proj-grid">
     <div class="proj-card">
-      <div class="ph" style="background-image: url('IMG_7491.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border" style="background-image:url('IMG_7491.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Projeto Principal · 3° SAE Brasil</div><div class="ph-title">Drone Quadrotor</div>
       </div>
-      <div class="pb"><p class="pb-desc">Drone do tipo quadrotor para a SAE Brasil. Integra IA, GPS e sistema autônomo de navegação e entrega de cargas.</p><div class="tags"><span class="tag">IA</span><span class="tag">GPS</span><span class="tag">Autônomo</span><span class="tag">SAE Brasil</span></div></div>
+      <div class="pb"><p class="pb-desc">Quadrotor autônomo para SAE Brasil. IA, GPS e sistema de entrega de cargas integrado.</p><div class="tags"><span class="tag">IA</span><span class="tag">GPS</span><span class="tag">Autônomo</span><span class="tag">SAE Brasil</span></div></div>
     </div>
     <div class="proj-card">
-      <div class="ph" style="background-image: url('robosplantadecarro.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border" style="background-image:url('robosplantadecarro.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Em desenvolvimento</div><div class="ph-title">Veículo Autônomo</div>
       </div>
-      <div class="pb"><p class="pb-desc">Veículo terrestre com visão computacional e IA para navegação autônoma em ambientes reais e desafiadores.</p><div class="tags"><span class="tag">IA</span><span class="tag">Visão Comp.</span><span class="tag">Autônomo</span></div></div>
+      <div class="pb"><p class="pb-desc">Veículo terrestre com visão computacional para navegação autônoma em ambientes reais.</p><div class="tags"><span class="tag">IA</span><span class="tag">Visão Comp.</span><span class="tag">Autônomo</span></div></div>
     </div>
     <div class="proj-card">
-      <div class="ph gr" style="background-image: url('robos.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border-g" style="background-image:url('robos.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Concluído</div><div class="ph-title">Braço Robótico</div>
       </div>
-      <div class="pb"><p class="pb-desc">Braço robótico de alta precisão controlado por computador, com múltiplos graus de liberdade para manipulação.</p><div class="tags"><span class="tag">Precisão</span><span class="tag">Computador</span><span class="tag">Servo</span></div></div>
+      <div class="pb"><p class="pb-desc">Braço com múltiplos graus de liberdade, controlado por computador para manipulação de precisão.</p><div class="tags"><span class="tag">Precisão</span><span class="tag">Servo</span><span class="tag">Computador</span></div></div>
     </div>
     <div class="proj-card">
-      <div class="ph gr" style="background-image: url('mao-robotica.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border-g" style="background-image:url('mao-robotica.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Concluído</div><div class="ph-title">Mão Robótica</div>
       </div>
-      <div class="pb"><p class="pb-desc">Mão robótica bioinspirada com atuadores pneumáticos e estrutura em impressão 3D. Foco em bioengenharia.</p><div class="tags"><span class="tag">Bioengenharia</span><span class="tag">Pneumática</span><span class="tag">Impressão 3D</span></div></div>
+      <div class="pb"><p class="pb-desc">Mão bioinspirada com atuadores pneumáticos e estrutura em impressão 3D. Foco em bioengenharia.</p><div class="tags"><span class="tag">Bioengenharia</span><span class="tag">Pneumática</span><span class="tag">3D</span></div></div>
     </div>
     <div class="proj-card">
-      <div class="ph" style="background-image: url('robot-corredor.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border" style="background-image:url('robot-corredor.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Competição</div><div class="ph-title">Robô Corredor</div>
       </div>
-      <div class="pb"><p class="pb-desc">Robô autônomo com bússola integrada para navegação em labirinto e corrida. Desenvolvido com Arduino.</p><div class="tags"><span class="tag">Autônomo</span><span class="tag">Bússola</span><span class="tag">Arduino</span></div></div>
+      <div class="pb"><p class="pb-desc">Robô autônomo com bússola para navegação em labirinto. Desenvolvido com Arduino.</p><div class="tags"><span class="tag">Autônomo</span><span class="tag">Bússola</span><span class="tag">Arduino</span></div></div>
     </div>
     <div class="proj-card">
-      <div class="ph" style="background-image: url('robot-omni.jpg');" onerror="handleImageError(this)">
+      <div class="ph ph-border" style="background-image:url('robot-omni.jpg');" onerror="handleImageError(this)">
         <div class="ph-badge">● Concluído</div><div class="ph-title">Robô Omnidirecional</div>
       </div>
-      <div class="pb"><p class="pb-desc">Robô com rodas omnidirecionais de baixo custo. Capaz de se mover em qualquer direção sem girar o chassi.</p><div class="tags"><span class="tag">Mobilidade</span><span class="tag">Baixo Custo</span><span class="tag">Mecanum</span></div></div>
+      <div class="pb"><p class="pb-desc">Rodas Mecanum de baixo custo. Movimento em qualquer direção sem girar o chassi.</p><div class="tags"><span class="tag">Mobilidade</span><span class="tag">Mecanum</span><span class="tag">Baixo Custo</span></div></div>
     </div>
   </div>
   <div class="kit-banner">
     <div><div class="kit-label">Destaque educacional</div><div class="kit-title">Kit<br>Educacional</div></div>
-    <div><p style="color:rgba(255,255,255,0.75);font-size:0.95rem;line-height:1.7;margin-bottom:1rem;">Kits EV3 e similares usados nas visitas às escolas públicas. Implementação e teste de algoritmos de forma acessível para estudantes sem experiência prévia.</p><div class="tags"><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);">EV3</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);">Algoritmos</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);">Educação</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);">Escolas Públicas</span></div></div>
+    <div>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.75;margin-bottom:1rem;">Kits EV3 usados nas visitas às escolas públicas. Estudantes sem nenhuma experiência prévia programam e operam robôs reais.</p>
+      <div class="tags"><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">EV3</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">Algoritmos</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">Escolas Públicas</span></div>
+    </div>
   </div>
 </div>
 </section>
 
 <div class="section-divider" id="robotica">
-  <h3>GAIA <span>ROBÓTICA</span></h3>
-  <p>Extensão educacional, hackathons e formação na UFTM</p>
+  <div class="section-divider-inner">
+    <h3>GAIA <span>ROBÓTICA</span></h3>
+    <p>Extensão educacional, hackathons e formação na UFTM</p>
+  </div>
 </div>
 
 <section style="background:var(--white);">
 <div class="sec">
   <div class="sec-tag">// gaia robótica · atividades</div>
-  <h2>Por que ser GAIA?</h2>
-  <p class="lead">O GAIA Robótica vai muito além de construir robôs — é uma escola de engenharia prática e impacto social.</p>
+  <h2>Por que entrar no GAIA?</h2>
+  <p class="lead">Não é só sobre construir robôs. É sobre desenvolver a mentalidade de quem resolve problemas reais.</p>
   <div class="ativ-grid">
-    <div class="ativ-card">
-      <div class="ativ-icon">🔧</div>
-      <div class="ativ-title">Garra Robótica no Carro Arduino</div>
-      <p class="ativ-desc">Implementação de garra robótica em veículo Arduino para manipulação e coleta de objetos de forma autônoma.</p>
-    </div>
-    <div class="ativ-card">
-      <div class="ativ-icon">⚡</div>
-      <div class="ativ-title">Oficinas de Solda</div>
-      <p class="ativ-desc">Aprenda a soldar componentes eletrônicos do zero. Oficinas práticas com equipamentos reais e projetos hands-on.</p>
-    </div>
-    <div class="ativ-card">
-      <div class="ativ-icon">🖥️</div>
-      <div class="ativ-title">Oficinas de Arduino</div>
-      <p class="ativ-desc">Introdução à programação embarcada com Arduino. Do LED piscando ao projeto completo com sensores e atuadores.</p>
-    </div>
-    <div class="ativ-card">
-      <div class="ativ-icon">🏆</div>
-      <div class="ativ-title">Hackathons</div>
-      <p class="ativ-desc">Participação em hackathons como o HackaGIS — onde conquistamos o 2° lugar em 2023 com uma equipe da UFTM.</p>
-    </div>
-    <div class="ativ-card">
-      <div class="ativ-icon">🏫</div>
-      <div class="ativ-title">Extensão nas Escolas</div>
-      <p class="ativ-desc">Visitas às escolas públicas de Uberaba e região, levando robótica educacional para estudantes do ensino fundamental e médio.</p>
-    </div>
-    <div class="ativ-card">
-      <div class="ativ-icon">🤝</div>
-      <div class="ativ-title">E muito mais!</div>
-      <p class="ativ-desc">Competições, projetos interdisciplinares, palestras e oportunidades de crescimento técnico e pessoal na UFTM.</p>
-    </div>
+    <div class="ativ-card"><div class="ativ-icon">🔧</div><div class="ativ-title">Garra em Carro Arduino</div><p class="ativ-desc">Implementação de garra robótica em veículo Arduino para coleta autônoma de objetos.</p></div>
+    <div class="ativ-card"><div class="ativ-icon">⚡</div><div class="ativ-title">Oficinas de Solda</div><p class="ativ-desc">Do ferro de solda ao circuito funcionando. Oficinas práticas com projetos reais e componentes eletrônicos.</p></div>
+    <div class="ativ-card"><div class="ativ-icon">🖥️</div><div class="ativ-title">Oficinas de Arduino</div><p class="ativ-desc">Programação embarcada do LED piscando ao projeto completo. Sem pré-requisitos.</p></div>
+    <div class="ativ-card"><div class="ativ-icon">🏆</div><div class="ativ-title">Hackathons</div><p class="ativ-desc">Participação em hackathons reais — onde conquistamos o 2° no HackaGIS com uma equipe de 3 pessoas.</p></div>
+    <div class="ativ-card"><div class="ativ-icon">🏫</div><div class="ativ-title">Extensão nas Escolas</div><p class="ativ-desc">Visitas às escolas públicas de Uberaba. Robótica educacional para estudantes do ensino fundamental e médio.</p></div>
+    <div class="ativ-card"><div class="ativ-icon">🤝</div><div class="ativ-title">Rede e Crescimento</div><p class="ativ-desc">Contato com professores, empresas, outros projetos — e colegas que se tornam parceiros de carreira.</p></div>
   </div>
 </div>
 </section>
 
-<section style="background:linear-gradient(140deg,var(--blue-deep) 0%,var(--blue-dark) 50%,var(--blue-mid) 100%);position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.07) 1.5px,transparent 1.5px);background-size:24px 24px;"></div>
-<div class="sec">
+<section style="background:linear-gradient(140deg,var(--blue-deep),#0a3575,#0e5aab);position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="sec" style="position:relative;z-index:1;">
   <div class="sec-tag">// impacto social</div>
   <h2 style="color:#fff;">Missão Educacional</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.6);">Mais do que construir robôs — levamos o futuro às escolas públicas de Uberaba e região.</p>
+  <p class="lead" style="color:rgba(255,255,255,0.55);">Mais do que construir robôs — levamos o futuro às escolas públicas de Uberaba.</p>
   <div class="missao-grid">
     <div class="missao-text">
-      <p>O GAIA nasceu com um propósito claro: democratizar o acesso ao conhecimento em robótica. Visitamos escolas públicas de Uberaba e região, levando kits educacionais e a experiência prática da universidade para alunos que nunca tiveram contato com tecnologia avançada.</p>
-      <p>Acreditamos que a próxima geração de engenheiros está nessas salas de aula — e queremos ser a faísca que acende essa chama.</p>
+      <p>O GAIA nasceu com um propósito que vai além da universidade: democratizar o acesso ao conhecimento em robótica. Visitamos escolas de Uberaba e região com kits educacionais e demonstrações ao vivo.</p>
+      <p>A teoria da universidade não pode ficar trancada nos laboratórios. Acreditamos que a próxima geração de engenheiros está nessas salas de aula — e queremos ser o primeiro contato deles com a tecnologia.</p>
     </div>
     <div class="mc-grid">
-      <div class="mc"><div class="mc-icon">🏫</div><div class="mc-title">Escolas Públicas</div><p class="mc-text">Visitamos escolas de Uberaba com kits e demonstrações ao vivo de robôs reais.</p></div>
-      <div class="mc"><div class="mc-icon">⚙️</div><div class="mc-title">Prática Real</div><p class="mc-text">Os alunos programam e operam os robôs eles mesmos — aprendendo fazendo.</p></div>
-      <div class="mc"><div class="mc-icon">🧠</div><div class="mc-title">IA & Programação</div><p class="mc-text">Introdução à lógica de programação e IA de forma lúdica e acessível.</p></div>
-      <div class="mc"><div class="mc-icon">🌱</div><div class="mc-title">Extensão Certificada</div><p class="mc-text">Projeto de extensão certificado pela UFTM, unindo universidade e comunidade.</p></div>
+      <div class="mc"><div class="mc-icon">🏫</div><div class="mc-title">Escolas Públicas</div><p class="mc-text">Kits reais, demonstrações ao vivo, alunos programando robôs pela primeira vez.</p></div>
+      <div class="mc"><div class="mc-icon">⚙️</div><div class="mc-title">Aprender Fazendo</div><p class="mc-text">Nada de slides. Os alunos operam os robôs eles mesmos.</p></div>
+      <div class="mc"><div class="mc-icon">🧠</div><div class="mc-title">IA & Programação</div><p class="mc-text">Lógica computacional apresentada de forma lúdica e acessível.</p></div>
+      <div class="mc"><div class="mc-icon">🌱</div><div class="mc-title">Extensão Certificada</div><p class="mc-text">Projeto oficial certificado pela UFTM, com relatório de impacto.</p></div>
     </div>
   </div>
 </div>
@@ -563,7 +539,7 @@
 <div class="sec">
   <div class="sec-tag">// as pessoas</div>
   <h2>Nossa Equipe</h2>
-  <p class="lead">Liderado por estudantes dedicados e orientado por docentes experientes da UFTM.</p>
+  <p class="lead">Liderado por estudantes e orientado por docentes da UFTM com anos de experiência em automação.</p>
 
   <div class="leadership">
     <div class="leader-main">
@@ -571,129 +547,77 @@
       <div class="leader-role-tag">Capitã · Eletroquad</div>
       <div class="leader-name">Wanessa Karoline</div>
     </div>
-
     <div class="docentes">
       <div class="docente-card">
         <img src="fabian.jpg" class="docente-avatar" alt="Fabian Molina" onerror="this.src='https://ui-avatars.com/api/?name=Fabian+Molina&background=0d4fa0&color=fff'">
-        <div>
-          <div class="doc-role">Coordenador · Docente</div>
-          <div class="doc-name">Fabian Molina</div>
-          <p class="doc-desc">Gestão acadêmica e técnica do GAIA Eletroquad.</p>
-        </div>
+        <div><div class="doc-role">Coordenador · Docente</div><div class="doc-name">Fabian Molina</div><p class="doc-desc">Gestão acadêmica e técnica do GAIA Eletroquad.</p></div>
       </div>
-
       <div class="docente-card">
         <img src="vinicius.jpg" class="docente-avatar" alt="Vinícius Abrão" onerror="this.src='https://ui-avatars.com/api/?name=Vinicius+Abrao&background=0d4fa0&color=fff'">
-        <div>
-          <div class="doc-role">Orientador · Docente</div>
-          <div class="doc-name">Vinícius Abrão</div>
-          <p class="doc-desc">Co-fundador e impulsionador da robótica na UFTM.</p>
-        </div>
+        <div><div class="doc-role">Orientador · Docente</div><div class="doc-name">Vinícius Abrão</div><p class="doc-desc">Co-fundador e impulsionador da robótica na UFTM.</p></div>
       </div>
     </div>
   </div>
 
   <h3 class="members-section-title">Membros Atuais</h3>
   <div class="members-grid">
-
-    <div class="member-simple-card">
-      <img src="carlos.jpg" class="ms-avatar" alt="Carlos Rodrigo" onerror="this.src='https://ui-avatars.com/api/?name=Carlos+Rodrigo&background=1a6fd4&color=fff'">
-      <div class="ms-name">Carlos Rodrigo</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="eloiza.jpg" class="ms-avatar" alt="Eloiza Lopes" onerror="this.src='https://ui-avatars.com/api/?name=Eloiza+Lopes&background=1a6fd4&color=fff'">
-      <div class="ms-name">Eloiza Lopes</div>
-    </div>
-    
-    <div class="member-simple-card">
-      <img src="felipe.jpg" class="ms-avatar" alt="Felipe Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Felipe+Henrique&background=1a6fd4&color=fff'">
-      <div class="ms-name">Felipe Henrique</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="azevedo.jpg" class="ms-avatar" alt="Gabriel Azevedo" onerror="this.src='https://ui-avatars.com/api/?name=Gabriel+Azevedo&background=1a6fd4&color=fff'">
-      <div class="ms-name">Gabriel Azevedo</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="maerbal.jpg" class="ms-avatar" alt="João Maerbal" onerror="this.src='https://ui-avatars.com/api/?name=Joao+Maerbal&background=1a6fd4&color=fff'">
-      <div class="ms-name">João Maerbal</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="paulo.jpg" class="ms-avatar" alt="João Paulo" onerror="this.src='https://ui-avatars.com/api/?name=Joao+Paulo&background=1a6fd4&color=fff'">
-      <div class="ms-name">João Paulo</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="julia.jpg" class="ms-avatar" alt="Júlia Origuela" onerror="this.src='https://ui-avatars.com/api/?name=Julia+Origuela&background=1a6fd4&color=fff'">
-      <div class="ms-name">Júlia Origuela</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="laura.jpg" class="ms-avatar" alt="Laura Castro" onerror="this.src='https://ui-avatars.com/api/?name=Laura+Castro&background=1a6fd4&color=fff'">
-      <div class="ms-name">Laura Castro</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="murilo.jpg" class="ms-avatar" alt="Murilo Pelegrini" onerror="this.src='https://ui-avatars.com/api/?name=Murilo+Pelegrini&background=1a6fd4&color=fff'">
-      <div class="ms-name">Murilo Pelegrini</div>
-    </div>
-
-    <div class="member-simple-card">
-      <img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=Pedro+Henrique&background=1a6fd4&color=fff'">
-      <div class="ms-name">Pedro Henrique</div>
-    </div>
-  </div> <div style="background:var(--surface); border:1px solid var(--border); padding:3rem; border-radius:12px; text-align:center; margin-bottom: 3rem;">
-    <h3 style="font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:900; color:var(--blue-dark); text-transform:uppercase; margin-bottom:1rem;">Nossa História · Ex-membros</h3>
-    <p style="font-size:1rem; color:var(--muted); line-height:1.7; max-width:700px; margin:0 auto 2rem;">A equipa GAIA Robótica expressa a sua profunda gratidão a todos os membros que dedicaram o seu tempo, conhecimento e paixão ao projeto. Cada linha de código, cada peça construída e cada escola visitada carrega um pouco de vocês.</p>
-    <a href="ex-membros.html" class="btn-p" style="display:inline-block;">Conhecer os Ex-membros →</a>
+    <div class="member-card"><img src="carlos.jpg" class="ms-avatar" alt="Carlos Rodrigo" onerror="this.src='https://ui-avatars.com/api/?name=C+R&background=1a6fd4&color=fff'"><div class="ms-name">Carlos Rodrigo</div></div>
+    <div class="member-card"><img src="eloiza.jpg" class="ms-avatar" alt="Eloiza Lopes" onerror="this.src='https://ui-avatars.com/api/?name=E+L&background=1a6fd4&color=fff'"><div class="ms-name">Eloiza Lopes</div></div>
+    <div class="member-card"><img src="felipe.jpg" class="ms-avatar" alt="Felipe Henrique" onerror="this.src='https://ui-avatars.com/api/?name=F+H&background=1a6fd4&color=fff'"><div class="ms-name">Felipe Henrique</div></div>
+    <div class="member-card"><img src="azevedo.jpg" class="ms-avatar" alt="Gabriel Azevedo" onerror="this.src='https://ui-avatars.com/api/?name=G+A&background=1a6fd4&color=fff'"><div class="ms-name">Gabriel Azevedo</div></div>
+    <div class="member-card"><img src="maerbal.jpg" class="ms-avatar" alt="João Maerbal" onerror="this.src='https://ui-avatars.com/api/?name=J+M&background=1a6fd4&color=fff'"><div class="ms-name">João Maerbal</div></div>
+    <div class="member-card"><img src="paulo.jpg" class="ms-avatar" alt="João Paulo" onerror="this.src='https://ui-avatars.com/api/?name=J+P&background=1a6fd4&color=fff'"><div class="ms-name">João Paulo</div></div>
+    <div class="member-card"><img src="julia.jpg" class="ms-avatar" alt="Júlia Origuela" onerror="this.src='https://ui-avatars.com/api/?name=J+O&background=1a6fd4&color=fff'"><div class="ms-name">Júlia Origuela</div></div>
+    <div class="member-card"><img src="laura.jpg" class="ms-avatar" alt="Laura Castro" onerror="this.src='https://ui-avatars.com/api/?name=L+C&background=1a6fd4&color=fff'"><div class="ms-name">Laura Castro</div></div>
+    <div class="member-card"><img src="murilo.jpg" class="ms-avatar" alt="Murilo Pelegrini" onerror="this.src='https://ui-avatars.com/api/?name=M+P&background=1a6fd4&color=fff'"><div class="ms-name">Murilo Pelegrini</div></div>
+    <div class="member-card"><img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=P+H&background=1a6fd4&color=fff'"><div class="ms-name">Pedro Henrique</div></div>
   </div>
 
-  <div class="hackagis-team">
+  <div style="background:var(--surface);border:1px solid var(--border);padding:2.5rem;text-align:center;margin-bottom:3rem;">
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.75rem;">Membros que fizeram história</h3>
+    <p style="font-size:0.94rem;color:var(--muted);line-height:1.75;max-width:650px;margin:0 auto 1.75rem;">Cada linha de código, cada solda e cada escola visitada carrega um pouco de todos que passaram pelo GAIA. Gratidão de verdade.</p>
+    <a href="ex-membros.html" class="btn-p" style="display:inline-block;">Ver ex-membros →</a>
+  </div>
+
+  <div class="hackagis-banner">
     <div class="hk-badge">2°</div>
     <div class="hk-info">
       <strong>Time HackaGIS 2023 — Wanessa, Valdivino & Gabriel</strong>
-      <span>Conquistaram o 2° lugar no 1° HackaGIS · UFTM/ICTE · Outubro de 2023</span>
+      <span>2° lugar no 1° HackaGIS · UFTM/ICTE · Outubro de 2023</span>
     </div>
   </div>
 
-  <h3 class="members-section-title" style="text-align:center; margin-top:5rem;">O Seu Curso no GAIA</h3>
-  <p style="text-align:center; color:var(--muted); max-width:600px; margin:0 auto 2rem; line-height: 1.6;">Descubra como você pode aplicar a teoria do seu curso de engenharia na prática, desenvolvendo soluções de impacto e tecnologia de ponta com a gente.</p>
-  
+  <h3 class="members-section-title" style="text-align:center;margin-top:4.5rem;">Seu curso no GAIA</h3>
+  <p style="text-align:center;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;line-height:1.7;font-size:0.94rem;">Como a teoria de cada curso de engenharia encontra a prática aqui dentro.</p>
   <div class="eng-grid">
     <div class="eng-card">
       <div class="eng-icon">⚙️</div>
       <h4>Engenharia Mecânica</h4>
-      <p><strong>No GAIA:</strong> Você é o responsável por dar forma e movimento às ideias. Vai aplicar cinemática e dinâmica no design de braços robóticos, estudar aerodinâmica e resistência dos materiais para o chassi do drone quadrotor (Eletroquad) e dominar a manufatura aditiva (impressão 3D).</p>
-      <p><strong>Para o curso e para a vida:</strong> A teoria da sala de aula ganha vida quando você precisa garantir que um componente aguente o impacto de um pouso ou levante uma carga específica. Você sairá do projeto com uma visão espacial apurada, fluência em modelagem 3D (CAD/CAM) e a capacidade de projetar soluções físicas reais para problemas complexos, habilidades disputadíssimas na indústria.</p>
+      <p><strong>No GAIA:</strong> Você projeta o que o robô é fisicamente — chassi de drone, braços robóticos, análise aerodinâmica, impressão 3D e seleção de materiais sob carga real.</p>
+      <p>A teoria de dinâmica e resistência dos materiais sai do quadro e vai para o protótipo. Você sai com fluência em CAD e visão de projeto industrial.</p>
     </div>
-
     <div class="eng-card">
       <div class="eng-icon">⚡</div>
       <h4>Engenharia Elétrica</h4>
-      <p><strong>No GAIA:</strong> Você projeta o "coração e o sistema nervoso" dos robôs. Vai trabalhar com dimensionamento de potência (baterias para drones), integração de sensores, atuadores, microcontroladores (Arduino/ESP) e desenvolvimento de placas de circuito impresso (PCBs).</p>
-      <p><strong>Para o curso e para a vida:</strong> É a chance de colocar a mão na massa, soldar componentes e ver a eletrônica de potência e os sistemas de controle funcionando na prática. No mercado de trabalho, a experiência com sistemas embarcados, IoT e troubleshooting elétrico em tempo real te colocará passos à frente na engenharia de desenvolvimento e automação.</p>
+      <p><strong>No GAIA:</strong> Você é o sistema nervoso do robô — dimensionamento de potência, baterias de Li-Po, PCBs, microcontroladores (Arduino/ESP) e integração de sensores.</p>
+      <p>Experiência com embarcados, troubleshooting em tempo real e eletrônica de potência. O que mais empresas de automação pedem em processos.</p>
     </div>
-
     <div class="eng-card">
       <div class="eng-icon">🧪</div>
       <h4>Engenharia Química</h4>
-      <p><strong>No GAIA:</strong> A robótica moderna é altamente dependente da ciência dos materiais e da energia. Você pode atuar na pesquisa de polímeros mais eficientes para a impressão 3D, no estudo de termodinâmica para dissipação de calor em componentes eletrônicos e no entendimento do ciclo de vida e eficiência das baterias de Li-Po dos drones.</p>
-      <p><strong>Para o curso e para a vida:</strong> O projeto treina a sua visão analítica. Compreender como os materiais se comportam sob estresse físico e elétrico é essencial. Profissionalmente, isso te conecta diretamente com a Indústria 4.0, inovação em novos materiais e processos focados em tecnologia e automação.</p>
+      <p><strong>No GAIA:</strong> A robótica depende de materiais. Você atua em pesquisa de polímeros para impressão 3D, dissipação de calor em eletrônica e ciclo de vida das baterias.</p>
+      <p>Visão analítica aplicada à Indústria 4.0. Ciência dos materiais e processos com contexto real de desenvolvimento de produto.</p>
     </div>
-
     <div class="eng-card">
       <div class="eng-icon">📊</div>
       <h4>Engenharia de Produção</h4>
-      <p><strong>No GAIA:</strong> Um robô não sai do papel sem gestão. Você será a peça-chave na otimização de recursos, controle de orçamento, prazos (cronograma para a SAE Brasil, por exemplo), aplicação de metodologias ágeis (Scrum/Kanban) e gestão de qualidade dos componentes.</p>
-      <p><strong>Para o curso e para a vida:</strong> O GAIA é a sua "mini-empresa". Liderar equipes multidisciplinares, garantir que as entregas sejam feitas no prazo e gerenciar a cadeia de suprimentos (compra de peças da China, por exemplo) são desafios reais. Essa experiência de liderança e visão sistêmica é exatamente o que grandes empresas procuram em um Engenheiro de Produção.</p>
+      <p><strong>No GAIA:</strong> Robô não sai do papel sem gestão. Você cuida de orçamento, cronograma (SAE Brasil tem data), Scrum/Kanban, controle de qualidade e cadeia de suprimentos.</p>
+      <p>A "mini-empresa" mais honesta que você vai ter na faculdade. Experiência de liderança real — não simulada em sala de aula.</p>
     </div>
   </div>
 
   <div class="join-box">
-    <p>Quer fazer parte da equipa GAIA? O processo seletivo está aberto!</p>
+    <p>Quer entrar no GAIA? O processo seletivo está aberto.</p>
     <a href="https://forms.gle/ZCEZbn97UaExt7J58" target="_blank" class="btn-p" style="display:inline-block;text-decoration:none;">Inscreva-se no PS 2025.2 →</a>
   </div>
 </div>
@@ -702,19 +626,11 @@
 <section style="background:var(--surface);">
 <div class="sec">
   <div class="sec-tag">// parceria</div>
-  <h2>Uma Parceria de Sucesso</h2>
-  <p class="lead">O GAIA Eletroquad surge da fusão de dois projetos com visões complementares.</p>
+  <h2>Uma parceria de resultado</h2>
+  <p class="lead">O GAIA Eletroquad surge da fusão de dois projetos com capacidades complementares.</p>
   <div class="parc-grid">
-    <div class="parc-card">
-      <div style="font-size:2.5rem;margin-bottom:0.75rem;">🤖</div>
-      <div class="parc-name">GAIA Robótica</div>
-      <p class="parc-desc">Fundado em 2023 na UFTM. Robótica educacional, hackathons e extensão universitária em Uberaba, MG.</p>
-    </div>
-    <div class="parc-card">
-      <div style="font-size:2.5rem;margin-bottom:0.75rem;">✈️</div>
-      <div class="parc-name">Triângulo Aéreo</div>
-      <p class="parc-desc">Especialista em drones e sistemas aéreos. Expertise em voo autônomo e competições SAE Brasil.</p>
-    </div>
+    <div class="parc-card"><div class="parc-icon">🤖</div><div class="parc-name">GAIA Robótica</div><p class="parc-desc">Fundado em 2023 na UFTM. Robótica educacional, hackathons e extensão universitária em Uberaba.</p></div>
+    <div class="parc-card"><div class="parc-icon">✈️</div><div class="parc-name">Triângulo Aéreo</div><p class="parc-desc">Especialista em drones e sistemas aéreos. Expertise em voo autônomo e competições SAE Brasil.</p></div>
   </div>
 </div>
 </section>
@@ -723,11 +639,11 @@
 <div class="sec">
   <div class="sec-tag">// origem do nome</div>
   <h2 style="color:#fff;">Por que GAIA?</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.6);">O nome carrega um significado enraizado na ficção científica e na força da natureza.</p>
+  <p class="lead" style="color:rgba(255,255,255,0.5);">O nome carrega um peso de ficção científica e propósito real.</p>
   <div class="nome-grid">
     <div class="nome-card"><div class="nome-num">01</div><p>Inspirado na personagem dos jogos <strong>Horizon Zero Dawn</strong> e <strong>Horizon Forbidden West</strong>.</p></div>
     <div class="nome-card"><div class="nome-num">02</div><p>GAIA é a <strong>inteligência artificial</strong> responsável por supervisionar o lendário Projeto Zero Dawn.</p></div>
-    <div class="nome-card"><div class="nome-num">03</div><p>Personificação da <strong>Mãe Natureza</strong>, com a missão de terraformar a Terra — assim como terraformamos o futuro da robótica.</p></div>
+    <div class="nome-card"><div class="nome-num">03</div><p>Personificação da <strong>Mãe Natureza</strong> — com missão de restaurar o que foi quebrado. Aqui, fazemos o mesmo com o acesso à tecnologia.</p></div>
   </div>
 </div>
 </section>
@@ -736,31 +652,28 @@
 <div class="sec">
   <div class="sec-tag">// atualizações</div>
   <h2>Blog & Novidades</h2>
-  <p class="lead">Acompanhe o que estamos a construir, aprender e conquistar.</p>
+  <p class="lead">O que estamos construindo, aprendendo e conquistando.</p>
   <div class="blog-list">
-    <a href="conquista-sae.html" class="blog-post"><span class="p-date">Nov 2025</span><span class="p-title">3° lugar na SAE Brasil Eletroquad — um ano de projeto e muita conquista</span><span class="p-cat">Competição</span></a>
-    <a href="artigo-drones.html" class="blog-post"><span class="p-date">Out 2025</span><span class="p-title">Como desenvolvemos nosso drone quadrotor para a SAE: desafios e soluções</span><span class="p-cat">Hardware</span></a>
-    <a href="conquista-escolas.html" class="blog-post"><span class="p-date">Ago 2025</span><span class="p-title">Visitando escolas públicas de Uberaba — robótica na prática para o futuro</span><span class="p-cat">Extensão</span></a>
-    <a href="artigo-solda.html" class="blog-post"><span class="p-date">Jun 2025</span><span class="p-title">Mão robótica e montagem: do conceito prático à impressão 3D</span><span class="p-cat">Tutorial</span></a>
+    <a href="conquista-sae.html" class="blog-post"><span class="p-date">Nov 2025</span><span class="p-title">3° lugar na SAE Brasil Eletroquad — um ano de projeto transformado em resultado</span><span class="p-cat">Competição</span></a>
+    <a href="artigo-drones.html" class="blog-post"><span class="p-date">Out 2025</span><span class="p-title">Como desenvolvemos o drone quadrotor para a SAE: desafios reais e soluções concretas</span><span class="p-cat">Hardware</span></a>
+    <a href="conquista-escolas.html" class="blog-post"><span class="p-date">Ago 2025</span><span class="p-title">Visitando escolas públicas de Uberaba — robótica na prática para o ensino médio</span><span class="p-cat">Extensão</span></a>
+    <a href="artigo-solda.html" class="blog-post"><span class="p-date">Jun 2025</span><span class="p-title">Mão robótica: do conceito físico à impressão 3D em etapas</span><span class="p-cat">Tutorial</span></a>
     <a href="conquista-hackagis.html" class="blog-post"><span class="p-date">Out 2023</span><span class="p-title">2° lugar no HackaGIS — Wanessa, Valdivino e Gabriel no pódio da UFTM</span><span class="p-cat">Hackathon</span></a>
   </div>
 </div>
 </section>
 
-<section style="background:linear-gradient(140deg,var(--blue-deep) 0%,var(--blue-dark) 50%,var(--blue-mid) 100%);padding-top:5rem;" id="contato">
+<section style="background:linear-gradient(140deg,var(--blue-deep),#0a3575,#0e5aab);padding-top:5rem;" id="contato">
+<div style="position:absolute;width:100%;"></div>
 <div class="sec" style="padding-top:2rem;">
   <div class="sec-tag">// fale com a gente</div>
-  <h2 style="color:#fff;">Contato e Redes Sociais</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.6);">Quer colaborar, participar ou levar robótica para a sua escola? Estamos aqui.</p>
-  
+  <h2 style="color:#fff;">Contato</h2>
+  <p class="lead" style="color:rgba(255,255,255,0.55);">Quer colaborar, participar ou levar robótica para a sua escola?</p>
   <div class="contato-wrapper">
     <div>
       <a href="https://forms.gle/ZCEZbn97UaExt7J58" target="_blank" class="ps-banner">
         <div class="ps-banner-icon">📋</div>
-        <div>
-          <div class="ps-banner-title">Processo Seletivo 2025.2 Aberto!</div>
-          <div class="ps-banner-link">Clique para se inscrever →</div>
-        </div>
+        <div><div class="ps-banner-title">Processo Seletivo 2025.2</div><div class="ps-banner-sub">Inscrições abertas — clique para participar →</div></div>
       </a>
       <div class="c-links">
         <a href="mailto:gaia.robotica.uftm@gmail.com" class="c-link"><span class="c-icon">✉️</span>gaia.robotica.uftm@gmail.com</a>
@@ -771,13 +684,11 @@
         <a href="#" class="c-link"><span class="c-icon">📍</span>UFTM · Uberaba, MG</a>
       </div>
     </div>
-    
     <div class="msg-box">
       <h3 class="msg-title">Envie uma Mensagem</h3>
-      <p class="msg-p">Utilize o nosso novo formulário direto para entrar em contacto com a equipa do GAIA Robótica.</p>
+      <p class="msg-p">Use o formulário de contato direto ou o WhatsApp para falar com a equipe.</p>
       <a href="contato.html" class="btn-p" style="text-decoration:none;">Página de Contato →</a>
     </div>
-    
   </div>
 </div>
 </section>
@@ -786,25 +697,20 @@
 <div class="sec">
   <div class="sec-tag">// explore mais</div>
   <h2>Tem mais por aqui</h2>
-  <p class="lead">Compartilhe o projeto com quem você conhece — ou mergulhe fundo no que a GAIA tem para oferecer.</p>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-
-    <a href="aprenda.html" style="text-decoration:none;display:block;background:var(--blue-deep);border:2px solid var(--blue-dark);padding:2.5rem;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px rgba(13,79,160,0.35)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-      <div style="font-size:2.5rem;margin-bottom:1rem;">🧠</div>
-      <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">// conteúdo técnico</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;margin-bottom:0.75rem;">Aprenda<br>com a GAIA</div>
-      <p style="font-size:0.9rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.5rem;">IA, Arduino, drones e robótica explicados do zero. Artigos completos para estudantes e curiosos.</p>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-light);letter-spacing:0.1em;text-transform:uppercase;">Ver todos os artigos →</span>
+  <p class="lead">Conteúdo técnico, oportunidades de parceria e muito mais.</p>
+  <div class="explore-grid">
+    <a href="aprenda.html" class="explore-card blue">
+      <div class="ec-tag">// conteúdo técnico</div>
+      <div class="ec-title">Aprenda<br>com a GAIA</div>
+      <p class="ec-desc">IA, Arduino, drones e robótica explicados do zero. Artigos feitos por quem constrói o que ensina.</p>
+      <span class="ec-cta">Ver todos os artigos →</span>
     </a>
-
-    <a href="patrocine.html" style="text-decoration:none;display:block;background:linear-gradient(135deg,var(--green-dark),#1a5e0d);border:2px solid var(--green-dark);padding:2.5rem;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);transition:transform 0.25s,box-shadow 0.25s;" onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 16px 40px rgba(61,138,26,0.35)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-      <div style="font-size:2.5rem;margin-bottom:1rem;">🏆</div>
-      <div style="font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.6);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;">// empresas & parceiros</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;margin-bottom:0.75rem;">Seja<br>Patrocinador</div>
-      <p style="font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.65;margin-bottom:1.5rem;">A sua empresa ao lado de uma equipa que já está no pódio nacional. Visibilidade, impacto social e acesso a talentos da UFTM.</p>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.1em;text-transform:uppercase;">Ver cotas de patrocínio →</span>
+    <a href="patrocine.html" class="explore-card green">
+      <div class="ec-tag">// empresas & parceiros</div>
+      <div class="ec-title">Seja<br>Patrocinador</div>
+      <p class="ec-desc">Sua empresa junto de quem já está no pódio nacional. Visibilidade real, impacto ESG certificado e acesso a talentos da UFTM.</p>
+      <span class="ec-cta">Ver cotas de patrocínio →</span>
     </a>
-
   </div>
 </div>
 </section>
@@ -813,32 +719,29 @@
   <div class="fl">GAIA <span>ROBÓTICA</span></div>
   <p>UFTM · Uberaba, MG · Fundado em 2023</p>
   <div class="footer-links">
-    <a href="index.html#conquistas">Conquistas</a>
+    <a href="#conquistas">Conquistas</a>
+    <a href="aprenda.html">Aprenda</a>
     <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
     <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
   </div>
 </footer>
 
 <script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  const navLinks = document.querySelectorAll('nav ul li a');
-
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+const navLinks = document.querySelectorAll('nav ul li a');
+if(menuToggle && navMenu){
+  menuToggle.addEventListener('click',()=>{
+    navMenu.classList.toggle('active');
+    menuToggle.textContent=navMenu.classList.contains('active')?'✕':'☰';
+  });
+  navLinks.forEach(a=>{
+    a.addEventListener('click',()=>{
+      navMenu.classList.remove('active');
+      menuToggle.textContent='☰';
     });
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-          menuToggle.textContent = '☰';
-        }
-      });
-    });
-  }
+  });
+}
 </script>
 </body>
 </html>
