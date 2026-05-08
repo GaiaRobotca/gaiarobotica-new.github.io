@@ -18,24 +18,24 @@
       else if(s.endsWith('.JPG')) el.src=s.replace('.JPG','.jpg');
       else if(s.endsWith('.png')) el.src=s.replace('.png','.PNG');
       else if(s.endsWith('.PNG')) el.src=s.replace('.PNG','.png');
-      else el.src='https://placehold.co/600x400/0d4fa0/ffffff?text=GAIA+Robótica';
-    } else { el.style.backgroundImage="url('https://placehold.co/600x400/0d4fa0/ffffff?text=Em+Breve')"; }
+      else el.src='https://placehold.co/600x400/01195d/ffffff?text=GAIA+Robótica';
+    } else { el.style.backgroundImage="url('https://placehold.co/600x400/01195d/ffffff?text=Em+Breve')"; }
   }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f0f7ff;--white:#ffffff;
-  --blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;
-  --green:#5cb82e;--green-dark:#3d8a1a;
-  --text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;
-  --orange:#d4732a;
+  --bg:#eef3fb;--white:#ffffff;
+  --blue:#01195d;--blue-light:#1a4aad;--blue-mid:#0d2e80;--blue-dark:#01195d;--blue-deep:#010e3a;
+  --green:#007a3f;--green-dark:#005a2e;--green-light:#00a854;
+  --text:#010e3a;--muted:#4a6080;--border:#bdd0ee;--surface:#dce8f7;
+  --orange:#c45a1a;
 }
 *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:64px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:2px solid var(--blue);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:64px;}
 .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.06em;display:flex;align-items:center;gap:0.5rem;}
 .nav-dot{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0;}
 .nav-logo .g{color:var(--green);}
@@ -47,35 +47,35 @@ nav a:hover{color:var(--blue-dark);}
 .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:var(--blue-dark);cursor:pointer;}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--blue-deep) 0%,#0a3070 40%,#0e5aab 80%,#1a7ad4 100%);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 6rem;position:relative;overflow:hidden;}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:60px 60px;}
-.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(92,184,46,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.hero{background:linear-gradient(135deg,#010e3a 0%,#01195d 40%,#022080 75%,#012d60 100%);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 3rem 6rem;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,122,63,0.14) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
 .hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:var(--bg);clip-path:polygon(0 70%,100% 0%,100% 100%,0% 100%);}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;}
-.hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.42);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:1.5rem;}
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(5rem,13vw,11rem);font-weight:900;line-height:0.86;color:#fff;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:0.15em;}
-.hero h1 .g{color:var(--green);}
-.hero-sub{font-size:1rem;color:rgba(255,255,255,0.65);max-width:520px;margin:2rem 0 2.5rem;font-weight:300;line-height:1.8;}
+.hero h1 .g{color:var(--green-light);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.62);max-width:520px;margin:2rem 0 2.5rem;font-weight:300;line-height:1.8;}
 .hero-sub strong{color:rgba(255,255,255,0.9);font-weight:500;}
 
 .pill-row{display:flex;gap:0.75rem;margin-bottom:2.5rem;flex-wrap:wrap;}
-.pill{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
+.pill{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.78);font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
 .pill:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.06);}
 .pill-dot{width:6px;height:6px;border-radius:50%;}
-.pill-dot.g{background:var(--green);}
-.pill-dot.b{background:#5bb3ff;}
+.pill-dot.g{background:var(--green-light);}
+.pill-dot.b{background:#6ab0ff;}
 
 .btn-row{display:flex;gap:1rem;flex-wrap:wrap;}
 .btn-p{background:var(--green);color:#fff;padding:0.85rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background 0.2s,transform 0.15s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);}
 .btn-p:hover{background:var(--green-dark);transform:translateY(-2px);}
-.btn-o{background:transparent;color:#fff;padding:0.85rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.3);transition:border-color 0.2s,background 0.2s;}
+.btn-o{background:transparent;color:#fff;padding:0.85rem 2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.28);transition:border-color 0.2s,background 0.2s;}
 .btn-o:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
 
 .hero-stats{display:flex;gap:3rem;margin-top:4.5rem;padding-top:2.5rem;border-top:1px solid rgba(255,255,255,0.1);flex-wrap:wrap;}
 .stat-item{}
 .s-num{font-family:'Barlow Condensed',sans-serif;font-size:2.5rem;font-weight:900;color:#fff;line-height:1;}
-.s-num em{color:var(--green);font-style:normal;}
-.s-lbl{font-size:0.72rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;}
+.s-num em{color:var(--green-light);font-style:normal;}
+.s-lbl{font-size:0.72rem;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.07em;margin-top:0.25rem;}
 
 /* SEÇÕES */
 .sec{max-width:1100px;margin:0 auto;padding:6rem 3rem;}
@@ -104,21 +104,21 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .award-card{border:1px solid var(--border);background:var(--white);overflow:hidden;display:flex;flex-direction:column;transition:all 0.3s;height:100%;}
 .award-img-wrap{width:100%;height:190px;position:relative;overflow:hidden;background:var(--blue-deep);}
 .award-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
-.award-link:hover .award-card{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,111,212,0.12);}
+.award-link:hover .award-card{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(1,25,93,0.14);}
 .award-link:hover .award-img-wrap img{transform:scale(1.06);}
 .award-badge{position:absolute;top:0;left:0;background:var(--blue-dark);color:#fff;font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;padding:0.35rem 0.75rem;letter-spacing:0.08em;}
 .award-body{padding:1.5rem;flex-grow:1;display:flex;flex-direction:column;}
 .award-title{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.6rem;}
 .award-body p{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem;}
-.award-date{margin-top:auto;font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);text-transform:uppercase;}
+.award-date{margin-top:auto;font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue-light);text-transform:uppercase;}
 
 /* DIVISOR */
-.section-divider{background:linear-gradient(135deg,var(--blue-deep),#0a3575);padding:2.75rem 3rem;position:relative;overflow:hidden;}
+.section-divider{background:linear-gradient(135deg,#010e3a,#01195d);padding:2.75rem 3rem;position:relative;overflow:hidden;}
 .section-divider::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
 .section-divider-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
 .section-divider h3{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
-.section-divider h3 span{color:var(--green);}
-.section-divider p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-top:0.4rem;}
+.section-divider h3 span{color:var(--green-light);}
+.section-divider p{font-size:0.88rem;color:rgba(255,255,255,0.45);margin-top:0.4rem;}
 
 /* ATIVIDADES */
 .ativ-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
@@ -133,31 +133,31 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 /* PROJETOS */
 .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
 .proj-card{background:var(--white);border:1px solid var(--border);overflow:hidden;transition:all 0.3s;display:flex;flex-direction:column;}
-.proj-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(26,111,212,0.13);}
+.proj-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 12px 36px rgba(1,25,93,0.15);}
 .ph{padding:1.5rem;height:175px;position:relative;overflow:hidden;background-size:cover;background-position:center;}
-.ph::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,31,74,0.92) 0%,rgba(7,31,74,0.15) 100%);z-index:1;}
-.ph-badge{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.75);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;position:relative;z-index:2;display:block;}
+.ph::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(1,14,58,0.93) 0%,rgba(1,14,58,0.15) 100%);z-index:1;}
+.ph-badge{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.72);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;position:relative;z-index:2;display:block;}
 .ph-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.05;position:relative;z-index:2;}
-.ph-border{border-bottom:2px solid var(--blue);}
+.ph-border{border-bottom:2px solid var(--blue-light);}
 .ph-border-g{border-bottom:2px solid var(--green);}
 .pb{padding:1.25rem 1.5rem;flex-grow:1;display:flex;flex-direction:column;}
 .pb-desc{font-size:0.88rem;color:var(--muted);line-height:1.65;margin-bottom:1rem;}
 .tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:auto;}
-.tag{font-family:'Space Mono',monospace;font-size:0.58rem;padding:0.2rem 0.55rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);text-transform:uppercase;letter-spacing:0.06em;}
+.tag{font-family:'Space Mono',monospace;font-size:0.58rem;padding:0.2rem 0.55rem;background:var(--surface);border:1px solid var(--border);color:var(--blue-light);text-transform:uppercase;letter-spacing:0.06em;}
 
 .kit-banner{margin-top:1.5rem;background:var(--blue-dark);padding:2.25rem 2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;border-left:4px solid var(--green);}
-.kit-label{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
+.kit-label{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-light);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
 .kit-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;}
 
 /* MISSÃO */
 .missao-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
-.missao-text p{color:rgba(255,255,255,0.72);font-size:0.96rem;line-height:1.8;margin-bottom:1.25rem;}
+.missao-text p{color:rgba(255,255,255,0.7);font-size:0.96rem;line-height:1.8;margin-bottom:1.25rem;}
 .mc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .mc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:1.4rem;transition:background 0.2s;}
 .mc:hover{background:rgba(255,255,255,0.09);}
 .mc-icon{font-size:1.5rem;margin-bottom:0.6rem;}
 .mc-title{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.3rem;}
-.mc-text{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+.mc-text{font-size:0.82rem;color:rgba(255,255,255,0.48);line-height:1.6;}
 
 /* EQUIPE */
 .leadership{display:grid;grid-template-columns:1fr 2fr;gap:2.5rem;align-items:stretch;margin-bottom:3rem;}
@@ -165,13 +165,13 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .leader-avatar{border-radius:50%;object-fit:cover;border:3px solid var(--green);padding:3px;background:var(--white);width:120px;height:120px;margin:0 auto 1.25rem;}
 .docente-avatar{border-radius:50%;object-fit:cover;border:2px solid var(--blue-light);padding:3px;background:var(--white);width:64px;height:64px;min-width:64px;transition:transform 0.3s;}
 .ms-avatar{border-radius:50%;object-fit:cover;border:2px solid var(--border);padding:2px;background:var(--white);width:44px;height:44px;min-width:44px;transition:transform 0.3s;}
-.leader-role-tag{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
+.leader-role-tag{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green-light);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.4rem;}
 .leader-name{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:900;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
 .docentes{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
 .docente-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;display:flex;gap:1.25rem;align-items:center;transition:all 0.2s;}
 .docente-card:hover{background:var(--white);border-color:var(--blue);}
 .docente-card:hover .docente-avatar{transform:scale(1.08) rotate(3deg);}
-.doc-role{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem;}
+.doc-role{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue-light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.25rem;}
 .doc-name{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.25rem;}
 .doc-desc{font-size:0.82rem;color:var(--muted);line-height:1.55;}
 .members-section-title{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1.25rem;}
@@ -183,16 +183,16 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 
 .eng-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;}
 .eng-card{background:var(--surface);border:1px solid var(--border);padding:2rem;transition:all 0.3s;}
-.eng-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 10px 28px rgba(26,111,212,0.09);}
+.eng-card:hover{border-color:var(--blue-light);transform:translateY(-4px);box-shadow:0 10px 28px rgba(1,25,93,0.1);}
 .eng-icon{font-size:2rem;margin-bottom:0.85rem;}
 .eng-card h4{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.85rem;}
 .eng-card p{font-size:0.9rem;color:var(--text);line-height:1.7;margin-bottom:0.75rem;}
 .eng-card p strong{color:var(--blue-dark);}
 
 .hackagis-banner{background:var(--blue-dark);padding:1.75rem 2.25rem;display:flex;align-items:center;gap:2rem;border-left:4px solid var(--green);margin-top:2rem;}
-.hk-badge{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;color:var(--green);line-height:1;}
+.hk-badge{font-family:'Barlow Condensed',sans-serif;font-size:3.2rem;font-weight:900;color:var(--green-light);line-height:1;}
 .hk-info strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.04em;}
-.hk-info span{font-size:0.82rem;color:rgba(255,255,255,0.55);}
+.hk-info span{font-size:0.82rem;color:rgba(255,255,255,0.52);}
 
 .join-box{background:var(--surface);border:1px dashed var(--border);padding:2rem;text-align:center;margin-top:2rem;}
 .join-box p{color:var(--muted);margin-bottom:1rem;font-size:0.94rem;}
@@ -206,12 +206,12 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .parc-desc{font-size:0.83rem;color:var(--muted);margin-top:0.4rem;line-height:1.55;}
 
 /* GAIA NOME */
-.nome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.06);}
-.nome-card{background:#0a3070;padding:2.25rem;position:relative;overflow:hidden;transition:background 0.2s;}
-.nome-card:hover{background:#0d4fa0;}
+.nome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.05);}
+.nome-card{background:#01195d;padding:2.25rem;position:relative;overflow:hidden;transition:background 0.2s;}
+.nome-card:hover{background:#022580;}
 .nome-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);}
 .nome-num{font-family:'Barlow Condensed',sans-serif;font-size:3rem;font-weight:900;color:rgba(255,255,255,0.05);line-height:1;margin-bottom:0.5rem;}
-.nome-card p{font-size:0.93rem;color:rgba(255,255,255,0.72);line-height:1.7;}
+.nome-card p{font-size:0.93rem;color:rgba(255,255,255,0.7);line-height:1.7;}
 .nome-card p strong{color:#fff;}
 
 /* BLOG */
@@ -221,7 +221,7 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .blog-post:hover{background:var(--surface);padding-left:2rem;}
 .p-date{font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--muted);}
 .p-title{font-weight:500;color:var(--blue-dark);font-size:0.94rem;line-height:1.5;}
-.p-cat{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-dark);text-transform:uppercase;letter-spacing:0.08em;background:rgba(92,184,46,0.1);padding:0.25rem 0.6rem;white-space:nowrap;}
+.p-cat{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-dark);text-transform:uppercase;letter-spacing:0.08em;background:rgba(0,122,63,0.1);padding:0.25rem 0.6rem;white-space:nowrap;}
 
 /* CONTATO */
 .contato-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;margin-top:2rem;}
@@ -231,33 +231,33 @@ h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .ps-banner-title{font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-size:0.88rem;}
 .ps-banner-sub{font-size:0.78rem;color:rgba(255,255,255,0.75);margin-top:0.1rem;}
 .c-links{display:flex;flex-direction:column;gap:0.85rem;}
-.c-link{display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.93rem;transition:color 0.2s;}
+.c-link{display:flex;align-items:center;gap:0.75rem;color:rgba(255,255,255,0.62);text-decoration:none;font-size:0.93rem;transition:color 0.2s;}
 .c-link:hover{color:#fff;}
 .c-icon{font-size:1rem;width:1.4rem;text-align:center;}
-.msg-box{background:rgba(255,255,255,0.04);padding:3rem;border:1px dashed rgba(255,255,255,0.15);text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.msg-box{background:rgba(255,255,255,0.04);padding:3rem;border:1px dashed rgba(255,255,255,0.14);text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;}
 .msg-title{color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;margin-bottom:0.85rem;text-transform:uppercase;}
-.msg-p{color:rgba(255,255,255,0.6);margin-bottom:2rem;font-size:0.92rem;line-height:1.65;max-width:300px;}
+.msg-p{color:rgba(255,255,255,0.55);margin-bottom:2rem;font-size:0.92rem;line-height:1.65;max-width:300px;}
 
 /* EXPLORE */
 .explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
 .explore-card{text-decoration:none;display:block;padding:2.5rem;border-left:4px solid transparent;transition:transform 0.25s,box-shadow 0.25s;}
 .explore-card:hover{transform:translateY(-4px);}
 .explore-card.blue{background:var(--blue-deep);border-left-color:var(--blue-light);}
-.explore-card.green{background:linear-gradient(135deg,#1a4d0d,#2a7a12);border-left-color:var(--green);}
-.explore-card:hover{box-shadow:0 16px 48px rgba(0,0,0,0.25);}
-.ec-tag{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.45);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
+.explore-card.green{background:linear-gradient(135deg,#003d20,#006030);border-left-color:var(--green-light);}
+.explore-card:hover{box-shadow:0 16px 48px rgba(0,0,0,0.28);}
+.ec-tag{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
 .ec-title{font-family:'Barlow Condensed',sans-serif;font-size:2rem;font-weight:900;color:#fff;text-transform:uppercase;line-height:1;margin-bottom:0.75rem;}
-.ec-desc{font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.5rem;}
-.ec-cta{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.85);letter-spacing:0.1em;text-transform:uppercase;}
+.ec-desc{font-size:0.88rem;color:rgba(255,255,255,0.58);line-height:1.65;margin-bottom:1.5rem;}
+.ec-cta{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.82);letter-spacing:0.1em;text-transform:uppercase;}
 
 /* FOOTER */
-footer{background:#030c1e;padding:2.25rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+footer{background:#010b2e;padding:2.25rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:2px solid var(--green);}
 .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.25rem;color:#fff;letter-spacing:0.08em;}
-.fl span{color:var(--green);}
-footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.25);}
+.fl span{color:var(--green-light);}
+footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.22);}
 .footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
-.footer-links a:hover{color:var(--green);}
+.footer-links a{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--green-light);}
 
 /* RESPONSIVE */
 @media(max-width:1050px){
@@ -484,8 +484,8 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
   <div class="kit-banner">
     <div><div class="kit-label">Destaque educacional</div><div class="kit-title">Kit<br>Educacional</div></div>
     <div>
-      <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;line-height:1.75;margin-bottom:1rem;">Kits EV3 usados nas visitas às escolas públicas. Estudantes sem nenhuma experiência prévia programam e operam robôs reais.</p>
-      <div class="tags"><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">EV3</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">Algoritmos</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);">Escolas Públicas</span></div>
+      <p style="color:rgba(255,255,255,0.68);font-size:0.9rem;line-height:1.75;margin-bottom:1rem;">Kits EV3 usados nas visitas às escolas públicas. Estudantes sem nenhuma experiência prévia programam e operam robôs reais.</p>
+      <div class="tags"><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.62);">EV3</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.62);">Algoritmos</span><span class="tag" style="border-color:rgba(255,255,255,0.2);color:rgba(255,255,255,0.62);">Escolas Públicas</span></div>
     </div>
   </div>
 </div>
@@ -514,12 +514,12 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
 </div>
 </section>
 
-<section style="background:linear-gradient(140deg,var(--blue-deep),#0a3575,#0e5aab);position:relative;overflow:hidden;">
-<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;"></div>
+<section style="background:linear-gradient(140deg,#010e3a,#01195d,#022080);position:relative;overflow:hidden;">
+<div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:40px 40px;"></div>
 <div class="sec" style="position:relative;z-index:1;">
   <div class="sec-tag">// impacto social</div>
   <h2 style="color:#fff;">Missão Educacional</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.55);">Mais do que construir robôs — levamos o futuro às escolas públicas de Uberaba.</p>
+  <p class="lead" style="color:rgba(255,255,255,0.52);">Mais do que construir robôs — levamos o futuro às escolas públicas de Uberaba.</p>
   <div class="missao-grid">
     <div class="missao-text">
       <p>O GAIA nasceu com um propósito que vai além da universidade: democratizar o acesso ao conhecimento em robótica. Visitamos escolas de Uberaba e região com kits educacionais e demonstrações ao vivo.</p>
@@ -543,17 +543,17 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
 
   <div class="leadership">
     <div class="leader-main">
-      <img src="wanessa.jpg" class="leader-avatar" alt="Wanessa Karoline" onerror="this.src='https://ui-avatars.com/api/?name=Wanessa+Karoline&background=1a6fd4&color=fff'">
+      <img src="wanessa.jpg" class="leader-avatar" alt="Wanessa Karoline" onerror="this.src='https://ui-avatars.com/api/?name=Wanessa+Karoline&background=01195d&color=fff'">
       <div class="leader-role-tag">Capitã · Eletroquad</div>
       <div class="leader-name">Wanessa Karoline</div>
     </div>
     <div class="docentes">
       <div class="docente-card">
-        <img src="fabian.jpg" class="docente-avatar" alt="Fabian Molina" onerror="this.src='https://ui-avatars.com/api/?name=Fabian+Molina&background=0d4fa0&color=fff'">
+        <img src="fabian.jpg" class="docente-avatar" alt="Fabian Molina" onerror="this.src='https://ui-avatars.com/api/?name=Fabian+Molina&background=01195d&color=fff'">
         <div><div class="doc-role">Coordenador · Docente</div><div class="doc-name">Fabian Molina</div><p class="doc-desc">Gestão acadêmica e técnica do GAIA Eletroquad.</p></div>
       </div>
       <div class="docente-card">
-        <img src="vinicius.jpg" class="docente-avatar" alt="Vinícius Abrão" onerror="this.src='https://ui-avatars.com/api/?name=Vinicius+Abrao&background=0d4fa0&color=fff'">
+        <img src="vinicius.jpg" class="docente-avatar" alt="Vinícius Abrão" onerror="this.src='https://ui-avatars.com/api/?name=Vinicius+Abrao&background=01195d&color=fff'">
         <div><div class="doc-role">Orientador · Docente</div><div class="doc-name">Vinícius Abrão</div><p class="doc-desc">Co-fundador e impulsionador da robótica na UFTM.</p></div>
       </div>
     </div>
@@ -561,16 +561,16 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
 
   <h3 class="members-section-title">Membros Atuais</h3>
   <div class="members-grid">
-    <div class="member-card"><img src="carlos.jpg" class="ms-avatar" alt="Carlos Rodrigo" onerror="this.src='https://ui-avatars.com/api/?name=C+R&background=1a6fd4&color=fff'"><div class="ms-name">Carlos Rodrigo</div></div>
-    <div class="member-card"><img src="eloiza.jpg" class="ms-avatar" alt="Eloiza Lopes" onerror="this.src='https://ui-avatars.com/api/?name=E+L&background=1a6fd4&color=fff'"><div class="ms-name">Eloiza Lopes</div></div>
-    <div class="member-card"><img src="felipe.jpg" class="ms-avatar" alt="Felipe Henrique" onerror="this.src='https://ui-avatars.com/api/?name=F+H&background=1a6fd4&color=fff'"><div class="ms-name">Felipe Henrique</div></div>
-    <div class="member-card"><img src="azevedo.jpg" class="ms-avatar" alt="Gabriel Azevedo" onerror="this.src='https://ui-avatars.com/api/?name=G+A&background=1a6fd4&color=fff'"><div class="ms-name">Gabriel Azevedo</div></div>
-    <div class="member-card"><img src="maerbal.jpg" class="ms-avatar" alt="João Maerbal" onerror="this.src='https://ui-avatars.com/api/?name=J+M&background=1a6fd4&color=fff'"><div class="ms-name">João Maerbal</div></div>
-    <div class="member-card"><img src="paulo.jpg" class="ms-avatar" alt="João Paulo" onerror="this.src='https://ui-avatars.com/api/?name=J+P&background=1a6fd4&color=fff'"><div class="ms-name">João Paulo</div></div>
-    <div class="member-card"><img src="julia.jpg" class="ms-avatar" alt="Júlia Origuela" onerror="this.src='https://ui-avatars.com/api/?name=J+O&background=1a6fd4&color=fff'"><div class="ms-name">Júlia Origuela</div></div>
-    <div class="member-card"><img src="laura.jpg" class="ms-avatar" alt="Laura Castro" onerror="this.src='https://ui-avatars.com/api/?name=L+C&background=1a6fd4&color=fff'"><div class="ms-name">Laura Castro</div></div>
-    <div class="member-card"><img src="murilo.jpg" class="ms-avatar" alt="Murilo Pelegrini" onerror="this.src='https://ui-avatars.com/api/?name=M+P&background=1a6fd4&color=fff'"><div class="ms-name">Murilo Pelegrini</div></div>
-    <div class="member-card"><img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=P+H&background=1a6fd4&color=fff'"><div class="ms-name">Pedro Henrique</div></div>
+    <div class="member-card"><img src="carlos.jpg" class="ms-avatar" alt="Carlos Rodrigo" onerror="this.src='https://ui-avatars.com/api/?name=C+R&background=01195d&color=fff'"><div class="ms-name">Carlos Rodrigo</div></div>
+    <div class="member-card"><img src="eloiza.jpg" class="ms-avatar" alt="Eloiza Lopes" onerror="this.src='https://ui-avatars.com/api/?name=E+L&background=01195d&color=fff'"><div class="ms-name">Eloiza Lopes</div></div>
+    <div class="member-card"><img src="felipe.jpg" class="ms-avatar" alt="Felipe Henrique" onerror="this.src='https://ui-avatars.com/api/?name=F+H&background=01195d&color=fff'"><div class="ms-name">Felipe Henrique</div></div>
+    <div class="member-card"><img src="azevedo.jpg" class="ms-avatar" alt="Gabriel Azevedo" onerror="this.src='https://ui-avatars.com/api/?name=G+A&background=01195d&color=fff'"><div class="ms-name">Gabriel Azevedo</div></div>
+    <div class="member-card"><img src="maerbal.jpg" class="ms-avatar" alt="João Maerbal" onerror="this.src='https://ui-avatars.com/api/?name=J+M&background=01195d&color=fff'"><div class="ms-name">João Maerbal</div></div>
+    <div class="member-card"><img src="paulo.jpg" class="ms-avatar" alt="João Paulo" onerror="this.src='https://ui-avatars.com/api/?name=J+P&background=01195d&color=fff'"><div class="ms-name">João Paulo</div></div>
+    <div class="member-card"><img src="julia.jpg" class="ms-avatar" alt="Júlia Origuela" onerror="this.src='https://ui-avatars.com/api/?name=J+O&background=01195d&color=fff'"><div class="ms-name">Júlia Origuela</div></div>
+    <div class="member-card"><img src="laura.jpg" class="ms-avatar" alt="Laura Castro" onerror="this.src='https://ui-avatars.com/api/?name=L+C&background=01195d&color=fff'"><div class="ms-name">Laura Castro</div></div>
+    <div class="member-card"><img src="murilo.jpg" class="ms-avatar" alt="Murilo Pelegrini" onerror="this.src='https://ui-avatars.com/api/?name=M+P&background=01195d&color=fff'"><div class="ms-name">Murilo Pelegrini</div></div>
+    <div class="member-card"><img src="heron.jpg" class="ms-avatar" alt="Pedro Henrique" onerror="this.src='https://ui-avatars.com/api/?name=P+H&background=01195d&color=fff'"><div class="ms-name">Pedro Henrique</div></div>
   </div>
 
   <div style="background:var(--surface);border:1px solid var(--border);padding:2.5rem;text-align:center;margin-bottom:3rem;">
@@ -639,7 +639,7 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
 <div class="sec">
   <div class="sec-tag">// origem do nome</div>
   <h2 style="color:#fff;">Por que GAIA?</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.5);">O nome carrega um peso de ficção científica e propósito real.</p>
+  <p class="lead" style="color:rgba(255,255,255,0.47);">O nome carrega um peso de ficção científica e propósito real.</p>
   <div class="nome-grid">
     <div class="nome-card"><div class="nome-num">01</div><p>Inspirado na personagem dos jogos <strong>Horizon Zero Dawn</strong> e <strong>Horizon Forbidden West</strong>.</p></div>
     <div class="nome-card"><div class="nome-num">02</div><p>GAIA é a <strong>inteligência artificial</strong> responsável por supervisionar o lendário Projeto Zero Dawn.</p></div>
@@ -663,12 +663,11 @@ footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255
 </div>
 </section>
 
-<section style="background:linear-gradient(140deg,var(--blue-deep),#0a3575,#0e5aab);padding-top:5rem;" id="contato">
-<div style="position:absolute;width:100%;"></div>
+<section style="background:linear-gradient(140deg,#010e3a,#01195d,#022080);padding-top:5rem;" id="contato">
 <div class="sec" style="padding-top:2rem;">
   <div class="sec-tag">// fale com a gente</div>
   <h2 style="color:#fff;">Contato</h2>
-  <p class="lead" style="color:rgba(255,255,255,0.55);">Quer colaborar, participar ou levar robótica para a sua escola?</p>
+  <p class="lead" style="color:rgba(255,255,255,0.52);">Quer colaborar, participar ou levar robótica para a sua escola?</p>
   <div class="contato-wrapper">
     <div>
       <a href="https://forms.gle/ZCEZbn97UaExt7J58" target="_blank" class="ps-banner">
