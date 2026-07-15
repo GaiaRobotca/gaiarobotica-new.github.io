@@ -21,7 +21,10 @@
     --text:#e8effc;--muted:#9fb3d6;--border:#2a4a90;--surface:#0d2260;
   }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh;}
+  
+  /* CORREÇÃO DO SCROLL: Fundo de grade aplicado diretamente no body */
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; position: relative;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:46px 46px;pointer-events:none;z-index:-1;}
   
   /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,12,38,0.93);backdrop-filter:blur(20px);border-bottom:2px solid var(--green);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:64px;}
@@ -40,22 +43,8 @@
   .nav-ps:hover { background: var(--green-light); border-color: var(--green-light); color: #010e3a !important; transform: translateY(-2px); }
   .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer;}
 
-  /* TEXTURA DE CIRCUITO */
-  .circuit-bg{position:relative;overflow:hidden;}
-  .circuit-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:46px 46px;pointer-events:none;z-index:0;}
-
   /* ICON BADGES */
-  .icon-badge {
-    width: 44px; height: 44px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    color: var(--blue-light);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+  .icon-badge { width: 44px; height: 44px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; color: var(--blue-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
   .icon-badge svg { width: 22px; height: 22px; }
   .icon-badge.green { background: rgba(0, 168, 84, 0.08); border-color: rgba(0, 168, 84, 0.25); color: var(--green-light); }
   .icon-badge.lg { width: 52px; height: 52px; margin-bottom: 1rem; border-radius: 14px; }
@@ -70,7 +59,6 @@
   /* ===== LAYOUT CONTATO ===== */
   .contact-wrap { max-width: 1100px; margin: 2rem auto 4rem; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; flex: 1; position: relative; z-index: 1; }
 
-  /* Esquerda: Informações */
   .contact-info { display: flex; flex-direction: column; gap: 2rem; }
   .info-card { background: var(--surface); padding: 2.5rem 2rem; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: transform 0.2s; display: flex; flex-direction: column; align-items: flex-start; }
   .info-card:hover { transform: translateY(-3px); border-color: var(--blue-light); }
@@ -78,7 +66,6 @@
   .info-card p, .info-card a { color: var(--muted); font-size: 1.05rem; text-decoration: none; transition: color 0.2s; }
   .info-card a:hover { color: var(--green-light); }
 
-  /* Direita: Formulário */
   .contact-form-box { background: var(--surface); padding: 3rem; border-radius: 16px; border: 1px solid var(--border); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
   .contact-form-box h2 { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; color: #fff; text-transform: uppercase; margin-bottom: 2rem; }
   
@@ -118,7 +105,7 @@
   }
 </style>
 </head>
-<body class="circuit-bg">
+<body>
 
 <nav>
   <a href="index.html" class="nav-logo"><img src="favicon-verde.png" class="nav-icon" alt="GAIA" onerror="this.style.display='none'">EQUIPE <span class="g">GAIA</span></a>
