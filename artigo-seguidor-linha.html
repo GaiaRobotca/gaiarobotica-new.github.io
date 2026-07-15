@@ -3,179 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Robô Seguidor de Linha — GAIA Robótica</title>
+<title>Robô Seguidor de Linha — GAIA</title>
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
+<script>
+  (function() {
+    const icons = ['favicon-verde.png','favicon-azul.png','favicon-branco.png'];
+    document.getElementById('dynamic-favicon').setAttribute('href', icons[Math.floor(Math.random()*icons.length)]);
+  })();
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;--orange:#d4732a;--orange-dark:#a04a0d;--teal:#1ab5b5;--teal-dark:#0d6e6e;}
-  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
+:root{
+  --bg:#050f30;--white:#ffffff;
+  --blue:#01195d;--blue-light:#3d9bff;--blue-mid:#0d2e80;--blue-dark:#01195d;--blue-deep:#010e3a;
+  --green:#007a3f;--green-dark:#005a2e;--green-light:#00a854;
+  --text:#e8effc;--muted:#9fb3d6;--border:#2a4a90;--surface:#0d2260;
+  
+  /* Cores específicas para o Artigo (modo escuro de leitura) */
+  --art-bg: #071333;
+  --art-surface: #0a1b42;
+  --art-border: #1a3375;
+  --art-text: #dbe4f0;
+  --orange:#d4732a;
+}
+*{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
-  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
-  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
-  .nav-logo .g{color:var(--green);}
-  nav ul{list-style:none;display:flex;gap:1.8rem;}
-  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-  nav a:hover,nav a.active{color:var(--blue);}
-  .menu-toggle{display:none;background:none;border:none;font-size:1.8rem;color:var(--blue-dark);cursor:pointer;}
+/* NAV IDÊNTICO AO DA HOME */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,12,38,0.95);backdrop-filter:blur(20px);border-bottom:2px solid var(--green);display:flex;justify-content:space-between;align-items:center;padding:0 2rem;height:64px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:0.5rem;}
+.nav-icon{width:22px;height:22px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,0.25);}
+.nav-logo .g{color:var(--green-light);}
+nav ul{list-style:none;display:flex;gap:1rem;align-items:center;}
+nav a{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.7);text-decoration:none;text-transform:uppercase;transition:color 0.2s;}
+nav a:hover{color:#fff;}
 
-  /* HERO DO ARTIGO */
-  .article-hero{background:linear-gradient(140deg,#1a1a2e,#2d2d6e,#1a3a8a);padding:9rem 3rem 6rem;position:relative;overflow:hidden;}
-  .article-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
-  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
-  .breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
-  .breadcrumb a:hover{color:#fff;}
-  .breadcrumb span{opacity:0.4;}
-  .badge-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
-  .badge{font-family:'Space Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.35rem 0.85rem;border:1.5px solid;}
-  .badge-orange{background:var(--orange);border-color:var(--orange);color:#fff;}
-  .badge-outline{background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
-  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.92;margin-bottom:1.5rem;}
-  .article-hero h1 .g{color:var(--green);}
-  .hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.62);line-height:1.7;max-width:600px;}
-  .hero-meta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12);}
-  .meta-item{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;}
-  .meta-item strong{color:rgba(255,255,255,0.75);display:block;font-size:0.82rem;margin-bottom:0.1rem;}
+/* Botões Padronizados do Menu */
+.nav-btn { padding:0.4rem 0.9rem; border-radius: 4px; border: 1.5px solid transparent; font-size: 0.7rem; text-transform: uppercase; font-weight: 700; transition: all 0.3s; text-decoration: none; display: inline-block; }
+.nav-aprenda { background: #fff; color: var(--blue-dark) !important; border-color: #fff; }
+.nav-aprenda:hover { background: transparent; color: #fff !important; border-color: #fff; }
+.nav-patrocine { color: var(--green-light) !important; border-color: var(--green-light); }
+.nav-patrocine:hover { background: var(--green-light); color: #010e3a !important; }
+.nav-contato { color: var(--blue-light) !important; border-color: var(--blue-light); }
+.nav-contato:hover { background: var(--blue-light); color: #fff !important; }
+.nav-ps { background: var(--green); color: #fff !important; border: none; }
+.nav-ps:hover { background: var(--green-light); color: #010e3a !important; }
+.menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer;}
 
-  /* LAYOUT PRINCIPAL */
-  .article-layout{max-width:1100px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;}
+/* HERO DO ARTIGO */
+.article-hero{background:linear-gradient(135deg,#010e3a 0%,#01195d 40%,#022080 75%,#012d60 100%);padding:8rem 3rem 5rem;position:relative;overflow:hidden; z-index:1;}
+.article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:60px;background:var(--art-bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:2;}
+.breadcrumb{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
+.breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--green-light);}
+.breadcrumb span{opacity:0.4;}
+.badge-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.badge{font-family:'Space Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.35rem 0.85rem;border:1.5px solid; border-radius:4px;}
+.badge-orange{background:var(--orange);border-color:var(--orange);color:#fff;}
+.badge-outline{background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+.article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.92;margin-bottom:1.5rem;}
+.article-hero h1 .g{color:var(--green-light);}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.62);line-height:1.7;max-width:600px;}
+.hero-meta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12);}
+.meta-item{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;}
+.meta-item strong{color:rgba(255,255,255,0.75);display:block;font-size:0.82rem;margin-bottom:0.1rem;}
 
-  /* CONTEÚDO */
-  .article-content{}
-  .section-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
-  .section-label::before{content:'';width:20px;height:2px;background:var(--blue);}
-  h2.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;line-height:1;}
-  h3.sub-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--blue-dark);text-transform:uppercase;margin:2rem 0 1rem;}
-  p.body-text{font-size:0.97rem;line-height:1.78;color:var(--text);margin-bottom:1.25rem;}
-  p.body-text strong{color:var(--blue-dark);}
+/* LAYOUT PRINCIPAL DO ARTIGO */
+.article-bg-wrapper { background: var(--art-bg); position: relative; z-index: 1; flex: 1; }
+.article-layout{max-width:1100px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;}
 
-  .article-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--border);}
-  .article-section:last-child{border-bottom:none;}
+/* CONTEÚDO */
+.article-content{}
+.section-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue-light);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.section-label::before{content:'';width:20px;height:2px;background:var(--blue-light);}
+h2.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:1.5rem;line-height:1;}
+h3.sub-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;text-transform:uppercase;margin:2rem 0 1rem;}
+p.body-text{font-size:0.97rem;line-height:1.78;color:var(--art-text);margin-bottom:1.25rem;}
+p.body-text strong{color:#fff;}
 
-  /* CALLOUT BOXES */
-  .callout{border-left:4px solid var(--blue);background:var(--surface);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 4px 4px 0;}
-  .callout.green{border-color:var(--green);background:rgba(92,184,46,0.07);}
-  .callout.orange{border-color:var(--orange);background:rgba(212,115,42,0.07);}
-  .callout.dark{border-color:var(--blue-deep);background:rgba(7,31,74,0.06);}
-  .callout-label{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);font-weight:700;margin-bottom:0.4rem;}
-  .callout.green .callout-label{color:var(--green-dark);}
-  .callout.orange .callout-label{color:var(--orange-dark);}
-  .callout p{font-size:0.9rem;line-height:1.65;color:var(--text);margin:0;}
+.article-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--art-border);}
+.article-section:last-child{border-bottom:none;}
 
-  /* CODE BLOCK */
-  .code-wrap{background:#0d1b2a;border:2px solid rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;margin:1.5rem 0;}
-  .code-header{background:#07101a;padding:0.65rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.07);}
-  .code-lang{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green);text-transform:uppercase;letter-spacing:0.12em;}
-  .code-fname{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.3);}
-  pre{padding:1.5rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.78rem;line-height:1.75;color:#a8d4ff;}
-  .kw{color:#7ec8e3;}
-  .fn{color:#ffe566;}
-  .cm{color:#4a7a6a;font-style:italic;}
-  .st{color:#a8ff8a;}
-  .nm{color:#ffa07a;}
-  .pp{color:#c084fc;}
+/* CALLOUT BOXES */
+.callout{border-left:4px solid var(--blue-light);background:var(--art-surface);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 4px 4px 0;}
+.callout.green{border-color:var(--green-light);background:rgba(0, 168, 84, 0.08);}
+.callout.orange{border-color:var(--orange);background:rgba(212,115,42,0.08);}
+.callout.dark{border-color:var(--blue-light);background:rgba(13, 34, 96, 0.5);}
+.callout-label{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue-light);font-weight:700;margin-bottom:0.4rem;}
+.callout.green .callout-label{color:var(--green-light);}
+.callout.orange .callout-label{color:var(--orange);}
+.callout p{font-size:0.9rem;line-height:1.65;color:var(--art-text);margin:0;}
 
-  /* COMPONENTS / PARTS TABLE */
-  .parts-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
-  .parts-table th{background:var(--blue-deep);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.75rem 1rem;text-align:left;font-size:0.95rem;}
-  .parts-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
-  .parts-table tr:nth-child(even) td{background:var(--surface);}
-  .parts-table tr:hover td{background:var(--border);}
-  .parts-table td:last-child{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--blue-dark);font-weight:700;}
-  .total-row td{background:var(--blue-deep) !important;color:#fff !important;font-weight:700;}
-  .total-row td:last-child{color:var(--green) !important;}
+/* CODE BLOCK */
+.code-wrap{background:#010a26;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin:1.5rem 0;}
+.code-header{background:#02113b;padding:0.65rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
+.code-lang{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-light);text-transform:uppercase;letter-spacing:0.12em;}
+.code-fname{font-family:'Space Mono',monospace;font-size:0.6rem;color:rgba(255,255,255,0.5);}
+pre{padding:1.5rem;overflow-x:auto;font-family:'Space Mono',monospace;font-size:0.78rem;line-height:1.75;color:#a8d4ff;}
+.kw{color:#7ec8e3;}
+.fn{color:#ffe566;}
+.cm{color:#4a7a6a;font-style:italic;}
+.st{color:#a8ff8a;}
+.nm{color:#ffa07a;}
 
-  /* STEPS */
-  .steps-list{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
-  .step-item{display:flex;gap:1.25rem;align-items:flex-start;}
-  .step-num{min-width:2.2rem;height:2.2rem;background:var(--blue-dark);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .step-content{}
-  .step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.35rem;}
-  .step-text{font-size:0.9rem;line-height:1.65;color:var(--muted);}
+/* COMPONENTS / PARTS TABLE */
+.parts-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
+.parts-table th{background:var(--blue-dark);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.75rem 1rem;text-align:left;}
+.parts-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--art-border);color:var(--art-text);}
+.parts-table tr:nth-child(even) td{background:var(--art-surface);}
+.parts-table tr:hover td{background:rgba(255,255,255,0.05);}
+.parts-table td:last-child{font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--blue-light);font-weight:700;}
+.total-row td{background:var(--blue-dark) !important;color:#fff !important;font-weight:700;}
+.total-row td:last-child{color:var(--green-light) !important;}
 
-  /* DIAGRAM SCHEMATIC */
-  .schematic-box{background:var(--blue-deep);border:2px solid rgba(255,255,255,0.08);padding:2rem;margin:1.5rem 0;position:relative;overflow:hidden;}
-  .schematic-box::before{content:'ESQUEMA ELETRÔNICO';position:absolute;top:0.6rem;left:1rem;font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.25);letter-spacing:0.15em;}
-  .schematic-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;}
-  .sch-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:1rem;text-align:center;}
-  .sch-emoji{font-size:1.8rem;display:block;margin-bottom:0.5rem;}
-  .sch-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;margin-bottom:0.4rem;}
-  .sch-pins{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);line-height:1.6;}
-  .sch-arrow{display:flex;align-items:center;justify-content:center;color:var(--green);font-size:1.5rem;font-weight:900;}
-  .sch-full{grid-column:1/-1;background:rgba(92,184,46,0.08);border-color:rgba(92,184,46,0.2);}
-  .sch-full .sch-pins{color:rgba(255,255,255,0.6);}
+/* STEPS */
+.steps-list{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
+.step-item{display:flex;gap:1.25rem;align-items:flex-start;}
+.step-num{min-width:2.2rem;height:2.2rem;background:var(--blue-light);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0; border-radius:4px;}
+.step-content{}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;text-transform:uppercase;margin-bottom:0.35rem;}
+.step-text{font-size:0.9rem;line-height:1.65;color:var(--muted);}
 
-  /* PID DIAGRAM */
-  .pid-diagram{background:var(--blue-deep);padding:2rem;margin:1.5rem 0;overflow-x:auto;}
-  .pid-flow{display:flex;align-items:center;gap:0.5rem;min-width:600px;}
-  .pid-block{background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.15);padding:0.75rem 1.25rem;text-align:center;flex:1;}
-  .pid-block.highlight{background:rgba(26,111,212,0.3);border-color:var(--blue-light);}
-  .pid-block.green{background:rgba(92,184,46,0.2);border-color:var(--green);}
-  .pid-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;}
-  .pid-sub{font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;}
-  .pid-arrow{color:rgba(255,255,255,0.4);font-size:1.2rem;flex-shrink:0;}
+/* SCHEMATIC BLOCK */
+.schematic-box{background:var(--art-surface);border:1px solid var(--art-border);padding:2rem;margin:1.5rem 0;position:relative;border-radius:4px;}
+.schematic-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;}
+.sch-block{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.1);padding:1rem;text-align:center; border-radius:4px;}
+.sch-emoji{font-size:1.8rem;display:block;margin-bottom:0.5rem;}
+.sch-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;margin-bottom:0.4rem;}
+.sch-pins{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+.sch-arrow{display:flex;align-items:center;justify-content:center;color:var(--green-light);font-size:1.5rem;font-weight:900;}
 
-  /* TIPS GRID */
-  .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
-  .tip-card{border:2px solid var(--border);padding:1.25rem;background:var(--white);}
-  .tip-card.good{border-color:var(--green);background:rgba(92,184,46,0.05);}
-  .tip-card.bad{border-color:#e05252;background:rgba(224,82,82,0.05);}
-  .tip-header{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;}
-  .tip-card.good .tip-header{color:var(--green-dark);}
-  .tip-card.bad .tip-header{color:#c04040;}
-  .tip-text{font-size:0.88rem;line-height:1.6;color:var(--muted);}
+/* PID DIAGRAM */
+.pid-diagram{background:var(--art-surface);border:1px solid var(--art-border);padding:2rem;margin:1.5rem 0;overflow-x:auto; border-radius:4px;}
+.pid-flow{display:flex;align-items:center;gap:0.5rem;min-width:600px;}
+.pid-block{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);padding:0.75rem 1.25rem;text-align:center;flex:1; border-radius:4px;}
+.pid-block.highlight{background:rgba(61, 155, 255, 0.15);border-color:var(--blue-light);}
+.pid-block.green{background:rgba(0, 168, 84, 0.15);border-color:var(--green-light);}
+.pid-label{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.9rem;color:#fff;text-transform:uppercase;}
+.pid-sub{font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.2rem;}
+.pid-arrow{color:rgba(255,255,255,0.4);font-size:1.2rem;flex-shrink:0;}
 
-  /* SIDEBAR */
-  .article-sidebar{position:sticky;top:90px;}
-  .sidebar-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;margin-bottom:1.5rem;}
-  .sidebar-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:2px solid var(--border);}
-  .toc-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
-  .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.5rem;transition:all 0.2s;border-left:2px solid transparent;}
-  .toc-list a:hover{color:var(--blue);border-left-color:var(--blue);background:var(--surface);}
-  .toc-num{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue);min-width:1.2rem;}
-  .sidebar-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;padding:0.25rem 0.6rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);margin:0.2rem 0.2rem 0.2rem 0;}
-  .related-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0;border-bottom:1px solid var(--border);text-decoration:none;}
-  .related-item:last-child{border-bottom:none;}
-  .ri-emoji{font-size:1.4rem;min-width:2rem;text-align:center;}
-  .ri-title{font-size:0.82rem;font-weight:600;color:var(--blue-dark);}
-  .ri-cat{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--muted);text-transform:uppercase;}
-  .related-item:hover .ri-title{color:var(--blue);}
+/* TIPS GRID */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.tip-card{border:1px solid var(--art-border);padding:1.25rem;background:var(--art-surface); border-radius:4px;}
+.tip-card.good{border-color:var(--green-light);background:rgba(0, 168, 84, 0.05);}
+.tip-card.bad{border-color:#e05252;background:rgba(224,82,82,0.05);}
+.tip-header{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;}
+.tip-card.good .tip-header{color:var(--green-light);}
+.tip-card.bad .tip-header{color:#e05252;}
+.tip-text{font-size:0.88rem;line-height:1.6;color:var(--art-text);}
 
-  /* PROGRESS BAR */
-  .reading-progress{position:fixed;top:68px;left:0;right:0;height:3px;background:transparent;z-index:99;}
-  .rp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue-light));width:0%;transition:width 0.1s;}
+/* SIDEBAR */
+.article-sidebar{position:sticky;top:90px;}
+.sidebar-card{background:var(--art-surface);border:1px solid var(--art-border);padding:1.5rem;margin-bottom:1.5rem; border-radius:4px;}
+.sidebar-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#fff;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--art-border);}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.5rem;transition:all 0.2s;border-left:2px solid transparent;}
+.toc-list a:hover{color:var(--blue-light);border-left-color:var(--blue-light);background:rgba(255,255,255,0.02);}
+.toc-num{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue-light);min-width:1.2rem;}
+.sidebar-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;padding:0.25rem 0.6rem;background:rgba(255,255,255,0.05);border:1px solid var(--art-border);color:var(--blue-light);margin:0.2rem 0.2rem 0.2rem 0; border-radius:2px;}
+.related-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0;border-bottom:1px solid var(--art-border);text-decoration:none;}
+.related-item:last-child{border-bottom:none;}
+.ri-emoji{font-size:1.4rem;min-width:2rem;text-align:center;}
+.ri-title{font-size:0.82rem;font-weight:600;color:#fff;}
+.ri-cat{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--muted);text-transform:uppercase;}
+.related-item:hover .ri-title{color:var(--blue-light);}
 
-  /* FOOTER */
-  footer{background:#020817;padding:5rem 3rem 3rem;color:#fff;margin-top:auto;}
-  .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;}
-  .footer-col h4{color:var(--green);margin-bottom:1.5rem;text-transform:uppercase;}
-  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.8rem;}
-  .footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
-  .footer-links a:hover{color:#fff;}
-  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
-  .fl span{color:var(--green);}
+/* PROGRESS BAR */
+.reading-progress{position:fixed;top:64px;left:0;right:0;height:3px;background:transparent;z-index:99;}
+.rp-fill{height:100%;background:linear-gradient(90deg,var(--green-light),var(--blue-light));width:0%;transition:width 0.1s;}
 
-  /* RESPONSIVE */
-  @media(max-width:1050px){
-    .menu-toggle{display:block;}
-    nav ul{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);padding:2rem;border-bottom:2px solid var(--border);box-shadow:0 10px 20px rgba(0,0,0,0.1);text-align:center;}
-    nav ul.active{display:flex;}
-    nav{padding:0 1.5rem;}
-    .article-layout{grid-template-columns:1fr;gap:2rem;}
-    .article-sidebar{position:static;}
-    .footer-grid{grid-template-columns:1fr;text-align:center;}
-    .schematic-inner{grid-template-columns:1fr 1fr;}
-    .tips-grid{grid-template-columns:1fr;}
-  }
-  @media(max-width:600px){
-    .article-layout{padding:3rem 1.5rem;}
-    .schematic-inner{grid-template-columns:1fr;}
-    .sch-arrow{display:none;}
-  }
+/* FOOTER */
+footer{background:#010b2e;padding:2.25rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:2px solid var(--green); z-index:2; position:relative;}
+.fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.25rem;color:#fff;letter-spacing:0.08em;display:flex;align-items:center;}
+.fl span{color:var(--green-light);}
+.footer-icon{width:22px;height:22px;border-radius:50%;object-fit:cover;margin-right:0.6rem;border:1px solid rgba(255,255,255,0.25);}
+footer p{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.22);}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--green-light);}
+
+/* RESPONSIVE */
+@media(max-width:1050px){
+  .menu-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--blue-deep);padding:2rem;text-align:center;}
+  nav ul.active{display:flex; gap:1rem;}
+  nav{padding:0 1.5rem;}
+  .article-layout{grid-template-columns:1fr;gap:2rem;}
+  .article-sidebar{position:static;}
+  .schematic-inner{grid-template-columns:1fr 1fr;}
+  .tips-grid{grid-template-columns:1fr;}
+  footer { flex-direction: column; text-align: center; }
+}
+@media(max-width:600px){
+  .article-layout{padding:3rem 1.5rem;}
+  .schematic-inner{grid-template-columns:1fr;}
+  .sch-arrow{display:none;}
+}
 </style>
 </head>
 <body>
@@ -183,17 +209,15 @@
 <div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
 
 <nav>
-  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <a href="index.html" class="nav-logo"><img src="favicon-verde.png" class="nav-icon" alt="GAIA" onerror="this.style.display='none'">GAIA</a>
   <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
-    <li><a href="index.html#eletroquad">Eletroquad</a></li>
     <li><a href="index.html#robotica">Robótica</a></li>
-    <li><a href="index.html#conquistas">Conquistas</a></li>
-    <li><a href="aprenda.html" class="active">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
-    <li><a href="index.html#equipe">Equipe</a></li>
-    <li><a href="contato.html">Contato</a></li>
+    <li><a href="aprenda.html" class="nav-btn nav-aprenda">Aprenda</a></li>
+    <li><a href="patrocine.html" class="nav-btn nav-patrocine">Patrocine</a></li>
+    <li><a href="contato.html" class="nav-btn nav-contato">Contato</a></li>
+    <li><a href="https://forms.gle/ZCEZbn97UaExt7J58" target="_blank" class="nav-btn nav-ps">PS 2026</a></li>
   </ul>
 </nav>
 
@@ -210,7 +234,7 @@
       <span class="badge badge-orange">Robótica</span>
       <span class="badge badge-outline">Intermediário</span>
       <span class="badge badge-outline">⏱ 15 min leitura</span>
-      <span class="badge badge-outline">🏁 Trainee 2026.1</span>
+      <span class="badge badge-outline" style="border-color:var(--green-light); color:var(--green-light);">🏁 Trainee 2026.1</span>
     </div>
     <h1>🤖 ROBÔ <span class="g">SEGUIDOR</span><br>DE LINHA</h1>
     <p class="hero-sub">Do zero ao relatório: tudo que você precisa saber para montar, programar e documentar seu seguidor de linha no Desafio de Nivelamento.</p>
@@ -222,6 +246,7 @@
   </div>
 </div>
 
+<div class="article-bg-wrapper">
 <div class="article-layout">
 
   <!-- CONTEÚDO PRINCIPAL -->
@@ -345,10 +370,6 @@
             <div class="sch-name">Sensor IR Dir.</div>
             <div class="sch-pins">VCC → 5V Arduino<br>GND → GND<br>OUT → Pin A1 (ou D3)</div>
           </div>
-          <div class="sch-block sch-full">
-            <div class="sch-name">⚠️ Atenção: GND Comum</div>
-            <div class="sch-pins">O GND da bateria, do L298N e do Arduino DEVEM estar todos conectados no mesmo ponto (GND comum). Sem isso, o circuito não funciona.</div>
-          </div>
         </div>
       </div>
 
@@ -366,7 +387,7 @@
       <h3 class="sub-title">Configuração de acionamento: diferencial</h3>
       <p class="body-text">A configuração mais simples — e recomendada — é a <strong>acionamento diferencial</strong>: dois motores nas laterais traseiras + uma roda boba na frente. Para virar, basta aplicar velocidades diferentes nos dois motores.</p>
 
-      <div class="callout">
+      <div class="callout dark">
         <div class="callout-label">📐 Altura dos sensores</div>
         <p>Mantenha os sensores IR entre <strong>3mm e 10mm</strong> do chão. Muito alto → leitura imprecisa. Muito baixo → pode raspar na pista. Sensor na linha central entre as rodas funciona bem como ponto de partida.</p>
       </div>
@@ -527,11 +548,6 @@
   <span class="fn">moverMotores</span>(vel_esq, vel_dir);
 }</pre>
       </div>
-
-      <div class="callout dark">
-        <div class="callout-label">🚀 Diferencial no relatório</div>
-        <p>Para pontuação extra em <strong>Criatividade e Resolução de Problemas</strong>, implemente ou ao menos descreva um controlador PID completo. Explique o que é a parcela integrativa (I) e derivativa (D) — o artigo sobre <a href="artigo-pid.html" style="color:var(--blue);">Controle PID</a> aqui no site cobre isso em detalhe.</p>
-      </div>
     </div>
 
     <!-- 6. GESTÃO -->
@@ -567,14 +583,9 @@
           <div class="step-num">D4</div>
           <div class="step-content">
             <div class="step-title">Revisão final e envio (05/10)</div>
-            <div class="step-text">Revisar formatação, capa com nomes/RA, exportar PDF. Enviar para gaia.robotica.uftm@gmail.com <strong>antes das 23h59</strong>.</div>
+            <div class="step-text">Revisar formatação, capa com nomes/RA, exportar PDF. Enviar para a equipe avaliadora antes do fim do dia.</div>
           </div>
         </div>
-      </div>
-
-      <div class="callout orange">
-        <div class="callout-label">⚠️ Atenção ao prazo</div>
-        <p>O não envio dentro do prazo implica <strong>desclassificação</strong>. Não deixem para a última hora. Enviem uma versão "boa o suficiente" às 22h e melhorem até 23h30 se necessário.</p>
       </div>
     </div>
 
@@ -610,7 +621,7 @@
           <div class="step-num">✓</div>
           <div class="step-content">
             <div class="step-title">Conclusão</div>
-            <div class="step-text">Código comentado completo, prints/gifs da simulação funcionando, propostas de melhoria (ex.: adicionar PID completo, mais sensores, Bluetooth para tuning remoto). Se houver artistas no grupo: protótipos visuais do robô.</div>
+            <div class="step-text">Código comentado completo, prints/gifs da simulação funcionando, propostas de melhoria.</div>
           </div>
         </div>
       </div>
@@ -619,19 +630,11 @@
       <div class="tips-grid">
         <div class="tip-card good">
           <div class="tip-header">✅ Faça</div>
-          <p class="tip-text">Explique o porquê de cada decisão. "Escolhemos o L298N pois suporta até 2A por canal, suficiente para os motores utilizados."</p>
+          <p class="tip-text">Explique o porquê de cada decisão. "Escolhemos o L298N pois suporta até 2A por canal, suficiente para os motores."</p>
         </div>
         <div class="tip-card bad">
           <div class="tip-header">❌ Evite</div>
-          <p class="tip-text">Descrições genéricas sem justificativa. "Usamos o L298N porque é um componente comum em projetos de robótica."</p>
-        </div>
-        <div class="tip-card good">
-          <div class="tip-header">✅ Faça</div>
-          <p class="tip-text">Documente os problemas reais que tiveram. "O sensor direito retornava ruído excessivo — adicionamos um capacitor de 100nF para filtrar."</p>
-        </div>
-        <div class="tip-card bad">
-          <div class="tip-header">❌ Evite</div>
-          <p class="tip-text">Fingir que tudo correu perfeito. Avaliadores sabem que projetos sempre têm problemas. Honestidade técnica é um diferencial.</p>
+          <p class="tip-text">Descrições genéricas sem justificativa. "Usamos o L298N porque é um componente comum."</p>
         </div>
       </div>
     </div>
@@ -640,17 +643,14 @@
     <div class="article-section" id="proximos">
       <div class="section-label">08 — Indo além</div>
       <h2 class="sec-title">Melhorias e próximos passos</h2>
-      <p class="body-text">Se você quer se destacar — ou simplesmente tem curiosidade — aqui estão ideias de melhorias que podem ser descritas na seção de conclusão do relatório:</p>
+      <p class="body-text">Se você quer se destacar, aqui estão ideias de melhorias que podem ser descritas na seção de conclusão do relatório:</p>
 
       <div class="callout green">
         <div class="callout-label">🚀 Ideias de melhoria</div>
         <p><strong>+ Sensores:</strong> Usar 5 sensores em vez de 2 aumenta muito a precisão da detecção.<br><br>
-        <strong>PID completo:</strong> Implementar as parcelas I e D para eliminar o oscilação no Bang-Bang.<br><br>
-        <strong>Bluetooth:</strong> Adicionar módulo HC-05 para ajustar Kp/Ki/Kd via serial sem precisar regravar o firmware.<br><br>
-        <strong>Sensor de fim de pista:</strong> Detector de quando não há mais linha (robô saiu da pista) para parar os motores automaticamente.</p>
+        <strong>PID completo:</strong> Implementar as parcelas I e D para eliminar a oscilação.<br><br>
+        <strong>Bluetooth:</strong> Adicionar módulo HC-05 para ajustar os parâmetros via celular.</p>
       </div>
-
-      <p class="body-text">Para aprofundar nos conceitos técnicos, leia os outros artigos da GAIA — especialmente o de <strong>Controle PID</strong> e <strong>Arduino e Hardware</strong>, que complementam direto o que foi visto aqui.</p>
     </div>
 
   </main>
@@ -678,56 +678,20 @@
       <span class="sidebar-tag">Sensores IR</span>
       <span class="sidebar-tag">Ponte H</span>
       <span class="sidebar-tag">PWM</span>
-      <span class="sidebar-tag">Controle P</span>
-      <span class="sidebar-tag">CAD</span>
-      <span class="sidebar-tag">Trainee</span>
-    </div>
-
-    <div class="sidebar-card">
-      <h4>Posts Relacionados</h4>
-      <a href="artigo-arduino.html" class="related-item">
-        <span class="ri-emoji">⚡</span>
-        <div><div class="ri-title">Arduino e Hardware</div><div class="ri-cat">Hardware</div></div>
-      </a>
-      <a href="artigo-pid.html" class="related-item">
-        <span class="ri-emoji">🤖</span>
-        <div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div>
-      </a>
-      <a href="artigo-ia.html" class="related-item">
-        <span class="ri-emoji">🧠</span>
-        <div><div class="ri-title">Inteligência Artificial</div><div class="ri-cat">IA</div></div>
-      </a>
-    </div>
-
-    <div class="sidebar-card" style="background:var(--blue-deep);border-color:rgba(255,255,255,0.1);">
-      <h4 style="color:var(--green);border-color:rgba(255,255,255,0.1);">📬 Prazo</h4>
-      <p style="font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.6;">Envio do relatório até<br><strong style="color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;">17/04/2026 · 23h59</strong></p>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:0.75rem;font-family:'Space Mono',monospace;">gaia.robotica.uftm@gmail.com</p>
     </div>
   </aside>
 
 </div>
+</div>
 
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <span class="fl">GAIA <span>ROBÓTICA</span></span>
-      <p style="margin-top:1rem;color:rgba(255,255,255,0.6);font-size:0.9rem;">Desenvolvendo tecnologias autônomas na UFTM.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navegação</h4>
-      <ul class="footer-links">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="aprenda.html">Aprenda</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Social</h4>
-      <ul class="footer-links">
-        <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
-        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
-      </ul>
-    </div>
+  <div class="fl"><img src="favicon-verde.png" class="footer-icon" alt="" onerror="this.style.display='none'">EQUIPE <span>GAIA</span></div>
+  <p>UFTM · Uberaba, MG · Fundado em 2023</p>
+  <div class="footer-links">
+    <a href="index.html#conquistas">Conquistas</a>
+    <a href="aprenda.html">Aprenda</a>
+    <a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a>
+    <a href="https://github.com/gaiarobotica" target="_blank">GitHub</a>
   </div>
 </footer>
 
@@ -750,7 +714,7 @@ if(menuToggle && navMenu) {
   });
 }
 
-// Highlight ativo no TOC com IntersectionObserver
+// Highlight ativo no TOC
 const sections = document.querySelectorAll('.article-section[id]');
 const tocLinks = document.querySelectorAll('.toc-list a');
 const observer = new IntersectionObserver(entries => {
@@ -758,7 +722,7 @@ const observer = new IntersectionObserver(entries => {
     if(entry.isIntersecting) {
       tocLinks.forEach(a => a.style.color = '');
       const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
-      if(active) { active.style.color = 'var(--blue)'; active.style.borderLeftColor = 'var(--blue)'; }
+      if(active) { active.style.color = 'var(--blue-light)'; active.style.borderLeftColor = 'var(--blue-light)'; }
     }
   });
 }, { rootMargin: '-30% 0px -60% 0px' });
