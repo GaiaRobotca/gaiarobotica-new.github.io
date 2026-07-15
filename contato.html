@@ -22,7 +22,7 @@
   }
   *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
   
-  /* CORREÇÃO DO SCROLL: Fundo de grade aplicado diretamente no body */
+  /* CORREÇÃO DO SCROLL: Fundo de grade aplicado diretamente no body e sem overflow-y hidden */
   body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden; display: flex; flex-direction: column; min-height: 100vh; position: relative;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:46px 46px;pointer-events:none;z-index:-1;}
   
