@@ -4,16 +4,121 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guia de Solda para Iniciantes — GAIA Robótica</title>
-
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
-<script>
-  (function() {
-    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
-    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
-  })();
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;--orange:#d4732a;--orange-dark:#a04a0d;--teal:#1ab5b5;--teal-dark:#0d6e6e;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;}
 
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
+  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
+  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+  .nav-logo .g{color:var(--green);}
+  nav ul{list-style:none;display:flex;gap:1.8rem;}
+  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+  nav a:hover,nav a.active{color:var(--blue);}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.8rem;color:var(--blue-dark);cursor:pointer;}
+
+  /* HERO DO ARTIGO */
+  .article-hero{background:linear-gradient(140deg,#1a1a2e,#2d2d6e,#1a3a8a);padding:9rem 3rem 6rem;position:relative;overflow:hidden;}
+  .article-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
+  .breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
+  .breadcrumb a:hover{color:#fff;}
+  .breadcrumb span{opacity:0.4;}
+  .badge-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .badge{font-family:'Space Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.35rem 0.85rem;border:1.5px solid;}
+  .badge-orange{background:var(--teal-dark);border-color:var(--teal-dark);color:#fff;}
+  .badge-outline{background:transparent;border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.92;margin-bottom:1.5rem;}
+  .article-hero h1 .g{color:var(--green);}
+  .hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.62);line-height:1.7;max-width:600px;}
+  .hero-meta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12);}
+  .meta-item{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;}
+  .meta-item strong{color:rgba(255,255,255,0.75);display:block;font-size:0.82rem;margin-bottom:0.1rem;}
+
+  /* LAYOUT PRINCIPAL */
+  .article-layout{max-width:1100px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;}
+
+  /* CONTEÚDO */
+  .section-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+  .section-label::before{content:'';width:20px;height:2px;background:var(--blue);}
+  h2.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin-bottom:1.5rem;line-height:1;}
+  p.body-text{font-size:0.97rem;line-height:1.78;color:var(--text);margin-bottom:1.25rem;}
+  p.body-text strong{color:var(--blue-dark);}
+
+  .article-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:2px solid var(--border);}
+  .article-section:last-child{border-bottom:none;}
+  .inline-img { width: 100%; height: auto; border-radius: 8px; margin: 2rem 0 0.5rem 0; border: 2px solid var(--border); object-fit: cover; }
+  .img-caption { text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
+
+  /* CALLOUT BOXES */
+  .callout{border-left:4px solid var(--blue);background:var(--surface);padding:1.25rem 1.5rem;margin:1.5rem 0;border-radius:0 4px 4px 0;}
+  .callout.green{border-color:var(--green);background:rgba(92,184,46,0.07);}
+  .callout-label{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);font-weight:700;margin-bottom:0.4rem;}
+  .callout p{font-size:0.9rem;line-height:1.65;color:var(--text);margin:0;}
+
+  /* TABLE */
+  .parts-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.88rem;}
+  .parts-table th{background:var(--blue-deep);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:0.75rem 1rem;text-align:left;font-size:0.95rem;}
+  .parts-table td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);color:var(--text);}
+  .parts-table tr:nth-child(even) td{background:var(--surface);}
+
+  /* STEPS */
+  .steps-list{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
+  .step-item{display:flex;gap:1.25rem;align-items:flex-start;}
+  .step-num{min-width:2.2rem;height:2.2rem;background:var(--blue-dark);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--blue-dark);text-transform:uppercase;margin-bottom:0.35rem;}
+  .step-text{font-size:0.9rem;line-height:1.65;color:var(--muted);}
+
+  /* TIPS GRID */
+  .tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+  .tip-card{border:2px solid var(--border);padding:1.25rem;background:var(--white);}
+  .tip-card.good{border-color:var(--green);background:rgba(92,184,46,0.05);}
+  .tip-card.bad{border-color:#e05252;background:rgba(224,82,82,0.05);}
+  .tip-header{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.6rem;}
+  .tip-card.good .tip-header{color:var(--green-dark);}
+  .tip-card.bad .tip-header{color:#c04040;}
+  .tip-text{font-size:0.88rem;line-height:1.6;color:var(--muted);}
+
+  /* SIDEBAR */
+  .article-sidebar{position:sticky;top:90px;}
+  .sidebar-card{background:var(--white);border:2px solid var(--border);padding:1.5rem;margin-bottom:1.5rem;}
+  .sidebar-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:var(--blue-dark);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:2px solid var(--border);}
+  .toc-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+  .toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.5rem;transition:all 0.2s;border-left:2px solid transparent;}
+  .toc-list a:hover{color:var(--blue);border-left-color:var(--blue);background:var(--surface);}
+  .toc-num{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--blue);min-width:1.2rem;}
+  .sidebar-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;padding:0.25rem 0.6rem;background:var(--surface);border:1px solid var(--border);color:var(--blue);margin:0.2rem 0.2rem 0.2rem 0;}
+  
+  .reading-progress{position:fixed;top:68px;left:0;right:0;height:3px;background:transparent;z-index:99;}
+  .rp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue-light));width:0%;transition:width 0.1s;}
+
+  /* FOOTER */
+  footer{background:#020817;padding:5rem 3rem 3rem;color:#fff;margin-top:auto;}
+  .footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;}
+  .footer-col h4{color:var(--green);margin-bottom:1.5rem;text-transform:uppercase;}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:0.8rem;}
+  .footer-links a{color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+  .footer-links a:hover{color:#fff;}
+  .fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;letter-spacing:0.08em;}
+  .fl span{color:var(--green);}
+
+  @media(max-width:1050px){
+    .menu-toggle{display:block;}
+    nav ul{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);padding:2rem;border-bottom:2px solid var(--border);box-shadow:0 10px 20px rgba(0,0,0,0.1);text-align:center;}
+    nav ul.active{display:flex;}
+    nav{padding:0 1.5rem;}
+    .article-layout{grid-template-columns:1fr;gap:2rem;}
+    .article-sidebar{position:static;}
+    .footer-grid{grid-template-columns:1fr;text-align:center;}
+    .tips-grid{grid-template-columns:1fr;}
+  }
+</style>
 <script>
   function handleImageError(img) {
     if (img.dataset.retried) return;
@@ -26,81 +131,10 @@
     else if (currentSrc.endsWith('.gif')) img.src = currentSrc.replace('.gif', '.GIF');
   }
 </script>
-
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
-  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
-  
-  /* ===== NAV (ATUALIZADA) ===== */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
-  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
-  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
-  .nav-logo .g{color:var(--green);}
-  nav ul{list-style:none;display:flex;gap:1.8rem;}
-  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-  nav a:hover{color:var(--blue);}
-
-  /* ===== HERO ===== */
-  .article-hero{background:linear-gradient(140deg,#0a0a1a,var(--blue-deep),var(--blue-mid));padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
-  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
-  .breadcrumb a{color:inherit;text-decoration:none;}
-  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
-
-  /* ===== LAYOUT DE DUAS COLUNAS ===== */
-  .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
-  .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
-
-  /* Sidebar de Posts Recentes */
-  .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
-  .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
-  .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
-  .post-recente-item:hover { transform: translateX(5px); }
-  .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
-  .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
-
-  /* Estilos do Conteúdo e Imagens Integradas */
-  .inline-img { width: 100%; height: auto; max-height: 450px; border-radius: 8px; margin: 2rem 0 0.5rem 0; border: 2px solid var(--border); object-fit: cover; display: block; box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
-  .img-caption { text-align: center; font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem; }
-  
-  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
-  .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
-  .article-content ul, .article-content ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
-  .article-content li { margin-bottom: 0.5rem; line-height: 1.6; }
-  blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
-
-  /* Rodapé e CTA */
-  .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
-  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); }
-  
-  footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
-  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
-  .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.95rem; }
-  .fl { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.3rem; color:#fff; letter-spacing:0.08em; }
-  .fl span { color:var(--green); }
-
-  /* ===== RESPONSIVO MENU TELEMÓVEL ===== */
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
-
-  @media(max-width: 1050px) {
-    .container-leitura { grid-template-columns: 1fr; }
-    .sidebar-posts { margin-top: 4rem; position: static; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .menu-toggle { display: block; }
-    nav ul { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); padding: 2rem; border-bottom: 2px solid var(--border); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); text-align: center; }
-    nav ul.active { display: flex; }
-    nav { padding: 0 1.5rem; }
-  }
-</style>
 </head>
 <body>
+
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
 
 <nav>
   <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
@@ -110,7 +144,7 @@
     <li><a href="index.html#eletroquad">Eletroquad</a></li>
     <li><a href="index.html#robotica">Robótica</a></li>
     <li><a href="index.html#conquistas">Conquistas</a></li>
-    <li><a href="aprenda.html">Aprenda</a></li>
+    <li><a href="aprenda.html" class="active">Aprenda</a></li>
     <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
     <li><a href="index.html#equipe">Equipe</a></li>
     <li><a href="contato.html">Contato</a></li>
@@ -119,105 +153,141 @@
 
 <div class="article-hero">
   <div class="hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › Eletrônica</div>
-    <div class="article-meta">
-      <span class="meta-pill">Hardware & Oficinas</span>
-      <span class="meta-pill">Iniciante</span>
-      <span class="meta-pill">10 min de leitura</span>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="aprenda.html">Aprenda</a>
+      <span>›</span>
+      Eletrônica
     </div>
-    <h1>GUIA DE SOLDA<br>PARA INICIANTES</h1>
+    <div class="badge-row">
+      <span class="badge badge-orange">Eletrônica</span>
+      <span class="badge badge-outline">Iniciante</span>
+      <span class="badge badge-outline">⏱ 10 min leitura</span>
+    </div>
+    <h1>🔌 GUIA DE SOLDA<br><span class="g">PARA INICIANTES</span></h1>
+    <p class="hero-sub">Técnicas, ferramentas e o passo a passo para criar conexões elétricas confiáveis nos laboratórios da UFTM.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>GAIA Robótica</strong>Equipe UFTM</div>
+      <div class="meta-item"><strong>Hardware & Oficinas</strong>Categoria</div>
+    </div>
   </div>
 </div>
 
-<div class="article-wrap">
-  <div class="container-leitura">
-    <article class="article-content-main">
-      
+<div class="article-layout">
+  <main class="article-content">
+
+    <div class="article-section" id="ferramentas">
+      <div class="section-label">01 — Preparação</div>
+      <h2 class="sec-title">O Kit Básico de Solda</h2>
+      <p class="body-text">No <strong>GAIA Robótica</strong>, garantimos a integridade dos nossos sensores e a robustez dos drones em Uberaba através de conexões elétricas e metalúrgicas confiáveis. Soldar não é apenas derreter metal; é criar uma conexão firme entre um componente e a placa de circuito.</p>
+
       <img src="estacaodesolda.jpg" class="inline-img" alt="Estação de Solda profissional" onerror="handleImageError(this)">
       <p class="img-caption">Estação de solda com controle de temperatura, equipamento essencial.</p>
-      
-      <div class="article-content">
-        <p>No <strong>GAIA Robótica</strong>, garantimos a integridade dos nossos sensores e a robustez dos drones em Uberaba através de conexões elétricas e metalúrgicas confiáveis.</p>
 
-        <blockquote>
-          "Soldar não é apenas derreter metal; é criar uma conexão confiável entre um componente e a placa de circuito."
-        </blockquote>
+      <table class="parts-table">
+        <thead>
+          <tr>
+            <th>Ferramenta</th>
+            <th>Função no Laboratório</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Ferro de Solda</strong></td><td>Aquece a conexão para garantir a fusão perfeita do metal.</td></tr>
+          <tr><td><strong>Solda (Estanho)</strong></td><td>Ligas Lead-Free recomendadas para oficinas educacionais.</td></tr>
+          <tr><td><strong>Exaustor</strong></td><td>Essencial para remover os vapores nocivos liberados pelo fluxo.</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-        <h2>1. O Kit Básico de Solda</h2>
-        <p>No nosso laboratório na UFTM, utilizamos equipamentos de proteção e ferramentas com controle de temperatura para garantir a qualidade.</p>
-        <ul>
-            <li><strong>Ferro de Solda:</strong> Aquece a conexão para a fusão.</li>
-            <li><strong>Solda (Estanho):</strong> Ligas Lead-Free para oficinas educacionais.</li>
-            <li><strong>Exaustor:</strong> Essencial para remover os vapores do fluxo.</li>
-        </ul>
+    <div class="article-section" id="tecnica">
+      <div class="section-label">02 — Passo a Passo</div>
+      <h2 class="sec-title">A Técnica dos 4 Segundos</h2>
+      <p class="body-text">O calor deve fluir do ferro para a placa primeiro. A sequência correta garante uma solda brilhante e duradoura, evitando a temida "solda fria" (que causa falhas elétricas intermitentes).</p>
 
-        <h2>2. A Técnica dos 4 Segundos</h2>
-        <p>O calor deve fluir do ferro para a placa primeiro. A sequência correta garante uma solda brilhante e duradoura.</p>
-        
-        <img src="soldandoplaca.jpg" class="inline-img" alt="Pessoa soldando uma placa de circuito impresso" onerror="handleImageError(this)">
-        <p class="img-caption">Aplicação correta do calor e estanho nos pads da placa.</p>
-
-        <ol>
-            <li><strong>Aqueça:</strong> Encoste o ferro no terminal e na ilha por 2 segundos.</li>
-            <li><strong>Aplique:</strong> Toque com a solda na ilha aquecida, não no ferro.</li>
-            <li><strong>Finalize:</strong> Retire a solda e depois o ferro após 1 segundo adicional.</li>
-        </ol>
-
-        <img src="tecnica-solda.gif" class="inline-img" alt="Animação da técnica de solda passo a passo" onerror="handleImageError(this)">
-        <p class="img-caption">Demonstração da técnica ideal de soldagem passo a passo.</p>
-
-        <h2>3. Inspeção de Qualidade</h2>
-        <p>Uma boa solda deve ter formato de cone perfeito e cobrir toda a ilha, sem excessos ou "bolas" de estanho.</p>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Aqueça o Terminal</div>
+            <div class="step-text">Encoste o ferro de solda simultaneamente no terminal do componente e na ilha (pad) da placa de circuito por aproximadamente 2 segundos.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Aplique o Estanho</div>
+            <div class="step-text">Toque com a solda diretamente na ilha e no pino aquecidos, <strong>não</strong> no ferro de solda. O calor da placa derreterá o estanho.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Finalize e Remova</div>
+            <div class="step-text">Retire o fio de estanho primeiro, aguarde cerca de 1 segundo adicional para que a solda flua perfeitamente e, em seguida, remova o ferro de solda.</div>
+          </div>
+        </div>
       </div>
 
-      <section class="comments-section">
-        <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin: 3rem 0 1.5rem; text-transform: uppercase; color: var(--blue-dark);">Discussão Técnica</h3>
-        <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
-      </section>
-    </article>
+      <img src="soldandoplaca.jpg" class="inline-img" alt="Pessoa soldando uma placa de circuito impresso" onerror="handleImageError(this)">
+      <p class="img-caption">Aplicação correta do calor e estanho nos pads da placa.</p>
 
-    <aside class="sidebar-posts">
-      <h3>Posts Recentes</h3>
-      
-      <a href="artigo-visao.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">O que é Visão Computacional?</span>
-      </a>
+      <img src="tecnica-solda.gif" class="inline-img" alt="Animação da técnica de solda passo a passo" onerror="handleImageError(this)">
+      <p class="img-caption">Demonstração visual do fluxo de solda e tempo de contato.</p>
+    </div>
 
-      <a href="artigo-arduino.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Arduino: Além da Prototipagem</span>
-      </a>
+    <div class="article-section" id="inspecao">
+      <div class="section-label">03 — Qualidade</div>
+      <h2 class="sec-title">Inspeção de Solda</h2>
+      <p class="body-text">Uma boa solda deve ter formato de cone (como um pequeno vulcão) e cobrir toda a ilha circularmente. Se o robô não liga ou o sensor falha, 90% das vezes o problema está na soldagem.</p>
 
-      <a href="artigo-pid.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Controle PID: Robôs Precisos</span>
-      </a>
+      <div class="tips-grid">
+        <div class="tip-card good">
+          <div class="tip-header">✅ Formato Correto</div>
+          <p class="tip-text">A solda forma um cone brilhante e liso, aderindo perfeitamente ao pino e ao pad metálico da placa.</p>
+        </div>
+        <div class="tip-card bad">
+          <div class="tip-header">❌ Solda Fria</div>
+          <p class="tip-text">Apresenta aparência opaca, irregular ou em formato de "bola" sem aderir à placa. Causa mau contato.</p>
+        </div>
+        <div class="tip-card bad">
+          <div class="tip-header">❌ Curto-Circuito</div>
+          <p class="tip-text">Excesso de estanho ligando dois pinos ou ilhas vizinhas, o que pode queimar a placa inteira ao ser ligada.</p>
+        </div>
+      </div>
+    </div>
 
-      <a href="artigo-ia.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Inteligência Artificial na Robótica</span>
-      </a>
+    <section class="comments-section" style="margin-top: 4rem;">
+      <h3 style="font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 1.5rem; text-transform: uppercase; color: var(--blue-dark);">Discussão Técnica</h3>
+      <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
+    </section>
 
-      <a href="artigo-drones.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Como um Drone Consegue Voar?</span>
-      </a>
-    </aside>
-  </div>
+  </main>
 
-  <div class="back-cta">
-    <h3>Participe das Oficinas!</h3>
-    <p>Realizamos oficinas de solda no laboratório da UFTM. Siga o Instagram para saber as datas.</p>
-    <a href="https://www.instagram.com/gaia.robotica/" target="_blank" class="btn-p">Acompanhar no Instagram →</a>
-  </div>
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Neste artigo</h4>
+      <ul class="toc-list">
+        <li><a href="#ferramentas"><span class="toc-num">01</span>Ferramentas Básicas</a></li>
+        <li><a href="#tecnica"><span class="toc-num">02</span>Técnica Passo a Passo</a></li>
+        <li><a href="#inspecao"><span class="toc-num">03</span>Inspeção e Erros Comuns</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h4>Tags</h4>
+      <span class="sidebar-tag">Eletrônica</span>
+      <span class="sidebar-tag">Solda</span>
+      <span class="sidebar-tag">Hardware</span>
+      <span class="sidebar-tag">Oficinas</span>
+    </div>
+  </aside>
 </div>
 
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
       <span class="fl">GAIA <span>ROBÓTICA</span></span>
-      <p style="margin-top: 1rem; color: rgba(255,255,255,0.6); font-size: 0.9rem;">Desenvolvendo tecnologias autónomas e democratizando o conhecimento na UFTM.</p>
+      <p style="margin-top:1rem;color:rgba(255,255,255,0.6);font-size:0.9rem;">Desenvolvendo tecnologias autônomas na UFTM.</p>
     </div>
     <div class="footer-col">
       <h4>Navegação</h4>
@@ -227,37 +297,44 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Comunidade</h4>
+      <h4>Social</h4>
       <ul class="footer-links">
-        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
         <li><a href="https://www.instagram.com/gaia.robotica/">Instagram</a></li>
+        <li><a href="https://github.com/gaiarobotica">GitHub</a></li>
       </ul>
     </div>
   </div>
 </footer>
 
 <script>
-  // Script para fechar o menu no mobile após clicar num link
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navMenu = document.querySelector('nav ul');
-  const navLinks = document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('rp').style.width = Math.round((scrolled / total) * 100) + '%';
+});
 
-  if(menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
-    });
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+if(menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+  });
+}
 
-    // Fecha o menu ao clicar em qualquer link (importante para âncoras na mesma página)
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-          menuToggle.textContent = '☰';
-        }
-      });
-    });
-  }
+const sections = document.querySelectorAll('.article-section[id]');
+const tocLinks = document.querySelectorAll('.toc-list a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      tocLinks.forEach(a => a.style.color = '');
+      const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+      if(active) { active.style.color = 'var(--blue)'; active.style.borderLeftColor = 'var(--blue)'; }
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
 </script>
 </body>
 </html>
