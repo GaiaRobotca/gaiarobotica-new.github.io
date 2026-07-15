@@ -4,152 +4,352 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>O que é Inteligência Artificial? — GAIA Robótica</title>
-
-  
 <link id="dynamic-favicon" rel="icon" type="image/png" sizes="40x40" href="favicon-verde.png">
 <script>
   (function() {
-    const icons = ['favicon-verde.png', 'favicon-azul.png', 'favicon-branco.png'];
-    const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-    document.getElementById('dynamic-favicon').setAttribute('href', randomIcon);
+    const icons = ['favicon-verde.png','favicon-azul.png','favicon-branco.png'];
+    document.getElementById('dynamic-favicon').setAttribute('href', icons[Math.floor(Math.random()*icons.length)]);
   })();
 </script>
-
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#f0f7ff;--white:#ffffff;--blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;--green:#5cb82e;--green-dark:#3d8a1a;--text:#0d2a50;--muted:#5a7a9a;--border:#c8dff5;--surface:#e4f0ff;}
-  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;}
-  
-  /* ===== NAV ===== */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(16px);border-bottom:2px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:68px;}
-  .nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue-dark);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:0.6rem;}
-  .nav-dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
-  .nav-logo .g{color:var(--green);}
-  nav ul{list-style:none;display:flex;gap:2.2rem;}
-  nav a{font-size:0.83rem;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
-  nav a:hover{color:var(--blue);}
+:root{
+  --bg:#050f30;
+  --blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;
+  --green:#5cb82e;--green-light:#7ed957;--green-dark:#3d8a1a;
+  --muted:#9fb3d6;--border:#2a4a90;--surface:#0d2260;--purple:#6a3dd4;--orange:#d4732a;
+}
+*{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+body{background:var(--bg);color:#fff;font-family:'Barlow',sans-serif;overflow-x:hidden;position:relative;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
 
-  /* ===== HERO ===== */
-  .article-hero{background:linear-gradient(140deg,#0a0a1a,#1a1a4e,#2d2d8e);padding:8rem 3rem 5rem;position:relative;overflow:hidden;}
-  .article-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
-  .hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
-  .article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.95;margin-bottom:1.5rem;}
-  .breadcrumb{font-family:'Space Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
-  .breadcrumb a{color:inherit;text-decoration:none;}
-  .article-meta{display:flex;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
-  .meta-pill{font-family:'Space Mono',monospace;font-size:0.65rem;padding:0.3rem 0.8rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);}
-  .meta-pill.cat{background:rgba(92,184,46,0.25);border:1px solid var(--green);color:var(--green);}
+.icon-badge{min-width:44px;height:44px;background:var(--blue-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-weight:700;font-size:0.68rem;flex-shrink:0;}
+.icon-badge.green{background:var(--green);}
 
-  /* ===== LAYOUT DE DUAS COLUNAS ===== */
-  .article-wrap{max-width:1200px;margin:0 auto;padding:4rem 3rem;}
-  .container-leitura { display: grid; grid-template-columns: 1fr 350px; gap: 4rem; }
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,12,38,0.93);backdrop-filter:blur(20px);border-bottom:2px solid var(--green);display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:64px;}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff;text-decoration:none;letter-spacing:0.06em;display:flex;align-items:center;gap:0.6rem;}
+.nav-icon{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,0.25);}
+.nav-logo .g{color:var(--green-light);}
+nav ul{list-style:none;display:flex;gap:1.8rem;align-items:center;}
+nav a{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+nav a:hover,nav a.active{color:#fff;}
+.menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer;}
 
-  /* Sidebar de Posts Recentes */
-  .sidebar-posts { position: sticky; top: 100px; height: fit-content; }
-  .sidebar-posts h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 900; margin-bottom: 2rem; text-transform: uppercase; color: var(--blue-dark); }
-  .post-recente-item { display: flex; gap: 1.2rem; margin-bottom: 1.8rem; text-decoration: none; align-items: center; transition: transform 0.2s; }
-  .post-recente-item:hover { transform: translateX(5px); }
-  .post-recente-thumb { width: 80px; height: 60px; border-radius: 4px; object-fit: cover; border: 1px solid var(--border); }
-  
-  /* COR ALTERADA DE VERMELHO PARA AZUL AQUI */
-  .post-recente-titulo { font-family: 'Barlow', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue); line-height: 1.3; }
+.article-hero{background:linear-gradient(140deg,#150a30,#2d1a6e,var(--blue-dark));padding:9rem 3rem 6rem;position:relative;overflow:hidden;}
+.article-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.45);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.6rem;}
+.breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:#fff;}
+.badge-row{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.badge{font-family:'Space Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:0.35rem 0.85rem;border:1.5px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.7);}
+.badge.solid{background:var(--purple);border-color:var(--purple);color:#fff;}
+.article-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.94;margin-bottom:1.5rem;}
+.hero-sub{font-size:1.02rem;color:rgba(255,255,255,0.62);line-height:1.75;max-width:600px;}
+.hero-meta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12);flex-wrap:wrap;}
+.meta-item strong{color:rgba(255,255,255,0.85);display:block;font-size:0.82rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;margin-bottom:0.1rem;}
+.meta-item span{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;}
 
-  /* Conteúdo do Artigo */
-  .main-image img { width: 100%; height: 400px; object-fit: cover; border-radius: 4px; margin-bottom: 3rem; border: 2px solid var(--border); }
-  .article-content h2{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:var(--blue-dark);text-transform:uppercase;margin:3rem 0 1rem;border-bottom:2px solid var(--surface);padding-bottom:0.5rem;}
-  .article-content p{font-size:1.05rem;line-height:1.82;color:var(--text);margin-bottom:1.3rem;}
-  blockquote { border-left: 4px solid var(--green); padding: 1.5rem 2rem; margin: 2.5rem 0; font-style: italic; font-size: 1.2rem; color: var(--blue-dark); background: var(--surface); }
-  .math-box { background: var(--surface); padding: 1.5rem; margin: 2rem 0; text-align: center; border: 1px dashed var(--blue); font-size: 1.2rem; font-family: 'Space Mono', monospace; color: var(--blue-dark); overflow-x: auto; }
-  .code-block{background:#0d2a50;color:#c8dff5;padding:1.5rem;font-family:'Space Mono',monospace;font-size:0.85rem;margin:2rem 0;border-left:4px solid var(--green);overflow-x:auto;}
+.article-layout{max-width:1100px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:start;position:relative;z-index:1;}
 
-  /* Rodapé e CTA */
-  .back-cta { background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep)); padding: 4rem 2rem; margin-top: 5rem; border-radius: 16px; text-align: center; color: #fff; position: relative; overflow: hidden; }
-  .btn-p { background: var(--green); color: #fff; padding: 1rem 2.5rem; font-weight: 800; text-transform: uppercase; text-decoration: none; display: inline-block; margin-top: 1.5rem; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%); transition: transform 0.2s; }
-  .btn-p:hover { transform: translateY(-3px); background: var(--white); color: var(--blue-dark); }
-  
-  footer { background: #020817; padding: 6rem 3rem 3rem; color: #fff; margin-top: 4rem; }
-  .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
-  .footer-col h4 { color: var(--green); margin-bottom: 1.5rem; text-transform: uppercase; font-family: 'Barlow Condensed', sans-serif; }
-  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
-  .footer-links a:hover { color: #fff; }
+.section-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:var(--green-light);text-transform:uppercase;letter-spacing:0.18em;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.section-label::before{content:'';width:20px;height:2px;background:var(--green-light);}
+h2.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:1.5rem;line-height:1;}
+h3.sub-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;text-transform:uppercase;margin:2rem 0 1rem;}
+p.body-text{font-size:0.97rem;line-height:1.78;color:rgba(255,255,255,0.75);margin-bottom:1.25rem;}
+p.body-text strong{color:#fff;}
 
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--blue-dark); cursor: pointer; }
+.article-section{margin-bottom:4rem;padding-bottom:4rem;border-bottom:1px solid var(--border);}
+.article-section:last-child{border-bottom:none;}
 
-  @media(max-width: 1000px) {
-    .container-leitura { grid-template-columns: 1fr; }
-    .sidebar-posts { margin-top: 4rem; position: static; }
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
-  }
+.callout{border-left:4px solid var(--blue-light);background:var(--surface);padding:1.25rem 1.5rem;margin:1.5rem 0;}
+.callout.green{border-color:var(--green-light);background:rgba(92,184,46,0.1);}
+.callout.purple{border-color:var(--purple);background:rgba(106,61,212,0.12);}
+.callout-label{font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue-light);font-weight:700;margin-bottom:0.4rem;}
+.callout.green .callout-label{color:var(--green-light);}
+.callout.purple .callout-label{color:#b39ef2;}
+.callout p{font-size:0.9rem;line-height:1.65;color:rgba(255,255,255,0.7);margin:0;}
+
+.diagram-box{background:var(--blue-deep);border:1px solid rgba(255,255,255,0.08);padding:2rem;margin:1.5rem 0;}
+.diagram-label{font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;}
+.diagram-flow{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+.diagram-block{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.15);padding:0.85rem 1.25rem;text-align:center;flex:1;min-width:130px;}
+.diagram-block.highlight{border-color:var(--purple);background:rgba(106,61,212,0.14);}
+.diagram-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.86rem;color:#fff;text-transform:uppercase;}
+.diagram-sub{font-family:'Space Mono',monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;}
+.diagram-arrow{color:rgba(255,255,255,0.35);font-size:1.2rem;}
+
+.compare-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.compare-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;}
+.compare-card h4{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;text-transform:uppercase;margin-bottom:0.6rem;}
+.compare-card p{font-size:0.84rem;color:var(--muted);line-height:1.6;}
+
+.steps-list{display:flex;flex-direction:column;gap:1.5rem;margin:1.5rem 0;}
+.step-item{display:flex;gap:1.25rem;align-items:flex-start;}
+.step-num{min-width:2.2rem;height:2.2rem;background:var(--purple);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;color:#fff;text-transform:uppercase;margin-bottom:0.35rem;}
+.step-text{font-size:0.9rem;line-height:1.65;color:var(--muted);}
+
+.glossary{display:flex;flex-direction:column;margin:1.5rem 0;}
+.gloss-item{padding:1rem 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:180px 1fr;gap:1rem;}
+.gloss-item:last-child{border-bottom:none;}
+.gloss-term{font-family:'Barlow Condensed',sans-serif;font-weight:800;color:var(--green-light);text-transform:uppercase;font-size:0.9rem;}
+.gloss-def{font-size:0.86rem;color:var(--muted);line-height:1.6;}
+
+.article-sidebar{position:sticky;top:90px;}
+.sidebar-card{background:var(--surface);border:1px solid var(--border);padding:1.5rem;margin-bottom:1.5rem;}
+.sidebar-card h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1rem;color:#fff;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.toc-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.toc-list a{font-size:0.82rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;padding:0.35rem 0.5rem;transition:all 0.2s;border-left:2px solid transparent;}
+.toc-list a:hover{color:#fff;border-left-color:var(--green-light);background:rgba(255,255,255,0.04);}
+.toc-num{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--green-light);min-width:1.2rem;}
+.sidebar-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:0.6rem;text-transform:uppercase;padding:0.25rem 0.6rem;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--green-light);margin:0.2rem 0.2rem 0.2rem 0;}
+.related-item{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0;border-bottom:1px solid var(--border);text-decoration:none;}
+.related-item:last-child{border-bottom:none;}
+.ri-icon{width:32px;height:32px;background:rgba(255,255,255,0.06);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:0.6rem;flex-shrink:0;}
+.ri-title{font-size:0.82rem;font-weight:600;color:#fff;}
+.ri-cat{font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--muted);text-transform:uppercase;}
+.related-item:hover .ri-title{color:var(--green-light);}
+
+.reading-progress{position:fixed;top:64px;left:0;right:0;height:3px;background:transparent;z-index:99;}
+.rp-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue-light));width:0%;transition:width 0.1s;}
+
+footer{background:#030c1e;padding:2.25rem 3rem;color:#fff;border-top:2px solid var(--green);}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:4rem;}
+.footer-col h4{color:var(--green-light);margin-bottom:1.25rem;text-transform:uppercase;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.1em;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.footer-links a{color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s;font-size:0.9rem;}
+.footer-links a:hover{color:#fff;}
+.fl{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.25rem;color:#fff;letter-spacing:0.08em;display:flex;align-items:center;}
+.fl span{color:var(--green-light);}
+.footer-icon{width:22px;height:22px;border-radius:50%;object-fit:cover;margin-right:0.6rem;border:1px solid rgba(255,255,255,0.25);}
+
+@media(max-width:1050px){
+  .menu-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(4,12,38,0.98);backdrop-filter:blur(10px);padding:2rem;border-bottom:1px solid rgba(255,255,255,0.08);box-shadow:0 8px 24px rgba(0,0,0,0.4);text-align:center;}
+  nav ul.active{display:flex;}
+  nav{padding:0 1.5rem;}
+  .article-layout{grid-template-columns:1fr;gap:2rem;}
+  .article-sidebar{position:static;}
+  .footer-grid{grid-template-columns:1fr;text-align:center;}
+  .compare-grid{grid-template-columns:1fr;}
+  .gloss-item{grid-template-columns:1fr;gap:0.3rem;}
+}
 </style>
 </head>
 <body>
 
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
 <nav>
-  <a href="index.html" class="nav-logo"><span class="nav-dot"></span>GAIA <span class="g">ROBÓTICA</span></a>
+  <a href="index.html" class="nav-logo"><img src="favicon-verde.png" class="nav-icon" alt="GAIA" onerror="this.style.display='none'">GAIA <span class="g">ROBÓTICA</span></a>
   <button class="menu-toggle">☰</button>
   <ul>
     <li><a href="index.html#sobre">Sobre</a></li>
     <li><a href="index.html#eletroquad">Eletroquad</a></li>
-    <li><a href="aprenda.html">Aprenda</a></li>
-    <li><a href="patrocine.html" style="color:var(--green);font-weight:700;">Patrocine</a></li>
+    <li><a href="index.html#robotica">Robótica</a></li>
+    <li><a href="aprenda.html" class="active">Aprenda</a></li>
+    <li><a href="index.html#equipe">Equipe</a></li>
+    <li><a href="contato.html">Contato</a></li>
   </ul>
 </nav>
 
 <div class="article-hero">
   <div class="hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a> › <a href="aprenda.html">Aprenda</a> › IA</div>
-    <div class="article-meta">
-      <span class="meta-pill cat">IA & Machine Learning</span>
-      <span class="meta-pill">Iniciante</span>
-      <span class="meta-pill">6 min leitura</span>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>/</span><a href="aprenda.html">Aprenda</a><span>/</span>IA
+    </div>
+    <div class="badge-row">
+      <span class="badge solid">IA & Machine Learning</span>
+      <span class="badge">Iniciante</span>
+      <span class="badge">6 min leitura</span>
     </div>
     <h1>O QUE É<br>INTELIGÊNCIA ARTIFICIAL?</h1>
+    <p class="hero-sub">Conceitos reais, sem hype — como máquinas encontram padrões em dados e por que isso é a base da robótica autônoma.</p>
+    <div class="hero-meta">
+      <div class="meta-item"><strong>GAIA Robótica</strong><span>Equipe UFTM</span></div>
+      <div class="meta-item"><strong>IA & Machine Learning</strong><span>Categoria</span></div>
+    </div>
   </div>
 </div>
 
-<div class="article-wrap">
-  <div class="container-leitura">
-    <article class="article-content-main">
-      <div class="main-image">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200" alt="IA Visualização">
+<div class="article-layout">
+  <main class="article-content">
+
+    <div class="article-section" id="definicao">
+      <div class="section-label">01 — Definição</div>
+      <h2 class="sec-title">IA não é mágica, é estatística aplicada</h2>
+      <p class="body-text">Na engenharia, <strong>Inteligência Artificial</strong> é o campo que estuda sistemas capazes de tomar decisões ou fazer previsões a partir de dados — sem que cada regra tenha sido escrita manualmente por um programador. É a diferença entre programar um resultado e programar a <em>capacidade de aprender</em> um resultado.</p>
+      <p class="body-text">No <strong>GAIA Robótica</strong>, usamos IA como ferramenta prática: para que um robô encontre padrões em dados sensoriais que seriam impossíveis de descrever com regras fixas — como reconhecer o formato de um obstáculo ou estabilizar um drone em vento variável.</p>
+
+      <div class="callout purple">
+        <div class="callout-label">Programação tradicional x IA</div>
+        <p>Na programação tradicional, você escreve: <em>"se sensor &gt; X, vire à esquerda"</em>. Em IA, você mostra ao sistema milhares de exemplos de quando virar à esquerda, e ele aprende sozinho o padrão que liga sensor a decisão.</p>
       </div>
-      
-      <div class="article-content">
-        <p>Na engenharia e na robótica, a IA é uma ferramenta matemática poderosa para resolver problemas complexos. No <strong>GAIA Robótica</strong>, utilizamos IA principalmente para permitir que os nossos sistemas encontrem padrões no caos dos dados sensoriais.</p>
+    </div>
+
+    <div class="article-section" id="tipos">
+      <div class="section-label">02 — Categorias</div>
+      <h2 class="sec-title">Os três níveis de "inteligência"</h2>
+      <p class="body-text">O termo IA cobre técnicas muito diferentes entre si. Entender a hierarquia evita confusão — nem todo projeto precisa de deep learning.</p>
+
+      <div class="compare-grid">
+        <div class="compare-card">
+          <h4>Baseada em Regras</h4>
+          <p>Lógica condicional explícita, escrita por humanos. Rápida e previsível, mas não "aprende". Exemplo: controle Bang-Bang de um seguidor de linha.</p>
         </div>
+        <div class="compare-card">
+          <h4>Machine Learning</h4>
+          <p>O sistema aprende padrões a partir de dados de treino, sem que as regras sejam escritas explicitamente. Exemplo: classificar imagens de objetos.</p>
+        </div>
+        <div class="compare-card">
+          <h4>Deep Learning</h4>
+          <p>Subcampo do ML que usa redes neurais com múltiplas camadas para aprender representações complexas. Exemplo: visão computacional avançada.</p>
+        </div>
+      </div>
 
-      <section class="comments-section">
-        <h3>Discussão Técnica</h3>
-        <script src="https://giscus.app/client.js" data-repo="GaiaRobotca/gaiarobotica-new.github.io" data-repo-id="R_kgDORhLuBw" data-category="General" data-category-id="DIC_kwDORhLuB84C37IJ" data-mapping="pathname" data-theme="light" data-lang="pt" crossorigin="anonymous" async></script>
-      </section>
-    </article>
+      <div class="diagram-box">
+        <div class="diagram-label">Hierarquia de abrangência</div>
+        <div class="diagram-flow">
+          <div class="diagram-block highlight">
+            <div class="diagram-name">Inteligência Artificial</div>
+            <div class="diagram-sub">Campo mais amplo</div>
+          </div>
+          <div class="diagram-arrow">⊃</div>
+          <div class="diagram-block">
+            <div class="diagram-name">Machine Learning</div>
+            <div class="diagram-sub">Aprendizado por dados</div>
+          </div>
+          <div class="diagram-arrow">⊃</div>
+          <div class="diagram-block">
+            <div class="diagram-name">Deep Learning</div>
+            <div class="diagram-sub">Redes neurais profundas</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <aside class="sidebar-posts">
-      <h3>Posts Recentes</h3>
-      
-      <a href="artigo-visao.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">O que é Visão Computacional?</span>
-      </a>
+    <div class="article-section" id="como-aprende">
+      <div class="section-label">03 — Funcionamento</div>
+      <h2 class="sec-title">Como uma máquina "aprende"</h2>
+      <p class="body-text">O processo de Machine Learning segue, de forma simplificada, três etapas fundamentais que se repetem até o modelo atingir uma precisão aceitável.</p>
 
-      <a href="artigo-arduino.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1553406830-ef2513450d76?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Arduino: Além da Prototipagem</span>
-      </a>
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Coleta de dados (Dataset)</div>
+            <div class="step-text">Milhares de exemplos rotulados — fotos de objetos com seus nomes, leituras de sensores com o resultado esperado. Quanto mais representativo o dataset, melhor o modelo generaliza.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">Treinamento</div>
+            <div class="step-text">O algoritmo ajusta parâmetros internos repetidamente, comparando suas previsões com o resultado real e corrigindo o erro — um processo matemático chamado otimização.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">Inferência</div>
+            <div class="step-text">Com o modelo treinado, ele passa a receber dados novos (nunca vistos) e produzir previsões em tempo real — é essa etapa que roda embarcada no robô.</div>
+          </div>
+        </div>
+      </div>
 
-      <a href="artigo-pid.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Controle PID: Robôs Precisos</span>
-      </a>
+      <div class="callout green">
+        <div class="callout-label">Ponto importante</div>
+        <p>Treinamento é pesado computacionalmente e geralmente feito em computador potente. Inferência precisa ser rápida e leve — é o que roda no Arduino, ESP32 ou Raspberry Pi embarcado no robô.</p>
+      </div>
+    </div>
 
-      <a href="artigo-drones.html" class="post-recente-item">
-        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=80" class="post-recente-thumb">
-        <span class="post-recente-titulo">Como um Drone Consegue Voar?</span>
-      </a>
-    </aside>
+    <div class="article-section" id="no-gaia">
+      <div class="section-label">04 — Aplicação no GAIA</div>
+      <h2 class="sec-title">Onde a IA aparece nos nossos projetos</h2>
+      <p class="body-text">No <strong>GAIA Eletroquad</strong>, a IA aparece principalmente em duas frentes: <strong>visão computacional</strong>, para o drone identificar marcadores e obstáculos durante o voo autônomo; e <strong>controle adaptativo</strong>, onde algoritmos ajustam parâmetros de voo em tempo real conforme as condições mudam.</p>
+      <p class="body-text">Vale destacar que nem todo comportamento "inteligente" de um robô usa Machine Learning — muitas vezes um bom controlador PID bem ajustado (veja o artigo dedicado) resolve o problema com muito menos complexidade e mais previsibilidade, o que é essencial em competições.</p>
+    </div>
+
+    <div class="article-section" id="glossario">
+      <div class="section-label">05 — Glossário</div>
+      <h2 class="sec-title">Termos que você vai encontrar</h2>
+      <div class="glossary">
+        <div class="gloss-item"><div class="gloss-term">Dataset</div><div class="gloss-def">Conjunto de dados usados para treinar ou testar um modelo.</div></div>
+        <div class="gloss-item"><div class="gloss-term">Overfitting</div><div class="gloss-def">Quando o modelo "memoriza" os dados de treino em vez de aprender o padrão geral, falhando em dados novos.</div></div>
+        <div class="gloss-item"><div class="gloss-term">Rede Neural</div><div class="gloss-def">Estrutura matemática inspirada em neurônios biológicos, organizada em camadas que processam informação progressivamente.</div></div>
+        <div class="gloss-item"><div class="gloss-term">Inferência</div><div class="gloss-def">Etapa em que o modelo já treinado é usado para gerar previsões sobre dados novos, em produção.</div></div>
+      </div>
+    </div>
+
+  </main>
+
+  <aside class="article-sidebar">
+    <div class="sidebar-card">
+      <h4>Neste artigo</h4>
+      <ul class="toc-list">
+        <li><a href="#definicao"><span class="toc-num">01</span>Definição</a></li>
+        <li><a href="#tipos"><span class="toc-num">02</span>Categorias</a></li>
+        <li><a href="#como-aprende"><span class="toc-num">03</span>Como aprende</a></li>
+        <li><a href="#no-gaia"><span class="toc-num">04</span>Aplicação no GAIA</a></li>
+        <li><a href="#glossario"><span class="toc-num">05</span>Glossário</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h4>Tags</h4>
+      <span class="sidebar-tag">IA</span>
+      <span class="sidebar-tag">Machine Learning</span>
+      <span class="sidebar-tag">Deep Learning</span>
+      <span class="sidebar-tag">Dataset</span>
+      <span class="sidebar-tag">Redes Neurais</span>
+    </div>
+    <div class="sidebar-card">
+      <h4>Posts Relacionados</h4>
+      <a href="artigo-visao.html" class="related-item"><div class="ri-icon">VC</div><div><div class="ri-title">Visão Computacional</div><div class="ri-cat">IA</div></div></a>
+      <a href="artigo-pid.html" class="related-item"><div class="ri-icon">PID</div><div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div></a>
+      <a href="artigo-arduino.html" class="related-item"><div class="ri-icon">AR</div><div><div class="ri-title">Arduino e Hardware</div><div class="ri-cat">Hardware</div></div></a>
+    </div>
+  </aside>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="fl"><img src="favicon-verde.png" class="footer-icon" alt="" onerror="this.style.display='none'">GAIA <span>ROBÓTICA</span></span>
+      <p style="margin-top:0.85rem;color:rgba(255,255,255,0.5);font-size:0.88rem;line-height:1.65;">Tecnologia autônoma desenvolvida na UFTM, Uberaba — MG.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="aprenda.html">Aprenda</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Comunidade</h4>
+      <ul class="footer-links">
+        <li><a href="https://github.com/gaiarobotica" target="_blank">GitHub</a></li>
+        <li><a href="https://www.instagram.com/gaia.robotica/" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
   </div>
-  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  document.getElementById('rp').style.width = Math.round((scrolled / total) * 100) + '%';
+});
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+if(menuToggle && navMenu) {
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+  });
+}
+</script>
 </body>
 </html>
