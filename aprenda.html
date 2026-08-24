@@ -15,10 +15,10 @@
 <style>
 :root{
   --bg:#050f30;
-  --blue:#1a6fd4;--blue-light:#3d9bff;--blue-mid:#2980e8;--blue-dark:#0d4fa0;--blue-deep:#071f4a;
-  --green:#5cb82e;--green-light:#7ed957;--green-dark:#3d8a1a;
+  --blue:#01195d;--blue-light:#3d9bff;--blue-mid:#0d2e80;--blue-dark:#01195d;--blue-deep:#010e3a;
+  --green:#007a3f;--green-light:#00a854;--green-dark:#005a2e;
   --muted:#9fb3d6;--border:#2a4a90;--surface:#0d2260;
-  --orange:#d4732a;--teal:#1ab5b5;
+  --orange:#b0501f;--teal:#0e7a7a;
 }
 *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
 body{background:var(--bg);color:#fff;font-family:'Barlow',sans-serif;overflow-x:hidden;display:flex;flex-direction:column;min-height:100vh;position:relative;}
@@ -33,13 +33,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,12,38,0.93
 nav ul{list-style:none;display:flex;gap:2rem;align-items:center;}
 nav a{font-size:0.78rem;font-weight:600;color:rgba(255,255,255,0.65);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
 nav a:hover,nav a.active{color:#fff;}
-.nav-cta{background:var(--green);color:#fff !important;padding:0.4rem 1.1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.1em;}
-.nav-cta:hover{background:var(--green-dark) !important;}
+.nav-btn{padding:0.4rem 1.2rem !important;border-radius:50px;border:1.5px solid transparent;transition:all 0.25s ease !important;}
+.nav-patrocine{color:var(--green-light) !important;border-color:var(--green-light);}
+.nav-patrocine:hover{background:var(--green-light);color:#010e3a !important;}
 .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer;}
 
-.page-hero{background:linear-gradient(135deg,var(--blue-deep) 0%,#0a3070 45%,#0e5aab 100%);padding:7.5rem 3rem 5rem;position:relative;overflow:hidden;}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:50px 50px;}
-.page-hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 60%,100% 0%,100% 100%,0% 100%);}
+.page-hero{background:linear-gradient(135deg,#010e3a 0%,#01195d 40%,#022080 75%,#012d60 100%);padding:7.5rem 3rem 5rem;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,122,63,0.14) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
 .hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
 .hero-label{font-family:'Space Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.4);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:1.25rem;}
 .page-hero h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:900;color:#fff;text-transform:uppercase;line-height:0.88;margin-bottom:1.25rem;}
@@ -128,12 +129,13 @@ footer{background:#030c1e;padding:2.25rem 3rem;color:#fff;margin-top:auto;positi
     <li><a href="index.html#conquistas">Conquistas</a></li>
     <li><a href="aprenda.html" class="active">Aprenda</a></li>
     <li><a href="index.html#equipe">Equipe</a></li>
-    <li><a href="patrocine.html" class="nav-cta">Patrocine</a></li>
+    <li><a href="patrocine.html" class="nav-btn nav-patrocine">Patrocine</a></li>
   </ul>
 </nav>
 
 <div class="page-hero">
   <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
   <div class="hero-inner">
     <div class="hero-label">GAIA Robótica · Base de Conhecimento</div>
     <h1>APRENDA<br>COM A <span class="g">GAIA</span></h1>
