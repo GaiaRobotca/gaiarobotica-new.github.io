@@ -1,0 +1,137 @@
+{
+  "base_url": "https://gaiarobotca.github.io/gaiarobotica-new.github.io/",
+  "pages": [
+    {
+      "path": "index.html",
+      "legacy": "index.html",
+      "title": "GAIA — UFTM",
+      "description": "Iniciativa de extensão da UFTM. Desenvolvemos soluções autônomas, competimos em nível nacional e levamos tecnologia às escolas públicas de Uberaba."
+    },
+    {
+      "path": "paginas/aprenda.html",
+      "legacy": "aprenda.html",
+      "title": "Aprenda robótica — GAIA Robótica UFTM",
+      "description": "Guias de Arduino, inteligência artificial, drones, controle PID e eletrônica. Aprenda robótica na prática com a equipe GAIA da UFTM."
+    },
+    {
+      "path": "paginas/contato.html",
+      "legacy": "contato.html",
+      "title": "Contato — GAIA Robótica UFTM",
+      "description": "Fale com a GAIA Robótica da UFTM. Converse sobre projetos, ações em escolas, convites e parcerias pelo Instagram ou e-mail."
+    },
+    {
+      "path": "paginas/patrocine.html",
+      "legacy": "patrocine.html",
+      "title": "Apoie a equipe — GAIA Robótica UFTM",
+      "description": "Conheça as formas de apoiar os projetos, a formação em engenharia e as ações de extensão da equipe GAIA Robótica da UFTM."
+    },
+    {
+      "path": "paginas/portal.html",
+      "legacy": "portal.html",
+      "title": "Links da GAIA — GAIA Robótica UFTM",
+      "description": "Todos os caminhos para conhecer a GAIA Robótica da UFTM: projetos, guias práticos, parcerias e contato com a equipe."
+    },
+    {
+      "path": "paginas/ex-membros.html",
+      "legacy": "ex-membros.html",
+      "title": "Ex-membros — GAIA Robótica",
+      "description": "A história da GAIA Robótica foi escrita por dezenas de mãos. Prestamos aqui nossa homenagem e gratidão aos membros, capitães e fundadores que ajudaram a construir o nosso legado."
+    },
+    {
+      "path": "artigos/arduino.html",
+      "legacy": "artigo-arduino.html",
+      "title": "Arduino: A Ponte Entre Lógica e Eletrônica — GAIA Robótica",
+      "description": "Aprenda a ligar, programar e testar o Arduino Uno R3: do LED integrado à leitura de sensores, com exemplos completos e um roteiro de diagnóstico."
+    },
+    {
+      "path": "artigos/drones.html",
+      "legacy": "artigo-drones.html",
+      "title": "Como um drone consegue voar? — GAIA Robótica",
+      "description": "Entenda como tração, torque, sensores e energia trabalham juntos em um quadrotor — com cálculos explicados e um roteiro de bancada e simulação."
+    },
+    {
+      "path": "artigos/ia.html",
+      "legacy": "artigo-ia.html",
+      "title": "O que é Inteligência Artificial? — GAIA Robótica",
+      "description": "Entenda onde a inteligência artificial ajuda um robô, organize dados e execute um pequeno classificador em Python com resultados explicados."
+    },
+    {
+      "path": "artigos/pid.html",
+      "legacy": "artigo-pid.html",
+      "title": "Controle PID: O Segredo dos Robôs Precisos — GAIA",
+      "description": "Do erro à correção: entenda P, I e D, execute uma simulação em Python e aprenda a comparar ajustes sem depender de ganhos mágicos."
+    },
+    {
+      "path": "artigos/solda.html",
+      "legacy": "artigo-solda.html",
+      "title": "Guia de Solda para Iniciantes — GAIA Robótica",
+      "description": "Prepare a bancada, pratique em uma placa de treino e aprenda a reconhecer conexões confiáveis antes de ligar o circuito."
+    },
+    {
+      "path": "artigos/visao.html",
+      "legacy": "artigo-visao.html",
+      "title": "Visão Computacional: Dando Olhos aos Robôs — GAIA Robótica",
+      "description": "Transforme imagens em medições: entenda detecção e rastreamento, rode um exemplo de webcam com OpenCV e saiba como avaliar o resultado."
+    },
+    {
+      "path": "artigos/seguidor-linha.html",
+      "legacy": "artigo-seguidor-linha.html",
+      "title": "Robô Seguidor de Linha — GAIA",
+      "description": "Monte, programe e teste um seguidor de linha com Arduino: componentes, montagem, controle e um roteiro de testes e registro do projeto."
+    },
+    {
+      "path": "noticias/fundacao.html",
+      "legacy": "post-fundacao.html",
+      "title": "GAIA Robótica é fundado na UFTM — GAIA Robótica",
+      "description": "A história do GAIA: da fundação na UFTM aos projetos que conectam engenharia, extensão e aprendizagem."
+    },
+    {
+      "path": "noticias/mao-robotica.html",
+      "legacy": "post-mao-robotica.html",
+      "title": "Mão robótica com atuadores pneumáticos — GAIA Robótica",
+      "description": "Um percurso pela robótica macia, da modelagem dos moldes ao controle de atuadores com Arduino."
+    },
+    {
+      "path": "noticias/hackagis.html",
+      "legacy": "post-hackagis.html",
+      "title": "2º lugar no HackaGIS 2023 — GAIA Robótica",
+      "description": "Tecnologia e inclusão digital: a participação de integrantes do GAIA no HackaGIS Saúde 2023."
+    },
+    {
+      "path": "noticias/drone-sae.html",
+      "legacy": "post-drone-sae.html",
+      "title": "Como desenvolvemos nosso drone quadrotor para a SAE — GAIA Robótica",
+      "description": "Estrutura, eletrônica e software: os sistemas que precisam trabalhar juntos em um quadrotor autônomo."
+    },
+    {
+      "path": "noticias/extensao-escolas.html",
+      "legacy": "post-extensao-escolas.html",
+      "title": "Visitando escolas públicas de Uberaba — GAIA Robótica",
+      "description": "Robôs, programação e curiosidade: como aproximamos os estudantes das escolas da engenharia na UFTM."
+    },
+    {
+      "path": "noticias/sae-brasil.html",
+      "legacy": "post-sae-brasil.html",
+      "title": "3º lugar na SAE Brasil Eletroquad — GAIA Robótica",
+      "description": "O trabalho da equipe GAIA Eletroquad que levou a UFTM ao pódio nacional de drones autônomos."
+    },
+    {
+      "path": "conquistas/sae.html",
+      "legacy": "conquista-sae.html",
+      "title": "3º Lugar SAE Brasil Eletroquad — GAIA Robótica",
+      "description": "Como a equipe GAIA Eletroquad desenvolveu um drone quadrotor autônomo e conquistou o 3º lugar do Brasil enfrentando desafios reais de integração de hardware e software."
+    },
+    {
+      "path": "conquistas/hackagis.html",
+      "legacy": "conquista-hackagis.html",
+      "title": "2º Lugar HackaGIS — GAIA Robótica",
+      "description": "A participação de Wanessa Karoline, Valdivino Junior e Gabriel Meireles em um desafio de inovação voltado à inclusão digital de pessoas idosas."
+    },
+    {
+      "path": "conquistas/escolas.html",
+      "legacy": "conquista-escolas.html",
+      "title": "Impacto nas Escolas — GAIA Robótica",
+      "description": "Como o GAIA Robótica sai dos laboratórios da UFTM para levar tecnologia, pensamento lógico e inspiração às escolas públicas de Uberaba e região."
+    }
+  ]
+}

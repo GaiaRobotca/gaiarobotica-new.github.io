@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Robô Seguidor de Linha — GAIA</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/artigo-seguidor-linha.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Monte, programe e teste um seguidor de linha com Arduino: componentes, montagem, controle e um roteiro de testes e registro do projeto.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/seguidor-linha.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Robô Seguidor de Linha — GAIA">
+<meta property="og:description" content="Monte, programe e teste um seguidor de linha com Arduino: componentes, montagem, controle e um roteiro de testes e registro do projeto.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/seguidor-linha.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">Home</a>
+<span>›</span>
+<a href="../paginas/aprenda.html">Aprenda</a>
+<span>›</span>
+      Robótica
+    </div>
+<div class="badge-row">
+<span class="badge badge-orange">Robótica</span>
+<span class="badge badge-outline">Intermediário</span>
+<span class="badge badge-outline">⏱ 15 min leitura</span>
+<span class="badge badge-outline" style="border-color:var(--green-light); color:var(--green-light);">Projeto guiado</span>
+</div>
+<h1>🤖 ROBÔ <span class="g">SEGUIDOR</span><br/>DE LINHA</h1>
+<p class="hero-sub">Da bancada ao relatório: monte, programe e teste um seguidor de linha, entendendo as decisões de mecânica, eletrônica e controle.</p>
+<div class="hero-meta">
+<div class="meta-item"><strong>GAIA Robótica</strong>Equipe UFTM</div>
+<div class="meta-item"><strong>Abr 2026</strong>Publicado</div>
+<div class="meta-item"><strong>Trainee</strong>Público-alvo</div>
+</div>
+</div>
+</div>
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="article-content">
+<!-- 1. VISÃO GERAL -->
+<div class="article-section" id="visao-geral">
+<div class="section-label">01 — Visão Geral</div>
+<h2 class="sec-title">O que é um seguidor de linha?</h2>
+<p class="body-text">Um <strong>robô seguidor de linha</strong> é um sistema autônomo capaz de detectar e percorrer uma trajetória marcada no chão — geralmente uma faixa preta sobre fundo branco — sem intervenção humana. É o "Olá Mundo" da robótica autônoma: simples o suficiente para aprender em dias, mas complexo o suficiente para ensinar os fundamentos reais do trabalho em equipe de engenharia.</p>
+<p class="body-text">Neste projeto guiado, a proposta é <strong>projetar, simular e documentar</strong> um seguidor de linha em grupo, cobrindo quatro frentes: Gestão, Mecânica, Eletrônica e Programação. Este artigo vai destrinchar cada uma delas.</p>
+<div class="callout green">
+<div class="callout-label">✅ Boa notícia</div>
+<p>A entrega física <strong>não é obrigatória</strong>. Simulações em Tinkercad, Webots, Fusion 360 ou qualquer software são totalmente aceitas. Foque na qualidade do relatório.</p>
+</div>
+<h3 class="sub-title">Como o robô "enxerga" a linha?</h3>
+<p class="body-text">A magia toda está no <strong>sensor infravermelho (IR)</strong>. Ele emite luz IR e mede o quanto é refletido de volta: superfície branca reflete muito (sinal alto), superfície preta absorve quase tudo (sinal baixo). Com dois ou mais sensores posicionados embaixo do chassi, o Arduino consegue saber se o robô está sobre a linha, saindo pela esquerda ou saindo pela direita.</p>
+<div class="steps-list">
+<div class="step-item">
+<div class="step-num">1</div>
+<div class="step-content">
+<div class="step-title">Sensor lê a pista</div>
+<div class="step-text">Os sensores IR apontam para o chão e retornam valores digitais (0 ou 1) indicando se estão sobre linha preta ou fundo branco.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">2</div>
+<div class="step-content">
+<div class="step-title">Arduino processa</div>
+<div class="step-text">O microcontrolador lê os pinos de entrada, compara os estados dos sensores e calcula o erro de posição em relação à linha.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">3</div>
+<div class="step-content">
+<div class="step-title">Motores corrigem</div>
+<div class="step-text">Via Ponte H (L298N), o Arduino ajusta a velocidade de cada motor para curvar o robô de volta à linha.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. COMPONENTES -->
+<div class="article-section" id="componentes">
+<div class="section-label">02 — Lista de Materiais</div>
+<h2 class="sec-title">Componentes e orçamento</h2>
+<p class="body-text">Abaixo está uma lista de referência para um seguidor de linha básico. Confira as características de cada componente antes da compra e registre as cotações com fornecedor e data no relatório.</p>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table">
+<thead>
+<tr>
+<th>Componente</th>
+<th>Qtd</th>
+<th>Função</th>
+<th>O que verificar</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Arduino Uno R3</td><td>1</td><td>Cérebro: processa sensores e controla motores</td><td>Lógica de 5 V e pinos PWM disponíveis</td></tr>
+<tr><td>Sensor IR TCRT5000 (módulo)</td><td>2–5</td><td>Detecta linha preta/branca</td><td>Saída digital e/ou analógica do módulo</td></tr>
+<tr><td>Ponte H L298N</td><td>1</td><td>Controla direção e velocidade dos motores DC</td><td>Corrente do motor, dissipação e queda de tensão</td></tr>
+<tr><td>Motor DC com caixa de redução</td><td>2</td><td>Locomoção do robô</td><td>Tensão nominal e corrente de partida</td></tr>
+<tr><td>Roda de borracha + cubo</td><td>2</td><td>Contato com o solo</td><td>Diâmetro e encaixe no eixo</td></tr>
+<tr><td>Roda boba (caster wheel)</td><td>1</td><td>Terceiro ponto de apoio</td><td>Altura compatível com as rodas</td></tr>
+<tr><td>Fonte ou pack compatível com os motores</td><td>1</td><td>Alimentação do sistema</td><td>Tensão, corrente e proteção adequadas</td></tr>
+<tr><td>Chave liga/desliga</td><td>1</td><td>Controle de energia</td><td>Corrente nominal acima da carga</td></tr>
+<tr><td>Jumpers e protoboard</td><td>—</td><td>Conexões provisórias</td><td>Contato firme; motores fora da protoboard</td></tr>
+<tr><td>Chassi (acrílico/MDF/impressão 3D)</td><td>1</td><td>Estrutura mecânica</td><td>Rigidez e espaço para a eletrônica</td></tr>
+</tbody>
+</table></div>
+<div class="callout orange">
+<div class="callout-label">📋 Dica para o relatório</div>
+<p>Inclua links dos produtos, compare preços em pelo menos dois fornecedores e justifique cada escolha. Isso demonstra maturidade na gestão de projeto.</p>
+</div>
+</div>
+<!-- 3. ELETRÔNICA -->
+<div class="article-section" id="eletronica">
+<div class="section-label">03 — Eletrônica</div>
+<h2 class="sec-title">Esquema de ligações</h2>
+<p class="body-text">O esquemático é o mapa do seu circuito. Abaixo está o diagrama de blocos das conexões principais. Para o relatório, você pode reproduzir isso no <strong>Tinkercad Circuits</strong> (gratuito, no navegador) ou no <strong>Fritzing</strong>.</p>
+<div class="schematic-box">
+<div class="schematic-inner">
+<div class="sch-block">
+<span class="sch-emoji">🔋</span>
+<div class="sch-name">Fonte dos motores</div>
+<div class="sch-pins">VCC → L298N<br/>GND → GND comum</div>
+</div>
+<div class="sch-arrow">→</div>
+<div class="sch-block">
+<span class="sch-emoji">⚙️</span>
+<div class="sch-name">L298N</div>
+<div class="sch-pins">ENA → Pin 5 (PWM)<br/>IN1 → Pin 6<br/>IN2 → Pin 7<br/>ENB → Pin 10 (PWM)<br/>IN3 → Pin 8<br/>IN4 → Pin 9<br/>Arduino: USB ou fonte apropriada<br/>GND comum com a ponte H</div>
+</div>
+<div class="sch-arrow">→</div>
+<div class="sch-block">
+<span class="sch-emoji">⚡</span>
+<div class="sch-name">Motores DC</div>
+<div class="sch-pins">Motor A: OUT1 / OUT2<br/>Motor B: OUT3 / OUT4</div>
+</div>
+<div class="sch-block">
+<span class="sch-emoji">👁️</span>
+<div class="sch-name">Sensor IR Esq.</div>
+<div class="sch-pins">VCC → 5V Arduino<br/>GND → GND<br/>OUT → Pin A0 (ou D2)</div>
+</div>
+<div class="sch-arrow">→</div>
+<div class="sch-block">
+<span class="sch-emoji">🧠</span>
+<div class="sch-name">Arduino Uno</div>
+<div class="sch-pins">Entradas: A0, A1 (sensores)<br/>Saídas: 5–10 (motores)<br/>Alimentação via L298N</div>
+</div>
+<div class="sch-arrow">←</div>
+<div class="sch-block">
+<span class="sch-emoji">👁️</span>
+<div class="sch-name">Sensor IR Dir.</div>
+<div class="sch-pins">VCC → 5V Arduino<br/>GND → GND<br/>OUT → Pin A1 (ou D3)</div>
+</div>
+</div>
+</div>
+<h3 class="sub-title">Por que usar Ponte H (L298N)?</h3>
+<p class="body-text">Motores DC consomem corrente demais para serem ligados diretamente nos pinos do Arduino (com corrente recomendada de 20 mA por pino no Uno R3). A Ponte H é um circuito de potência que deixa o Arduino <strong>controlar</strong> sem <strong>alimentar</strong> diretamente os motores. Ela também permite inverter o sentido de rotação (necessário para curvas e ré).</p>
+<p class="body-text">O controle de velocidade é feito via <strong>PWM</strong> (Pulse Width Modulation): o Arduino "pulsa" o sinal em alta frequência e a variação da largura do pulso define a velocidade média do motor.</p>
+<div class="callout orange"><div class="callout-label">Alimentação e jumpers</div><p>Não alimente Vin com 5 V: a entrada passa por um regulador. Para a bancada, alimente o Arduino por USB e os motores por uma fonte dimensionada, mantendo GND comum. Confira a documentação do seu módulo L298N antes de usar o regulador integrado e retire os jumpers ENA/ENB se for controlar esses pinos por PWM. Verifique a queda de tensão da ponte e a corrente de partida dos motores.</p></div><p class="body-text">Consulte a <a href="https://docs.arduino.cc/hardware/uno-rev3/">documentação oficial do Arduino Uno R3</a> e o <a href="https://www.st.com/resource/en/datasheet/l298.pdf">datasheet do L298</a> para dimensionar as conexões.</p></div>
+<!-- 4. MECÂNICA -->
+<div class="article-section" id="mecanica">
+<div class="section-label">04 — Estrutura e Mecânica</div>
+<h2 class="sec-title">Chassi e posicionamento</h2>
+<p class="body-text">O chassi é a espinha dorsal do robô. Para o Desafio, você pode projetar em <strong>Fusion 360</strong>, <strong>Tinkercad 3D</strong>, ou até desenhar à mão com cotações. O importante é que o projeto seja justificado.</p>
+<h3 class="sub-title">Configuração de acionamento: diferencial</h3>
+<p class="body-text">A configuração mais simples — e recomendada — é a <strong>acionamento diferencial</strong>: dois motores nas laterais traseiras + uma roda boba na frente. Para virar, basta aplicar velocidades diferentes nos dois motores.</p>
+<div class="callout dark">
+<div class="callout-label">📐 Altura dos sensores</div>
+<p>Mantenha os sensores IR entre <strong>3mm e 10mm</strong> do chão. Muito alto → leitura imprecisa. Muito baixo → pode raspar na pista. Sensor na linha central entre as rodas funciona bem como ponto de partida.</p>
+</div>
+<h3 class="sub-title">Material do chassi</h3>
+<div class="steps-list">
+<div class="step-item">
+<div class="step-num">A</div>
+<div class="step-content">
+<div class="step-title">Acrílico cortado a laser</div>
+<div class="step-text">Profissional, leve e fácil de furar. Precisa de acesso a uma cortadora. Excelente para portfólio.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">B</div>
+<div class="step-content">
+<div class="step-title">MDF (6mm)</div>
+<div class="step-text">Barato, fácil de trabalhar com ferramentas básicas. Pode ser cortado com estilete e furadeira. Boa opção para prototipagem.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">C</div>
+<div class="step-content">
+<div class="step-title">Impressão 3D (PLA)</div>
+<div class="step-text">Máxima liberdade geométrica. Se o grupo tem acesso a impressora 3D, é a melhor escolha para demonstrar habilidade em CAD.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. PROGRAMAÇÃO -->
+<div class="article-section" id="programacao">
+<div class="section-label">05 — Programação</div>
+<h2 class="sec-title">Lógica e código C/C++</h2>
+<p class="body-text">O código é o coração do robô. Vamos do mais simples ao mais sofisticado, para vocês escolherem o nível certo para o relatório.</p>
+<h3 class="sub-title">Nível 1: Controle Bang-Bang (Liga/Desliga)</h3>
+<p class="body-text">A abordagem mais direta: <em>se o sensor esquerdo detectar linha, vira à esquerda; se for o direito, vira à direita</em>. Funciona, mas causa um movimento ziguezagueante.</p>
+<div class="callout orange"><div class="callout-label">Geometria deste exemplo</div><p>Os sensores devem ficar próximos o suficiente para que ambos detectem a faixa quando o robô estiver centralizado. Se sua montagem coloca um sensor de cada lado de uma linha estreita, a tabela de estados muda. Confira cada estado com as rodas suspensas antes de colocar o robô na pista.</p></div><div class="code-wrap">
+<div class="code-header">
+<span class="code-lang">C/C++ — Arduino</span>
+<span class="code-fname">seguidor_bangbang.ino</span>
+</div>
+<pre>// Dois sensores DIGITAIS: LOW sobre a linha, HIGH no fundo.
+// Verifique a polaridade do seu módulo antes de usar.
+const int SENSOR_ESQ = A0, SENSOR_DIR = A1;
+const int ENA = 5, IN1 = 6, IN2 = 7;
+const int ENB = 10, IN3 = 8, IN4 = 9;
+const int VEL_BASE = 120;
+
+void moverMotores(int esquerda, int direita) {
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+  analogWrite(ENA, constrain(esquerda, 0, 255));
+  analogWrite(ENB, constrain(direita, 0, 255));
+}
+
+void setup() {
+  pinMode(SENSOR_ESQ, INPUT); pinMode(SENSOR_DIR, INPUT);
+  pinMode(ENA, OUTPUT); pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+  moverMotores(0, 0);
+}
+
+void loop() {
+  bool esquerdaNaLinha = digitalRead(SENSOR_ESQ) == LOW;
+  bool direitaNaLinha = digitalRead(SENSOR_DIR) == LOW;
+  if (esquerdaNaLinha &amp;&amp; direitaNaLinha)
+    moverMotores(VEL_BASE, VEL_BASE);
+  else if (esquerdaNaLinha)
+    moverMotores(VEL_BASE / 2, VEL_BASE);
+  else if (direitaNaLinha)
+    moverMotores(VEL_BASE, VEL_BASE / 2);
+  else
+    moverMotores(0, 0); // Perdeu a linha: pare e reposicione.
+}</pre>
+</div>
+<h3 class="sub-title">Nível 2: Controle Proporcional (P)</h3>
+<p class="body-text">Usando <strong>sensores analógicos</strong> em vez de digitais, conseguimos calcular um <em>erro</em> contínuo e corrigir os motores proporcionalmente — o robô curvará suave quando estiver levemente desviado e bruscamente quando estiver muito fora.</p>
+<div class="pid-diagram">
+<div class="pid-flow">
+<div class="pid-block">
+<div class="pid-label">Referência</div>
+<div class="pid-sub">Posição ideal (centro)</div>
+</div>
+<div class="pid-arrow">→</div>
+<div class="pid-block highlight">
+<div class="pid-label">Erro</div>
+<div class="pid-sub">ref − leitura atual</div>
+</div>
+<div class="pid-arrow">→</div>
+<div class="pid-block highlight">
+<div class="pid-label">Controlador P</div>
+<div class="pid-sub">correção = Kp × erro</div>
+</div>
+<div class="pid-arrow">→</div>
+<div class="pid-block">
+<div class="pid-label">Motores</div>
+<div class="pid-sub">vel_esq ± correção</div>
+</div>
+<div class="pid-arrow">→</div>
+<div class="pid-block green">
+<div class="pid-label">Robô na linha</div>
+<div class="pid-sub">erro → 0</div>
+</div>
+</div>
+</div>
+<div class="code-wrap">
+<div class="code-header">
+<span class="code-lang">C/C++ — Arduino</span>
+<span class="code-fname">seguidor_proporcional.ino</span>
+</div>
+<pre>// Exemplo completo com SAÍDAS ANALÓGICAS dos sensores em A0/A1.
+// Hipótese: leitura maior na linha preta e menor no fundo branco.
+const int SENSOR_ESQ = A0, SENSOR_DIR = A1;
+const int ENA = 5, IN1 = 6, IN2 = 7;
+const int ENB = 10, IN3 = 8, IN4 = 9;
+const int VEL_BASE = 100;
+const float Kp = 0.15;
+// Exemplo inicial: substitua pelo limiar medido em seu piso.
+const int LIMIAR_LINHA = 500;
+
+void moverMotores(int esquerda, int direita) {
+  digitalWrite(IN1, HIGH); digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH); digitalWrite(IN4, LOW);
+  analogWrite(ENA, constrain(esquerda, 0, 255));
+  analogWrite(ENB, constrain(direita, 0, 255));
+}
+
+void setup() {
+  pinMode(ENA, OUTPUT); pinMode(ENB, OUTPUT);
+  pinMode(IN1, OUTPUT); pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT); pinMode(IN4, OUTPUT);
+  Serial.begin(9600);
+  moverMotores(0, 0);
+}
+
+void loop() {
+  int esquerda = analogRead(SENSOR_ESQ);
+  int direita = analogRead(SENSOR_DIR);
+  if (esquerda &lt; LIMIAR_LINHA &amp;&amp; direita &lt; LIMIAR_LINHA) {
+    moverMotores(0, 0);
+    return;
+  }
+  // Linha mais à direita: aumente o motor esquerdo para virar à direita.
+  int erro = direita - esquerda;
+  int correcao = (int)(Kp * erro);
+  moverMotores(VEL_BASE + correcao, VEL_BASE - correcao);
+  Serial.println(erro);
+  delay(10);
+}</pre>
+</div><p class="body-text">Meça cada sensor sobre o fundo e a faixa; compense diferenças entre eles. Se a polaridade for invertida, adapte a leitura e a condição de perda de linha. Comece com velocidade e ganho baixos, observe o sinal do erro e aumente o ganho gradualmente. Este controle P não estima uma posição absoluta e não trata cruzamentos.</p>
+</div>
+<!-- 6. GESTÃO -->
+<div class="article-section" id="gestao">
+<div class="section-label">06 — Gestão do Projeto</div>
+<h2 class="sec-title">Organização e cronograma</h2>
+<p class="body-text">Uma divisão em quatro etapas ajuda a organizar o trabalho. Ajuste a duração de cada etapa aos recursos do grupo e reserve tempo para testar o conjunto.</p>
+<h3 class="sub-title">Sugestão de divisão de tarefas</h3>
+<div class="steps-list">
+<div class="step-item">
+<div class="step-num">D1</div>
+<div class="step-content">
+<div class="step-title">Planejamento e divisão</div>
+<div class="step-text">Definir quem faz cada frente (Gestão, Mecânica, Eletrônica, Programação). Abrir o documento do relatório com a estrutura já montada. Cada responsável começa sua seção.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">D2</div>
+<div class="step-content">
+<div class="step-title">Desenvolvimento</div>
+<div class="step-text">Mecânica: CAD do chassi. Eletrônica: esquemático no Tinkercad. Programação: escrever e comentar o código. Gestão: lista de materiais + cronograma detalhado.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">D3</div>
+<div class="step-content">
+<div class="step-title">Integração e simulação</div>
+<div class="step-text">Juntar todas as partes no relatório. Rodar simulações e capturar prints/gifs. Revisar o texto e verificar se todos os objetivos do projeto estão cobertos.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">D4</div>
+<div class="step-content">
+<div class="step-title">Revisão final e apresentação</div>
+<div class="step-text">Revisar formatação, capa com nomes/RA, exportar PDF. Revise com o grupo antes de apresentar.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 7. RELATÓRIO -->
+<div class="article-section" id="relatorio">
+<div class="section-label">07 — Relatório Técnico</div>
+<h2 class="sec-title">Como estruturar o documento</h2>
+<p class="body-text">O relatório registra as decisões e permite repetir os testes. Use a estrutura abaixo como sugestão; requisitos de processos seletivos devem ser consultados no edital vigente.</p>
+<div class="steps-list">
+<div class="step-item">
+<div class="step-num">✓</div>
+<div class="step-content">
+<div class="step-title">Capa</div>
+<div class="step-text">Nome completo e RA de todos os integrantes, título do projeto, data. Inclua também a versão do documento.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">✓</div>
+<div class="step-content">
+<div class="step-title">Introdução</div>
+<div class="step-text">O que é um seguidor de linha? Como funciona o sensor IR? Qual a aplicação real desse tipo de robô? Cite exemplos industriais (AGVs em fábricas, por exemplo).</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">✓</div>
+<div class="step-content">
+<div class="step-title">Desenvolvimento</div>
+<div class="step-text">Esquema eletrônico (print do Tinkercad), concepção mecânica (render/foto do CAD), lista de materiais com custos, dificuldades encontradas e como foram resolvidas.</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">✓</div>
+<div class="step-content">
+<div class="step-title">Conclusão</div>
+<div class="step-text">Código comentado completo, prints/gifs da simulação funcionando, propostas de melhoria.</div>
+</div>
+</div>
+</div>
+<h3 class="sub-title">Dicas de escrita técnica</h3>
+<div class="tips-grid">
+<div class="tip-card good">
+<div class="tip-header">✅ Faça</div>
+<p class="tip-text">Explique o porquê de cada decisão. "Escolhemos o L298N pois suporta até 2A por canal, suficiente para os motores."</p>
+</div>
+<div class="tip-card bad">
+<div class="tip-header">❌ Evite</div>
+<p class="tip-text">Descrições genéricas sem justificativa. "Usamos o L298N porque é um componente comum."</p>
+</div>
+</div>
+</div>
+<!-- 8. PRÓXIMOS PASSOS -->
+<div class="article-section" id="proximos">
+<div class="section-label">08 — Indo além</div>
+<h2 class="sec-title">Melhorias e próximos passos</h2>
+<p class="body-text">Se você quer se destacar, aqui estão ideias de melhorias que podem ser descritas na seção de conclusão do relatório:</p>
+<div class="callout green">
+<div class="callout-label">🚀 Ideias de melhoria</div>
+<p><strong>+ Sensores:</strong> Usar 5 sensores em vez de 2 aumenta muito a precisão da detecção.<br/><br/>
+<strong>PID completo:</strong> Implementar as parcelas I e D para eliminar a oscilação.<br/><br/>
+<strong>Bluetooth:</strong> Adicionar módulo HC-05 para ajustar os parâmetros via celular.</p>
+</div>
+</div>
+</div>
+<!-- SIDEBAR -->
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>Neste artigo</h4>
+<ul class="toc-list">
+<li><a href="#visao-geral"><span class="toc-num">01</span>Visão Geral</a></li>
+<li><a href="#componentes"><span class="toc-num">02</span>Componentes</a></li>
+<li><a href="#eletronica"><span class="toc-num">03</span>Eletrônica</a></li>
+<li><a href="#mecanica"><span class="toc-num">04</span>Mecânica</a></li>
+<li><a href="#programacao"><span class="toc-num">05</span>Programação</a></li>
+<li><a href="#gestao"><span class="toc-num">06</span>Gestão</a></li>
+<li><a href="#relatorio"><span class="toc-num">07</span>Relatório</a></li>
+<li><a href="#proximos"><span class="toc-num">08</span>Indo além</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>Tags</h4>
+<span class="sidebar-tag">Arduino</span>
+<span class="sidebar-tag">C/C++</span>
+<span class="sidebar-tag">Sensores IR</span>
+<span class="sidebar-tag">Ponte H</span>
+<span class="sidebar-tag">PWM</span>
+</div>
+</aside>
+</div>
+</div>
+
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

@@ -1,0 +1,848 @@
+{
+  "36c0bbb2-fe29-4cf1-8b6a-4308d20f6b08.JPG": {
+    "path": "assets/images/projetos/equipe-evento.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "90c633236f2531ef0ea67e29558ad4a6fc413e1abac80ff60a4512943067e2da",
+    "bytes": 343936,
+    "animated": false
+  },
+  "arduino-thumb.jpg": {
+    "path": "assets/images/artigos/arduino-thumb.webp",
+    "width": 500,
+    "height": 334,
+    "original_format": "WEBP",
+    "sha256": "21bdcc0bfc6dbf04e8efb0a511b7199d411a21ff1abc762f7674f96aef31b878",
+    "bytes": 30458,
+    "animated": false
+  },
+  "carlos.jpg": {
+    "path": "assets/images/equipe/carlos-rodrigo.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "9a5479f17b113b90f43dbe012446de3662e7b9c3f11359dba523481b26bf71bc",
+    "bytes": 20524,
+    "animated": false
+  },
+  "carro-linha.jpg": {
+    "path": "assets/images/artigos/carro-linha.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "ba7466b7c36aa0a00b5800ca22bbce868e75c9b5859fad5a6cf4f7fb701c5242",
+    "bytes": 241118,
+    "animated": false
+  },
+  "Drone.JPG": {
+    "path": "assets/images/artigos/arduino-thumb.webp",
+    "width": 500,
+    "height": 334,
+    "original_format": "WEBP",
+    "sha256": "21bdcc0bfc6dbf04e8efb0a511b7199d411a21ff1abc762f7674f96aef31b878",
+    "bytes": 30458,
+    "animated": false
+  },
+  "Drone.png": {
+    "path": "assets/images/artigos/robotica-educacional.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "HEIF",
+    "sha256": "96a154111453f10e062d412ee96ead117552673ff96a49e9935f2ca11c17120e",
+    "bytes": 294984,
+    "animated": false
+  },
+  "ELETROGAIA_LOGO_PNG.png": {
+    "path": "assets/images/marca/eletrogaia-logo-png.png",
+    "width": 1024,
+    "height": 1024,
+    "original_format": "PNG",
+    "sha256": "db049195c0292ef10f5fcd7d763b52f71bb54c858e64766f1d312f7dd29e4668",
+    "bytes": 351752,
+    "animated": false
+  },
+  "Equipe.JPG": {
+    "path": "assets/images/projetos/equipe.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "295b697579f020d5d9178d1618f7f6a1c525c9f1717be50e7ecdd07a024d33a0",
+    "bytes": 76218,
+    "animated": false
+  },
+  "Equipe.png": {
+    "path": "assets/images/projetos/equipe.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "295b697579f020d5d9178d1618f7f6a1c525c9f1717be50e7ecdd07a024d33a0",
+    "bytes": 76218,
+    "animated": false
+  },
+  "escola-1.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "escola-10.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "escola-2.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "escola-3.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "escola-5.jpg": {
+    "path": "assets/images/escolas/escola-5.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "d1ef45f9b24a4a08063a0066f4e1e96ec51f7689205a47685e0c6829a3300782",
+    "bytes": 118102,
+    "animated": false
+  },
+  "escola-6.jpg": {
+    "path": "assets/images/escolas/escola-6.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "bef8fda1f39f25afff48d7ba3d8219bdd235ee5f41f726dec89142ec9f939183",
+    "bytes": 142126,
+    "animated": false
+  },
+  "escola-7.jpg": {
+    "path": "assets/images/escolas/escola-7.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "accdb2072bfd222a33e3d7d9c9fd270a4ea4ba014e352f223b70c1b004fd7e53",
+    "bytes": 187336,
+    "animated": false
+  },
+  "escola-8.jpg": {
+    "path": "assets/images/escolas/escola-8.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "f1d17795362b710387148540a3b46a7d03e035203c58b9203d0e2e34f7b2ad2d",
+    "bytes": 206452,
+    "animated": false
+  },
+  "escola-9.jpg": {
+    "path": "assets/images/escolas/escola-9.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "e1e0e6b531be022f699cd08e19ce5e1365d76586b8f6ffa47c9b6d1ed23a250c",
+    "bytes": 226114,
+    "animated": false
+  },
+  "escola-capa.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "estacaodesolda.jpg": {
+    "path": "assets/images/artigos/estacaodesolda.webp",
+    "width": 500,
+    "height": 500,
+    "original_format": "WEBP",
+    "sha256": "b08a69bf635fe417aa21c69f0ade29344bf1ddf7561cb8ed166f39aa4b972977",
+    "bytes": 14436,
+    "animated": false
+  },
+  "favicon-azul.png": {
+    "path": "assets/images/marca/favicon-azul.png",
+    "width": 40,
+    "height": 40,
+    "original_format": "PNG",
+    "sha256": "be0750c671e83ed36b52749c8d2fb192011658dfb203930c3c0cf9b9368c4b5b",
+    "bytes": 2579,
+    "animated": false
+  },
+  "favicon-branco.png": {
+    "path": "assets/images/marca/favicon-branco.png",
+    "width": 40,
+    "height": 40,
+    "original_format": "PNG",
+    "sha256": "89468c24cb18c69adfb417f758939b87c25e9d11078725c36f9d4f07c2968c65",
+    "bytes": 1530,
+    "animated": false
+  },
+  "favicon-claro.png": {
+    "path": "assets/images/marca/favicon-claro.png",
+    "width": 673,
+    "height": 588,
+    "original_format": "PNG",
+    "sha256": "7c11431c1d5326cfa6cf923035b17e323ec25d376bfcf4e3131ce171cc49aead",
+    "bytes": 201478,
+    "animated": false
+  },
+  "favicon-escuro.png": {
+    "path": "assets/images/marca/favicon-escuro.png",
+    "width": 762,
+    "height": 807,
+    "original_format": "PNG",
+    "sha256": "2fa0965dc16df2e86a4ec05bce40b3b89dd6746cca4c989181fcd7cb412f2c09",
+    "bytes": 348675,
+    "animated": false
+  },
+  "favicon-verde.png": {
+    "path": "assets/images/marca/favicon-verde.png",
+    "width": 40,
+    "height": 40,
+    "original_format": "PNG",
+    "sha256": "43134a8e28071d006be991c64020bc4e1d04266765073ae1d17e5e32c2da74ba",
+    "bytes": 1103,
+    "animated": false
+  },
+  "Felipe Brian.jpeg": {
+    "path": "assets/images/equipe/felipe-brian.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "1d99ba9c28ba4213d1680edba7ccfd676c99e79bd6c9ed224096c69f6adb87bc",
+    "bytes": 55262,
+    "animated": false
+  },
+  "Felipe.jpeg": {
+    "path": "assets/images/equipe/felipe-henrique.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "bee748f4d4c95f404f67676385942db30632bc0af1504818e58065fba3509b96",
+    "bytes": 16074,
+    "animated": false
+  },
+  "Gabriel.jpeg": {
+    "path": "assets/images/equipe/gabriel-azevedo.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "58ae278a3fbcf37a511e4a6e33b90da1f6e7c32b69f26282b38b293db1fa86c0",
+    "bytes": 11266,
+    "animated": false
+  },
+  "GAIA_MODO_CLARO.png": {
+    "path": "assets/images/marca/gaia-modo-claro.png",
+    "width": 1024,
+    "height": 1024,
+    "original_format": "PNG",
+    "sha256": "192bb0e5808fbed0e73a5774b3f29de5e459d04b455f1295e97736c4b563d2b3",
+    "bytes": 491388,
+    "animated": false
+  },
+  "GAIA_MODO_ESCURO.png": {
+    "path": "assets/images/marca/favicon-escuro.png",
+    "width": 762,
+    "height": 807,
+    "original_format": "PNG",
+    "sha256": "2fa0965dc16df2e86a4ec05bce40b3b89dd6746cca4c989181fcd7cb412f2c09",
+    "bytes": 348675,
+    "animated": false
+  },
+  "gaiapid1.jpg": {
+    "path": "assets/images/artigos/gaiapid1.webp",
+    "width": 800,
+    "height": 534,
+    "original_format": "WEBP",
+    "sha256": "dbb5c5696ad768ad39802cbdaf50d23f940cf6bf82577c34ae4b05643c869c0f",
+    "bytes": 118088,
+    "animated": false
+  },
+  "gaiapid2.jpg": {
+    "path": "assets/images/artigos/gaiapid2.webp",
+    "width": 612,
+    "height": 408,
+    "original_format": "WEBP",
+    "sha256": "a4c78cd7c0e18d17a8d2580d90e76702948e9a63ee1ec9212cdfca06811f1933",
+    "bytes": 35548,
+    "animated": false
+  },
+  "hackagis-equipe.png": {
+    "path": "assets/images/hackagis/hackagis-equipe.webp",
+    "width": 871,
+    "height": 788,
+    "original_format": "JPEG",
+    "sha256": "1c17c11753cfd3ec65c72d0f0247cf870fee9f561989dd675e19334e324fcef1",
+    "bytes": 59078,
+    "animated": false
+  },
+  "hackagis-grupo.png": {
+    "path": "assets/images/hackagis/hackagis-grupo.webp",
+    "width": 868,
+    "height": 839,
+    "original_format": "JPEG",
+    "sha256": "573f75c45d01e251727529fe17ec349585bc9f1da5b358b0012b95db4a191b29",
+    "bytes": 57350,
+    "animated": false
+  },
+  "hackagis-pitch.png": {
+    "path": "assets/images/hackagis/hackagis-pitch.webp",
+    "width": 869,
+    "height": 841,
+    "original_format": "JPEG",
+    "sha256": "d462e13fecdb8ed3eb978141fb4e4fa9f5dd52827f1dc5a41ab2bd2b94c44ff5",
+    "bytes": 75730,
+    "animated": false
+  },
+  "hackagis-podio.png": {
+    "path": "assets/images/hackagis/hackagis-podio.webp",
+    "width": 503,
+    "height": 189,
+    "original_format": "JPEG",
+    "sha256": "863f4ea9e40ce8d53ba90602ed4d0b74932364fb6cea0fbd2abd8ca22a20dba2",
+    "bytes": 5184,
+    "animated": false
+  },
+  "hackagis-thumb.jpg": {
+    "path": "assets/images/hackagis/hackagis-equipe.webp",
+    "width": 871,
+    "height": 788,
+    "original_format": "JPEG",
+    "sha256": "1c17c11753cfd3ec65c72d0f0247cf870fee9f561989dd675e19334e324fcef1",
+    "bytes": 59078,
+    "animated": false
+  },
+  "heron.jpg": {
+    "path": "assets/images/equipe/pedro-h-soares.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "04aacaa338ff917361220a0b71c8bb9f895f58ad47774b4570e82c0a231c9739",
+    "bytes": 13312,
+    "animated": false
+  },
+  "iaerobotica.jpg": {
+    "path": "assets/images/artigos/arduino-thumb.webp",
+    "width": 500,
+    "height": 334,
+    "original_format": "WEBP",
+    "sha256": "21bdcc0bfc6dbf04e8efb0a511b7199d411a21ff1abc762f7674f96aef31b878",
+    "bytes": 30458,
+    "animated": false
+  },
+  "IMG_3194.JPG": {
+    "path": "assets/images/projetos/cerimonia-premiacao.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "e8dd6cbb8d3e111052d4c45b1f516a2cbb1bee8d653feb8c58fd985c4927fdee",
+    "bytes": 143852,
+    "animated": false
+  },
+  "IMG_3194.png": {
+    "path": "assets/images/projetos/cerimonia-premiacao-original.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "HEIF",
+    "sha256": "7bb1962b97fbcd0eb89e578af7ecdf390e8e33317b7e12a142f173451a43857f",
+    "bytes": 143380,
+    "animated": false
+  },
+  "IMG_6749.jpg": {
+    "path": "assets/images/projetos/drone-sae-bancada.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "ae5b197bee3220d1f29e09770d385e1ecdcc2cf9ea9c0c82161333d7e11806f2",
+    "bytes": 311582,
+    "animated": false
+  },
+  "IMG_7431.jpg": {
+    "path": "assets/images/projetos/integrantes-premiacao-sae.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "f5eec795bf18b5a8e8c0d53f51fae180286d2bfb8d697671cf781d58ddd87cef",
+    "bytes": 310194,
+    "animated": false
+  },
+  "IMG_7491.jpg": {
+    "path": "assets/images/projetos/equipe-premiacao-sae.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "c40f00244e4668649759ad8e2142fd9cd55e580c6d43a391de49b159d8f72e1f",
+    "bytes": 251586,
+    "animated": false
+  },
+  "IMG_7522.jpg": {
+    "path": "assets/images/projetos/integrantes-trofeu-sae.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "JPEG",
+    "sha256": "f9c3f1249435302d2ea48b9fe1c46edf0ea8007569771db1874aeeebe0161024",
+    "bytes": 186740,
+    "animated": false
+  },
+  "IMG_7527.jpg": {
+    "path": "assets/images/projetos/equipe-sae-2025.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "c8954b31d85d015e7ad8f51bf4d95be0821d68f3be4d7443bcc6a7ab4e84c554",
+    "bytes": 279036,
+    "animated": false
+  },
+  "IMG_7627.JPG": {
+    "path": "assets/images/projetos/montagem-drone.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "a0380d9c5e154d55cb84d2fb825c0de0116a0ea7feb9b99d163953bcaff1f8e3",
+    "bytes": 52548,
+    "animated": false
+  },
+  "IMG_7628.JPG": {
+    "path": "assets/images/projetos/equipe-bancada-drone.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "dbdcec98e025b4573a7bcad1952b43d702c5f02f95fdbda5653492c24cf54772",
+    "bytes": 82392,
+    "animated": false
+  },
+  "IMG_7630.JPG": {
+    "path": "assets/images/projetos/testes-drone-campo.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "b0ec6e66f9d75cb9865aecbfaec43f836d5fee80b2af1ff015bdee081345fac0",
+    "bytes": 112542,
+    "animated": false
+  },
+  "IMG_7631.JPG": {
+    "path": "assets/images/projetos/encontro-equipe.webp",
+    "width": 828,
+    "height": 466,
+    "original_format": "JPEG",
+    "sha256": "73d0313315406795b62efd3c0b219785d55ac8c629f38905adb543a95a2a267d",
+    "bytes": 140096,
+    "animated": false
+  },
+  "IMG_7633.JPG": {
+    "path": "assets/images/projetos/integrantes-eletronica.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "31a066a679271051cc702a3260982d41bb25c846f491630fe6ab046e2eadf4a1",
+    "bytes": 70330,
+    "animated": false
+  },
+  "IMG_7633.png": {
+    "path": "assets/images/projetos/integrantes-eletronica.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "31a066a679271051cc702a3260982d41bb25c846f491630fe6ab046e2eadf4a1",
+    "bytes": 70330,
+    "animated": false
+  },
+  "IMG_7916.jpg": {
+    "path": "assets/images/escolas/escola-1.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "JPEG",
+    "sha256": "b5983f3a8b88cc83ae01f9b0b3350d2df7fa58c403b51d5a725c95a7844a130c",
+    "bytes": 207032,
+    "animated": false
+  },
+  "J%C3%BAlia%20e%20Wanessa.jpg": {
+    "path": "assets/images/projetos/julia-e-wanessa.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "HEIF",
+    "sha256": "d2538a44738d5ae25a5e4d57880c6293ac0b0e37e2dd82f92627c0b2bf75bf4c",
+    "bytes": 310292,
+    "animated": false
+  },
+  "J%C3%BAlia%20e%20Wanessa.png": {
+    "path": "assets/images/projetos/julia-e-wanessa.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "HEIF",
+    "sha256": "d2538a44738d5ae25a5e4d57880c6293ac0b0e37e2dd82f92627c0b2bf75bf4c",
+    "bytes": 310292,
+    "animated": false
+  },
+  "Jordana.jpeg": {
+    "path": "assets/images/equipe/jordana.webp",
+    "width": 640,
+    "height": 640,
+    "original_format": "JPEG",
+    "sha256": "8ab7c04fa8d0942c947cf15212d0f32fd1442d9d6d132c86628317d7be93d4ab",
+    "bytes": 35736,
+    "animated": false
+  },
+  "João Paulo.jpeg": {
+    "path": "assets/images/equipe/joao-paulo.webp",
+    "width": 521,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "d0ab02704f36406d4ed500f6c744f997b037360440448923c363b719e60e399e",
+    "bytes": 19384,
+    "animated": false
+  },
+  "Júlia e Wanessa.HEIC": {
+    "path": "assets/images/projetos/julia-e-wanessa.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "HEIF",
+    "sha256": "d2538a44738d5ae25a5e4d57880c6293ac0b0e37e2dd82f92627c0b2bf75bf4c",
+    "bytes": 310292,
+    "animated": false
+  },
+  "Júlia e Wanessa.jpg": {
+    "path": "assets/images/projetos/julia-e-wanessa.webp",
+    "width": 1200,
+    "height": 1600,
+    "original_format": "HEIF",
+    "sha256": "d2538a44738d5ae25a5e4d57880c6293ac0b0e37e2dd82f92627c0b2bf75bf4c",
+    "bytes": 310292,
+    "animated": false
+  },
+  "Leonardo.jpeg": {
+    "path": "assets/images/equipe/leonardo.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "711776295520b694d6c01fae1efb883f03dd940acbb76b747777721aaa8a7a6c",
+    "bytes": 21394,
+    "animated": false
+  },
+  "LOGO (1).jpg": {
+    "path": "assets/images/marca/logo-1.png",
+    "width": 1024,
+    "height": 1024,
+    "original_format": "JPEG",
+    "sha256": "9de2d21c86bb17961adc1a19fb1dfbd803fbfdfad45e7c961e0ca8be0ba76e88",
+    "bytes": 404702,
+    "animated": false
+  },
+  "LOGO_GAIA.png": {
+    "path": "assets/images/marca/logo-gaia.png",
+    "width": 1024,
+    "height": 1024,
+    "original_format": "PNG",
+    "sha256": "7896a314bcb0876f4cefcd55b074ce0c93b886fa38243ec191fdbca346743cd0",
+    "bytes": 548177,
+    "animated": false
+  },
+  "LOGO_GAIA_SEM_CIRCULO.png": {
+    "path": "assets/images/marca/gaia-modo-claro.png",
+    "width": 1024,
+    "height": 1024,
+    "original_format": "PNG",
+    "sha256": "192bb0e5808fbed0e73a5774b3f29de5e459d04b455f1295e97736c4b563d2b3",
+    "bytes": 491388,
+    "animated": false
+  },
+  "Lucas.jpeg": {
+    "path": "assets/images/equipe/lucas-cortes.webp",
+    "width": 557,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "6f82bbee50032cf6a49d8c537893cc8735c7568c54c58aae6f70a634a4e40156",
+    "bytes": 22022,
+    "animated": false
+  },
+  "Lígia.jpeg": {
+    "path": "assets/images/equipe/ligia.webp",
+    "width": 329,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7afc6f5c48710062ed1228082353777f27b9b8390dce82bfe74586cf26e82e14",
+    "bytes": 17084,
+    "animated": false
+  },
+  "Maerbal.jpeg": {
+    "path": "assets/images/equipe/joao-maerbal.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7f2b57a5c67171ae39b18c38d4ccbb1314177ae941f79d3bdd9a92ea9fb6d0f1",
+    "bytes": 26342,
+    "animated": false
+  },
+  "mao-robotica.jpg": {
+    "path": "assets/images/artigos/mao-robotica.webp",
+    "width": 500,
+    "height": 500,
+    "original_format": "WEBP",
+    "sha256": "123fd06624c12421a60ce3ec4cda277fa82ad05ded556a5654cd290f2bbe1827",
+    "bytes": 11744,
+    "animated": false
+  },
+  "Matheus.jpeg": {
+    "path": "assets/images/equipe/matheus.webp",
+    "width": 640,
+    "height": 640,
+    "original_format": "JPEG",
+    "sha256": "40fefd7f63e8646dc937c3db6067bb1f4c12f6c517f7d5e66ebf46186fc27b25",
+    "bytes": 41760,
+    "animated": false
+  },
+  "membrosdogaiacomodroneeletroquad.png": {
+    "path": "assets/images/projetos/equipe-gaia-eletroquad.webp",
+    "width": 1200,
+    "height": 587,
+    "original_format": "JPEG",
+    "sha256": "01a1e66cfd971d387e3ff737eb729bd1527ea7a9959e1c025e4ce3643dec747b",
+    "bytes": 138164,
+    "animated": false
+  },
+  "Preparosparaacompeticao.JPG": {
+    "path": "assets/images/projetos/preparacao-competicao.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "f742032eaf65d0c08fcd8c20566c2ef91af00803a47505609557e54a23043952",
+    "bytes": 49934,
+    "animated": false
+  },
+  "Preparosparaacompeticao.png": {
+    "path": "assets/images/projetos/preparacao-competicao.webp",
+    "width": 828,
+    "height": 552,
+    "original_format": "JPEG",
+    "sha256": "f742032eaf65d0c08fcd8c20566c2ef91af00803a47505609557e54a23043952",
+    "bytes": 49934,
+    "animated": false
+  },
+  "Pualo.jpeg": {
+    "path": "assets/images/equipe/paulo-adriano.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "11b3922fd3630f39d81b0f8dc1e6c931578db1408cf606d8fb2958ad8c3395c9",
+    "bytes": 16620,
+    "animated": false
+  },
+  "Renan.jpeg": {
+    "path": "assets/images/equipe/renan-alkimim.webp",
+    "width": 579,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7667c189e8ab7ce6462ed41d396f30f13c15f04fa3f6d73d21af7f8dc5bdc2c8",
+    "bytes": 44678,
+    "animated": false
+  },
+  "robot-omni.jpg": {
+    "path": "assets/images/artigos/robot-omni.webp",
+    "width": 700,
+    "height": 400,
+    "original_format": "WEBP",
+    "sha256": "c68c4151980573bdcc300f36f6e0ebf3954b5f427b9e3688e577a9a645edbd14",
+    "bytes": 24328,
+    "animated": false
+  },
+  "solda-thumb.jpg": {
+    "path": "assets/images/artigos/solda-thumb.webp",
+    "width": 500,
+    "height": 280,
+    "original_format": "WEBP",
+    "sha256": "375660d416b0e17af99ed1a143497c11ebfbaa39a6841c2601f3cc56d82e62d0",
+    "bytes": 7316,
+    "animated": false
+  },
+  "soldandoplaca.jpg": {
+    "path": "assets/images/artigos/soldandoplaca.webp",
+    "width": 500,
+    "height": 334,
+    "original_format": "WEBP",
+    "sha256": "96afb366781a73e80a83391e28e07c40b212b116c081358683b50990a7fd7ef1",
+    "bytes": 24520,
+    "animated": false
+  },
+  "tecnica-solda.gif": {
+    "path": "assets/images/artigos/tecnica-solda.webp",
+    "width": 200,
+    "height": 100,
+    "original_format": "GIF",
+    "sha256": "4e9cba3eda8ce14e6a1e157533d476b74cfd08fc3622b162bf46f29f792fa0a9",
+    "bytes": 63956,
+    "animated": true
+  },
+  "terceiro lugar.jpg": {
+    "path": "assets/images/projetos/terceiro-lugar.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "HEIF",
+    "sha256": "07f3c3158ad8437bc414569be1fd1c5a94eefa93a4159032ae2dfd44ec09d2fb",
+    "bytes": 246288,
+    "animated": false
+  },
+  "terceirolugar.png": {
+    "path": "assets/images/projetos/terceiro-lugar.webp",
+    "width": 1600,
+    "height": 1200,
+    "original_format": "HEIF",
+    "sha256": "07f3c3158ad8437bc414569be1fd1c5a94eefa93a4159032ae2dfd44ec09d2fb",
+    "bytes": 246288,
+    "animated": false
+  },
+  "visao.gif": {
+    "path": "assets/images/artigos/visao.webp",
+    "width": 1025,
+    "height": 577,
+    "original_format": "GIF",
+    "sha256": "b1b9b64fc5d1bca800d9847109097d322b6a669034b97e94769f968e2bba9b57",
+    "bytes": 1806736,
+    "animated": true
+  },
+  "visao1.jpg": {
+    "path": "assets/images/artigos/visao1.webp",
+    "width": 500,
+    "height": 282,
+    "original_format": "WEBP",
+    "sha256": "2d2650d05100aa99c9bf19dd4c5993864cf601f77101693ead6bcbd58b7b92f4",
+    "bytes": 34166,
+    "animated": false
+  },
+  "visao3.jpg": {
+    "path": "assets/images/artigos/visao3.webp",
+    "width": 500,
+    "height": 281,
+    "original_format": "WEBP",
+    "sha256": "7bbd383d1203d688cbda93d6fe5ce18483091717ce3f484017bc0902019f443b",
+    "bytes": 35698,
+    "animated": false
+  },
+  "Equipe Gaia/Felipe Brian.jpeg": {
+    "path": "assets/images/equipe/felipe-brian.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "1d99ba9c28ba4213d1680edba7ccfd676c99e79bd6c9ed224096c69f6adb87bc",
+    "bytes": 55262,
+    "animated": false
+  },
+  "Equipe Gaia/Felipe.jpeg": {
+    "path": "assets/images/equipe/felipe-henrique.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "bee748f4d4c95f404f67676385942db30632bc0af1504818e58065fba3509b96",
+    "bytes": 16074,
+    "animated": false
+  },
+  "Equipe Gaia/Gabriel.jpeg": {
+    "path": "assets/images/equipe/gabriel-azevedo.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "58ae278a3fbcf37a511e4a6e33b90da1f6e7c32b69f26282b38b293db1fa86c0",
+    "bytes": 11266,
+    "animated": false
+  },
+  "Equipe Gaia/Jordana.jpeg": {
+    "path": "assets/images/equipe/jordana.webp",
+    "width": 640,
+    "height": 640,
+    "original_format": "JPEG",
+    "sha256": "8ab7c04fa8d0942c947cf15212d0f32fd1442d9d6d132c86628317d7be93d4ab",
+    "bytes": 35736,
+    "animated": false
+  },
+  "Equipe Gaia/João Paulo.jpeg": {
+    "path": "assets/images/equipe/joao-paulo.webp",
+    "width": 521,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "d0ab02704f36406d4ed500f6c744f997b037360440448923c363b719e60e399e",
+    "bytes": 19384,
+    "animated": false
+  },
+  "Equipe Gaia/Leonardo.jpeg": {
+    "path": "assets/images/equipe/leonardo.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "711776295520b694d6c01fae1efb883f03dd940acbb76b747777721aaa8a7a6c",
+    "bytes": 21394,
+    "animated": false
+  },
+  "Equipe Gaia/Lucas.jpeg": {
+    "path": "assets/images/equipe/lucas-cortes.webp",
+    "width": 557,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "6f82bbee50032cf6a49d8c537893cc8735c7568c54c58aae6f70a634a4e40156",
+    "bytes": 22022,
+    "animated": false
+  },
+  "Equipe Gaia/Lígia.jpeg": {
+    "path": "assets/images/equipe/ligia.webp",
+    "width": 329,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7afc6f5c48710062ed1228082353777f27b9b8390dce82bfe74586cf26e82e14",
+    "bytes": 17084,
+    "animated": false
+  },
+  "Equipe Gaia/Maerbal.jpeg": {
+    "path": "assets/images/equipe/joao-maerbal.webp",
+    "width": 540,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7f2b57a5c67171ae39b18c38d4ccbb1314177ae941f79d3bdd9a92ea9fb6d0f1",
+    "bytes": 26342,
+    "animated": false
+  },
+  "Equipe Gaia/Matheus.jpeg": {
+    "path": "assets/images/equipe/matheus.webp",
+    "width": 640,
+    "height": 640,
+    "original_format": "JPEG",
+    "sha256": "40fefd7f63e8646dc937c3db6067bb1f4c12f6c517f7d5e66ebf46186fc27b25",
+    "bytes": 41760,
+    "animated": false
+  },
+  "Equipe Gaia/Pualo.jpeg": {
+    "path": "assets/images/equipe/paulo-adriano.webp",
+    "width": 405,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "11b3922fd3630f39d81b0f8dc1e6c931578db1408cf606d8fb2958ad8c3395c9",
+    "bytes": 16620,
+    "animated": false
+  },
+  "Equipe Gaia/Renan.jpeg": {
+    "path": "assets/images/equipe/renan-alkimim.webp",
+    "width": 579,
+    "height": 720,
+    "original_format": "JPEG",
+    "sha256": "7667c189e8ab7ce6462ed41d396f30f13c15f04fa3f6d73d21af7f8dc5bdc2c8",
+    "bytes": 44678,
+    "animated": false
+  }
+}

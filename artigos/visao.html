@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Visão Computacional: Dando Olhos aos Robôs — GAIA Robótica</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+
+<link href="../assets/css/pages/artigo-visao.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Transforme imagens em medições: entenda detecção e rastreamento, rode um exemplo de webcam com OpenCV e saiba como avaliar o resultado.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/visao.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Visão Computacional: Dando Olhos aos Robôs — GAIA Robótica">
+<meta property="og:description" content="Transforme imagens em medições: entenda detecção e rastreamento, rode um exemplo de webcam com OpenCV e saiba como avaliar o resultado.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/visao.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">Home</a>
+<span>›</span>
+<a href="../paginas/aprenda.html">Aprenda</a>
+<span>›</span>
+      IA
+    </div>
+<div class="badge-row">
+<span class="badge badge-orange">Inteligência Artificial</span>
+<span class="badge badge-outline">Intermediário</span>
+<span class="badge badge-outline">10 min de leitura</span>
+</div>
+<h1>👁️ VISÃO <span class="g">COMPUTACIONAL</span>:<br/>DANDO OLHOS AOS ROBÔS</h1>
+<p class="hero-sub">Transforme imagens em medições: entenda detecção e rastreamento, rode um exemplo de webcam com OpenCV e saiba como avaliar o resultado.</p>
+<div class="hero-meta">
+<div class="meta-item"><strong>GAIA Robótica</strong>Equipe UFTM</div>
+<div class="meta-item"><strong>IA Aplicada</strong>Categoria</div>
+<div class="meta-item"><strong>OpenCV / YOLO</strong>Ferramentas citadas</div>
+</div>
+</div>
+</div>
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="article-content">
+<section class="article-section" id="fundamentos">
+<div class="section-label">01 — De pixels a informação</div>
+<h2 class="sec-title">De pixels a informação</h2>
+<p class="body-text">Uma câmera entrega uma matriz de pixels. A visão computacional transforma essa matriz em informação útil: uma região colorida, a posição de um marcador ou uma classe de objeto. Isso pode ser feito com regras de processamento de imagem, geometria ou modelos aprendidos.</p><p class="body-text">Neste guia, vamos detectar regiões verdes na webcam com OpenCV. O exercício não precisa de rede neural e ajuda a entender captura, transformação de cor, segmentação e medição antes de integrar a percepção a um robô.</p><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Capturar</div><div class="step-text">Obter uma imagem e conferir se a câmera produziu um quadro válido.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Processar</div><div class="step-text">Converter a imagem e selecionar características relevantes para a tarefa.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Medir</div><div class="step-text">Extrair posição, tamanho ou outra informação da região detectada.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Decidir</div><div class="step-text">Usar a medição junto de critérios de validade, limites e estado do robô.</div></div></div></div><div class="callout green"><div class="callout-label">Percepção não é distância</div><p>Uma caixa em uma imagem informa posição em pixels. Estimar metros exige informação adicional, como calibração, geometria conhecida, estéreo ou outro sensor.</p></div>
+</section>
+<section class="article-section" id="deteccao">
+<div class="section-label">02 — Diferencie as tarefas</div>
+<h2 class="sec-title">Diferencie as tarefas</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Tarefa</th><th scope="col">Pergunta respondida</th><th scope="col">Saída típica</th></tr></thead><tbody><tr><td>Classificação</td><td>O que aparece nesta imagem?</td><td>Uma classe para a imagem ou recorte.</td></tr><tr><td>Detecção</td><td>Quais objetos e onde estão?</td><td>Classes e caixas delimitadoras.</td></tr><tr><td>Segmentação</td><td>Quais pixels pertencem à região?</td><td>Máscara por pixel.</td></tr><tr><td>Rastreamento</td><td>Qual região corresponde ao mesmo objeto ao longo do tempo?</td><td>Identidades e trajetórias entre quadros.</td></tr></tbody></table></div><figure><img alt="Exemplo visual de detecção de objetos em uma cena" class="inline-img" decoding="async" height="282" loading="lazy" src="../assets/images/artigos/visao1.webp" width="500"/><figcaption class="img-caption">Caixas delimitadoras indicam regiões da imagem; sua interpretação depende do detector.</figcaption></figure><p class="body-text">Modelos da família YOLO são uma opção para detecção aprendida. A velocidade depende da variante, resolução e hardware; o tempo de resposta precisa ser medido na configuração real. Uma demonstração em notebook não garante o mesmo desempenho em uma placa embarcada.</p>
+</section>
+<section class="article-section" id="rastreamento">
+<div class="section-label">03 — O que muda entre quadros</div>
+<h2 class="sec-title">O que muda entre quadros</h2>
+<p class="body-text">Detectar uma região em cada quadro não é o mesmo que manter sua identidade. Se dois objetos verdes cruzarem a cena, o detector por cor abaixo poderá encontrar ambos sem saber qual era o alvo anterior.</p><figure><img alt="Exemplo animado de acompanhamento de objetos em vídeo" class="inline-img" decoding="async" height="577" loading="lazy" src="../assets/images/artigos/visao.webp" width="1025"/><figcaption class="img-caption">No rastreamento, a associação entre quadros faz parte do problema.</figcaption></figure><p class="body-text">Movimento rápido, oclusão e iluminação variável podem interromper a associação. Antes de usar posições para comandar um robô, defina por quanto tempo uma medição é válida e como agir quando o alvo desaparece.</p>
+</section>
+<section class="article-section" id="codigo">
+<div class="section-label">04 — Detecte verde com OpenCV</div>
+<h2 class="sec-title">Detecte verde com OpenCV</h2>
+<p class="body-text">Você precisa de Python 3, webcam e um ambiente com interface gráfica. Em um ambiente virtual, instale <code>opencv-python</code> e <code>numpy</code> com <code>python -m pip install opencv-python numpy</code>. Salve o exemplo como <code>deteccao_cor.py</code> e execute com <code>python deteccao_cor.py</code>.</p><div class="code-wrap"><div class="code-header"><span class="code-lang">Python 3 · OpenCV</span><span class="code-fname">deteccao_cor.py</span></div><pre><code>import cv2
+import numpy as np
+
+# Em imagens HSV de 8 bits no OpenCV: H vai de 0 a 179.
+limite_inferior = np.array([40, 70, 70], dtype=np.uint8)
+limite_superior = np.array([80, 255, 255], dtype=np.uint8)
+kernel = np.ones((3, 3), dtype=np.uint8)
+captura = cv2.VideoCapture(0)
+
+try:
+    if not captura.isOpened():
+        raise RuntimeError("Nao foi possivel abrir a webcam.")
+
+    while True:
+        ok, quadro = captura.read()
+        if not ok:
+            raise RuntimeError("A camera parou de fornecer imagens.")
+
+        hsv = cv2.cvtColor(quadro, cv2.COLOR_BGR2HSV)
+        mascara = cv2.inRange(hsv, limite_inferior, limite_superior)
+        mascara = cv2.morphologyEx(mascara, cv2.MORPH_OPEN, kernel)
+
+        contornos, _ = cv2.findContours(
+            mascara, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
+        for contorno in contornos:
+            if cv2.contourArea(contorno) &lt; 500:
+                continue
+            x, y, largura, altura = cv2.boundingRect(contorno)
+            cv2.rectangle(quadro, (x, y), (x + largura, y + altura),
+                          (0, 255, 0), 2)
+
+        cv2.imshow("Mascara", mascara)
+        cv2.imshow("GAIA - Deteccao por cor", quadro)
+        if cv2.waitKey(1) &amp; 0xFF == ord("q"):
+            break
+finally:
+    captura.release()
+    cv2.destroyAllWindows()</code></pre></div><p class="body-text">Mostre um objeto verde à câmera. A janela de máscara deve destacar suas regiões em branco e a imagem deve receber uma caixa. Pressione <strong>Q</strong> com uma janela em foco para sair. O bloco <code>finally</code> libera a câmera também se ocorrer um erro.</p><p class="body-text">A conversão de BGR para HSV separa matiz, saturação e intensidade, o que facilita selecionar uma faixa de cor. Isso não elimina efeitos de iluminação. Os limites são um ponto inicial para ajuste, e o filtro de 500 pixels depende da resolução e do tamanho do objeto.</p><p class="body-text">A transformação e os intervalos de HSV são descritos no <a href="https://docs.opencv.org/4.x/df/d9d/tutorial_py_colorspaces.html">tutorial oficial de espaços de cor do OpenCV</a>.</p>
+</section>
+<section class="article-section" id="gaia">
+<div class="section-label">05 — Da imagem ao comando</div>
+<h2 class="sec-title">Da imagem ao comando</h2>
+<p class="body-text">Uma integração didática pode usar o centro horizontal da região detectada e compará-lo ao centro da imagem. A diferença em pixels vira uma entrada para uma lógica de correção. Antes de acionar motores, mostre esse erro na tela e confira seu sinal movendo o objeto para os dois lados.</p><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Valide a região</div><div class="step-text">Defina tamanho mínimo e critérios para aceitar a detecção. Uma camiseta verde no fundo também passa no filtro de cor.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Calcule a posição</div><div class="step-text">Use o centro da caixa ou o centroide da máscara. Registre a posição junto do instante da captura.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Trate ausência e atraso</div><div class="step-text">Quando não houver detecção válida ou os dados estiverem antigos, aplique o comportamento definido para perda do alvo.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Integre por etapas</div><div class="step-text">Teste comunicação e controle separadamente. Só então conecte a saída da visão ao restante do projeto.</div></div></div></div><p class="body-text">Esse fluxo é uma possibilidade de exercício de robótica, não uma descrição de software já implantado pela equipe.</p>
+</section>
+<section class="article-section" id="industria">
+<div class="section-label">06 — Além do exercício de cor</div>
+<h2 class="sec-title">Além do exercício de cor</h2>
+<p class="body-text">Na inspeção e na logística, visão pode apoiar leitura de códigos, verificação de peças e localização de objetos. Cada aplicação exige definir condições de aquisição e critérios de aceitação; uma boa imagem é parte do sistema de medição.</p><figure><img alt="Exemplo de aplicação visual em um ambiente de logística" class="inline-img" decoding="async" height="281" loading="lazy" src="../assets/images/artigos/visao3.webp" width="500"/><figcaption class="img-caption">Aplicações de logística combinam aquisição de imagem, identificação e integração com outros sistemas.</figcaption></figure><p class="body-text">O método do tutorial é apropriado para cenários em que a cor separa bem o alvo do fundo. Para reconhecer objetos com grande variação de aparência, avalie descritores, marcadores ou modelos aprendidos.</p>
+</section>
+<section class="article-section" id="boas-praticas">
+<div class="section-label">07 — Teste as condições reais</div>
+<h2 class="sec-title">Teste as condições reais</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Situação</th><th scope="col">O que observar</th></tr></thead><tbody><tr><td>Luz forte, sombra e luz artificial</td><td>A máscara mantém o objeto sem incluir grande parte do fundo?</td></tr><tr><td>Objeto perto e longe</td><td>O limite de área ainda faz sentido?</td></tr><tr><td>Câmera em movimento</td><td>Desfoque e atraso afetam a posição calculada?</td></tr><tr><td>Alvo fora da imagem</td><td>A aplicação identifica a ausência sem reutilizar uma posição antiga?</td></tr><tr><td>Hardware final</td><td>Qual é a latência do caminho completo, incluindo captura e comunicação?</td></tr></tbody></table></div><p class="body-text">Guarde pequenas sequências representativas para repetir a avaliação após mudanças. Diferencie taxa de quadros, em FPS, de latência: uma câmera pode entregar muitos quadros por segundo com atraso acumulado no processamento.</p>
+</section>
+<section class="article-section" id="proximos">
+<div class="section-label">08 — Próximos passos</div>
+<h2 class="sec-title">Próximos passos</h2>
+<p class="body-text">Você já percorreu captura, segmentação e extração de regiões. Como exercício, adicione o centro da caixa à imagem e registre em quais condições aparecem falsos positivos.</p><p class="body-text">Depois, estude <a href="ia.html">organização de dados e avaliação de modelos</a> ou conecte uma medição validada ao <a href="pid.html">controle em malha fechada</a>. Preserve a distinção entre percepção, decisão e atuação.</p>
+</section>
+</div>
+<!-- SIDEBAR -->
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>Neste artigo</h4>
+<ul class="toc-list">
+<li><a href="#fundamentos"><span class="toc-num">01</span>De pixels a informação</a></li>
+<li><a href="#deteccao"><span class="toc-num">02</span>Diferencie as tarefas</a></li>
+<li><a href="#rastreamento"><span class="toc-num">03</span>O que muda entre quadros</a></li>
+<li><a href="#codigo"><span class="toc-num">04</span>Detecte verde com OpenCV</a></li>
+<li><a href="#gaia"><span class="toc-num">05</span>Da imagem ao comando</a></li>
+<li><a href="#industria"><span class="toc-num">06</span>Além do exercício de cor</a></li>
+<li><a href="#boas-praticas"><span class="toc-num">07</span>Teste as condições reais</a></li>
+<li><a href="#proximos"><span class="toc-num">08</span>Próximos passos</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>Tags</h4>
+<span class="sidebar-tag">Inteligência Artificial</span>
+<span class="sidebar-tag">OpenCV</span>
+<span class="sidebar-tag">YOLO</span>
+<span class="sidebar-tag">Tracking</span>
+<span class="sidebar-tag">Indústria 4.0</span>
+</div>
+</aside>
+</div>
+</div>
+
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

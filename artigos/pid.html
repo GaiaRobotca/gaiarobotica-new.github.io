@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Controle PID: O Segredo dos Robôs Precisos — GAIA</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/artigo-pid.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Do erro à correção: entenda P, I e D, execute uma simulação em Python e aprenda a comparar ajustes sem depender de ganhos mágicos.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/pid.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Controle PID: O Segredo dos Robôs Precisos — GAIA">
+<meta property="og:description" content="Do erro à correção: entenda P, I e D, execute uma simulação em Python e aprenda a comparar ajustes sem depender de ganhos mágicos.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/pid.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<!-- =====================================================
+     BARRA DE PROGRESSO
+===================================================== -->
+<div class="reading-progress">
+<div class="rp-fill" id="rp"></div>
+</div>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">
+                Home
+            </a>
+<span>›</span>
+<a href="../paginas/aprenda.html">
+                Aprenda
+            </a>
+<span>›</span>
+
+            Controle
+
+        </div>
+<div class="badge-row">
+<span class="badge badge-orange">
+                Controle
+            </span>
+<span class="badge badge-outline">
+                Intermediário
+            </span>
+<span class="badge badge-outline">
+                10 min de leitura
+            </span>
+<span class="badge badge-outline" style="
+                    border-color:var(--green-light);
+                    color:var(--green-light);
+                ">
+                ⚙ Sistemas &amp; Sinais
+            </span>
+</div>
+<h1>
+
+            🤖 CONTROLE PID:
+            <br/>
+
+            O SEGREDO
+
+            <br/>
+<span class="g">
+                DOS ROBÔS
+            </span>
+
+            PRECISOS
+
+        </h1>
+<p class="hero-sub">Do erro à correção: entenda P, I e D, execute uma simulação em Python e aprenda a comparar ajustes sem depender de ganhos mágicos.</p>
+<div class="hero-meta">
+<div class="meta-item">
+<strong>
+                    GAIA Robótica
+                </strong>
+
+                Equipe UFTM
+
+            </div>
+<div class="meta-item">
+<strong>
+                    Sistemas &amp; Sinais
+                </strong>
+
+                Categoria
+
+            </div>
+<div class="meta-item">
+<strong>
+                    Intermediário
+                </strong>
+
+                Nível
+
+            </div>
+</div>
+</div>
+</div>
+<!-- =====================================================
+     CONTEÚDO
+===================================================== -->
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<div class="article-content">
+<section class="article-section" id="visao-geral">
+<div class="section-label">01 — O erro orienta a correção</div>
+<h2 class="sec-title">O erro orienta a correção</h2>
+<p class="body-text">Um sistema em malha fechada mede o que aconteceu e usa essa informação para corrigir o próximo comando. A referência, ou setpoint, é o valor desejado; a medição é o estado observado. O erro é <strong>referência − medição</strong>.</p><p class="body-text">O controlador PID combina três parcelas: proporcional, integral e derivativa. Ele pode regular velocidade, posição ou outra grandeza, desde que a medição e a atuação sejam definidas. O desempenho depende também do sensor, do atuador, do atraso e da dinâmica do sistema.</p><figure><img alt="Ilustração de aplicação de controle em robótica" class="inline-img" decoding="async" height="534" loading="lazy" src="../assets/images/artigos/gaiapid1.webp" width="800"/><figcaption class="img-caption">O controle usa medições para corrigir a resposta de um sistema.</figcaption></figure><div class="callout green"><div class="callout-label">Antes de ajustar ganhos</div><p>Defina qual grandeza será controlada, sua unidade, o intervalo entre atualizações e os limites do comando. Confira o sinal: uma correção positiva precisa mover a medição na direção esperada.</p></div>
+</section>
+<section class="article-section" id="as-parcelas">
+<div class="section-label">02 — As parcelas P, I e D</div>
+<h2 class="sec-title">As parcelas P, I e D</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Parcela</th><th scope="col">Cálculo conceitual</th><th scope="col">Efeito e limitação</th></tr></thead><tbody><tr><td>P · proporcional</td><td>Kp × erro atual</td><td>Aumenta a reação ao desvio. Ganho excessivo pode causar oscilação.</td></tr><tr><td>I · integral</td><td>Ki × soma do erro ao longo do tempo</td><td>Ajuda a reduzir erro persistente. Pode acumular demais quando o atuador satura.</td></tr><tr><td>D · derivativa</td><td>Kd × taxa de variação</td><td>Reage à rapidez da mudança. Pode amplificar ruído da medição.</td></tr></tbody></table></div><p class="body-text">No tempo contínuo, uma forma paralela é <code>u(t) = Kp·e(t) + Ki·∫e(t)dt + Kd·de(t)/dt</code>. Em código, a integral acumula <code>erro × dt</code> e a derivada usa uma diferença dividida por <code>dt</code>. O intervalo deve estar em uma unidade consistente, como segundos.</p><p class="body-text">Nem toda aplicação precisa das três parcelas. P, PI e PD são escolhas válidas. A integral não resolve uma referência fisicamente impossível, e a derivada não prevê o futuro: ela reage à taxa de mudança.</p><p class="body-text">A documentação do <a href="https://www.mathworks.com/help/simulink/slref/pidcontroller.html">controlador PID da MathWorks</a> apresenta formas contínuas e discretas, filtragem e tratamento de saturação.</p>
+</section>
+<section class="article-section" id="simulacao">
+<div class="section-label">03 — Experimente em uma simulação</div>
+<h2 class="sec-title">Experimente em uma simulação</h2>
+<p class="body-text">Este programa usa somente Python 3 e simula um sistema fictício de primeira ordem. A saída permitida vai de 0 a 2; a referência muda de 0 para 1 após 0,5 s. Os valores não são ganhos prontos para um motor ou drone.</p><div class="code-wrap"><div class="code-header"><span class="code-lang">Python 3</span><span class="code-fname">pid_simulado.py</span></div><pre><code>dt = 0.02
+kp, ki, kd = 2.0, 0.8, 0.08
+minimo, maximo = 0.0, 2.0
+medida = 0.0
+medida_anterior = medida
+integral = 0.0
+derivada_filtrada = 0.0
+tau_filtro = 0.05
+
+print("tempo,referencia,medida,comando")
+for passo in range(251):
+    tempo = passo * dt
+    referencia = 1.0 if tempo &gt;= 0.5 else 0.0
+    erro = referencia - medida
+
+    # Derivar a medida evita um pico causado pelo salto da referencia.
+    derivada = -(medida - medida_anterior) / dt
+    alfa = dt / (tau_filtro + dt)
+    derivada_filtrada += alfa * (derivada - derivada_filtrada)
+
+    integral_candidata = integral + erro * dt
+    livre = kp * erro + ki * integral_candidata + kd * derivada_filtrada
+
+    # So acumule se nao agravar uma saturacao.
+    agrava = ((livre &gt; maximo and erro &gt; 0) or
+              (livre &lt; minimo and erro &lt; 0))
+    if not agrava:
+        integral = integral_candidata
+
+    comando = kp * erro + ki * integral + kd * derivada_filtrada
+    comando = max(minimo, min(maximo, comando))
+
+    if passo % 25 == 0:
+        print(f"{tempo:.2f},{referencia:.2f},{medida:.3f},{comando:.3f}")
+
+    medida_anterior = medida
+    # Planta ficticia: resposta de primeira ordem, constante 0.6 s.
+    medida += dt * (comando - medida) / 0.6</code></pre></div><p class="body-text">Execute com <code>python pid_simulado.py</code>. A tabela começa com medição zero e passa a mostrar sua aproximação à referência. Redirecione a saída para um CSV se quiser fazer um gráfico. Compare a resposta com <code>ki = 0</code> e depois restaure o valor; use a mesma duração e condição inicial.</p><div class="callout green"><div class="callout-label">O que o exemplo inclui</div><p>A derivada é aplicada à medição e filtrada. A integração é suspensa quando aumentaria a saturação, uma forma simples de anti-windup. O modelo omite ruído, atrito e atraso de comunicação: acrescente esses efeitos antes de tirar conclusões sobre hardware.</p></div>
+</section>
+<section class="article-section" id="sintonia">
+<div class="section-label">04 — Ajuste com um critério</div>
+<h2 class="sec-title">Ajuste com um critério</h2>
+<div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Confira o sistema</div><div class="step-text">Teste sensor e atuador isoladamente. Registre limites e verifique o sentido da resposta antes de fechar a malha.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Comece simples</div><div class="step-text">Use uma referência pequena e ganhos baixos. Ajuste P mantendo I e D zerados. Se a resposta oscilar demais, reduza o ganho.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Adicione o necessário</div><div class="step-text">Avalie I se houver erro persistente. Avalie D filtrado quando a dinâmica justificar amortecimento adicional. Mude uma variável por vez.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Compare os registros</div><div class="step-text">Meça tempo de acomodação, maior ultrapassagem da referência e erro final. Anote também quanto tempo o comando fica no limite.</div></div></div></div><figure><img alt="Ilustração relacionada à aplicação de controle PID" class="inline-img" decoding="async" height="408" loading="lazy" src="../assets/images/artigos/gaiapid2.webp" width="612"/><figcaption class="img-caption">Registros de referência, medição e comando ajudam a comparar ajustes.</figcaption></figure><p class="body-text">Métodos de sintonia que provocam oscilação sustentada não são um primeiro ensaio adequado para qualquer equipamento. Comece em simulação e respeite o procedimento do sistema real.</p>
+</section>
+<section class="article-section" id="diagnostico">
+<div class="section-label">05 — Interprete os sintomas</div>
+<h2 class="sec-title">Interprete os sintomas</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Sintoma</th><th scope="col">Hipóteses para verificar</th></tr></thead><tbody><tr><td>Correção afasta o sistema da referência</td><td>Sinal de erro ou sentido do atuador invertido.</td></tr><tr><td>Comando no limite por muito tempo</td><td>Referência inalcançável, ganho excessivo ou integral acumulada.</td></tr><tr><td>Comando muito ruidoso</td><td>Medição ruidosa, derivada excessiva ou período irregular.</td></tr><tr><td>Mesmo ganho se comporta diferente</td><td>Mudança de carga, alimentação, unidade ou intervalo de amostragem.</td></tr></tbody></table></div><p class="body-text">Ao desativar o controle ou trocar de modo, pense no estado acumulado da integral. Em um seguidor de linha, perder a pista exige uma política específica; continuar integrando uma posição inválida produz uma correção sem significado.</p>
+</section>
+<section class="article-section" id="proximos">
+<div class="section-label">06 — Próximos passos</div>
+<h2 class="sec-title">Próximos passos</h2>
+<p class="body-text">O PID transforma erro em comando, mas precisa de limites, amostragem e avaliação. Guarde um registro da simulação com P, PI e PID e descreva o que cada parcela mudou.</p><p class="body-text">Para aplicar a ideia, estude o <a href="seguidor-linha.html">seguidor de linha</a>. Calibre os sensores antes de ajustar ganhos e confirme qual sentido da correção faz o robô voltar à pista.</p>
+</section>
+</div>
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>
+            Neste artigo
+        </h4>
+<ul class="toc-list">
+<li><a href="#visao-geral"><span class="toc-num">01</span>O erro orienta a correção</a></li>
+<li><a href="#as-parcelas"><span class="toc-num">02</span>As parcelas P, I e D</a></li>
+<li><a href="#simulacao"><span class="toc-num">03</span>Experimente em uma simulação</a></li>
+<li><a href="#sintonia"><span class="toc-num">04</span>Ajuste com um critério</a></li>
+<li><a href="#diagnostico"><span class="toc-num">05</span>Interprete os sintomas</a></li>
+<li><a href="#proximos"><span class="toc-num">06</span>Próximos passos</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>
+            Tags
+        </h4>
+<span class="sidebar-tag">
+            Controle
+        </span>
+<span class="sidebar-tag">
+            PID
+        </span>
+<span class="sidebar-tag">
+            Matemática
+        </span>
+<span class="sidebar-tag">
+            Automação
+        </span>
+<span class="sidebar-tag">
+            Sensores
+        </span>
+<span class="sidebar-tag">
+            Robótica
+        </span>
+</div>
+</aside>
+</div>
+</div>
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

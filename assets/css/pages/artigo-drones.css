@@ -1,0 +1,18 @@
+@layer pages {.article-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.badge.solid{background:var(--blue-light);border-color:var(--blue-light);color:#04122e;}
+.meta-item span{font-family:"Space Mono",monospace;font-size:0.62rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;}
+.math-box{background:var(--surface);padding:1.5rem;margin:1.5rem 0;text-align:center;border:1px dashed var(--blue-light);font-size:1.1rem;font-family:"Space Mono",monospace;color:#fff;overflow-x:auto;}
+.diagram-box{background:var(--blue-deep);border:1px solid rgba(255,255,255,0.08);padding:2rem;margin:1.5rem 0;}
+.diagram-label{font-family:"Space Mono",monospace;font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;}
+.diagram-flow{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+.diagram-block{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.15);padding:0.85rem 1.25rem;text-align:center;flex:1;min-width:130px;}
+.diagram-block.highlight{border-color:var(--green-light);background:rgba(92,184,46,0.12);}
+.diagram-name{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:0.86rem;color:#fff;text-transform:uppercase;}
+.diagram-sub{font-family:"Space Mono",monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;}
+.diagram-arrow{color:rgba(255,255,255,0.35);font-size:1.2rem;}
+.axis-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.axis-card{background:var(--surface);border:1px solid var(--border);padding:1.4rem;}
+.axis-card h4{font-family:"Barlow Condensed",sans-serif;font-size:1.05rem;font-weight:800;color:#fff;text-transform:uppercase;margin-bottom:0.5rem;}
+.axis-card p{font-size:0.85rem;color:var(--muted);line-height:1.6;}
+.ri-icon{width:32px;height:32px;background:rgba(255,255,255,0.06);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-size:0.6rem;flex-shrink:0;}
+@media(max-width:1050px){.axis-grid{grid-template-columns:1fr;}}}

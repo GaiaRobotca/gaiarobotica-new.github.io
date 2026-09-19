@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Arduino: A Ponte Entre Lógica e Eletrônica — GAIA Robótica</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/artigo-arduino.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Aprenda a ligar, programar e testar o Arduino Uno R3: do LED integrado à leitura de sensores, com exemplos completos e um roteiro de diagnóstico.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/arduino.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Arduino: A Ponte Entre Lógica e Eletrônica — GAIA Robótica">
+<meta property="og:description" content="Aprenda a ligar, programar e testar o Arduino Uno R3: do LED integrado à leitura de sensores, com exemplos completos e um roteiro de diagnóstico.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/arduino.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">Home</a><span>/</span><a href="../paginas/aprenda.html">Aprenda</a><span>/</span>Arduino
+    </div>
+<div class="badge-row">
+<span class="badge badge-orange">Hardware</span>
+<span class="badge badge-outline">Iniciante</span>
+<span class="badge badge-outline">9 min de leitura</span>
+</div>
+<h1>ARDUINO: A PONTE ENTRE<br/>LÓGICA E ELETRÔNICA</h1>
+<p class="hero-sub">Aprenda a ligar, programar e testar o Arduino Uno R3: do LED integrado à leitura de sensores, com exemplos completos e um roteiro de diagnóstico.</p>
+<div class="hero-meta">
+<div class="meta-item"><strong>GAIA Robótica</strong><span>Equipe UFTM</span></div>
+<div class="meta-item"><strong>Hardware &amp; Embarcados</strong><span>Categoria</span></div>
+</div>
+</div>
+</div>
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<div class="article-content">
+<section class="article-section" id="o-que-e">
+<div class="section-label">01 — Do código ao circuito</div>
+<h2 class="sec-title">Do código ao circuito</h2>
+<p class="body-text">Arduino é uma plataforma de hardware e software para criar sistemas que leem sensores e comandam saídas. Neste guia, vamos usar o <strong>Uno R3</strong>: uma placa com o ATmega328P. Outros modelos têm tensões, recursos e limites diferentes; confira a identificação da sua placa antes de montar.</p><p class="body-text">O objetivo é sair de um LED piscando para uma leitura de sensor verificável. Você vai precisar de um Uno R3, cabo USB com transferência de dados, Arduino IDE e, para o segundo exercício, um potenciômetro de 10 kΩ e jumpers.</p><div class="callout green"><div class="callout-label">O que você vai aprender</div><p>Selecionar placa e porta, carregar um sketch, ler uma entrada analógica e usar o Monitor Serial para verificar o circuito antes de controlar um robô.</p></div>
+</section>
+<section class="article-section" id="anatomia">
+<div class="section-label">02 — Conheça as conexões</div>
+<h2 class="sec-title">Conheça as conexões</h2>
+<p class="body-text">No Uno R3, os pinos de sinal trabalham com lógica de 5 V. O GND é a referência elétrica comum entre placa e periféricos. Com o USB desligado, confira cada ligação e só então alimente a montagem.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Conexão</th><th scope="col">Uso no Uno R3</th><th scope="col">Cuidados</th></tr></thead><tbody><tr><td>D0 a D13</td><td>14 entradas/saídas digitais</td><td>D0 e D1 compartilham a comunicação serial; deixe-os livres nestes exercícios.</td></tr><tr><td>D3, D5, D6, D9, D10 e D11</td><td>Saídas PWM com analogWrite()</td><td>O sinal alterna entre LOW e HIGH; não é uma tensão analógica contínua.</td></tr><tr><td>A0 a A5</td><td>6 entradas analógicas</td><td>Na configuração padrão, convertem 0–5 V em valores de 0 a 1023.</td></tr><tr><td>USB</td><td>Alimentação e programação</td><td>Use um cabo de dados e evite alimentar motores pela porta USB.</td></tr></tbody></table></div><p class="body-text">Os pinos comandam sinais de baixa corrente. LEDs externos precisam de resistor; motores, relés e outras cargas exigem um estágio de acionamento adequado. Consulte as especificações do Uno R3 e os limites totais do microcontrolador, além do limite de cada pino.</p>
+</section>
+<section class="article-section" id="programacao">
+<div class="section-label">03 — Primeiro sketch: LED</div>
+<h2 class="sec-title">Primeiro sketch: LED</h2>
+<div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Selecione a placa</div><div class="step-text">Na IDE, selecione Arduino Uno e a porta que aparece ao conectar o cabo USB. Se a porta não surgir, teste outro cabo de dados.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Compile e envie</div><div class="step-text">Crie um sketch com o código abaixo, verifique a compilação e carregue-o na placa. O LED integrado dispensa componentes externos.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Observe o resultado</div><div class="step-text">O LED deve ficar um segundo aceso e um segundo apagado. Mude o intervalo para 250 ms, envie novamente e compare.</div></div></div></div><div class="code-wrap"><div class="code-header"><span class="code-lang">C++ · Arduino</span><span class="code-fname">blink.ino</span></div><pre><code>const int LED = LED_BUILTIN;
+
+void setup() {
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED, HIGH);
+  delay(1000);
+  digitalWrite(LED, LOW);
+  delay(1000);
+}</code></pre></div><p class="body-text"><code>setup()</code> executa uma vez após ligar ou reiniciar; <code>loop()</code> se repete. <code>delay()</code> bloqueia o avanço do sketch. Ele ajuda no primeiro teste, mas um robô que precisa ler sensores continuamente deve usar temporização sem bloqueio, como no exemplo oficial <a href="https://docs.arduino.cc/built-in-examples/digital/BlinkWithoutDelay/">Blink Without Delay</a>.</p>
+</section>
+<section class="article-section" id="sensores">
+<div class="section-label">04 — Leia um sensor e confira</div>
+<h2 class="sec-title">Leia um sensor e confira</h2>
+<p class="body-text">Com a placa desligada, conecte os terminais externos do potenciômetro a 5 V e GND e o terminal central a A0. Ao girar o eixo, o cursor fornece uma tensão intermediária. Verifique a pinagem do componente: a posição física dos terminais pode variar.</p><div class="code-wrap"><div class="code-header"><span class="code-lang">C++ · Arduino</span><span class="code-fname">leitura_analogica.ino</span></div><pre><code>const int SENSOR = A0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int leitura = analogRead(SENSOR);
+  Serial.println(leitura);
+  delay(50);
+}</code></pre></div><p class="body-text">Abra o Monitor Serial em <strong>9600 baud</strong>. Os números devem variar entre valores próximos de 0 e 1023 conforme você gira o potenciômetro. Leitura sempre no extremo sugere erro de ligação; valores instáveis com a entrada desconectada são esperados, pois o pino fica flutuando.</p><div class="callout green"><div class="callout-label">PWM na prática</div><p>analogWrite(9, 180) configura aproximadamente 71% de ciclo de trabalho em D9. Isso não garante 71% da velocidade de um motor: carga, alimentação e driver também influenciam. Para experimentar com LED externo, coloque um resistor em série.</p></div>
+</section>
+<section class="article-section" id="no-gaia">
+<div class="section-label">05 — Da bancada ao seguidor de linha</div>
+<h2 class="sec-title">Da bancada ao seguidor de linha</h2>
+<p class="body-text">No <a href="seguidor-linha.html">projeto de seguidor de linha</a>, a mesma sequência se repete: ler sensores, decidir a correção e enviar sinais à ponte H. Testar cada etapa separadamente torna o diagnóstico mais simples.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Sintoma</th><th scope="col">Primeira verificação</th></tr></thead><tbody><tr><td>Falha ao enviar o sketch</td><td>Placa, porta, cabo de dados e uso dos pinos D0/D1.</td></tr><tr><td>Sensor não responde</td><td>GND comum, alimentação e saída analógica ou digital correta.</td></tr><tr><td>Placa reinicia ao ligar motor</td><td>Fonte, corrente de partida, driver e ruído da alimentação.</td></tr><tr><td>Motor gira no sentido errado</td><td>Polaridade do motor e sinais de direção do driver.</td></tr></tbody></table></div><p class="body-text">Antes de integrar, registre uma tabela com componente, pino, tensão e função. Salve o sketch que passou no teste e altere uma etapa por vez.</p>
+</section>
+<section class="article-section" id="proximos-passos">
+<div class="section-label">06 — Próximos passos e referências</div>
+<h2 class="sec-title">Próximos passos e referências</h2>
+<p class="body-text">Você já consegue verificar uma saída e observar uma entrada. Agora substitua o potenciômetro por um sensor compatível, registre suas leituras e defina uma regra de decisão. Depois, avance para o <a href="seguidor-linha.html">seguidor de linha</a> e para <a href="pid.html">controle em malha fechada</a>.</p><p class="body-text">Referência de pinagem e hardware: <a href="https://docs.arduino.cc/hardware/uno-rev3/">documentação oficial do Arduino Uno R3</a>. Consulte a referência da sua placa antes de reaproveitar um circuito em outro modelo.</p>
+</section>
+</div>
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>Neste artigo</h4>
+<ul class="toc-list">
+<li><a href="#o-que-e"><span class="toc-num">01</span>Do código ao circuito</a></li>
+<li><a href="#anatomia"><span class="toc-num">02</span>Conheça as conexões</a></li>
+<li><a href="#programacao"><span class="toc-num">03</span>Primeiro sketch: LED</a></li>
+<li><a href="#sensores"><span class="toc-num">04</span>Leia um sensor e confira</a></li>
+<li><a href="#no-gaia"><span class="toc-num">05</span>Da bancada ao seguidor de linha</a></li>
+<li><a href="#proximos-passos"><span class="toc-num">06</span>Próximos passos e referências</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>Tags</h4>
+<span class="sidebar-tag">Arduino</span>
+<span class="sidebar-tag">ATmega328P</span>
+<span class="sidebar-tag">PWM</span>
+<span class="sidebar-tag">C/C++</span>
+<span class="sidebar-tag">Embarcados</span>
+</div>
+<div class="sidebar-card">
+<h4>Posts Relacionados</h4>
+<a class="related-item" href="seguidor-linha.html"><div class="ri-icon">RB</div><div><div class="ri-title">Robô Seguidor de Linha</div><div class="ri-cat">Robótica</div></div></a>
+<a class="related-item" href="pid.html"><div class="ri-icon">PID</div><div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div></a>
+<a class="related-item" href="solda.html"><div class="ri-icon">SD</div><div><div class="ri-title">Guia de Solda</div><div class="ri-cat">Eletrônica</div></div></a>
+</div>
+</aside>
+</div>
+</div>
+
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

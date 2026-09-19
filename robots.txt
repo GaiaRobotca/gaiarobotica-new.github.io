@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://gaiarobotca.github.io/gaiarobotica-new.github.io/sitemap.xml

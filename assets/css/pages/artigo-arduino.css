@@ -1,0 +1,14 @@
+@layer pages {.icon-badge{min-width:44px;height:44px;background:var(--blue-dark);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-weight:700;font-size:0.68rem;flex-shrink:0;}
+.icon-badge.green{background:var(--green);}
+.article-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:40px 40px;}
+.badge.solid{background:var(--green);border-color:var(--green);color:#fff;}
+.meta-item span{font-family:"Space Mono",monospace;font-size:0.62rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.08em;}
+.diagram-box{background:var(--blue-deep);border:1px solid rgba(255,255,255,0.08);padding:2rem;margin:1.5rem 0;}
+.diagram-label{font-family:"Space Mono",monospace;font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem;}
+.diagram-flow{display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;}
+.diagram-block{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.15);padding:0.85rem 1.25rem;text-align:center;flex:1;min-width:120px;}
+.diagram-block.highlight{border-color:var(--green-light);background:rgba(92,184,46,0.12);}
+.diagram-name{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:0.88rem;color:#fff;text-transform:uppercase;}
+.diagram-sub{font-family:"Space Mono",monospace;font-size:0.55rem;color:rgba(255,255,255,0.4);margin-top:0.25rem;}
+.diagram-arrow{color:rgba(255,255,255,0.35);font-size:1.2rem;}
+.ri-icon{width:32px;height:32px;background:rgba(255,255,255,0.06);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Space Mono",monospace;font-size:0.6rem;flex-shrink:0;}}

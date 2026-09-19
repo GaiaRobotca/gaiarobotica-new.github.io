@@ -1,0 +1,101 @@
+{
+  "note": "Fotos da pasta Equipe Gaia mantidas como integrantes. A ausência de foto não altera o status anteriormente publicado. Cargos e nomes adicionais precisam de confirmação da equipe.",
+  "members": [
+    {
+      "name": "Eloiza Lopes",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Felipe Henrique",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/felipe-henrique.webp"
+    },
+    {
+      "name": "Gabriel Azevedo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/gabriel-azevedo.webp"
+    },
+    {
+      "name": "João Maerbal",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/joao-maerbal.webp"
+    },
+    {
+      "name": "João Paulo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/joao-paulo.webp"
+    },
+    {
+      "name": "Laura Castro",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Murilo Pelegrini",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Jordana",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/jordana.webp"
+    },
+    {
+      "name": "Paulo Adriano",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/paulo-adriano.webp"
+    },
+    {
+      "name": "Lucas Cortês",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/lucas-cortes.webp"
+    },
+    {
+      "name": "Felipe Moura",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Renan Alkimim",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/renan-alkimim.webp"
+    },
+    {
+      "name": "Lígia",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/ligia.webp"
+    },
+    {
+      "name": "Felipe Brian",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/felipe-brian.webp"
+    },
+    {
+      "name": "Leonardo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/leonardo.webp"
+    },
+    {
+      "name": "Matheus",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/matheus.webp"
+    }
+  ]
+}

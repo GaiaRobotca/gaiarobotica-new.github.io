@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mão robótica com atuadores pneumáticos — GAIA Robótica</title>
+<link href="../assets/images/marca/gaia-modo-claro.png" media="(prefers-color-scheme: light)" rel="icon" type="image/png"/>
+<link href="../assets/images/marca/favicon-escuro.png" media="(prefers-color-scheme: dark)" rel="icon" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/post-mao-robotica.css" rel="stylesheet"/><link href="../assets/css/stories.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Um percurso pela robótica macia, da modelagem dos moldes ao controle de atuadores com Arduino.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/noticias/mao-robotica.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mão robótica com atuadores pneumáticos — GAIA Robótica">
+<meta property="og:description" content="Um percurso pela robótica macia, da modelagem dos moldes ao controle de atuadores com Arduino.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/noticias/mao-robotica.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body class="story-page"><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+
+<div class="post-hero">
+<div class="hero-inner">
+<div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#blog">Blog</a> › Post</div>
+<div class="post-cat">Tutorial</div>
+<h1>Mão Robótica com Atuadores Pneumáticos: do Conceito à Impressão 3D</h1>
+<p class="post-deck">Um percurso pela robótica macia, da modelagem dos moldes ao controle de atuadores com Arduino.</p>
+<div class="post-meta">
+<span><strong>Junho de 2025</strong></span>
+<span>Equipe GAIA Robótica</span>
+<span>3 min de leitura</span>
+</div>
+</div>
+</div>
+<div class="post-body" id="conteudo">
+<aside aria-label="Neste artigo" class="story-toc"><h2>Neste artigo</h2><ol><li><a href="#por-que-pneumatica-macia">Por que pneumática macia?</a></li><li><a href="#processo-de-construcao">Processo de construção</a></li><li><a href="#resultados-e-aprendizados">Resultados e aprendizados</a></li></ol></aside>
+<p>Mãos robóticas são um dos projetos mais fascinantes da robótica — e também dos mais desafiadores. A nossa versão usa <em>atuadores pneumáticos de silicone macio</em>, impressão 3D e controle por Arduino. Este post conta todo o processo, do conceito ao protótipo funcional.</p>
+<div class="highlight-box">
+<p>Um projeto que une <strong>impressão 3D, silicone, pneumática e Arduino</strong>. Cada dedo é um atuador macio que se dobra com ar comprimido — sem motores, sem engrenagens.</p>
+</div>
+<h2 id="por-que-pneumatica-macia">Por que pneumática macia?</h2>
+<p>Mãos robóticas tradicionais usam servomotores e cabos de tração para dobrar os dedos — funcionam bem, mas são rígidas e pesadas. A <strong>robótica macia (soft robotics)</strong> propõe uma abordagem diferente: usar materiais flexíveis e fluidos (ar ou água) para criar movimento.</p>
+<p>No nosso projeto, cada dedo é um canal de silicone que, ao ser inflado com ar, se curva naturalmente — exatamente como um dedo humano. O resultado é uma mão mais leve, mais segura para interagir com objetos frágeis e mais interessante de construir.</p>
+<h2 id="processo-de-construcao">Processo de construção</h2>
+<div class="steps">
+<div class="step">
+<div class="step-num">01</div>
+<div class="step-content">
+<h4>Design do molde no CAD</h4>
+<p>O molde de cada dedo foi desenhado no Fusion 360. O canal interno precisa ter espessura uniforme para garantir curvatura consistente — esse é o detalhe mais crítico do projeto.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">02</div>
+<div class="step-content">
+<h4>Impressão 3D do molde</h4>
+<p>Imprimimos em PLA com resolução de 0.1mm. A qualidade da impressão impacta diretamente na vedação do silicone — qualquer imperfeição pode causar vazamentos.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">03</div>
+<div class="step-content">
+<h4>Fundição em silicone</h4>
+<p>Usamos silicone Shore 20A — macio o suficiente para dobrar facilmente, rígido o suficiente para transmitir força. O processo de cura leva 24h em temperatura ambiente.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">04</div>
+<div class="step-content">
+<h4>Montagem e vedação</h4>
+<p>Cada dedo recebe uma camada restritiva na parte dorsal — isso faz o dedo curvar para dentro ao ser inflado, em vez de simplesmente expandir em todas as direções.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">05</div>
+<div class="step-content">
+<h4>Sistema de controle com Arduino</h4>
+<p>Minisolenoides controlam o fluxo de ar para cada dedo. O Arduino recebe comandos seriais e aciona os solenoides individualmente, permitindo qualquer configuração de garra.</p>
+</div>
+</div>
+</div>
+<h2 id="resultados-e-aprendizados">Resultados e aprendizados</h2>
+<p>O protótipo funcional consegue segurar objetos de até <strong>300g</strong> com pressão de 1.5 bar. A curvatura de cada dedo chega a <em>90 graus</em> — suficiente para formar uma garra funcional. O maior desafio foi a vedação entre as camadas de silicone: testamos 4 técnicas diferentes até encontrar a combinação certa de adesivo e tempo de cura.</p>
+<p>Quer estudar a montagem? <a href="../paginas/contato.html">Converse com a equipe sobre os arquivos de CAD, código Arduino e instruções disponíveis</a>. Para planejar uma reprodução, faça um orçamento atualizado dos materiais e atuadores escolhidos.</p>
+<aside class="story-related"><h2>Continue aprendendo</h2><p><a href="../artigos/arduino.html">Entenda a plataforma Arduino e a ligação entre programação, entradas e saídas.</a></p></aside>
+<div class="tag-list">
+<span class="tag">Soft Robotics</span>
+<span class="tag">Impressão 3D</span>
+<span class="tag">Silicone</span>
+<span class="tag">Arduino</span>
+<span class="tag">Pneumática</span>
+<span class="tag">Open Source</span>
+<span class="tag">Tutorial</span>
+</div>
+<div class="nav-posts">
+<a class="nav-post-btn" href="hackagis.html">
+<div class="npb-dir">← Post anterior</div>
+<div class="npb-title">2º lugar no HackaGIS 2023</div>
+</a>
+<a class="nav-post-btn next" href="extensao-escolas.html">
+<div class="npb-dir">Próximo post →</div>
+<div class="npb-title">Visitando escolas públicas de Uberaba</div>
+</a>
+</div>
+</div>
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

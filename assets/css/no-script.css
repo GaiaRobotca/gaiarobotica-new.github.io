@@ -1,0 +1,6 @@
+.site-menu-toggle { display: none; }
+@media (max-width: 800px) {
+  .site-header { position: relative; }
+  .site-nav { height: auto; padding: 20px; flex-wrap: wrap; }
+  .site-links { display: flex; position: static; flex-direction: row; flex-wrap: wrap; width: 100%; padding: 12px 0 0; max-height: none; border: 0; gap: 4px 12px; }
+}

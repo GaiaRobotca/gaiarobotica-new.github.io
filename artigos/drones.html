@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Como um drone consegue voar? — GAIA Robótica</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/artigo-drones.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Entenda como tração, torque, sensores e energia trabalham juntos em um quadrotor — com cálculos explicados e um roteiro de bancada e simulação.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/drones.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como um drone consegue voar? — GAIA Robótica">
+<meta property="og:description" content="Entenda como tração, torque, sensores e energia trabalham juntos em um quadrotor — com cálculos explicados e um roteiro de bancada e simulação.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/drones.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">Home</a><span>/</span><a href="../paginas/aprenda.html">Aprenda</a><span>/</span>Drones
+    </div>
+<div class="badge-row">
+<span class="badge badge-orange">Aerodinâmica</span>
+<span class="badge badge-outline">Iniciante</span>
+<span class="badge badge-outline">8 min de leitura</span>
+</div>
+<h1>COMO UM DRONE<br/>CONSEGUE VOAR?</h1>
+<p class="hero-sub">Entenda como tração, torque, sensores e energia trabalham juntos em um quadrotor — com cálculos explicados e um roteiro de bancada e simulação.</p>
+<div class="hero-meta">
+<div class="meta-item"><strong>GAIA Eletroquad</strong><span>Equipe UFTM</span></div>
+<div class="meta-item"><strong>Aerodinâmica</strong><span>Categoria</span></div>
+</div>
+</div>
+</div>
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<div class="article-content">
+<section class="article-section" id="forcas">
+<div class="section-label">01 — O equilíbrio que mantém o voo</div>
+<h2 class="sec-title">O equilíbrio que mantém o voo</h2>
+<p class="body-text">Um quadrotor usa quatro conjuntos de motor e hélice para gerar <strong>tração</strong>. Em voo pairado, nivelado e sem aceleração, a componente vertical da tração total equilibra o peso. A sustentação das hélices já está incluída nessa força; não deve ser contada uma segunda vez.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Grandeza</th><th scope="col">Como atua</th></tr></thead><tbody><tr><td>Tração</td><td>Resultante aerodinâmica produzida pelos rotores; sua direção acompanha a inclinação da aeronave.</td></tr><tr><td>Peso</td><td>Força gravitacional, aproximadamente m × g, dirigida para baixo.</td></tr><tr><td>Arrasto</td><td>Resistência aerodinâmica ao movimento relativo ao ar.</td></tr><tr><td>Torque</td><td>Momento de uma força ou de reação que altera a rotação da aeronave.</td></tr></tbody></table></div><div class="callout green"><div class="callout-label">Exemplo de cálculo</div><p>Para uma massa hipotética de 1,2 kg e g = 9,81 m/s², o peso é cerca de 11,8 N. No voo pairado simétrico, cada rotor fornece aproximadamente 2,95 N. Esses valores ilustram o equilíbrio; não dimensionam sozinhos um conjunto motor/hélice.</p></div><p class="body-text">Ao inclinar, parte da tração passa a acelerar o drone horizontalmente. Para manter a altitude, a componente vertical precisa continuar compensando o peso. Por isso, inclinação e comando coletivo devem ser coordenados.</p>
+</section>
+<section class="article-section" id="torque">
+<div class="section-label">02 — Três eixos e um comando coletivo</div>
+<h2 class="sec-title">Três eixos e um comando coletivo</h2>
+<p class="body-text">Roll, pitch e yaw são rotações em três eixos. Throttle é o comando coletivo de tração. Em uma configuração convencional, os rotores giram em pares opostos, o que permite equilibrar os torques de reação no voo pairado.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Comando</th><th scope="col">Movimento</th><th scope="col">Princípio</th></tr></thead><tbody><tr><td>Roll · rolagem</td><td>Inclinação lateral</td><td>Criar diferença de tração entre os lados.</td></tr><tr><td>Pitch · arfagem</td><td>Inclinação para frente ou para trás</td><td>Criar diferença de tração entre frente e traseira.</td></tr><tr><td>Yaw · guinada</td><td>Giro em torno do eixo vertical</td><td>Variar o balanço de torque entre os pares de rotação oposta.</td></tr><tr><td>Throttle · coletivo</td><td>Variação da tração total</td><td>Ajustar o conjunto dos motores; a resposta depende da atitude.</td></tr></tbody></table></div><p class="body-text">A ordem dos motores e o sentido das hélices dependem do tipo de chassi e da configuração da controladora. Não copie uma numeração de outro projeto sem conferir o diagrama correspondente.</p>
+</section>
+<section class="article-section" id="controladora">
+<div class="section-label">03 — Dos sensores aos motores</div>
+<h2 class="sec-title">Dos sensores aos motores</h2>
+<p class="body-text">A controladora recebe medições do giroscópio e do acelerômetro, estima o estado da aeronave e calcula comandos para os motores. O giroscópio mede velocidade angular; a orientação é estimada combinando informações ao longo do tempo.</p><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Estimar</div><div class="step-text">Combinar sensores para estimar atitude e, quando disponíveis, posição e velocidade.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Comparar</div><div class="step-text">Calcular a diferença entre o comando desejado e o estado estimado.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Corrigir</div><div class="step-text">Aplicar controladores e distribuir os comandos entre os motores. Os ESCs acionam os motores brushless.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Realimentar</div><div class="step-text">Medir novamente e repetir a correção. A frequência e o atraso de cada etapa fazem parte do projeto.</div></div></div></div><p class="body-text">O <a href="pid.html">controle PID</a> é uma das ferramentas usadas nessas malhas. Estabilizar a atitude e navegar até um ponto são tarefas diferentes; navegação exige estimativas e uma camada de decisão adicional.</p><p class="body-text">A arquitetura e os componentes são apresentados no <a href="https://docs.px4.io/main/en/getting_started/px4_basic_concepts">guia de conceitos básicos do PX4</a>.</p>
+</section>
+<section class="article-section" id="baterias">
+<div class="section-label">04 — Entenda os dados da bateria</div>
+<h2 class="sec-title">Entenda os dados da bateria</h2>
+<p class="body-text">A bateria deve ser compatível com motores, ESCs, reguladores e conectores. Capacidade em mAh mede carga elétrica; para comparar energia, considere também a tensão nominal.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Especificação</th><th scope="col">Como interpretar</th></tr></thead><tbody><tr><td>Número de células em série · S</td><td>Determina a tensão do conjunto. A faixa depende da química e do estado de carga.</td></tr><tr><td>Capacidade · mAh ou Ah</td><td>Ajuda a estimar autonomia quando a corrente média é conhecida.</td></tr><tr><td>Energia · Wh</td><td>Aproximadamente tensão nominal × capacidade em Ah.</td></tr><tr><td>Taxa de descarga · C</td><td>Relaciona a corrente declarada pelo fabricante à capacidade em Ah. Confira limite contínuo e de pico.</td></tr></tbody></table></div><div class="callout green"><div class="callout-label">Exemplo didático</div><p>Uma capacidade de 2200 mAh equivale a 2,2 Ah. Se o fabricante declara 25 C contínuos, a corrente nominal declarada é 25 × 2,2 = 55 A. Isso não substitui verificar temperatura, queda de tensão e limites dos demais componentes.</p></div><p class="body-text">A conta ideal de autonomia é 60 × capacidade em Ah ÷ corrente média em A, em minutos. A autonomia utilizável é menor porque é preciso considerar reserva, perdas e condições reais. Siga o carregador e as instruções do fabricante para a química escolhida.</p>
+</section>
+<section class="article-section" id="no-gaia">
+<div class="section-label">05 — Um roteiro de estudo verificável</div>
+<h2 class="sec-title">Um roteiro de estudo verificável</h2>
+<p class="body-text">Antes do primeiro voo, transforme cada hipótese em uma verificação. Um roteiro de bancada ou simulação ajuda a relacionar os conceitos deste artigo ao projeto da aeronave.</p><div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Mapeie o sistema</div><div class="step-text">Desenhe as ligações de bateria, distribuição, ESCs, motores, controladora e sensores. Anote tensão e corrente de cada caminho.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Teste sem hélices</div><div class="step-text">Confira comunicação, orientação da controladora, ordem e sentido dos motores seguindo o procedimento do firmware escolhido.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Use simulação</div><div class="step-text">Observe como comandos de roll, pitch, yaw e coletivo alteram a atitude. Compare referência e resposta nos registros.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Documente</div><div class="step-text">Registre massa, componentes, configuração, comportamento observado e limitações. Resultados simulados devem ser identificados como simulação.</div></div></div></div><div class="callout orange"><div class="callout-label">Bancada</div><p>Remova as hélices durante configuração e testes de acionamento. Não tente segurar a aeronave com as mãos para testar os motores.</p></div>
+</section>
+<section class="article-section" id="proximos">
+<div class="section-label">06 — Próximos passos</div>
+<h2 class="sec-title">Próximos passos</h2>
+<p class="body-text">Você agora consegue explicar o voo pairado, diferenciar os três eixos e interpretar os principais dados de energia. Continue pelo <a href="pid.html">artigo de PID</a> para entender correções automáticas e por <a href="visao.html">visão computacional</a> para estudar percepção.</p><p class="body-text">Para um exercício, calcule a tração de equilíbrio para duas massas diferentes e descreva por que aumentar a carga exige revisar a margem de tração e a autonomia. Compare o cálculo com dados de ensaio do fabricante, sempre para a mesma hélice e tensão.</p>
+</section>
+</div>
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>Neste artigo</h4>
+<ul class="toc-list">
+<li><a href="#forcas"><span class="toc-num">01</span>O equilíbrio que mantém o voo</a></li>
+<li><a href="#torque"><span class="toc-num">02</span>Três eixos e um comando coletivo</a></li>
+<li><a href="#controladora"><span class="toc-num">03</span>Dos sensores aos motores</a></li>
+<li><a href="#baterias"><span class="toc-num">04</span>Entenda os dados da bateria</a></li>
+<li><a href="#no-gaia"><span class="toc-num">05</span>Um roteiro de estudo verificável</a></li>
+<li><a href="#proximos"><span class="toc-num">06</span>Próximos passos</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>Tags</h4>
+<span class="sidebar-tag">Aerodinâmica</span>
+<span class="sidebar-tag">Quadrotor</span>
+<span class="sidebar-tag">LiPo</span>
+<span class="sidebar-tag">SAE Brasil</span>
+<span class="sidebar-tag">Controladora de Voo</span>
+</div>
+<div class="sidebar-card">
+<h4>Posts Relacionados</h4>
+<a class="related-item" href="pid.html"><div class="ri-icon">PID</div><div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div></a>
+<a class="related-item" href="visao.html"><div class="ri-icon">VC</div><div><div class="ri-title">Visão Computacional</div><div class="ri-cat">IA</div></div></a>
+<a class="related-item" href="arduino.html"><div class="ri-icon">AR</div><div><div class="ri-title">Arduino e Hardware</div><div class="ri-cat">Hardware</div></div></a>
+</div>
+</aside>
+</div>
+</div>
+
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

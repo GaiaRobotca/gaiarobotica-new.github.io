@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Como desenvolvemos nosso drone quadrotor para a SAE — GAIA Robótica</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/post-drone-sae.css" rel="stylesheet"/><link href="../assets/css/stories.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Estrutura, eletrônica e software: os sistemas que precisam trabalhar juntos em um quadrotor autônomo.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/noticias/drone-sae.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Como desenvolvemos nosso drone quadrotor para a SAE — GAIA Robótica">
+<meta property="og:description" content="Estrutura, eletrônica e software: os sistemas que precisam trabalhar juntos em um quadrotor autônomo.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/noticias/drone-sae.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body class="story-page"><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+
+<div class="post-hero">
+<div class="hero-inner">
+<div class="breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html#blog">Blog</a> › Post</div>
+<div class="post-cat">Hardware</div>
+<h1>Como Desenvolvemos Nosso Drone Quadrotor para a SAE: Desafios e Soluções</h1>
+<p class="post-deck">Estrutura, eletrônica e software: os sistemas que precisam trabalhar juntos em um quadrotor autônomo.</p>
+<div class="post-meta">
+<span><strong>Outubro de 2025</strong></span>
+<span>Equipe GAIA Eletroquad</span>
+<span>4 min de leitura</span>
+</div>
+</div>
+</div>
+<div class="post-body" id="conteudo">
+<figure class="story-figure"><img alt="Drone e computador de apoio durante os preparativos em campo." decoding="async" height="1200" loading="lazy" src="../assets/images/projetos/drone-sae-bancada.webp" width="1600"/><figcaption>Drone e computador de apoio durante os preparativos em campo.</figcaption></figure><aside aria-label="Neste artigo" class="story-toc"><h2>Neste artigo</h2><ol><li><a href="#a-arquitetura-do-sistema">A Arquitetura do Sistema</a></li><li><a href="#os-maiores-desafios">Os Maiores Desafios</a></li><li><a href="#o-que-aprendemos">O Que Aprendemos</a></li></ol></aside>
+<p>Construir um drone do zero é diferente de comprar um pronto. Cada componente, cada fio, cada linha de código — tudo foi escolhido, integrado e testado pela nossa equipe. Este post abre o capô do nosso quadrotor SAE e conta os bastidores do desenvolvimento.</p>
+<div class="highlight-box">
+<p>Do primeiro esboço ao pódio nacional em menos de 12 meses. Aqui está <strong>como fizemos</strong> — e o que aprendemos no caminho.</p>
+</div>
+<h2 id="a-arquitetura-do-sistema">A Arquitetura do Sistema</h2>
+<p>Um drone de competição autônomo é, na prática, um sistema embarcado voador. Ele precisa perceber o ambiente, tomar decisões e executar manobras — tudo em tempo real, sem piloto. Para isso, nossa arquitetura foi dividida em três camadas principais:</p>
+<h3>1. Percepção</h3>
+<p>A camada de percepção é responsável por coletar dados do mundo. Nosso drone conta com <strong>GPS</strong> para navegação de alta precisão, <strong>IMU (Unidade de Medição Inercial)</strong> para estabilização, <strong>barômetro</strong> para controle de altitude e uma <strong>câmera RGB</strong> para detecção de alvos por visão computacional.</p>
+<h3>2. Processamento</h3>
+<p>O cérebro do drone é um computador de bordo rodando <strong>ROS e comunicação MAVROS</strong>. É ele que funde os dados dos sensores, roda os algoritmos de navegação e processa as imagens da câmera em tempo real para identificar os alvos das missões.</p>
+<h3>3. Atuação</h3>
+<p>Os comandos do computador chegam à <strong>controladora de voo Pixhawk 4</strong>, que os traduz em sinais PWM para os <strong>4 ESCs</strong> e, consequentemente, para os motores. A resposta é em milissegundos — essencial para manter o drone estável no ar.</p>
+<div class="specs-grid">
+<div class="spec-item"><div class="spec-label">Estrutura</div><div class="spec-val">Holybro S500 V2</div></div>
+<div class="spec-item"><div class="spec-label">Controle de voo</div><div class="spec-val">Pixhawk 4 + PX4</div></div>
+<div class="spec-item"><div class="spec-label">Integração</div><div class="spec-val">ROS + MAVROS</div></div>
+<div class="spec-item"><div class="spec-label">Estação de solo</div><div class="spec-val">QGroundControl</div></div>
+</div>
+<h2 id="os-maiores-desafios">Os Maiores Desafios</h2>
+<h3>Fusão de Sensores</h3>
+<p>Combinar dados de GPS, IMU e barômetro de forma consistente foi um dos maiores desafios de software. Pequenas discrepâncias entre os sensores geram oscilações na posição estimada, que se traduzem em movimentos indesejados do drone. A integração depende de calibração, configuração da controladora e verificação das leituras durante os testes.</p>
+<h3>Visão Computacional Embarcada</h3>
+<p>O processamento da câmera precisa dividir os recursos do computador de bordo com a comunicação e a navegação. A integração com ROS e MAVROS conecta essas etapas à controladora de voo.</p>
+<p class="story-source">Exemplo conceitual de decisão; não é o programa completo de voo.</p><pre class="code-block"><code>// Exemplo simplificado: detecção de alvo e pouso
+if (detector.encontrou_alvo()) {
+    float dx = alvo.x - drone.x;
+    float dy = alvo.y - drone.y;
+    float dist = sqrt(dx*dx + dy*dy);
+
+    if (dist &lt; THRESHOLD_POUSO) {
+        missao.iniciar_pouso_preciso();
+    } else {
+        navegacao.mover_para(alvo.x, alvo.y);
+    }
+}</code></pre>
+<h3>Confiabilidade em Campo</h3>
+<p>Em competição, não existe segunda chance. Cada falha de hardware ou software significa pontos perdidos. Desenvolvemos um protocolo rigoroso de testes antes de cada voo, com checklists de software, verificação de bateria e teste de todos os atuadores em solo antes de armar o drone.</p>
+<h2 id="o-que-aprendemos">O Que Aprendemos</h2>
+<p>O principal aprendizado foi que <em>simplicidade é robustez</em>. Nas primeiras versões, o sistema tinha muitos subsistemas interdependentes — qualquer falha em um cascateava para os outros. A versão final priorizou módulos independentes com fallbacks bem definidos.</p>
+<p>Outro ponto crucial: <strong>testar cedo e testar muito</strong>. A integração precisa ser verificada de forma gradual, acompanhando o comportamento dos sensores, da comunicação e dos atuadores.</p>
+<aside class="story-related"><h2>Aprofunde o controle</h2><p><a href="../artigos/pid.html">Veja como o controle PID relaciona medição, erro e resposta do sistema.</a></p></aside>
+<div class="tag-list">
+<span class="tag">Hardware</span>
+<span class="tag">ROS</span>
+<span class="tag">PX4</span>
+<span class="tag">Visão Computacional</span>
+<span class="tag">MAVROS</span>
+<span class="tag">Drone Autônomo</span>
+</div>
+<div class="nav-posts">
+<a class="nav-post-btn" href="extensao-escolas.html">
+<div class="npb-dir">← Post anterior</div>
+<div class="npb-title">Visitando escolas públicas de Uberaba</div>
+</a>
+<a class="nav-post-btn next" href="sae-brasil.html">
+<div class="npb-dir">Próximo post →</div>
+<div class="npb-title">3º lugar na SAE Brasil Eletroquad</div>
+</a>
+</div>
+</div>
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>

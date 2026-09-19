@@ -1,0 +1,40 @@
+@layer pages {
+*{margin:0; padding:0; box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg); color:#fff; font-family:"Barlow",sans-serif; overflow-x:hidden; position:relative;}
+body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+.hero-internal{background:linear-gradient(140deg, var(--blue-deep) 0%, var(--blue-dark) 60%, var(--blue) 100%); padding:9rem 3rem 5rem; position:relative; overflow:hidden; text-align:center;}
+.hero-internal::before{content:""; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.09) 1.5px,transparent 1.5px); background-size:28px 28px; pointer-events:none;}
+.hero-internal::after{content:""; position:absolute; bottom:-1px; left:0; right:0; height:40px; background:var(--bg); clip-path:polygon(0 100%, 100% 0%, 100% 100%);}
+.hi-inner{max-width:900px; margin:0 auto; position:relative; z-index:1;}
+.hi-tag{font-family:"Space Mono",monospace; font-size:0.75rem; color:var(--green-light); letter-spacing:0.25em; text-transform:uppercase; margin-bottom:1rem; display:inline-block;}
+.hero-internal h1{font-family:"Barlow Condensed",sans-serif; font-size:clamp(3.5rem,8vw,5.5rem); font-weight:900; line-height:0.9; color:#fff; text-transform:uppercase; margin-bottom:1rem;}
+.hero-internal h1 .g{color:var(--green-light);}
+.hi-sub{font-size:1.1rem; color:rgba(255,255,255,0.75); font-weight:300; line-height:1.7; max-width:650px; margin:0 auto;}
+.sec{max-width:1100px; margin:0 auto; padding:5rem 3rem; position:relative; z-index:1;}
+.sec-tag{font-family:"Space Mono",monospace; font-size:0.68rem; color:var(--green-light); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.6rem;}
+.sec-tag::before{content:""; width:20px; height:2px; background:var(--green-light);}
+h2{font-family:"Barlow Condensed",sans-serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:0.75rem; line-height:1;}
+.lead{font-size:1rem; color:rgba(255,255,255,0.55); max-width:620px; line-height:1.72; margin-bottom:3rem;}
+.founders-grid{display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-bottom: 2rem;}
+.founder-card{background: var(--blue-dark); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 2.5rem; display: flex; gap: 2rem; align-items: center; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;}
+.founder-card::before{content:""; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--green);}
+.founder-card:hover{transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); border-color: rgba(255,255,255,0.25);}
+.founder-avatar{width: 110px; height: 110px; min-width: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green); padding: 4px; background: var(--white);}
+.founder-info{flex: 1;}
+.founder-role{font-family:"Space Mono",monospace; font-size:0.7rem; color:var(--green-light); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem; display: inline-block; background: rgba(92,184,46,0.15); padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid rgba(92,184,46,0.3);}
+.founder-name{font-family:"Barlow Condensed",sans-serif; font-size:1.8rem; font-weight:900; color:#fff; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:0.5rem; line-height:1.1;}
+.founder-desc{font-size:0.85rem; color:rgba(255,255,255,0.7); line-height:1.6;}
+.founder-years{font-family:"Space Mono",monospace; font-size:0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.8rem; display: block;}
+.exmembros-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:1.5rem;}
+.exmembros-card{background:var(--white); border:1px solid var(--border); padding:1.5rem; border-radius: 12px; display:flex; flex-direction: column; align-items:center; text-align: center; transition:all 0.2s ease;}
+.exmembros-card:hover{border-color:var(--blue-light); transform: translateY(-3px); box-shadow: 0 14px 34px rgba(0,0,0,0.3);}
+.ex-avatar{width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 1rem; border: 2px solid var(--surface); padding: 3px;}
+.ex-name{font-family:"Barlow Condensed",sans-serif; font-size:1.3rem; font-weight:800; color:var(--blue-dark); text-transform:uppercase; line-height:1.1; margin-bottom:0.3rem;}
+.ex-role{font-size:0.85rem; color:var(--muted); line-height:1.4; margin-bottom: 0.8rem;}
+.ex-years{font-family:"Space Mono",monospace; font-size:0.65rem; color:var(--blue); background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 4px;}
+@media(max-width:1050px){.founders-grid{grid-template-columns: 1fr;}
+.sec{padding:4rem 1.5rem;}}
+@media(max-width:600px){.founder-card{flex-direction: column; text-align: center; padding: 2rem 1.5rem;}
+.founder-card::before{width: 100%; height: 4px;}}
+}

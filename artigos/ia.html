@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>O que é Inteligência Artificial? — GAIA Robótica</title>
+<link href="../assets/images/marca/favicon-verde.png" rel="icon" sizes="40x40" type="image/png"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&amp;family=Barlow:wght@300;400;500;600&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="../assets/css/pages/artigo-ia.css" rel="stylesheet"/><link href="../assets/css/articles.css" rel="stylesheet"/><link href="../assets/css/site.css" rel="stylesheet"/><script defer="" src="../assets/js/site.js"></script><!-- page-meta:start -->
+<meta name="description" content="Entenda onde a inteligência artificial ajuda um robô, organize dados e execute um pequeno classificador em Python com resultados explicados.">
+<meta name="theme-color" content="#050f26">
+<link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/ia.html">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="O que é Inteligência Artificial? — GAIA Robótica">
+<meta property="og:description" content="Entenda onde a inteligência artificial ajuda um robô, organize dados e execute um pequeno classificador em Python com resultados explicados.">
+<meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/ia.html">
+<meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
+<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta name="twitter:card" content="summary_large_image">
+<!-- page-meta:end --></head>
+<body><!-- shared-header:start -->
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+<header class="site-header"><nav class="site-nav" aria-label="Navegação principal">
+<a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>
+<button class="site-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="site-menu">☰</button>
+<ul class="site-links" id="site-menu"><li><a href="../index.html#sobre">Sobre</a></li><li><a href="../index.html#robos">Projetos</a></li><li><a href="../index.html#conquistas">Conquistas</a></li><li><a href="../index.html#equipe">Equipe</a></li><li><a href="../paginas/aprenda.html" aria-current="page">Aprenda</a></li><li><a href="../paginas/patrocine.html">Apoie</a></li><li><a href="../paginas/contato.html" class="site-contact">Contato</a></li></ul>
+</nav></header>
+<noscript><link rel="stylesheet" href="../assets/css/no-script.css"></noscript>
+<!-- shared-header:end --><main id="main-content" tabindex="-1">
+<div class="reading-progress"><div class="rp-fill" id="rp"></div></div>
+
+<div class="article-hero">
+<div class="hero-inner">
+<div class="breadcrumb">
+<a href="../index.html">Home</a><span>/</span><a href="../paginas/aprenda.html">Aprenda</a><span>/</span>IA
+    </div>
+<div class="badge-row">
+<span class="badge badge-orange">IA &amp; Machine Learning</span>
+<span class="badge badge-outline">Iniciante</span>
+<span class="badge badge-outline">9 min de leitura</span>
+</div>
+<h1>O QUE É<br/>INTELIGÊNCIA ARTIFICIAL?</h1>
+<p class="hero-sub">Entenda onde a inteligência artificial ajuda um robô, organize dados e execute um pequeno classificador em Python com resultados explicados.</p>
+<div class="hero-meta">
+<div class="meta-item"><strong>GAIA Robótica</strong><span>Equipe UFTM</span></div>
+<div class="meta-item"><strong>IA &amp; Machine Learning</strong><span>Categoria</span></div>
+</div>
+</div>
+</div>
+<div class="article-bg-wrapper">
+<div class="article-layout">
+<div class="article-content">
+<section class="article-section" id="definicao">
+<div class="section-label">01 — O que chamamos de IA</div>
+<h2 class="sec-title">O que chamamos de IA</h2>
+<p class="body-text">Inteligência Artificial reúne técnicas para resolver tarefas como reconhecer padrões, planejar e tomar decisões. Parte dessas técnicas usa regras explícitas; outra parte aprende relações a partir de dados. <strong>Aprendizado de máquina</strong>, ou machine learning, é esse segundo conjunto.</p><p class="body-text">Em robótica, a pergunta prática é: qual informação falta para decidir o próximo movimento? Detectar um objeto em uma imagem pode exigir um modelo aprendido. Manter a velocidade de uma roda pode ser resolvido por um controlador convencional. A escolha começa pelo problema e por uma forma de medir o resultado.</p><div class="callout green"><div class="callout-label">Objetivo do guia</div><p>Distinguir IA, machine learning e deep learning; organizar um experimento; e entender por que testar com dados novos é tão importante quanto treinar.</p></div>
+</section>
+<section class="article-section" id="tipos">
+<div class="section-label">02 — Escolha a ferramenta para a tarefa</div>
+<h2 class="sec-title">Escolha a ferramenta para a tarefa</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Abordagem</th><th scope="col">Como funciona</th><th scope="col">Exemplo didático</th></tr></thead><tbody><tr><td>Regras e busca</td><td>Usa conhecimento e procedimentos definidos no projeto.</td><td>Planejar uma rota em um mapa conhecido.</td></tr><tr><td>Machine learning</td><td>Ajusta parâmetros usando dados para prever ou classificar.</td><td>Classificar leituras de um sensor.</td></tr><tr><td>Deep learning</td><td>Usa redes neurais com várias camadas; é um subcampo de machine learning.</td><td>Reconhecer objetos em imagens.</td></tr><tr><td>Controle clássico</td><td>Calcula ações a partir de modelos e erros de referência.</td><td>Regular velocidade com PID.</td></tr></tbody></table></div><p class="body-text">Essas abordagens podem trabalhar juntas. Um detector fornece a posição estimada de um alvo; uma lógica de decisão escolhe a ação; um controlador comanda o movimento. Um <a href="pid.html">PID</a> não precisa aprender com dados para funcionar.</p><p class="body-text">Uma regra simples, como comparar um sensor com um limiar, também é uma boa referência inicial. Só adicione um modelo quando houver um ganho mensurável em relação a essa solução.</p>
+</section>
+<section class="article-section" id="como-aprende">
+<div class="section-label">03 — Do dado à avaliação</div>
+<h2 class="sec-title">Do dado à avaliação</h2>
+<div class="steps-list"><div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">Defina a tarefa</div><div class="step-text">Exemplo: classificar uma leitura como superfície clara ou escura. Escolha antes do treino o que conta como acerto e quais erros são mais importantes.</div></div></div><div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">Colete e identifique</div><div class="step-text">Registre a leitura, a classe correta e as condições: iluminação, distância e sessão de coleta. Corrija rótulos inconsistentes.</div></div></div><div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">Separe os conjuntos</div><div class="step-text">Use treino para ajustar, validação para escolher configurações e teste para a avaliação final. Amostras quase idênticas da mesma sessão podem exigir separação por sessão.</div></div></div><div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Treine e compare</div><div class="step-text">Comece com uma referência simples. Compare configurações usando validação, sem consultar o teste para escolher o modelo.</div></div></div><div class="step-item"><div class="step-num">5</div><div class="step-content"><div class="step-title">Avalie e use</div><div class="step-text">Avalie uma vez no conjunto reservado, analise os tipos de erro e meça o tempo de inferência no equipamento final.</div></div></div></div><div class="callout green"><div class="callout-label">Evite vazamento de dados</div><p>A normalização também aprende parâmetros. Ajuste-a apenas com o conjunto de treino. Se informações do teste influenciam o treinamento ou a escolha do modelo, o resultado deixa de representar uma avaliação independente.</p></div><p class="body-text">Veja os exemplos sobre <a href="https://scikit-learn.org/stable/common_pitfalls.html">vazamento de dados e pipelines na documentação do scikit-learn</a>.</p>
+</section>
+<section class="article-section" id="experimento">
+<div class="section-label">04 — Experimento sem biblioteca de IA</div>
+<h2 class="sec-title">Experimento sem biblioteca de IA</h2>
+<p class="body-text">O exemplo usa um classificador de centroide mais próximo: ele calcula a média de cada classe e atribui uma leitura ao centro mais próximo. Os números abaixo são <strong>sintéticos</strong>; não representam medições da equipe nem comprovam desempenho em um sensor real.</p><div class="code-wrap"><div class="code-header"><span class="code-lang">Python 3</span><span class="code-fname">classificador_sensor.py</span></div><pre><code># Dados sintéticos: (leitura, classe).
+treino = [(120, "escura"), (160, "escura"), (200, "escura"),
+          (720, "clara"), (780, "clara"), (820, "clara")]
+teste = [(180, "escura"), (740, "clara"), (500, "escura")]
+
+classes = sorted({classe for _, classe in treino})
+centros = {}
+for classe in classes:
+    valores = [valor for valor, rotulo in treino if rotulo == classe]
+    centros[classe] = sum(valores) / len(valores)
+
+def prever(valor):
+    return min(centros, key=lambda classe: abs(valor - centros[classe]))
+
+acertos = 0
+for valor, esperado in teste:
+    previsto = prever(valor)
+    acertos += previsto == esperado
+    print(valor, "esperado:", esperado, "previsto:", previsto)
+
+print(f"Acertos: {acertos}/{len(teste)}")</code></pre></div><p class="body-text">Salve e execute com <code>python classificador_sensor.py</code>. O resultado esperado é <strong>2 acertos em 3 exemplos</strong>. A leitura 500 é classificada como clara, embora o rótulo do teste seja escura. O erro mostra a limitação dessa separação simples.</p><p class="body-text">O código só usa o treino para calcular centros; o teste mede o resultado. Para continuar, colete dados reais em condições diferentes, separe sessões e compare com um limiar fixo. Três exemplos são insuficientes para estimar a qualidade de um sistema real.</p>
+</section>
+<section class="article-section" id="no-gaia">
+<div class="section-label">05 — Integre a percepção à decisão</div>
+<h2 class="sec-title">Integre a percepção à decisão</h2>
+<p class="body-text">Em um projeto de robótica, o modelo deve entregar algo que o restante do sistema consiga interpretar: classe, posição ou outra estimativa bem definida. Especifique unidades, validade temporal e o que fazer se uma leitura faltar.</p><div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Pergunta de projeto</th><th scope="col">O que registrar</th></tr></thead><tbody><tr><td>O modelo melhora a referência simples?</td><td>Mesma tarefa, mesmos dados de teste e uma métrica comparável.</td></tr><tr><td>Cabe no equipamento?</td><td>Memória, tempo por amostra e consumo, medidos no hardware escolhido.</td></tr><tr><td>Funciona em outro ambiente?</td><td>Resultados por iluminação, distância, câmera ou sessão.</td></tr><tr><td>O que acontece quando falha?</td><td>Critério para rejeitar a previsão ou interromper a ação.</td></tr></tbody></table></div><p class="body-text">O treinamento pode ocorrer em um computador e a inferência em outra placa. Isso depende do modelo: um Uno R3 tem recursos muito diferentes dos de um computador embarcado. Não presuma que todo modelo roda em qualquer Arduino.</p>
+</section>
+<section class="article-section" id="glossario">
+<div class="section-label">06 — Glossário essencial</div>
+<h2 class="sec-title">Glossário essencial</h2>
+<div aria-label="Tabela com rolagem horizontal" class="table-scroll" role="region" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Termo</th><th scope="col">Significado</th></tr></thead><tbody><tr><td>Dataset</td><td>Conjunto de dados organizado para uma tarefa.</td></tr><tr><td>Rótulo</td><td>Resposta de referência associada a uma amostra.</td></tr><tr><td>Treinamento</td><td>Ajuste dos parâmetros do modelo.</td></tr><tr><td>Inferência</td><td>Uso do modelo ajustado para produzir uma previsão.</td></tr><tr><td>Overfitting</td><td>Bom desempenho no treino sem generalizar adequadamente para dados novos.</td></tr><tr><td>Matriz de confusão</td><td>Contagem dos acertos e erros separada pelas classes reais e previstas.</td></tr></tbody></table></div><p class="body-text">A acurácia total pode esconder um problema: se quase todos os exemplos forem de uma classe, sempre prever essa classe pode parecer bom. Examine os erros de cada classe antes de decidir se o modelo atende à tarefa.</p>
+</section>
+<section class="article-section" id="proximos">
+<div class="section-label">07 — Próximos passos</div>
+<h2 class="sec-title">Próximos passos</h2>
+<p class="body-text">Você tem um caminho completo: definir, coletar, separar, treinar e avaliar. O próximo exercício é escrever uma ficha curta com tarefa, origem dos dados, referência simples, métricas e limitações antes de escolher uma rede neural.</p><p class="body-text">Para trabalhar com imagens, siga o <a href="visao.html">guia de visão computacional</a>. Ele começa com segmentação por cor, uma técnica que permite experimentar percepção sem treinar um modelo.</p>
+</section>
+</div>
+<aside class="article-sidebar">
+<div class="sidebar-card">
+<h4>Neste artigo</h4>
+<ul class="toc-list">
+<li><a href="#definicao"><span class="toc-num">01</span>O que chamamos de IA</a></li>
+<li><a href="#tipos"><span class="toc-num">02</span>Escolha a ferramenta para a tarefa</a></li>
+<li><a href="#como-aprende"><span class="toc-num">03</span>Do dado à avaliação</a></li>
+<li><a href="#experimento"><span class="toc-num">04</span>Experimento sem biblioteca de IA</a></li>
+<li><a href="#no-gaia"><span class="toc-num">05</span>Integre a percepção à decisão</a></li>
+<li><a href="#glossario"><span class="toc-num">06</span>Glossário essencial</a></li>
+<li><a href="#proximos"><span class="toc-num">07</span>Próximos passos</a></li>
+</ul>
+</div>
+<div class="sidebar-card">
+<h4>Tags</h4>
+<span class="sidebar-tag">IA</span>
+<span class="sidebar-tag">Machine Learning</span>
+<span class="sidebar-tag">Deep Learning</span>
+<span class="sidebar-tag">Dataset</span>
+<span class="sidebar-tag">Redes Neurais</span>
+</div>
+<div class="sidebar-card">
+<h4>Posts Relacionados</h4>
+<a class="related-item" href="visao.html"><div class="ri-icon">VC</div><div><div class="ri-title">Visão Computacional</div><div class="ri-cat">IA</div></div></a>
+<a class="related-item" href="pid.html"><div class="ri-icon">PID</div><div><div class="ri-title">Controle PID</div><div class="ri-cat">Controle</div></div></a>
+<a class="related-item" href="arduino.html"><div class="ri-icon">AR</div><div><div class="ri-title">Arduino e Hardware</div><div class="ri-cat">Hardware</div></div></a>
+</div>
+</aside>
+</div>
+</div>
+
+
+</main><!-- shared-footer:start -->
+<footer class="site-footer"><div class="site-footer-inner"><div><a class="site-brand" href="../index.html" aria-label="GAIA Robótica — início"><img src="../assets/images/marca/favicon-verde.png" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a><p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="../paginas/aprenda.html">Aprenda</a><a href="../paginas/patrocine.html">Apoie o projeto</a><a href="../paginas/contato.html">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="../paginas/portal.html">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>
+<!-- shared-footer:end --></body>
+</html>
