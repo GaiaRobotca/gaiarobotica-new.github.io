@@ -46,6 +46,16 @@ def main():
                     failures.append(f'{current["path"]}: horizontal overflow')
                 if page.locator('h1').count() != 1 or page.locator('main').count() != 1:
                     failures.append(f'{current["path"]}: heading/main landmark')
+                if path in ['index.html', 'paginas/ex-membros.html']:
+                    distorted = page.locator('.leader-avatar, .docente-avatar, .ms-avatar, .founder-avatar, .ex-avatar').evaluate_all('''avatars => avatars.flatMap(avatar => {
+                      const box = avatar.getBoundingClientRect();
+                      const style = getComputedStyle(avatar);
+                      return Math.abs(box.width - box.height) > 1 || style.borderRadius !== '50%'
+                        ? [{name: avatar.alt || avatar.textContent.trim(), width: box.width, height: box.height}]
+                        : [];
+                    })''')
+                    if distorted:
+                        failures.append(f'{current["path"]}: noncircular avatars: {distorted}')
                 if width == 390:
                     toggle = page.locator('.site-menu-toggle')
                     toggle.click()

@@ -51,13 +51,19 @@ Os blocos delimitados por `shared-header`, `shared-footer`, `page-meta` e `team-
 
 Adicione o retrato em `assets/images/equipe/`, preferencialmente WebP, com nome sem espaços ou acentos. Atualize nome, função e caminho em `data/team.json` e execute `python scripts/sync_site.py`.
 
-Um integrante com `"photo": null` recebe suas iniciais; não há imagens externas de substituição. Para retirar alguém da grade atual, altere `status` e registre a pessoa em `paginas/ex-membros.html`. Liderança e docentes ficam no bloco próprio de `index.html`.
+Um integrante com `"photo": null` recebe suas iniciais em um avatar circular. Para mover alguém da equipe atual para ex-membros, altere `status` de `active` para `former` e execute a sincronização: as duas páginas são atualizadas pelo mesmo cadastro. O campo opcional `period` registra apenas períodos conhecidos. Liderança e docentes ficam no bloco próprio de `index.html`.
 
-Na reorganização, foram mantidos os integrantes já publicados e vinculadas as 12 fotos da pasta `Equipe Gaia`. A ausência de retrato não foi tratada como saída da equipe. O post de referência do Instagram não pôde ser consultado automaticamente; mudanças adicionais de nomes, funções e status precisam de confirmação do capitão.
+A lista foi atualizada conforme os nomes informados pelo capitão: Eloiza Lopes, Laura Castro e Julia Alves estão em ex-membros; os 15 novos integrantes constam na equipe atual. Julia Alves e Júlia Origuela são pessoas diferentes; Júlia Origuela permanece na diretoria. As fotos disponíveis foram mantidas nos respectivos cadastros e os novos integrantes usam iniciais até receberem retratos.
+
+## Colaborador
+
+[Pedro H. Soares (@Pedronsjaja)](https://github.com/Pedronsjaja), capitão do GAIA, é o colaborador responsável pelo desenvolvimento e manutenção deste site. Seu crédito é publicado no rodapé e no cartão da liderança. Os créditos compartilhados são configurados em `data/site.json`.
 
 ## Fotos
 
 Os arquivos com extensão JPG/PNG que continham HEIC foram convertidos. Imagens repetidas compartilham o mesmo arquivo; `data/images.json` registra a correspondência, o formato original e o hash. Fotos de pessoas não foram substituídas por imagens geradas.
+
+As capas distintas de Arduino e inteligência artificial foram obtidas no Wikimedia Commons e estão salvas em `assets/images/artigos/`. Consulte [os créditos, fontes e licenças](assets/images/CREDITS.md). Esses créditos também aparecem junto ao conteúdo do site.
 
 Os originais foram preservados fora da pasta publicada, em `../gaia-midias-originais-20260919/`, além do backup ZIP criado antes da reorganização. As versões anteriores também ficam no histórico Git. Para inserir novas imagens, exporte no formato real indicado pela extensão e confira os nomes com diferenciação entre maiúsculas e minúsculas: o GitHub Pages usa caminhos sensíveis a isso.
 

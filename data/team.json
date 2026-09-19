@@ -1,10 +1,10 @@
 {
-  "note": "Fotos da pasta Equipe Gaia mantidas como integrantes. A ausência de foto não altera o status anteriormente publicado. Cargos e nomes adicionais precisam de confirmação da equipe.",
+  "note": "Relação atualizada conforme lista do capitão. Julia Alves e Júlia Origuela são pessoas diferentes. Novos integrantes sem retrato usam iniciais.",
   "members": [
     {
       "name": "Eloiza Lopes",
       "role": "Integrante",
-      "status": "active",
+      "status": "former",
       "photo": null
     },
     {
@@ -34,7 +34,7 @@
     {
       "name": "Laura Castro",
       "role": "Integrante",
-      "status": "active",
+      "status": "former",
       "photo": null
     },
     {
@@ -96,6 +96,137 @@
       "role": "Integrante",
       "status": "active",
       "photo": "assets/images/equipe/matheus.webp"
+    },
+    {
+      "name": "Julia Alves",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null
+    },
+    {
+      "name": "Anna Clara",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Caio José",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Caio",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Dely",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Dheisy",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Gabriel Serapi",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Guilherme Stroppa",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Hector",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Karol",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Luiza Rodrigues",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Marcelo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Maryana",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Rafael",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Rideck",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Luis Fernando",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Camila Oliveira",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
+    },
+    {
+      "name": "Gabriel Gonzaga",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
+    },
+    {
+      "name": "Gabriel Pintor",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
+    },
+    {
+      "name": "Paula Luísa",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2023 - 2025"
+    },
+    {
+      "name": "Stefanny Ariel",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
     }
   ]
 }

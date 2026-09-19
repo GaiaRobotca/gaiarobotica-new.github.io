@@ -133,5 +133,12 @@
       "title": "Impacto nas Escolas — GAIA Robótica",
       "description": "Como o GAIA Robótica sai dos laboratórios da UFTM para levar tecnologia, pensamento lógico e inspiração às escolas públicas de Uberaba e região."
     }
+  ],
+  "contributors": [
+    {
+      "name": "Pedro H. Soares",
+      "url": "https://github.com/Pedronsjaja",
+      "role": "Colaboração, desenvolvimento e manutenção do site"
+    }
   ]
 }

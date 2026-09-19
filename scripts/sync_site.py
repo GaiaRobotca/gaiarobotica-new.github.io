@@ -24,10 +24,28 @@ def replace_region(text, name, content):
     return updated
 
 
+def render_member(member, current, former=False):
+    name = escape(member['name'])
+    avatar_class = 'ex-avatar' if former else 'ms-avatar'
+    size = 80 if former else 88
+    if member.get('photo'):
+        src = escape(relative(member['photo'], current), quote=True)
+        photo = f'<img class="{avatar_class}" src="{src}" alt="{name}" width="{size}" height="{size}" loading="lazy" decoding="async">'
+    else:
+        initials = ''.join(word[0] for word in member['name'].split()[:2])
+        photo = f'<span class="{avatar_class} avatar-placeholder" aria-hidden="true">{escape(initials)}</span>'
+    if former:
+        period = f'<div class="ex-years">{escape(member["period"])}</div>' if member.get('period') else ''
+        return f'<div class="exmembros-card">{photo}<div class="ex-name">{name}</div><div class="ex-role">Ex-integrante</div>{period}</div>'
+    return f'<div class="member-card">{photo}<div class="ms-name">{name}</div><div class="ms-role">{escape(member["role"])}</div></div>'
+
+
 def main():
     site = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
     team = json.loads((ROOT / 'data/team.json').read_text(encoding='utf-8'))
     base = site['base_url'].rstrip('/') + '/'
+    contributor_links = ', '.join(f'<a href="{escape(person["url"], quote=True)}" target="_blank" rel="noopener noreferrer">{escape(person["name"])}</a>' for person in site.get('contributors', []))
+    credit = f'<span class="site-credit">Colaboração e desenvolvimento do site: {contributor_links}.</span>' if contributor_links else ''
     for page in site['pages']:
         path = page['path']
         r = lambda target: relative(target, path)
@@ -47,6 +65,7 @@ def main():
 </nav></header>
 <noscript><link rel="stylesheet" href="{r('assets/css/no-script.css')}"></noscript>'''
         footer = f'''<footer class="site-footer"><div class="site-footer-inner"><div>{brand}<p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="{r('paginas/aprenda.html')}">Aprenda</a><a href="{r('paginas/patrocine.html')}">Apoie o projeto</a><a href="{r('paginas/contato.html')}">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="{r('paginas/portal.html')}">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>'''
+        footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
         meta = f'''<meta name="description" content="{desc}">
@@ -66,18 +85,11 @@ def main():
         text = replace_region(text, 'shared-footer', footer)
         text = replace_region(text, 'page-meta', meta)
         if path == 'index.html':
-            cards = []
-            for member in team['members']:
-                if member['status'] != 'active':
-                    continue
-                name = escape(member['name'])
-                if member.get('photo'):
-                    photo = f'<img class="ms-avatar" src="{escape(member["photo"], quote=True)}" alt="{name}" width="100" height="100" loading="lazy" decoding="async">'
-                else:
-                    initials = ''.join(word[0] for word in member['name'].split()[:2])
-                    photo = f'<span class="ms-avatar avatar-placeholder" aria-hidden="true">{escape(initials)}</span>'
-                cards.append(f'<div class="member-card">{photo}<div class="ms-name">{name}</div><div class="ms-role">{escape(member["role"])}</div></div>')
+            cards = [render_member(member, path) for member in team['members'] if member['status'] == 'active']
             text = replace_region(text, 'team-members', '<div class="members-grid">\n' + '\n'.join(cards) + '\n</div>')
+        elif path == 'paginas/ex-membros.html':
+            cards = [render_member(member, path, former=True) for member in team['members'] if member['status'] == 'former']
+            text = replace_region(text, 'former-members', '<div class="exmembros-grid">\n' + '\n'.join(cards) + '\n</div>')
         (ROOT / path).write_text(text, encoding='utf-8')
         if page['legacy'] != path:
             target = path

@@ -57,6 +57,8 @@ textarea:focus-visible, [tabindex]:focus-visible { outline: 3px solid var(--gree
 .site-footer-links a { min-height: 44px; display: inline-flex; align-items: center; color: #c1ccdf; font-size: .9rem; text-decoration: none; }
 .site-footer-links a:hover { color: var(--green-light); }
 .site-footer-note { max-width: 1136px; margin: 32px auto 0; border-top: 1px solid #1c2b43; padding-top: 20px; color: #93a6c3; font: .65rem/1.7 'Space Mono', monospace; }
+.site-credit { display: block; margin-top: 10px; line-height: 1.8; }
+.site-credit a { color: #c1e7da; }
 
 .sec { max-width: 1200px; padding: 80px 32px; }
 .lead, .hero-sub, .hi-sub { color: #b5c5dc; }
@@ -93,15 +95,31 @@ pre { max-width: 100%; tab-size: 2; }
 .article-figure img { width: 100%; max-height: 520px; object-fit: contain; border: 1px solid var(--border); border-radius: 8px; background: #061126; }
 .article-figure figcaption { margin-top: 10px; color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .avatar-placeholder { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg,#183554,#155e55); color: #d9fff0; font: 700 1.6rem/1 'Barlow Condensed',sans-serif; }
-.member-card { background: var(--surface); border: 1px solid var(--border); padding: 24px 12px; border-radius: 8px; }
-.member-card .ms-avatar { width: 100px; height: 100px; object-fit: cover; object-position: center 25%; }
+.member-card { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 12px; text-align: center; min-width: 0; background: var(--surface); border: 1px solid var(--border); padding: 24px 12px; border-radius: 8px; }
 .member-card .ms-name { color: #fff; font-size: 1rem; line-height: 1.4; }
-.member-card .ms-role { margin-top: 5px; color: var(--muted); font-size: .8rem; }
+.member-card .ms-role { margin-top: auto; color: var(--muted); font-size: .8rem; }
 .members-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
-.leader-avatar, .docente-avatar { object-position: center 25%; }
-.team-group-photo { margin: 0 0 40px; }
-.team-group-photo img { display: block; width: 100%; max-height: 460px; object-fit: cover; border-radius: 12px; }
-.team-group-photo figcaption { margin-top: 10px; color: var(--muted); font-size: .85rem; }
+.leader-avatar { --avatar-size: 128px; }
+.docente-avatar { --avatar-size: 64px; }
+.ms-avatar { --avatar-size: 88px; }
+.founder-avatar { --avatar-size: 110px; }
+.ex-avatar { --avatar-size: 80px; }
+:is(.leader-avatar, .docente-avatar, .ms-avatar, .founder-avatar, .ex-avatar) {
+  width: var(--avatar-size); height: var(--avatar-size);
+  min-width: var(--avatar-size); max-width: var(--avatar-size);
+  min-height: var(--avatar-size); max-height: var(--avatar-size);
+  flex: 0 0 var(--avatar-size); aspect-ratio: 1; border-radius: 50%;
+  object-fit: cover; object-position: center 25%; overflow: hidden;
+}
+.docente-card > div { min-width: 0; }
+.article-figure img.diagram-image { background: #fff; padding: 20px; }
+.learn-image img { width: 100%; height: 100%; object-fit: cover; }
+.learn-image img.cover-contain { object-fit: contain; padding: 16px; background: #fff; }
+.leader-contributor { margin-top: 12px; color: var(--blue-light); font-size: .85rem; }
+.image-credits { max-width: 1168px; margin: 28px auto 48px; padding: 0 24px; color: var(--muted); font-size: .82rem; line-height: 1.8; }
+.image-credits summary { cursor: pointer; color: var(--blue-light); padding: 12px 0; }
+.image-credits a { color: var(--blue-light); }
+.image-credits p { margin-top: 8px; }
 .photo-pending { background: linear-gradient(135deg,#102346,#16483f); }
 .photo-pending-label { position: absolute; inset: 44% 16px auto; text-align: center; color: #b5cbdc; font: .75rem 'Space Mono',monospace; }
 .home-hero-layout { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 48px; }
