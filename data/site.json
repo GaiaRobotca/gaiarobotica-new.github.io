@@ -38,6 +38,12 @@
       "description": "A história da GAIA Robótica foi escrita por dezenas de mãos. Prestamos aqui nossa homenagem e gratidão aos membros, capitães e fundadores que ajudaram a construir o nosso legado."
     },
     {
+      "path": "artigos/carrinho-bluetooth.html",
+      "legacy": "artigos/carrinho-bluetooth.html",
+      "title": "Carrinho Bluetooth com Arduino — GAIA Robótica",
+      "description": "Conheça o carrinho Bluetooth da GAIA: dois motores, driver e Arduino, com comandos do código original, montagem e roteiro de testes."
+    },
+    {
       "path": "artigos/arduino.html",
       "legacy": "artigo-arduino.html",
       "title": "Arduino: A Ponte Entre Lógica e Eletrônica — GAIA Robótica",

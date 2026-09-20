@@ -8,6 +8,7 @@ from html import escape
 import json
 import os
 import re
+import unicodedata
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -40,9 +41,15 @@ def render_member(member, current, former=False):
     return f'<div class="member-card">{photo}<div class="ms-name">{name}</div><div class="ms-role">{escape(member["role"])}</div></div>'
 
 
+def member_sort_key(member):
+    normalized = unicodedata.normalize('NFD', member['name'].casefold())
+    return ''.join(character for character in normalized if not unicodedata.combining(character))
+
+
 def main():
     site = json.loads((ROOT / 'data/site.json').read_text(encoding='utf-8'))
     team = json.loads((ROOT / 'data/team.json').read_text(encoding='utf-8'))
+    members = sorted(team['members'], key=member_sort_key)
     base = site['base_url'].rstrip('/') + '/'
     contributor_links = ', '.join(f'<a href="{escape(person["url"], quote=True)}" target="_blank" rel="noopener noreferrer">{escape(person["name"])}</a>' for person in site.get('contributors', []))
     credit = f'<span class="site-credit">Colaboração e desenvolvimento do site: {contributor_links}.</span>' if contributor_links else ''
@@ -85,10 +92,10 @@ def main():
         text = replace_region(text, 'shared-footer', footer)
         text = replace_region(text, 'page-meta', meta)
         if path == 'index.html':
-            cards = [render_member(member, path) for member in team['members'] if member['status'] == 'active']
+            cards = [render_member(member, path) for member in members if member['status'] == 'active']
             text = replace_region(text, 'team-members', '<div class="members-grid">\n' + '\n'.join(cards) + '\n</div>')
         elif path == 'paginas/ex-membros.html':
-            cards = [render_member(member, path, former=True) for member in team['members'] if member['status'] == 'former']
+            cards = [render_member(member, path, former=True) for member in members if member['status'] == 'former']
             text = replace_region(text, 'former-members', '<div class="exmembros-grid">\n' + '\n'.join(cards) + '\n</div>')
         (ROOT / path).write_text(text, encoding='utf-8')
         if page['legacy'] != path:

@@ -51,13 +51,17 @@ Os blocos delimitados por `shared-header`, `shared-footer`, `page-meta` e `team-
 
 Adicione o retrato em `assets/images/equipe/`, preferencialmente WebP, com nome sem espaços ou acentos. Atualize nome, função e caminho em `data/team.json` e execute `python scripts/sync_site.py`.
 
-Um integrante com `"photo": null` recebe suas iniciais em um avatar circular. Para mover alguém da equipe atual para ex-membros, altere `status` de `active` para `former` e execute a sincronização: as duas páginas são atualizadas pelo mesmo cadastro. O campo opcional `period` registra apenas períodos conhecidos. Liderança e docentes ficam no bloco próprio de `index.html`.
+Um integrante com `"photo": null` recebe suas iniciais em um avatar circular. A sincronização ordena os nomes alfabeticamente, desconsiderando acentos e maiúsculas, nas grades de membros atuais e ex-membros. Para mover alguém da equipe atual para ex-membros, altere `status` de `active` para `former` e execute a sincronização: as duas páginas são atualizadas pelo mesmo cadastro. O campo opcional `period` registra apenas períodos conhecidos. Liderança e docentes ficam no bloco próprio de `index.html`.
 
 A lista foi atualizada conforme os nomes informados pelo capitão: Eloiza Lopes, Laura Castro e Julia Alves estão em ex-membros; os 15 novos integrantes constam na equipe atual. Julia Alves e Júlia Origuela são pessoas diferentes; Júlia Origuela permanece na diretoria. As fotos disponíveis foram mantidas nos respectivos cadastros e os novos integrantes usam iniciais até receberem retratos.
 
 ## Colaborador
 
 [Pedro H. Soares (@Pedronsjaja)](https://github.com/Pedronsjaja), capitão do GAIA, é o colaborador responsável pelo desenvolvimento e manutenção deste site. Seu crédito é publicado no rodapé e no cartão da liderança. Os créditos compartilhados são configurados em `data/site.json`.
+
+## Carrinho Bluetooth
+
+O projeto fotografado é um carrinho controlado por Bluetooth, com dois motores, driver e Arduino. O artigo `artigos/carrinho-bluetooth.html` usa o material da pasta **2.1. Carrinho** compartilhada pelo capitão e aponta para os arquivos originais no Drive. A variante **2.2. Arduino RC Car** tem servo e outro protocolo; os materiais não são intercambiáveis. A foto foi renomeada para `carrinho-bluetooth.webp`; o nome histórico permanece como chave em `data/images.json`. O guia de seguidor de linha usa uma ilustração didática própria.
 
 ## Fotos
 

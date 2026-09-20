@@ -64,10 +64,10 @@ def main():
                     page.keyboard.press('Escape')
                     if toggle.get_attribute('aria-expanded') != 'false':
                         failures.append(f'{current["path"]}: Escape did not close menu')
-                if width in [390, 1440] and path in ['index.html', 'paginas/aprenda.html', 'paginas/contato.html', 'paginas/portal.html', 'artigos/seguidor-linha.html', 'noticias/fundacao.html']:
+                if width in [390, 1440] and path in ['index.html', 'paginas/aprenda.html', 'paginas/contato.html', 'paginas/portal.html', 'artigos/carrinho-bluetooth.html', 'artigos/seguidor-linha.html', 'noticias/fundacao.html']:
                     page.screenshot(path=str(OUTPUT / (path.replace('/', '-') + f'-{width}.png')), full_page=False)
                 checks.append(current['path'])
-            print(f'Checked 22 pages at {width}px', flush=True)
+            print(f'Checked {len(site["pages"])} pages at {width}px', flush=True)
 
         print(f'Layout/image/script failures: {len(failures)}', failures, flush=True)
         page.set_viewport_size({'width': 1440, 'height': 960})
@@ -80,12 +80,22 @@ def main():
         search.fill('visao')
         assert page.locator('.learn-card:visible').count() >= 1, 'Accent-insensitive search failed'
         search.fill('')
-        assert page.locator('.learn-card:visible').count() == 7, 'Search reset failed'
-        for category, count in [('arduino', 2), ('ia', 2), ('robotica', 2), ('drones', 1), ('eletronica', 2)]:
+        assert page.locator('.learn-card:visible').count() == 8, 'Search reset failed'
+        for category, count in [('arduino', 3), ('ia', 2), ('robotica', 3), ('drones', 1), ('eletronica', 2)]:
             page.locator(f'[data-filter="{category}"]').click()
             assert page.locator('.learn-card:visible').count() == count, category + ' category filter'
         page.locator('[data-filter="todos"]').click()
         checks.append('Aprenda search / accents / empty state / reset')
+
+        search.fill('bluetooth')
+        assert page.locator('.learn-card:visible').count() == 1, 'Bluetooth search failed'
+        page.locator('.learn-card:visible').click()
+        assert page.url.endswith('/artigos/carrinho-bluetooth.html'), 'Bluetooth card opens wrong project'
+        assert page.locator('.article-content img[src$="carrinho-bluetooth.webp"]').count() == 1
+        page.goto(BASE + 'artigos/seguidor-linha.html', wait_until='networkidle')
+        assert page.locator('.article-content img[src$="seguidor-linha-diagrama.svg"]').count() == 1
+        assert page.locator('img[src$="carrinho-bluetooth.webp"]').count() == 0
+        checks.append('Bluetooth project discovery and distinct line-follower illustration')
 
         for path in ['paginas/contato.html', 'paginas/patrocine.html']:
             page.goto(BASE + path, wait_until='networkidle')

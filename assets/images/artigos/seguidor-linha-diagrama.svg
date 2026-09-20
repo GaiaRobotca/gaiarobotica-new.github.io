@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">Como um robô seguidor de linha lê a pista</title>
+  <desc id="desc">Ilustração didática vista de cima: robô com dois motores sobre uma linha escura. Dois sensores infravermelhos ficam na frente do chassi, voltados para o chão.</desc>
+  <rect width="960" height="600" fill="#0d203e"/>
+  <text x="48" y="66" fill="#4cdd9b" font-family="sans-serif" font-size="26" font-weight="700">SEGUIDOR DE LINHA</text>
+  <text x="48" y="100" fill="#c1ccdf" font-family="sans-serif" font-size="20">Sensores leem a pista. O robô corrige a direção.</text>
+  <rect x="32" y="128" width="896" height="380" rx="24" fill="#e2eaf6"/>
+  <path d="M 32 405 C 215 405 175 265 345 265 H 645 C 810 265 750 425 928 425" fill="none" stroke="#071329" stroke-width="22"/>
+  <rect x="387" y="171" width="140" height="32" rx="9" fill="#071329"/>
+  <rect x="387" y="327" width="140" height="32" rx="9" fill="#071329"/>
+  <rect x="371" y="206" width="195" height="118" rx="20" fill="#143572" stroke="#007a3f" stroke-width="4"/>
+  <rect x="403" y="231" width="84" height="68" rx="8" fill="#007a3f"/>
+  <path d="M 505 265 H 543 M 531 253 L 543 265 L 531 277" fill="none" stroke="#fff" stroke-width="4"/>
+  <path d="M 565 230 H 598 M 565 300 H 598" stroke="#143572" stroke-width="8"/>
+  <circle cx="598" cy="230" r="14" fill="#4cdd9b" stroke="#071329" stroke-width="4"/>
+  <circle cx="598" cy="300" r="14" fill="#4cdd9b" stroke="#071329" stroke-width="4"/>
+  <path d="M 620 217 L 670 183 H 856" fill="none" stroke="#143572" stroke-width="2"/>
+  <text x="690" y="172" fill="#143572" font-family="sans-serif" font-size="22" font-weight="700">SENSORES IR</text>
+  <text x="58" y="477" fill="#143572" font-family="sans-serif" font-size="20">Linha escura sobre fundo claro</text>
+  <text x="48" y="550" fill="#c1ccdf" font-family="sans-serif" font-size="20">Ilustração didática · vista superior · fora de escala</text>
+</svg>

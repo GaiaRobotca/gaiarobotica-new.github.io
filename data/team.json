@@ -2,109 +2,13 @@
   "note": "Relação atualizada conforme lista do capitão. Julia Alves e Júlia Origuela são pessoas diferentes. Novos integrantes sem retrato usam iniciais.",
   "members": [
     {
-      "name": "Eloiza Lopes",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null
-    },
-    {
-      "name": "Felipe Henrique",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/felipe-henrique.webp"
-    },
-    {
-      "name": "Gabriel Azevedo",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/gabriel-azevedo.webp"
-    },
-    {
-      "name": "João Maerbal",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/joao-maerbal.webp"
-    },
-    {
-      "name": "João Paulo",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/joao-paulo.webp"
-    },
-    {
-      "name": "Laura Castro",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null
-    },
-    {
-      "name": "Murilo Pelegrini",
-      "role": "Integrante",
-      "status": "active",
-      "photo": null
-    },
-    {
-      "name": "Jordana",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/jordana.webp"
-    },
-    {
-      "name": "Paulo Adriano",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/paulo-adriano.webp"
-    },
-    {
-      "name": "Lucas Cortês",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/lucas-cortes.webp"
-    },
-    {
-      "name": "Felipe Moura",
-      "role": "Integrante",
-      "status": "active",
-      "photo": null
-    },
-    {
-      "name": "Renan Alkimim",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/renan-alkimim.webp"
-    },
-    {
-      "name": "Lígia",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/ligia.webp"
-    },
-    {
-      "name": "Felipe Brian",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/felipe-brian.webp"
-    },
-    {
-      "name": "Leonardo",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/leonardo.webp"
-    },
-    {
-      "name": "Matheus",
-      "role": "Integrante",
-      "status": "active",
-      "photo": "assets/images/equipe/matheus.webp"
-    },
-    {
-      "name": "Julia Alves",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null
-    },
-    {
       "name": "Anna Clara",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Caio",
       "role": "Integrante",
       "status": "active",
       "photo": null
@@ -116,10 +20,11 @@
       "photo": null
     },
     {
-      "name": "Caio",
+      "name": "Camila Oliveira",
       "role": "Integrante",
-      "status": "active",
-      "photo": null
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
     },
     {
       "name": "Dely",
@@ -132,6 +37,50 @@
       "role": "Integrante",
       "status": "active",
       "photo": null
+    },
+    {
+      "name": "Eloiza Lopes",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null
+    },
+    {
+      "name": "Felipe Brian",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/felipe-brian.webp"
+    },
+    {
+      "name": "Felipe Henrique",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/felipe-henrique.webp"
+    },
+    {
+      "name": "Felipe Moura",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Gabriel Azevedo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/gabriel-azevedo.webp"
+    },
+    {
+      "name": "Gabriel Gonzaga",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
+    },
+    {
+      "name": "Gabriel Pintor",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null,
+      "period": "2024 - 2025"
     },
     {
       "name": "Gabriel Serapi",
@@ -152,7 +101,61 @@
       "photo": null
     },
     {
+      "name": "João Maerbal",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/joao-maerbal.webp"
+    },
+    {
+      "name": "João Paulo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/joao-paulo.webp"
+    },
+    {
+      "name": "Jordana",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/jordana.webp"
+    },
+    {
+      "name": "Julia Alves",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null
+    },
+    {
       "name": "Karol",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Laura Castro",
+      "role": "Integrante",
+      "status": "former",
+      "photo": null
+    },
+    {
+      "name": "Leonardo",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/leonardo.webp"
+    },
+    {
+      "name": "Lígia",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/ligia.webp"
+    },
+    {
+      "name": "Lucas Cortês",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/lucas-cortes.webp"
+    },
+    {
+      "name": "Luis Fernando",
       "role": "Integrante",
       "status": "active",
       "photo": null
@@ -176,43 +179,16 @@
       "photo": null
     },
     {
-      "name": "Rafael",
+      "name": "Matheus",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/matheus.webp"
+    },
+    {
+      "name": "Murilo Pelegrini",
       "role": "Integrante",
       "status": "active",
       "photo": null
-    },
-    {
-      "name": "Rideck",
-      "role": "Integrante",
-      "status": "active",
-      "photo": null
-    },
-    {
-      "name": "Luis Fernando",
-      "role": "Integrante",
-      "status": "active",
-      "photo": null
-    },
-    {
-      "name": "Camila Oliveira",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null,
-      "period": "2024 - 2025"
-    },
-    {
-      "name": "Gabriel Gonzaga",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null,
-      "period": "2024 - 2025"
-    },
-    {
-      "name": "Gabriel Pintor",
-      "role": "Integrante",
-      "status": "former",
-      "photo": null,
-      "period": "2024 - 2025"
     },
     {
       "name": "Paula Luísa",
@@ -220,6 +196,30 @@
       "status": "former",
       "photo": null,
       "period": "2023 - 2025"
+    },
+    {
+      "name": "Paulo Adriano",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/paulo-adriano.webp"
+    },
+    {
+      "name": "Rafael",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
+    },
+    {
+      "name": "Renan Alkimim",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/renan-alkimim.webp"
+    },
+    {
+      "name": "Rideck",
+      "role": "Integrante",
+      "status": "active",
+      "photo": null
     },
     {
       "name": "Stefanny Ariel",
