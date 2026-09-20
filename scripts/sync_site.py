@@ -75,10 +75,10 @@ def main():
         footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
-        img_rel = page.get('image', 'assets/images/social/projeto-gaia-hd.png')
-        img_alt = escape(page.get('image_alt', 'Símbolo G verde e nome GAIA branco sobre fundo azul-escuro.'), quote=True)
+        img_rel = page.get('image', 'assets/images/social/gaia-g-preview-hd.png')
+        img_alt = escape(page.get('image_alt', 'Símbolo G verde do Projeto GAIA sobre fundo azul-escuro.'), quote=True)
         img_url = escape(base + img_rel, quote=True)
-        twitter_img_rel = page.get('twitter_image', page.get('image', 'assets/images/social/projeto-gaia-horizontal-hd.png'))
+        twitter_img_rel = page.get('twitter_image', page.get('image', 'assets/images/social/gaia-g-preview-horizontal-hd.png'))
         twitter_img_url = escape(base + twitter_img_rel, quote=True)
         meta = f'''<meta name="description" content="{desc}">
 <meta name="theme-color" content="#050f26">
