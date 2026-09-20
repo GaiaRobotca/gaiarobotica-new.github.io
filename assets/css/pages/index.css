@@ -163,7 +163,7 @@ h2{font-family:"Barlow Condensed",sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .join-box{background:var(--surface);border:1px dashed var(--border);padding:2rem;text-align:center;margin-top:2rem; border-radius:8px;}
 .join-box p{color:var(--muted);margin-bottom:1rem;font-size:0.94rem;}
 #parceria{background:linear-gradient(155deg,#050f30,#0c2160);}
-.parc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:520px;}
+.parc-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1.25rem;max-width:840px;}
 .parc-card{background:var(--surface);border:1px solid var(--border);padding:2rem;text-align:center;transition:border-color 0.2s; border-radius:8px;}
 .parc-card:hover{border-color:var(--blue-light);}
 .parc-name{font-family:"Barlow Condensed",sans-serif;font-size:1.15rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:0.07em;}

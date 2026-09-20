@@ -86,6 +86,12 @@
       "description": "Monte, programe e teste um seguidor de linha com Arduino: componentes, montagem, controle e um roteiro de testes e registro do projeto."
     },
     {
+      "path": "artigos/robocup.html",
+      "legacy": "artigos/robocup.html",
+      "title": "RoboCup: Robôs que Jogam Futebol e a Meta de 2050 — GAIA Robótica",
+      "description": "Conheça a RoboCup: a maior iniciativa científica de futebol de robôs do mundo, suas ligas, desafios de inteligência artificial e a meta de superar os campeões humanos até 2050."
+    },
+    {
       "path": "noticias/fundacao.html",
       "legacy": "post-fundacao.html",
       "title": "GAIA Robótica é fundado na UFTM — GAIA Robótica",

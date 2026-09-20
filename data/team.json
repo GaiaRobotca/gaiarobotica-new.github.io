@@ -173,6 +173,12 @@
       "photo": null
     },
     {
+      "name": "Maria Cecília",
+      "role": "Integrante",
+      "status": "active",
+      "photo": "assets/images/equipe/maria-cecilia.webp"
+    },
+    {
       "name": "Maryana",
       "role": "Integrante",
       "status": "active",
@@ -207,7 +213,7 @@
       "name": "Rafael",
       "role": "Integrante",
       "status": "active",
-      "photo": null
+      "photo": "assets/images/equipe/rafael.webp"
     },
     {
       "name": "Renan Alkimim",
