@@ -75,9 +75,11 @@ def main():
         footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
-        img_rel = page.get('image', 'assets/images/social/projeto-gaia-preview.png')
-        img_alt = escape(page.get('image_alt', 'Marca do Projeto GAIA com o símbolo G e a assinatura Projeto · UFTM.'), quote=True)
+        img_rel = page.get('image', 'assets/images/social/projeto-gaia-hd.png')
+        img_alt = escape(page.get('image_alt', 'Símbolo G verde e nome GAIA branco sobre fundo azul-escuro.'), quote=True)
         img_url = escape(base + img_rel, quote=True)
+        twitter_img_rel = page.get('twitter_image', page.get('image', 'assets/images/social/projeto-gaia-horizontal-hd.png'))
+        twitter_img_url = escape(base + twitter_img_rel, quote=True)
         meta = f'''<meta name="description" content="{desc}">
 <meta name="theme-color" content="#050f26">
 <link rel="canonical" href="{url}">
@@ -89,10 +91,10 @@ def main():
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{img_url}">
 <meta property="og:image:alt" content="{img_alt}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="2400">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{img_url}">
+<meta name="twitter:image" content="{twitter_img_url}">
 <meta name="twitter:image:alt" content="{img_alt}">'''
         text = (ROOT / path).read_text(encoding='utf-8')
         text = replace_region(text, 'shared-header', header)

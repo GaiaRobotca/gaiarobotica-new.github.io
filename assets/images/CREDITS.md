@@ -11,3 +11,10 @@ externas adicionadas nesta revisão estão armazenadas no repositório:
 Os créditos e links das licenças também aparecem no Aprenda e nos artigos que
 utilizam essas imagens. A exibição da foto ou do diagrama não indica parceria
 ou endosso dos autores ao GAIA.
+
+As capas `social/projeto-gaia-hd` e `social/projeto-gaia-horizontal-hd` reutilizam
+o monograma vetorial do site. A palavra GAIA usa Barlow Condensed Black,
+de Jeremy Tribby, disponível no [Google Fonts](https://github.com/google/fonts/tree/main/ofl/barlowcondensed)
+sob a [SIL Open Font License 1.1](https://github.com/google/fonts/blob/main/ofl/barlowcondensed/OFL.txt).
+As letras foram convertidas em caminhos nos SVGs para preservar a aparência
+em qualquer escala; os PNGs foram renderizados diretamente desses vetores.
