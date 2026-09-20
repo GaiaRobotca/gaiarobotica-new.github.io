@@ -75,6 +75,9 @@ def main():
         footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
+        img_rel = page.get('image', 'assets/images/social/gaia-share.png')
+        img_alt = escape(page.get('image_alt', 'Projeto GAIA — Robótica e Eletroquad da UFTM'), quote=True)
+        img_url = escape(base + img_rel, quote=True)
         meta = f'''<meta name="description" content="{desc}">
 <meta name="theme-color" content="#050f26">
 <link rel="canonical" href="{url}">
@@ -84,9 +87,12 @@ def main():
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{base}assets/images/social/gaia-equipe.jpg">
-<meta property="og:image:alt" content="Equipe GAIA na SAE Brasil EletroQuad">
-<meta name="twitter:card" content="summary_large_image">'''
+<meta property="og:image" content="{img_url}">
+<meta property="og:image:alt" content="{img_alt}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{img_url}">'''
         text = (ROOT / path).read_text(encoding='utf-8')
         text = replace_region(text, 'shared-header', header)
         text = replace_region(text, 'shared-footer', footer)
