@@ -58,7 +58,7 @@ main a:focus-visible,main button:focus-visible,main input:focus-visible,main tex
 main *,main *::before,main *::after{animation:none!important;transition:none!important}}
 .portal-main{padding:7.5rem 1.25rem 4rem;background:radial-gradient(ellipse at 50% 0,rgba(0,168,84,.16),transparent 55%)}
 .portal-panel{max-width:600px;margin:0 auto;text-align:center}
-.portal-logo{width:100px;height:100px;object-fit:contain;border-radius:50%;background:#fff;border:2px solid #4bca8b;padding:4px;margin-bottom:1.5rem}
+.portal-logo{width:100px;height:100px;object-fit:cover;border-radius:50%;background:#041a5e;border:2px solid #4bca8b;margin-bottom:1.5rem}
 .portal-panel h1{font:900 clamp(2.5rem,7vw,3.5rem)/1.05 "Barlow Condensed",sans-serif;text-transform:uppercase;color:#fff}
 .portal-panel h1 span{color:#53d990}
 .portal-subtitle{font-size:1rem;line-height:1.75;color:#b6c7e4;max-width:480px;margin:1.4rem auto 2rem}
