@@ -10,14 +10,14 @@
 <link href="../assets/css/site.css" rel="stylesheet">
 <script src="../assets/js/site.js" defer></script>
 <!-- page-meta:start -->
-<meta name="description" content="Conheça o carrinho Bluetooth da GAIA: dois motores, driver e Arduino, com comandos do código original, montagem e roteiro de testes.">
+<meta name="description" content="Entenda o que são os carrinhos Bluetooth da GAIA e como Arduino, módulo Bluetooth, driver e dois motores transformam comandos do celular em movimento.">
 <meta name="theme-color" content="#050f26">
 <link rel="canonical" href="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/carrinho-bluetooth.html">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="GAIA Robótica — UFTM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Carrinho Bluetooth com Arduino — GAIA Robótica">
-<meta property="og:description" content="Conheça o carrinho Bluetooth da GAIA: dois motores, driver e Arduino, com comandos do código original, montagem e roteiro de testes.">
+<meta property="og:description" content="Entenda o que são os carrinhos Bluetooth da GAIA e como Arduino, módulo Bluetooth, driver e dois motores transformam comandos do celular em movimento.">
 <meta property="og:url" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/artigos/carrinho-bluetooth.html">
 <meta property="og:image" content="https://gaiarobotca.github.io/gaiarobotica-new.github.io/assets/images/social/gaia-equipe.jpg">
 <meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
@@ -48,115 +48,61 @@
 <section class="article-section" id="projeto">
 <div class="section-label">01 — O projeto</div>
 <h2 class="sec-title">Um carrinho controlado pelo celular</h2>
-<p class="body-text">Os carrinhos da foto são <strong>controlados por Bluetooth</strong>. Uma pessoa escolhe o movimento no celular; o Arduino recebe esse comando e aciona os dois motores por meio de um driver. A direção depende do comando recebido, mesmo quando há marcações no chão.</p>
-<figure class="article-figure"><img src="../assets/images/artigos/carrinho-bluetooth.webp" alt="Carrinhos Bluetooth da GAIA, com Arduino e dois motores, alinhados sobre o piso" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Carrinhos Bluetooth da GAIA. Foto do acervo da equipe; identificação confirmada pelo capitão Pedro H. Soares.</figcaption></figure>
-<p class="body-text">Este guia acompanha o material da pasta <a href="https://drive.google.com/drive/folders/1ThLjdIx39guQ-wwPESnhh9UTckQUtXu4">2.1. Carrinho</a>, especialmente o esquema elétrico e o arquivo <code>base_code.ino</code>. Você vai entender a função dos componentes, o protocolo de comandos e uma sequência de testes para conferir a montagem.</p>
-<div class="callout green"><div class="callout-label">E o seguidor de linha?</div><p>O <a href="seguidor-linha.html">seguidor de linha</a> usa sensores voltados para o chão e corrige a trajetória automaticamente. Aqui, o Bluetooth recebe as decisões do operador. Os dois projetos podem usar Arduino e motores, mas têm entradas e lógicas de controle diferentes.</p></div>
+<p class="body-text">Um <strong>carrinho Bluetooth</strong> é um robô móvel que recebe comandos sem fio. Pelo celular, uma pessoa escolhe a direção; a eletrônica do carrinho interpreta a mensagem e transforma essa escolha em movimento.</p>
+<p class="body-text">Nos carrinhos da GAIA, esse funcionamento reúne <strong>dois motores, um driver, um módulo Bluetooth e um Arduino</strong>. Cada componente tem uma função, e o trabalho conjunto permite avançar, recuar e fazer curvas.</p>
+<figure class="article-figure"><img src="../assets/images/artigos/carrinho-bluetooth.webp" alt="Carrinhos Bluetooth da GAIA, com Arduino e dois motores, alinhados sobre o piso" width="1200" height="1600" loading="lazy" decoding="async"><figcaption>Carrinhos Bluetooth da GAIA. Foto da equipe.</figcaption></figure>
+<div class="callout green"><div class="callout-label">Controle pelo operador</div><p>A direção vem dos comandos enviados pelo celular. Já um <a href="seguidor-linha.html">seguidor de linha</a> usa sensores voltados para o chão para acompanhar uma trajetória automaticamente. As marcações no piso da foto não determinam o movimento destes carrinhos Bluetooth.</p></div>
 </section>
 <section class="article-section" id="componentes">
 <div class="section-label">02 — Componentes</div>
 <h2 class="sec-title">O papel de cada peça</h2>
-<div class="table-scroll" role="region" aria-label="Componentes do carrinho Bluetooth" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Componente</th><th scope="col">Quantidade</th><th scope="col">Função</th></tr></thead><tbody>
-<tr><td>Arduino</td><td>1</td><td>Lê os comandos seriais e define o acionamento de cada roda.</td></tr>
-<tr><td>Motores DC com rodas</td><td>2</td><td>Movimentam os lados direito e esquerdo do carrinho.</td></tr>
-<tr><td>Driver para dois motores</td><td>1</td><td>Comanda a potência e o sentido de giro dos motores a partir dos sinais do Arduino.</td></tr>
-<tr><td>Módulo Bluetooth serial</td><td>1</td><td>Recebe os comandos enviados pelo aplicativo. O acervo inclui um tutorial de configuração do HC-06.</td></tr>
-<tr><td>Chassi, apoio e fixadores</td><td>Conjunto</td><td>Mantêm rodas, placas e bateria firmes, sem atrapalhar o movimento.</td></tr>
-<tr><td>Alimentação, chave e fios</td><td>Conjunto</td><td>Fornecem energia compatível com a eletrônica e com a corrente dos motores.</td></tr>
+<div class="table-scroll" role="region" aria-label="Componentes do carrinho Bluetooth" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Componente</th><th scope="col">Função no carrinho</th></tr></thead><tbody>
+<tr><td>Arduino</td><td>Interpreta os comandos recebidos e define o acionamento dos motores.</td></tr>
+<tr><td>Módulo Bluetooth</td><td>Faz a comunicação sem fio entre o celular e a eletrônica do carrinho.</td></tr>
+<tr><td>Driver de motores</td><td>Controla a energia entregue aos motores a partir dos sinais do Arduino.</td></tr>
+<tr><td>Dois motores com rodas</td><td>Movimentam os lados direito e esquerdo do carrinho.</td></tr>
+<tr><td>Chassi</td><td>Sustenta e mantém os componentes organizados.</td></tr>
+<tr><td>Bateria</td><td>Fornece a energia necessária ao funcionamento do conjunto.</td></tr>
 </tbody></table></div>
-<p class="body-text">O esquema identifica o estágio de potência como “driver”, sem informar seu modelo. Confira a placa instalada antes de definir alimentação, pinagem, jumpers de habilitação e limites de corrente. O nome HC-06 no tutorial também não substitui a identificação do módulo usado na sua montagem.</p>
-<p class="body-text">Os pinos do Arduino fornecem sinais de controle; os motores recebem energia pelo driver. Mantenha uma referência GND comum e confira as tensões de alimentação e de sinal de cada módulo. Uma placa Bluetooth com regulador na entrada de alimentação pode ainda exigir adaptação de nível no pino RX.</p>
+<p class="body-text">O Arduino toma as decisões programadas, enquanto o driver cuida do acionamento dos motores. Essa divisão permite que sinais de controle comandem o movimento das rodas.</p>
 </section>
 <section class="article-section" id="funcionamento">
 <div class="section-label">03 — Do celular às rodas</div>
 <h2 class="sec-title">Como o comando vira movimento</h2>
 <div class="steps-list">
-<div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">O aplicativo envia um caractere</div><div class="step-text">Um botão de direção transmite a letra definida pelo protocolo do projeto.</div></div></div>
-<div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">O Bluetooth entrega o dado ao Arduino</div><div class="step-text">A comunicação serial leva o caractere até o programa, que verifica qual comando chegou.</div></div></div>
-<div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">O driver aciona os motores</div><div class="step-text">O Arduino escolhe o sentido de cada roda. Girar as rodas em sentidos opostos permite virar o chassi.</div></div></div>
+<div class="step-item"><div class="step-num">1</div><div class="step-content"><div class="step-title">A pessoa escolhe uma direção</div><div class="step-text">O aplicativo no celular envia uma mensagem correspondente ao movimento desejado.</div></div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-content"><div class="step-title">O Bluetooth recebe a mensagem</div><div class="step-text">O módulo entrega o comando ao Arduino por uma comunicação serial.</div></div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-content"><div class="step-title">O Arduino interpreta o comando</div><div class="step-text">O programa associa a mensagem a uma ação e envia os sinais de controle ao driver.</div></div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-content"><div class="step-title">Os motores movimentam as rodas</div><div class="step-text">O driver aciona os motores, e o carrinho responde à direção escolhida.</div></div></div>
 </div>
-<p class="body-text">Essa montagem usa <strong>direção diferencial</strong>: o movimento relativo das duas rodas determina a curva. No código base, virar à esquerda e à direita aciona os motores em sentidos opostos. Confirme os lados e as polaridades no carrinho físico antes de testar no chão.</p>
+<p class="body-text">A conexão acontece entre o celular e o módulo Bluetooth. O comando percorre essa sequência até chegar às rodas, unindo comunicação, programação e eletrônica em uma ação visível.</p>
 </section>
-<section class="article-section" id="montagem">
-<div class="section-label">04 — Montagem e ligações</div>
-<h2 class="sec-title">Confira o circuito por etapas</h2>
-<p class="body-text">Comece com a alimentação desligada. Fixe os motores, verifique se as rodas giram livremente e organize os cabos longe dos eixos. Use o <a href="https://drive.google.com/drive/folders/1aBdlD6XaMjeu9IJr3mXbGIP1z6A8bDPh">esquema elétrico do acervo</a> junto com a documentação das placas da sua bancada.</p>
-<div class="table-scroll" role="region" aria-label="Sinais presentes no código base" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Ligação no código base</th><th scope="col">O que verificar</th></tr></thead><tbody>
-<tr><td>D5 e D6 → controle da roda direita</td><td>Correspondência entre entradas do driver e sentidos de giro.</td></tr>
-<tr><td>D9 e D10 → controle da roda esquerda</td><td>Mesma conferência no segundo canal do driver.</td></tr>
-<tr><td>Serial → módulo Bluetooth</td><td>TX do módulo vai ao RX do Arduino; RX do módulo recebe TX com nível elétrico compatível.</td></tr>
-<tr><td>GND comum</td><td>Referência compartilhada entre Arduino, driver e módulo.</td></tr>
-<tr><td>Alimentação → circuito</td><td>Tensão, polaridade e corrente adequadas; não deduza valores a partir das cores dos fios.</td></tr>
-</tbody></table></div>
-<p class="body-text">O <code>base_code.ino</code> usa <code>Serial</code>. No Uno R3, essa interface utiliza D0/RX e D1/TX e é compartilhada com a conexão USB. Isole o módulo desses pinos ao enviar o sketch, para evitar disputa na comunicação, e reconecte com o circuito desligado.</p>
-<p class="body-text">O desenho do acervo mostra as relações entre os blocos, mas não especifica todos os detalhes elétricos. Verifique especialmente a alimentação do Arduino e os níveis do Bluetooth antes de reproduzir as ligações.</p>
+<section class="article-section" id="movimentos">
+<div class="section-label">04 — Movimento</div>
+<h2 class="sec-title">Como o carrinho faz curvas</h2>
+<p class="body-text">Os dois motores permitem controlar cada lado do carrinho. Quando as rodas impulsionam o conjunto para a frente, ele avança; quando o sentido é invertido, ele recua.</p>
+<p class="body-text">Nas curvas, os lados se movimentam de maneiras diferentes. Nesta montagem, as rodas podem girar em sentidos opostos para virar o chassi. Esse princípio é chamado de <strong>direção diferencial</strong>: a diferença entre o movimento das rodas muda a orientação do carrinho.</p>
+<p class="body-text">A resposta também depende das condições físicas. O atrito com o piso, a carga transportada e a energia disponível influenciam o movimento real.</p>
 </section>
-<section class="article-section" id="programacao">
-<div class="section-label">05 — Protocolo e programação</div>
-<h2 class="sec-title">As cinco letras do controle</h2>
-<p class="body-text">O código base inicia a serial com <code>Serial.begin(9600)</code> e lê um caractere por vez. Configure o aplicativo para enviar as letras maiúsculas abaixo e confira se a interface serial do módulo está na mesma taxa. <strong>9600 é a taxa em baud</strong>, não 9600 bytes por segundo.</p>
-<div class="table-scroll" role="region" aria-label="Protocolo Bluetooth do projeto" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Caractere</th><th scope="col">Função no código</th><th scope="col">Movimento esperado</th></tr></thead><tbody>
-<tr><td><code>U</code></td><td><code>Forward()</code></td><td>Avançar</td></tr>
-<tr><td><code>D</code></td><td><code>Backward()</code></td><td>Recuar</td></tr>
-<tr><td><code>L</code></td><td><code>Left()</code></td><td>Virar à esquerda</td></tr>
-<tr><td><code>R</code></td><td><code>Right()</code></td><td>Virar à direita</td></tr>
-<tr><td><code>S</code></td><td><code>Stop()</code></td><td>Desativar os comandos de giro</td></tr>
-</tbody></table></div>
-<p class="body-text">Este trecho do arquivo original mostra a escolha da função. Ele faz parte do <code>loop()</code>; as funções de movimento e a inicialização estão no <a href="https://drive.google.com/file/d/1B2PeERJBF5Kzor6JnFkY1UhqSOP2h7v9/view">código completo do acervo</a>.</p>
-<div class="code-wrap"><div class="code-header"><span class="code-lang">C++ · trecho do código base</span><span class="code-fname">base_code.ino</span></div><pre><code>if (value == 'U') {
-  Forward();
-} else if (value == 'D') {
-  Backward();
-} else if (value == 'S') {
-  Stop();
-} else if (value == 'L') {
-  Left();
-} else if (value == 'R') {
-  Right();
-}</code></pre></div>
-<p class="body-text">Nas funções de movimento, o original combina <code>analogWrite()</code> e <code>digitalWrite()</code>, com valores PWM de 150 para avanço/recuo e 120 nas curvas. Esses valores são comandos elétricos, não velocidades medidas. Ajustes dependem dos motores, da alimentação, do driver e da carga.</p>
-<div class="callout green"><div class="callout-label">Antes de usar o código na pista</div><p>O arquivo base é uma referência didática. Revise a configuração explícita de D5, D6, D9 e D10 como saídas, inicialize o carrinho parado e implemente parada por ausência de comandos válidos. O original mantém o último movimento se nenhum novo comando chegar. Combine o tempo limite com o envio periódico pelo aplicativo e envie <code>S</code> ao soltar o botão.</p></div>
-<p class="body-text">A pasta <a href="https://drive.google.com/drive/folders/1qTUdVqPcCFVAuOC5RRyi0VV7-uPp3gP3">2.2. Arduino RC Car</a> contém outra variante, com servo de direção e comandos <code>F</code>/<code>B</code>. Seu código e sua pinagem não correspondem diretamente a este carrinho.</p>
-</section>
-<section class="article-section" id="testes">
-<div class="section-label">06 — Testes e diagnóstico</div>
-<h2 class="sec-title">Valide antes de acelerar</h2>
-<ol class="body-text">
-<li>Com as rodas suspensas, confirme que a montagem liga sem comandar movimento.</li>
-<li>Conecte o aplicativo ao módulo e confira o recebimento de cada uma das cinco letras.</li>
-<li>Teste um comando por vez, sempre seguido de <code>S</code>. Verifique os lados e o sentido real das rodas.</li>
-<li>Teste soltar o botão, fechar o aplicativo e interromper a conexão. Valide a parada por tempo limite antes de colocar o carrinho no chão.</li>
-<li>Faça o primeiro percurso em área livre, com comando reduzido, e registre as correções necessárias.</li>
-</ol>
-<div class="table-scroll" role="region" aria-label="Diagnóstico do carrinho Bluetooth" tabindex="0"><table class="parts-table"><thead><tr><th scope="col">Sintoma</th><th scope="col">O que conferir</th></tr></thead><tbody>
-<tr><td>Bluetooth conecta, mas não há movimento</td><td>Caracteres enviados, taxa serial, ligações TX/RX, GND e habilitação do driver.</td></tr>
-<tr><td>Avançar faz o carrinho girar</td><td>Polaridade e mapeamento dos motores direito e esquerdo.</td></tr>
-<tr><td>Arduino reinicia ao acelerar</td><td>Queda de tensão, corrente de partida e alimentação da eletrônica.</td></tr>
-<tr><td>Carrinho continua andando ao desconectar</td><td>Ausência de parada por tempo limite no programa e configuração de envio do aplicativo.</td></tr>
-<tr><td>Falha ao enviar o sketch</td><td>Placa/porta selecionadas e interferência do módulo nos pinos D0/D1 do Uno R3.</td></tr>
-</tbody></table></div>
-<p class="body-text">Registre o modelo das placas, a bateria, a tabela de pinos, os comandos do aplicativo e a versão do programa testada. Esse registro permite que outro integrante monte e depure o mesmo projeto.</p>
-</section>
-<section class="article-section" id="materiais">
-<div class="section-label">07 — Materiais e próximos passos</div>
-<h2 class="sec-title">Continue com o acervo da equipe</h2>
+<section class="article-section" id="aprendizado">
+<div class="section-label">05 — Aprendizado</div>
+<h2 class="sec-title">O que esse projeto ensina</h2>
+<p class="body-text">O carrinho Bluetooth aproxima conceitos de engenharia de uma experiência fácil de observar. Um toque no celular pode ser acompanhado desde o recebimento da mensagem até o giro das rodas.</p>
 <ul class="body-text">
-<li><a href="https://drive.google.com/drive/folders/1faketnACGC1n9R7oVcKuE6LQC76tFTfc">Projetos GAIA no Google Drive</a>: pasta geral compartilhada pelo capitão.</li>
-<li><a href="https://drive.google.com/drive/folders/1ThLjdIx39guQ-wwPESnhh9UTckQUtXu4">2.1. Carrinho</a>: desenhos, código base e material de Bluetooth usados neste artigo.</li>
-<li><a href="https://docs.arduino.cc/hardware/uno-rev3/">Arduino Uno R3</a>: documentação oficial da placa.</li>
-<li><a href="https://docs.arduino.cc/language-reference/en/functions/communication/serial/">Serial</a> e <a href="https://docs.arduino.cc/language-reference/en/functions/analog-io/analogWrite/">analogWrite()</a>: referências oficiais para comunicação e PWM.</li>
+<li><strong>Programação:</strong> relacionar uma entrada a uma ação.</li>
+<li><strong>Eletrônica:</strong> entender a função do controlador, do driver e dos motores.</li>
+<li><strong>Comunicação:</strong> perceber como uma mensagem sem fio chega ao robô.</li>
+<li><strong>Mecânica:</strong> observar como rodas, chassi e piso influenciam o movimento.</li>
 </ul>
-<p class="body-text">Para reforçar a base, leia o <a href="arduino.html">guia de Arduino</a>. Para explorar navegação autônoma, siga para o <a href="seguidor-linha.html">guia de seguidor de linha</a>: ele adiciona sensores e uma lógica de decisão diferente da condução por Bluetooth.</p>
+<p class="body-text">Para conhecer melhor o controlador usado no projeto, continue com o <a href="arduino.html">guia de Arduino</a>. A biblioteca da GAIA também apresenta outros conceitos e aplicações da robótica.</p>
 </section>
 </div>
 <aside class="article-sidebar"><div class="sidebar-card"><h4>Neste artigo</h4><ul class="toc-list">
 <li><a href="#projeto"><span class="toc-num">01</span>O projeto</a></li>
 <li><a href="#componentes"><span class="toc-num">02</span>Componentes</a></li>
 <li><a href="#funcionamento"><span class="toc-num">03</span>Do celular às rodas</a></li>
-<li><a href="#montagem"><span class="toc-num">04</span>Montagem e ligações</a></li>
-<li><a href="#programacao"><span class="toc-num">05</span>Protocolo e programação</a></li>
-<li><a href="#testes"><span class="toc-num">06</span>Testes e diagnóstico</a></li>
-<li><a href="#materiais"><span class="toc-num">07</span>Materiais e próximos passos</a></li>
+<li><a href="#movimentos"><span class="toc-num">04</span>Como faz curvas</a></li>
+<li><a href="#aprendizado"><span class="toc-num">05</span>O que o projeto ensina</a></li>
 </ul></div><div class="sidebar-card"><h4>Continue aprendendo</h4>
 <a class="related-item" href="arduino.html"><div><div class="ri-title">Arduino e hardware</div><div class="ri-cat">Fundamentos</div></div></a>
 <a class="related-item" href="seguidor-linha.html"><div><div class="ri-title">Robô seguidor de linha</div><div class="ri-cat">Robótica autônoma</div></div></a>

@@ -61,7 +61,7 @@ A lista foi atualizada conforme os nomes informados pelo capitão: Eloiza Lopes,
 
 ## Carrinho Bluetooth
 
-O projeto fotografado é um carrinho controlado por Bluetooth, com dois motores, driver e Arduino. O artigo `artigos/carrinho-bluetooth.html` usa o material da pasta **2.1. Carrinho** compartilhada pelo capitão e aponta para os arquivos originais no Drive. A variante **2.2. Arduino RC Car** tem servo e outro protocolo; os materiais não são intercambiáveis. A foto foi renomeada para `carrinho-bluetooth.webp`; o nome histórico permanece como chave em `data/images.json`. O guia de seguidor de linha usa uma ilustração didática própria.
+O projeto fotografado é um carrinho controlado por Bluetooth, com dois motores, driver e Arduino. O artigo `artigos/carrinho-bluetooth.html` apresenta seus componentes, funcionamento e objetivos de aprendizagem. A foto usa o nome `carrinho-bluetooth.webp`; o nome histórico permanece como chave em `data/images.json`. O guia de seguidor de linha usa uma ilustração didática própria.
 
 ## Fotos
 

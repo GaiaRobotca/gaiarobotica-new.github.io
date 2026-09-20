@@ -41,7 +41,7 @@
       "path": "artigos/carrinho-bluetooth.html",
       "legacy": "artigos/carrinho-bluetooth.html",
       "title": "Carrinho Bluetooth com Arduino — GAIA Robótica",
-      "description": "Conheça o carrinho Bluetooth da GAIA: dois motores, driver e Arduino, com comandos do código original, montagem e roteiro de testes."
+      "description": "Entenda o que são os carrinhos Bluetooth da GAIA e como Arduino, módulo Bluetooth, driver e dois motores transformam comandos do celular em movimento."
     },
     {
       "path": "artigos/arduino.html",
