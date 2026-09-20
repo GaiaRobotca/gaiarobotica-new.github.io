@@ -166,6 +166,7 @@ h2{font-family:"Barlow Condensed",sans-serif;font-size:clamp(2.2rem,4.5vw,3.4rem
 .parc-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1.25rem;max-width:840px;}
 .parc-card{background:var(--surface);border:1px solid var(--border);padding:2rem;text-align:center;transition:border-color 0.2s; border-radius:8px;}
 .parc-card:hover{border-color:var(--blue-light);}
+.parc-card:only-child{grid-column:1/-1;width:100%;max-width:420px;}
 .parc-name{font-family:"Barlow Condensed",sans-serif;font-size:1.15rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:0.07em;}
 .parc-desc{font-size:0.83rem;color:var(--muted);margin-top:0.4rem;line-height:1.55;}
 .nome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.05); border-radius:8px; overflow:hidden;}
