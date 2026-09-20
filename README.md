@@ -97,6 +97,8 @@ Mantenha o servidor local na porta 8765 em outro terminal. O teste cobre as 22 p
 
 ## Publicação
 
+As prévias de compartilhamento usam a capa institucional `assets/images/social/projeto-gaia-preview.png` (1200 × 630), com o G, GAIA e a assinatura Projeto · UFTM. O título e a descrição continuam específicos de cada página. A imagem padrão e os metadados Open Graph/Twitter são definidos em `scripts/sync_site.py`.
+
 O GitHub Pages deste repositório publica a raiz da branch `main`. Depois de validar, envie o commit e acompanhe a execução de `pages build and deployment` no GitHub Actions. Confira o site publicado antes de divulgar o link do portal na bio.
 
 Fontes das correções históricas, como o resultado da SAE em junho de 2025 e o HackaGIS Saúde, estão vinculadas nos próprios relatos.
