@@ -1,10 +1,14 @@
-# GAIA Robótica · UFTM
+# Projeto GAIA · UFTM
 
 Site do projeto GAIA, com projetos, equipe, conquistas e guias de robótica.
 
 - Site: https://gaiarobotca.github.io/gaiarobotica-new.github.io/
 - Link para a bio: https://gaiarobotca.github.io/gaiarobotica-new.github.io/paginas/portal.html
 - Instagram: https://www.instagram.com/gaia.robotica/
+
+## Marca
+
+O site representa o **Projeto GAIA**, que reúne as áreas **GAIA Robótica** e **GAIA Eletroquad**. O cabeçalho e o rodapé usam GAIA com a assinatura “PROJETO · UFTM”. O monograma vetorial `assets/images/marca/gaia-g.svg` também é usado como ícone das abas. Os componentes compartilhados são gerados por `scripts/sync_site.py`.
 
 ## Organização
 

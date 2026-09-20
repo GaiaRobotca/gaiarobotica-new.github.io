@@ -56,7 +56,7 @@ def main():
     for page in site['pages']:
         path = page['path']
         r = lambda target: relative(target, path)
-        brand = f'''<a class="site-brand" href="{r('index.html')}" aria-label="GAIA Robótica — início"><img src="{r('assets/images/marca/favicon-verde.png')}" alt="" width="36" height="36"><span>GAIA<small>ROBÓTICA · UFTM</small></span></a>'''
+        brand = f'''<a class="site-brand" href="{r('index.html')}" aria-label="Projeto GAIA — início"><img src="{r('assets/images/marca/gaia-g.svg')}" alt="" width="44" height="44"><span>GAIA<small>PROJETO · UFTM</small></span></a>'''
         links = []
         for label, target in [('Sobre', 'index.html#sobre'), ('Projetos', 'index.html#robos'), ('Conquistas', 'index.html#conquistas'), ('Equipe', 'index.html#equipe'), ('Aprenda', 'paginas/aprenda.html'), ('Apoie', 'paginas/patrocine.html'), ('Contato', 'paginas/contato.html')]:
             active = ' aria-current="page"' if path == target or (label == 'Aprenda' and path.startswith('artigos/')) or (label == 'Conquistas' and path.startswith('conquistas/')) else ''
@@ -71,7 +71,7 @@ def main():
 <ul class="site-links" id="site-menu">{''.join(links)}</ul>
 </nav></header>
 <noscript><link rel="stylesheet" href="{r('assets/css/no-script.css')}"></noscript>'''
-        footer = f'''<footer class="site-footer"><div class="site-footer-inner"><div>{brand}<p class="footer-description">Robótica, drones e extensão universitária.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="{r('paginas/aprenda.html')}">Aprenda</a><a href="{r('paginas/patrocine.html')}">Apoie o projeto</a><a href="{r('paginas/contato.html')}">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="{r('paginas/portal.html')}">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>'''
+        footer = f'''<footer class="site-footer"><div class="site-footer-inner"><div>{brand}<p class="footer-description">Projeto GAIA · Robótica e Eletroquad.<br>Universidade Federal do Triângulo Mineiro · Uberaba, MG</p></div><div class="site-footer-links" aria-label="Links do rodapé"><a href="{r('paginas/aprenda.html')}">Aprenda</a><a href="{r('paginas/patrocine.html')}">Apoie o projeto</a><a href="{r('paginas/contato.html')}">Contato</a><a href="https://www.instagram.com/gaia.robotica/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://github.com/GaiaRobotca/gaiarobotica-new.github.io" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="{r('paginas/portal.html')}">Todos os links</a></div></div><p class="site-footer-note">GAIA · Desde 2023 · Conhecimento que vira projeto.</p></footer>'''
         footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
@@ -79,13 +79,13 @@ def main():
 <meta name="theme-color" content="#050f26">
 <link rel="canonical" href="{url}">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="GAIA Robótica — UFTM">
+<meta property="og:site_name" content="Projeto GAIA — UFTM">
 <meta property="og:type" content="{'article' if path.startswith(('artigos/', 'noticias/', 'conquistas/')) else 'website'}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{base}assets/images/social/gaia-equipe.jpg">
-<meta property="og:image:alt" content="Equipe GAIA Robótica na SAE Brasil EletroQuad">
+<meta property="og:image:alt" content="Equipe GAIA na SAE Brasil EletroQuad">
 <meta name="twitter:card" content="summary_large_image">'''
         text = (ROOT / path).read_text(encoding='utf-8')
         text = replace_region(text, 'shared-header', header)

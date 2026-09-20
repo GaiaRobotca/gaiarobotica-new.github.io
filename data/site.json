@@ -4,32 +4,32 @@
     {
       "path": "index.html",
       "legacy": "index.html",
-      "title": "GAIA — UFTM",
-      "description": "Iniciativa de extensão da UFTM. Desenvolvemos soluções autônomas, competimos em nível nacional e levamos tecnologia às escolas públicas de Uberaba."
+      "title": "Projeto GAIA — UFTM",
+      "description": "Projeto de extensão da UFTM com duas áreas: GAIA Robótica e GAIA Eletroquad. Engenharia, competições e educação em Uberaba."
     },
     {
       "path": "paginas/aprenda.html",
       "legacy": "aprenda.html",
-      "title": "Aprenda robótica — GAIA Robótica UFTM",
+      "title": "Aprenda robótica — Projeto GAIA · UFTM",
       "description": "Guias de Arduino, inteligência artificial, drones, controle PID e eletrônica. Aprenda robótica na prática com a equipe GAIA da UFTM."
     },
     {
       "path": "paginas/contato.html",
       "legacy": "contato.html",
-      "title": "Contato — GAIA Robótica UFTM",
-      "description": "Fale com a GAIA Robótica da UFTM. Converse sobre projetos, ações em escolas, convites e parcerias pelo Instagram ou e-mail."
+      "title": "Contato — Projeto GAIA · UFTM",
+      "description": "Fale com a equipe do Projeto GAIA da UFTM sobre Robótica, Eletroquad, ações em escolas, convites e parcerias."
     },
     {
       "path": "paginas/patrocine.html",
       "legacy": "patrocine.html",
-      "title": "Apoie a equipe — GAIA Robótica UFTM",
-      "description": "Conheça as formas de apoiar os projetos, a formação em engenharia e as ações de extensão da equipe GAIA Robótica da UFTM."
+      "title": "Apoie a equipe — Projeto GAIA · UFTM",
+      "description": "Conheça as formas de apoiar o Projeto GAIA da UFTM, suas áreas de Robótica e Eletroquad e suas ações de extensão."
     },
     {
       "path": "paginas/portal.html",
       "legacy": "portal.html",
-      "title": "Links da GAIA — GAIA Robótica UFTM",
-      "description": "Todos os caminhos para conhecer a GAIA Robótica da UFTM: projetos, guias práticos, parcerias e contato com a equipe."
+      "title": "Links da GAIA — Projeto GAIA · UFTM",
+      "description": "Conheça o Projeto GAIA da UFTM: Robótica, Eletroquad, guias práticos, equipe, parcerias e contato."
     },
     {
       "path": "paginas/ex-membros.html",
