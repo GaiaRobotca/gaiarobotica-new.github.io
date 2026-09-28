@@ -58,7 +58,7 @@ def main():
         r = lambda target: relative(target, path)
         brand = f'''<a class="site-brand" href="{r('index.html')}" aria-label="Projeto GAIA — início"><img src="{r('assets/images/marca/gaia-g.svg')}" alt="" width="44" height="44"><span>GAIA<small>PROJETO · UFTM</small></span></a>'''
         links = []
-        for label, target in [('Sobre', 'index.html#sobre'), ('Projetos', 'index.html#robos'), ('Conquistas', 'index.html#conquistas'), ('Equipe', 'index.html#equipe'), ('Aprenda', 'paginas/aprenda.html'), ('Apoie', 'paginas/patrocine.html'), ('Contato', 'paginas/contato.html')]:
+        for label, target in [('Loja', 'loja/index.html'), ('Sobre', 'index.html#sobre'), ('Projetos', 'index.html#robos'), ('Conquistas', 'index.html#conquistas'), ('Equipe', 'index.html#equipe'), ('Aprenda', 'paginas/aprenda.html'), ('Apoie', 'paginas/patrocine.html'), ('Contato', 'paginas/contato.html')]:
             active = ' aria-current="page"' if path == target or (label == 'Aprenda' and path.startswith('artigos/')) or (label == 'Conquistas' and path.startswith('conquistas/')) else ''
             css = ' class="site-contact"' if label == 'Contato' else ''
             target_path, _, anchor = target.partition('#')
@@ -115,6 +115,7 @@ def main():
             (ROOT / page['legacy']).write_text(redirect, encoding='utf-8')
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sitemap += '\n'.join('  <url><loc>' + escape(base + page['path']) + '</loc></url>' for page in site['pages'])
+    sitemap += '\n  <url><loc>' + escape(base + 'loja/') + '</loc></url>'
     (ROOT / 'sitemap.xml').write_text(sitemap + '\n</urlset>\n', encoding='utf-8')
     (ROOT / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n', encoding='utf-8')
     print(f'Synchronized {len(site["pages"])} pages, metadata and legacy redirects.')
