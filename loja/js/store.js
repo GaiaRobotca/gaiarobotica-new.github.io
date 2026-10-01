@@ -13,9 +13,69 @@ const stickerArt = '<div class="sticker sticker-code">&lt;ideias&gt;<br><b>em mo
 let cart = [];
 try { const saved = JSON.parse(localStorage.getItem('gaia-shop-cart-v1')); if (Array.isArray(saved)) cart = products.flatMap(p => { const entry = saved.find(i => i.id === p.id); return entry && Number.isInteger(entry.quantity) && entry.quantity > 0 ? [{id:p.id, quantity:Math.min(99,entry.quantity)}] : []; }); } catch {}
 function notify(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(notify.timer); notify.timer = setTimeout(() => $('#toast').classList.remove('visible'), 3500); }
-function renderProducts(filter = 'todos') {
- $('#product-grid').innerHTML = products.filter(p => filter === 'todos' || p.id === filter).map(p => `<article class="product-card"><div class="product-visual ${p.art}" role="img" aria-label="${p.art === 'kit' ? 'Carrinhos do projeto GAIA, fotografia de referência' : 'Representação ilustrativa: '+p.name}"><span class="product-badge">${p.badge}</span>${p.art === 'key' ? keyArt : p.art === 'adhesive' ? stickerArt : '<img src="assets/carrinhos.webp" alt="" loading="lazy" width="1200" height="1600">'}</div><div class="product-body"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p><div class="product-bottom"><span class="product-price">Sob consulta<small>Vamos montar seu orçamento</small></span><button class="add-button" data-add="${p.id}" aria-label="Adicionar ${p.name} à sacola">Adicionar <span aria-hidden="true">＋</span></button></div></div></article>`).join('');
+let activeFilter = 'todos';
+let infiniteEnabled = true;
+function productMarkup(items) {
+ return items.map(p => `<div class="product-shell"><article class="product-card"><div class="product-visual ${p.art}" role="img" aria-label="${p.art === 'kit' ? 'Carrinhos do projeto GAIA, fotografia de referência' : 'Representação ilustrativa: '+p.name}"><span class="product-badge">${p.badge}</span>${p.art === 'key' ? keyArt : p.art === 'adhesive' ? stickerArt : '<img src="assets/carrinhos.webp" alt="" loading="lazy" width="1200" height="1600">'}</div><div class="product-body"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p><div class="product-bottom"><span class="product-price">Sob consulta<small>Vamos montar seu orçamento</small></span><button class="add-button" data-add="${p.id}" aria-label="Adicionar ${p.name} à sacola">Adicionar <span aria-hidden="true">＋</span></button></div></div></article></div>`).join('');
 }
+// Keep layout measurements separate from the transformed cards to avoid feedback.
+const productGrid = $('#product-grid');
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+let collectionFrame = 0;
+let previousScrollY = window.scrollY;
+let appendRequested = false;
+let scrollIdleTimer;
+function filteredProducts() {
+ return products.filter(p => activeFilter === 'todos' || p.id === activeFilter);
+}
+function renderProducts(filter = 'todos') {
+ activeFilter = filter;
+ appendRequested = false;
+ productGrid.innerHTML = productMarkup(filteredProducts());
+ scheduleCollection();
+}
+function scheduleCollection() {
+ if (!collectionFrame) collectionFrame = requestAnimationFrame(updateCollection);
+}
+function updateCollection() {
+ collectionFrame = 0;
+ const gridRect = productGrid.getBoundingClientRect();
+ const headerBottom = $('.header').getBoundingClientRect().bottom;
+ $('#produtos').style.setProperty('--collection-top', `${$('.header').offsetHeight}px`);
+ const centerY = headerBottom + (innerHeight - headerBottom) / 2;
+ const halfHeight = Math.max(1, (innerHeight - headerBottom) / 2);
+ if (appendRequested && infiniteEnabled && gridRect.top < centerY && gridRect.bottom < innerHeight + 220 && gridRect.bottom > headerBottom) {
+  const items = filteredProducts();
+  productGrid.insertAdjacentHTML('beforeend', productMarkup([...items, ...items]));
+ }
+ appendRequested = false;
+ const shells = [...productGrid.children];
+ const measurements = shells.map(shell => ({shell, top:gridRect.top + shell.offsetTop, left:gridRect.left + shell.offsetLeft, width:shell.offsetWidth, height:shell.offsetHeight}));
+ measurements.forEach(({shell, top, left, width, height}) => {
+  if (motionPreference.matches) return;
+  if (top > innerHeight + height || top + height < -height) return;
+  const y = Math.max(-1, Math.min(1, (top + height / 2 - centerY) / halfHeight));
+  const x = Math.max(-1, Math.min(1, (left + width / 2 - innerWidth / 2) / (innerWidth / 2)));
+  const scale = 1.04 - .16 * y * y - .07 * x * x;
+  shell.style.setProperty('--lens-transform', `perspective(1100px) translateY(${-y * 18}px) rotateX(${-y * 18}deg) rotateY(${x * 16}deg) scale(${scale})`);
+ });
+}
+window.addEventListener('scroll', () => {
+ productGrid.classList.add('is-scrolling');
+ clearTimeout(scrollIdleTimer);
+ scrollIdleTimer = setTimeout(() => productGrid.classList.remove('is-scrolling'), 160);
+ appendRequested = window.scrollY > previousScrollY;
+ previousScrollY = window.scrollY;
+ scheduleCollection();
+}, {passive:true});
+window.addEventListener('resize', scheduleCollection, {passive:true});
+motionPreference.addEventListener('change', scheduleCollection);
+new ResizeObserver(scheduleCollection).observe(productGrid);
+$('#infinite-toggle').addEventListener('click', () => {
+ infiniteEnabled = !infiniteEnabled;
+ $('#infinite-toggle').setAttribute('aria-pressed', String(infiniteEnabled));
+ $('#infinite-toggle').textContent = infiniteEnabled ? 'Pausar rolagem infinita' : 'Retomar rolagem infinita';
+});
 function renderCart() {
  $('#cart-count').textContent = cart.reduce((sum,item) => sum + item.quantity, 0);
  $('#checkout-btn').disabled = !cart.length;
@@ -40,6 +100,16 @@ let touchStart;$('#hero-art').addEventListener('touchstart',e=>{touchStart=e.cha
 function prepareEmail(subject,body,resultId) {const result=$('#'+resultId);result.hidden=false;result.querySelector('textarea').value=body;const link=document.createElement('a');link.href=`mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;link.hidden=true;document.body.append(link);link.click();link.remove();result.scrollIntoView({block:'nearest'});}
 $('#order-form').addEventListener('submit',event=>{event.preventDefault();if(!cart.length)return;const data=new FormData(event.currentTarget);const body=`Olá, equipe GAIA! Quero consultar este pedido:\n\n${cart.map(i=>`${i.quantity} × ${products.find(p=>p.id===i.id).name}`).join('\n')}\n\nNome: ${data.get('name').trim()}\nE-mail para retorno: ${data.get('email').trim()}\n\nPersonalização e observações:\n${data.get('details').trim() || 'Nenhuma observação.'}\n\nPodem confirmar valores, disponibilidade, componentes do kit (se houver), prazo, pagamento e entrega/retirada?\n\nEntendo que este pedido está sob consulta e depende de confirmação da equipe.`;prepareEmail('Pedido pela Loja GAIA',body,'order-result');});
 $('#custom-form').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget);const body=`Olá, equipe GAIA! Gostaria de avaliar uma ideia personalizada.\n\nNome: ${data.get('name').trim()}\nE-mail para retorno: ${data.get('email').trim()}\nTipo: ${data.get('type')}\nQuantidade estimada: ${data.get('quantity')}\nPrazo desejado: ${data.get('date') || 'A combinar'}\n\nMinha ideia:\n${data.get('details').trim()}\n\nPodem avaliar a viabilidade, o orçamento e o prazo?`;prepareEmail('Consulta de personalização — Loja GAIA',body,'custom-result');});
+$('#suggestion-form').addEventListener('submit', event => {
+ event.preventDefault();
+ const data = new FormData(event.currentTarget);
+ const body = `Olá, equipe GAIA! Tenho uma sugestão de novo produto para a loja.\n\nNome: ${data.get('name').trim()}\nE-mail para retorno: ${data.get('email').trim()}\n\nMinha sugestão:\n${data.get('idea').trim()}`;
+ prepareEmail('Sugestão de novo produto — Loja GAIA', body, 'suggestion-result');
+});
+document.addEventListener('click', event => {
+ if (!event.target.closest('a[href="#sugestoes"], a[href="#personalize"], a[href="#como-funciona"]')) return;
+ if (infiniteEnabled) $('#infinite-toggle').click();
+});
 $$('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const textarea=$('#'+button.dataset.copy+' textarea');try{await navigator.clipboard.writeText(textarea.value);notify('Mensagem copiada. Cole no seu e-mail para enviar.');}catch{textarea.focus();textarea.select();notify('Selecione e copie a mensagem para enviar por e-mail.');}}));
 if (/\/loja\/(?:index\.html)?$/.test(location.pathname)) {$$('[data-blog]').forEach(a=>a.href='../index.html');$$('[data-sponsor]').forEach(a=>a.href='../paginas/patrocine.html');}
 $('#year').textContent=new Date().getFullYear();renderProducts();renderCart();

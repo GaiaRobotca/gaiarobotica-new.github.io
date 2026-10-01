@@ -23,3 +23,38 @@
 .support .primary { background:#4cdd9b; color:#04281e; }
 .support .text-link { color:#e4f2ff; }
 .footer { background:linear-gradient(110deg,var(--surface),var(--bg)); }
+
+/* Curved collection: the shell follows the lens; the card handles hover zoom. */
+#produtos { overflow:clip; overflow-clip-margin:80px; }
+.product-grid { position:relative; isolation:isolate; gap:48px 32px; padding:38px 48px; }
+.product-shell { position:relative; min-width:0; transform-origin:center; transform:none; transition:transform .32s ease-out; }
+.product-grid.is-scrolling .product-shell { transform:var(--lens-transform,none); transition-duration:.1s; }
+.product-card { height:100%; transition:transform .3s ease,box-shadow .3s ease; }
+.product-shell:focus-within { z-index:5; }
+.product-shell:focus-within .product-card { box-shadow:0 18px 55px #0005; }
+.product-shell:nth-child(3n + 2) .product-category { color:var(--blue); }
+.collection-controls { display:flex; align-items:center; flex-wrap:wrap; gap:12px 24px; margin-bottom:12px; }
+.collection-controls p { color:var(--muted); font-size:12px; margin:0; margin-right:auto; }
+.collection-controls .button { padding:9px 14px; }
+@media (hover:hover) and (pointer:fine) {
+ .product-shell:hover { z-index:6; }
+ .product-shell:hover .product-card { transform:scale(1.3); box-shadow:0 24px 65px #0006; }
+}
+@media (max-width:1100px) and (min-width:761px) {
+ .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:760px) {
+ #produtos { overflow-clip-margin:0px; }
+ .product-grid { padding:28px 12px; gap:32px; }
+ .collection-controls { gap:14px; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .product-shell { transform:none!important; }
+ .product-shell:hover .product-card { transform:none; }
+}
+
+.collection-controls { position:sticky; top:var(--collection-top,90px); z-index:10; padding-block:12px; background:var(--bg); border-bottom:1px solid var(--line); }
+
+.suggestions { border-top:1px solid var(--line); }
+.suggestions form,.suggestions .email-result { max-width:760px; }
+.product-grid .add-button { scroll-margin-block:250px 100px; }
