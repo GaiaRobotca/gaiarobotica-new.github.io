@@ -58,3 +58,8 @@
 .suggestions { border-top:1px solid var(--line); }
 .suggestions form,.suggestions .email-result { max-width:760px; }
 .product-grid .add-button { scroll-margin-block:250px 100px; }
+
+.suggestion-fab { position:fixed; right:max(24px,env(safe-area-inset-right)); bottom:calc(24px + env(safe-area-inset-bottom)); z-index:25; border-radius:999px; box-shadow:0 8px 28px #0004; }
+.footer { padding-bottom:85px; }
+.toast { bottom:100px; }
+@media(max-width:760px) { .suggestion-fab { right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); padding:12px 18px; } }

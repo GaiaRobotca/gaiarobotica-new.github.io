@@ -100,6 +100,15 @@ let touchStart;$('#hero-art').addEventListener('touchstart',e=>{touchStart=e.cha
 function prepareEmail(subject,body,resultId) {const result=$('#'+resultId);result.hidden=false;result.querySelector('textarea').value=body;const link=document.createElement('a');link.href=`mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;link.hidden=true;document.body.append(link);link.click();link.remove();result.scrollIntoView({block:'nearest'});}
 $('#order-form').addEventListener('submit',event=>{event.preventDefault();if(!cart.length)return;const data=new FormData(event.currentTarget);const body=`Olá, equipe GAIA! Quero consultar este pedido:\n\n${cart.map(i=>`${i.quantity} × ${products.find(p=>p.id===i.id).name}`).join('\n')}\n\nNome: ${data.get('name').trim()}\nE-mail para retorno: ${data.get('email').trim()}\n\nPersonalização e observações:\n${data.get('details').trim() || 'Nenhuma observação.'}\n\nPodem confirmar valores, disponibilidade, componentes do kit (se houver), prazo, pagamento e entrega/retirada?\n\nEntendo que este pedido está sob consulta e depende de confirmação da equipe.`;prepareEmail('Pedido pela Loja GAIA',body,'order-result');});
 $('#custom-form').addEventListener('submit',event=>{event.preventDefault();const data=new FormData(event.currentTarget);const body=`Olá, equipe GAIA! Gostaria de avaliar uma ideia personalizada.\n\nNome: ${data.get('name').trim()}\nE-mail para retorno: ${data.get('email').trim()}\nTipo: ${data.get('type')}\nQuantidade estimada: ${data.get('quantity')}\nPrazo desejado: ${data.get('date') || 'A combinar'}\n\nMinha ideia:\n${data.get('details').trim()}\n\nPodem avaliar a viabilidade, o orçamento e o prazo?`;prepareEmail('Consulta de personalização — Loja GAIA',body,'custom-result');});
+const suggestionDialog = $('#suggestion-dialog');
+$$('[data-suggestion-open]').forEach(button => button.addEventListener('click', event => {
+ event.preventDefault();
+ $('#suggestion-dialog-content').append($('#suggestion-form'), $('#suggestion-result'));
+ suggestionDialog.showModal();
+}));
+suggestionDialog.addEventListener('close', () => {
+ $('#sugestoes').append($('#suggestion-form'), $('#suggestion-result'));
+});
 $('#suggestion-form').addEventListener('submit', event => {
  event.preventDefault();
  const data = new FormData(event.currentTarget);
@@ -107,7 +116,7 @@ $('#suggestion-form').addEventListener('submit', event => {
  prepareEmail('Sugestão de novo produto — Loja GAIA', body, 'suggestion-result');
 });
 document.addEventListener('click', event => {
- if (!event.target.closest('a[href="#sugestoes"], a[href="#personalize"], a[href="#como-funciona"]')) return;
+ if (!event.target.closest('a[href="#personalize"], a[href="#como-funciona"]')) return;
  if (infiniteEnabled) $('#infinite-toggle').click();
 });
 $$('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{const textarea=$('#'+button.dataset.copy+' textarea');try{await navigator.clipboard.writeText(textarea.value);notify('Mensagem copiada. Cole no seu e-mail para enviar.');}catch{textarea.focus();textarea.select();notify('Selecione e copie a mensagem para enviar por e-mail.');}}));
