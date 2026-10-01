@@ -15,11 +15,22 @@ try { const saved = JSON.parse(localStorage.getItem('gaia-shop-cart-v1')); if (A
 function notify(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(notify.timer); notify.timer = setTimeout(() => $('#toast').classList.remove('visible'), 3500); }
 let activeFilter = 'todos';
 let infiniteEnabled = true;
+const productSummaries = {chaveiro:'Feito com a sua identidade.', adesivo:'Sua marca em qualquer lugar.', kit:'Robótica para montar e aprender.'};
 function productMarkup(items) {
- return items.map(p => `<div class="product-shell"><article class="product-card"><div class="product-visual ${p.art}" role="img" aria-label="${p.art === 'kit' ? 'Carrinhos do projeto GAIA, fotografia de referência' : 'Representação ilustrativa: '+p.name}"><span class="product-badge">${p.badge}</span>${p.art === 'key' ? keyArt : p.art === 'adhesive' ? stickerArt : '<img src="assets/carrinhos.webp" alt="" loading="lazy" width="1200" height="1600">'}</div><div class="product-body"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p><div class="product-bottom"><span class="product-price">Sob consulta<small>Vamos montar seu orçamento</small></span><button class="add-button" data-add="${p.id}" aria-label="Adicionar ${p.name} à sacola">Adicionar <span aria-hidden="true">＋</span></button></div></div></article></div>`).join('');
+ return items.map(p => `<div class="product-shell"><article class="product-card"><div class="product-visual ${p.art}" role="img" aria-label="${p.art === 'kit' ? 'Carrinhos do projeto GAIA, fotografia de referência' : 'Representação ilustrativa: '+p.name}"><span class="product-badge">${p.badge}</span><div class="product-art">${p.art === 'key' ? keyArt : p.art === 'adhesive' ? stickerArt : '<img src="assets/carrinhos.webp" alt="" loading="lazy" width="1200" height="1600">'}</div></div><div class="product-body"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p class="product-summary">${productSummaries[p.id]}</p><details class="product-details"><summary>Ver detalhes</summary><p>${p.description}</p></details><div class="product-bottom"><span class="product-price">Sob consulta<small>Vamos montar seu orçamento</small></span><button class="add-button" data-add="${p.id}" aria-label="Adicionar ${p.name} à sacola">Adicionar <span aria-hidden="true">＋</span></button></div></div></article></div>`).join('');
 }
 // Keep layout measurements separate from the transformed cards to avoid feedback.
 const productGrid = $('#product-grid');
+productGrid.addEventListener('pointerover', event => {
+ if (event.pointerType !== 'mouse') return;
+ const shell = event.target.closest('.product-shell');
+ if (shell && !shell.contains(event.relatedTarget)) shell.querySelector('details').open = true;
+});
+productGrid.addEventListener('pointerout', event => {
+ if (event.pointerType !== 'mouse') return;
+ const shell = event.target.closest('.product-shell');
+ if (shell && !shell.contains(event.relatedTarget) && !shell.contains(document.activeElement)) shell.querySelector('details').open = false;
+});
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let collectionFrame = 0;
 let previousScrollY = window.scrollY;
