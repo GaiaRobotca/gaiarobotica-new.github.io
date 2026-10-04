@@ -18,3 +18,17 @@ de Jeremy Tribby, disponível no [Google Fonts](https://github.com/google/fonts/
 sob a [SIL Open Font License 1.1](https://github.com/google/fonts/blob/main/ofl/barlowcondensed/OFL.txt).
 As letras foram convertidas em caminhos nos SVGs para preservar a aparência
 em qualquer escala; os PNGs foram renderizados diretamente desses vetores.
+
+## Robótica na construção civil
+
+Ilustrações vetoriais originais criadas com assistência do Codex para este artigo,
+em 4 de outubro de 2026. Não incorporam imagens, logotipos ou vetores de terceiros
+e não exigem licenciamento de banco de imagens. São desenhos conceituais, não
+fotografias ou registros de aplicações reais. Textos usam a fonte genérica do sistema.
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| `artigos/construcao-canteiro.svg` | Prédio em construção, drone e robô de inspeção; equipamentos fora de escala. |
+| `artigos/construcao-drones.svg` | Captura de fotos, processamento e comparação de levantamentos. |
+| `artigos/construcao-impressao.svg` | Esquema de extrusão de uma parede em camadas. |
+| `artigos/construcao-integracao.svg` | Ciclo didático de captura, comparação, revisão e execução com BIM. |

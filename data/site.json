@@ -144,6 +144,12 @@
       "legacy": "conquista-escolas.html",
       "title": "Impacto nas Escolas — GAIA Robótica",
       "description": "Como o GAIA Robótica sai dos laboratórios da UFTM para levar tecnologia, pensamento lógico e inspiração às escolas públicas de Uberaba e região."
+    },
+    {
+      "path": "artigos/construcao-civil.html",
+      "legacy": "artigos/construcao-civil.html",
+      "title": "Robótica na construção civil: do projeto ao canteiro conectado — GAIA Robótica",
+      "description": "Como robôs, inteligência artificial, drones, impressão 3D e BIM transformam a construção civil: aplicações reais, benefícios e desafios."
     }
   ],
   "contributors": [

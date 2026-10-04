@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+<title id="title">Um canteiro conectado</title><desc id="desc">Ilustração conceitual de um prédio em construção, um drone de mapeamento e um robô terrestre de inspeção.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#203954" stroke-width="1"/></pattern></defs>
+<rect width="960" height="600" fill="#07182b"/><rect width="960" height="600" fill="url(#grid)"/>
+<text x="52" y="65" fill="#6ee7b7" font-family="sans-serif" font-size="20" letter-spacing="4">ENGENHARIA + TECNOLOGIA</text>
+<text x="52" y="112" fill="#fff" font-family="sans-serif" font-size="40" font-weight="700">O canteiro também é digital.</text>
+<path d="M55 485H905" stroke="#607f96" stroke-width="3"/>
+<g stroke="#88adcb" stroke-width="7" fill="#122c44"><path d="M285 477V230H650V477M285 310H650M285 390H650M375 230V477M560 230V477"/><path d="M266 230H670M266 310H670M266 390H670" stroke="#c4d9e7"/></g>
+<path d="M720 475V178H470M682 178H828M720 140V178L560 178M790 179V275" fill="none" stroke="#f5bc64" stroke-width="7"/><path d="M781 273Q781 293 797 282" fill="none" stroke="#f5bc64" stroke-width="5"/>
+<g transform="translate(162 227)"><path d="M-48-21L48 21M-48 21L48-21" stroke="#dae9f4" stroke-width="8"/><g fill="#102c45" stroke="#6ee7b7" stroke-width="4"><ellipse cx="-48" cy="-21" rx="29" ry="9"/><ellipse cx="48" cy="21" rx="29" ry="9"/><ellipse cx="-48" cy="21" rx="29" ry="9"/><ellipse cx="48" cy="-21" rx="29" ry="9"/></g><rect x="-20" y="-14" width="40" height="30" rx="9" fill="#6ee7b7"/><circle cy="23" r="8" fill="#fff"/></g>
+<path d="M162 264L85 438H247Z" fill="#6ee7b7" opacity=".08"/><path d="M162 264L85 438M162 264L247 438" stroke="#6ee7b7" stroke-dasharray="5 8" fill="none"/>
+<g transform="translate(470 451)"><rect x="-65" y="-30" width="115" height="40" rx="12" fill="#6ee7b7"/><path d="M-43 7L-60 31M29 7L49 31M-20 7L-5 31M48 4L68 29" stroke="#d7e9f3" stroke-width="9"/><path d="M18-30V-57" stroke="#d7e9f3" stroke-width="6"/><rect x="3" y="-66" width="30" height="17" rx="5" fill="#67b9fb"/></g>
+<path d="M498 400L555 357M498 400L565 407" stroke="#67b9fb" stroke-width="2" stroke-dasharray="6 5"/>
+<g fill="#dce8f1" font-family="sans-serif" font-size="23"><text x="80" y="541">Mapear</text><text x="399" y="541">Inspecionar</text><text x="747" y="541">Construir</text></g>
+<text x="52" y="580" fill="#90aabd" font-family="sans-serif" font-size="15">Ilustração conceitual • equipamentos fora de escala</text>
+</svg>

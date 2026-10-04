@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+<title id="title">Impressão de uma parede em camadas</title><desc id="desc">Um pórtico movimenta um bico que deposita material sobre camadas anteriores. O desenho representa uma etapa da obra, não uma casa pronta.</desc>
+<rect width="960" height="600" fill="#07182b"/>
+<text x="48" y="65" fill="#6ee7b7" font-family="sans-serif" font-size="20" letter-spacing="3">FABRICAÇÃO ADITIVA</text><text x="48" y="112" fill="#fff" font-family="sans-serif" font-size="38" font-weight="700">Construir, camada por camada.</text>
+<path d="M132 480V185H650V480M95 486H178M607 486H698" stroke="#76a4c5" stroke-width="18" fill="none"/><path d="M151 214H633" stroke="#284b67" stroke-width="8"/>
+<g stroke="#081b2d" stroke-width="4" fill="#b5c2c8"><rect x="231" y="438" width="330" height="24" rx="10"/><rect x="231" y="414" width="330" height="24" rx="10"/><rect x="231" y="390" width="330" height="24" rx="10"/><rect x="231" y="366" width="330" height="24" rx="10"/><rect x="231" y="342" width="330" height="24" rx="10"/><rect x="231" y="318" width="220" height="24" rx="10" fill="#6ee7b7"/></g>
+<path d="M450 219V276" stroke="#d5e7f3" stroke-width="20"/><rect x="418" y="166" width="64" height="70" rx="8" fill="#6ee7b7"/><path d="M430 271H470L457 306H443Z" fill="#f5bc64"/><path d="M450 305V327" stroke="#6ee7b7" stroke-width="12"/>
+<path d="M497 262H563L548 252M563 262L548 272" fill="none" stroke="#6ee7b7" stroke-width="4"/>
+<g font-family="sans-serif" font-size="22" fill="#dce8f1"><text x="707" y="213">Pórtico</text><text x="707" y="308">Bico extrusor</text><text x="707" y="416">Camadas</text></g><g stroke="#66879e" stroke-width="2" fill="none"><path d="M693 205H658M694 301H579L474 287M695 407H575"/></g>
+<text x="48" y="553" fill="#90aabd" font-family="sans-serif" font-size="20">Imprimir paredes é uma etapa. A edificação ainda precisa de outros sistemas.</text>
+</svg>
