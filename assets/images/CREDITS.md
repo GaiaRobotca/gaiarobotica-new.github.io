@@ -32,3 +32,11 @@ fotografias ou registros de aplicações reais. Textos usam a fonte genérica do
 | `artigos/construcao-drones.svg` | Captura de fotos, processamento e comparação de levantamentos. |
 | `artigos/construcao-impressao.svg` | Esquema de extrusão de uma parede em camadas. |
 | `artigos/construcao-integracao.svg` | Ciclo didático de captura, comparação, revisão e execução com BIM. |
+
+
+## Fotos de perfil dos parceiros
+
+- `marca/uraspace-logo.jpg`: foto de perfil oficial de [Uraspace](https://www.instagram.com/uraspace.uftm/).
+- `marca/verboera3d-logo.jpg`: foto de perfil oficial de [Verboera 3D](https://www.instagram.com/verboera3d/).
+
+Imagens obtidas dos perfis em 8 de outubro de 2026 para identificar os parceiros do GAIA. Marcas pertencem aos respectivos titulares.
