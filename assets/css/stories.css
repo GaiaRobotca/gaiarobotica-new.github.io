@@ -1,5 +1,5 @@
-@layer pages {body.story-page{--bg:#071333;--text:#dbe4f0;--muted:#acbfdf;--border:#263e70;--surface:#0a1b42;--blue:#72b7ff;--blue-light:#72b7ff;--blue-dark:#01195d;--blue-deep:#010e3a;--green:#007a3f;--green-light:#32d78a;--green-dark:#32d78a;background:var(--bg);color:var(--text)}
-.story-page .post-hero,.story-page .article-hero{background:linear-gradient(135deg,#010e3a,#01195d 65%,#073d47)}
+@layer pages {body.story-page{--bg:var(--color-background);--text:var(--color-text);--muted:var(--color-muted);--border:var(--color-border);--surface:var(--color-surface);--blue:var(--brand-blue);--blue-light:var(--color-link);--blue-dark:var(--brand-deep);--blue-deep:var(--brand-deep);--green:var(--brand-green);--green-light:var(--color-highlight);--green-dark:var(--color-action-hover);background:var(--bg);color:var(--text)}
+.story-page .post-hero,.story-page .article-hero{background:linear-gradient(135deg,var(--brand-deep),#01195d 65%,#073d47)}
 .story-page .post-hero .hero-inner{max-width:850px}
 .story-page .post-hero h1{max-width:850px;font-size:clamp(2.8rem,6vw,4.8rem);line-height:1.02}
 .story-page .post-cat{color:var(--green-light);opacity:1}
@@ -44,8 +44,8 @@
 .story-page .article-content-main{min-width:0}
 .story-page .container-leitura{grid-template-columns:minmax(0,1fr) 280px;gap:3rem}
 .story-page .article-content p,.story-page .article-main p{overflow-wrap:break-word}
-.story-page .carousel-btn{background:#0a1b42;color:#fff}
-.story-page .back-cta{border:1px solid var(--border);background:linear-gradient(135deg,#0a1b42,#01195d)}
+.story-page .carousel-btn{background:var(--color-surface);color:#fff}
+.story-page .back-cta{border:1px solid var(--border);background:linear-gradient(135deg,var(--color-surface),#01195d)}
 .story-page .code-block{white-space:pre;max-width:100%;background:#010a26;border:1px solid var(--border);border-radius:6px;color:#c5dcff}
 .story-page .code-block code{font:inherit}
 .story-page .post-body :focus-visible,.story-page .article-wrap :focus-visible{outline:3px solid var(--green-light);outline-offset:4px}

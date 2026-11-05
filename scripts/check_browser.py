@@ -73,6 +73,7 @@ def main():
         page.set_viewport_size({'width': 1440, 'height': 960})
         page.goto(BASE + 'paginas/aprenda.html', wait_until='networkidle')
         search = page.locator('#article-search')
+        all_cards = page.locator('.learn-card').count()
         search.fill('naoexistegaia')
         assert page.locator('.learn-card:visible').count() == 0, 'Search empty state failed'
         search.fill('arduino')
@@ -80,10 +81,12 @@ def main():
         search.fill('visao')
         assert page.locator('.learn-card:visible').count() >= 1, 'Accent-insensitive search failed'
         search.fill('')
-        assert page.locator('.learn-card:visible').count() == 8, 'Search reset failed'
-        for category, count in [('arduino', 3), ('ia', 2), ('robotica', 3), ('drones', 1), ('eletronica', 2)]:
+        assert page.locator('.learn-card:visible').count() == all_cards, 'Search reset failed'
+        for category in ['arduino', 'ia', 'robotica', 'drones', 'eletronica']:
+            count = page.locator(f'.learn-card[data-categories~="{category}"]').count()
             page.locator(f'[data-filter="{category}"]').click()
             assert page.locator('.learn-card:visible').count() == count, category + ' category filter'
+            assert page.locator('.learn-card:visible').evaluate_all('(cards, category) => cards.every(card => card.dataset.categories.split(" ").includes(category))', category)
         page.locator('[data-filter="todos"]').click()
         checks.append('Aprenda search / accents / empty state / reset')
 
