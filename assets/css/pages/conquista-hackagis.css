@@ -25,9 +25,9 @@ body::before{content:"";
   z-index:1;
   padding:8.2rem 3rem 6.5rem;
   background:
-    radial-gradient(circle at 82% 24%,rgba(0,168,84,.18),transparent 31%),
+    radial-gradient(circle at 82% 24%,rgba(0,122,63,.18),transparent 31%),
     radial-gradient(circle at 18% 70%,rgba(61,155,255,.12),transparent 26%),
-    linear-gradient(135deg,#010e3a 0%,#034b36 38%,#007a3f 68%,#0b3f73 100%);}
+    linear-gradient(135deg,var(--brand-deep) 0%,#034b36 38%,#007a3f 68%,#0b3f73 100%);}
 .hero::after{content:"";
   position:absolute;
   left:0;right:0;bottom:-1px;
@@ -182,7 +182,7 @@ strong{color:#fff}
   padding:1.55rem 1.7rem 1.55rem 2rem;
   border-left:4px solid var(--green-light);
   border-radius:0 6px 6px 0;
-  background:linear-gradient(90deg,rgba(0,168,84,.08),rgba(10,27,66,.55));}
+  background:linear-gradient(90deg,rgba(0,122,63,.08),rgba(10,27,66,.55));}
 .quote::before{content:"“";
   position:absolute;
   right:1rem;
@@ -200,7 +200,7 @@ strong{color:#fff}
   border:1px solid var(--border);
   border-radius:8px;
   background:
-    linear-gradient(135deg,rgba(0,168,84,.06),rgba(61,155,255,.045)),
+    linear-gradient(135deg,rgba(0,122,63,.06),rgba(61,155,255,.045)),
     var(--surface);}
 .app-highlight h3{margin-top:0}
 .features-grid{display:grid;
@@ -311,7 +311,7 @@ strong{color:#fff}
   border-radius:10px;
   text-align:center;
   background:
-    radial-gradient(circle at 50% 0%,rgba(0,168,84,.12),transparent 45%),
+    radial-gradient(circle at 50% 0%,rgba(0,122,63,.12),transparent 45%),
     linear-gradient(135deg,#081944,#04102f);}
 .back-cta h3{margin:0 0 .7rem;
   font-size:2rem;}

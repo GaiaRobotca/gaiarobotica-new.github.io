@@ -1,0 +1,12 @@
+/* Institutional primitives and semantic roles shared by the site and shop. */
+:root {
+ --brand-blue: #001A7F; --brand-green: #007A3F;
+ --brand-deep: #01195D; --brand-slate: #7F87B4;
+ --brand-cream: #FFF5E9; --brand-soft-green: #C7DC90;
+ --color-background: var(--brand-deep); --color-surface: #102963;
+ --color-raised: #193779; --color-text: var(--brand-cream);
+ --color-muted: #C3C9E0; --color-border: var(--brand-slate);
+ --color-action: var(--brand-green); --color-on-action: #FFFFFF;
+ --color-action-hover: #006333; --color-highlight: var(--brand-soft-green);
+ --color-link: #D9DDF0; --color-focus: var(--brand-soft-green);
+}

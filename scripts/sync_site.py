@@ -56,7 +56,7 @@ def main():
     for page in site['pages']:
         path = page['path']
         r = lambda target: relative(target, path)
-        brand = f'''<a class="site-brand" href="{r('index.html')}" aria-label="Projeto GAIA — início"><img src="{r('assets/images/marca/gaia-g.svg')}" alt="" width="44" height="44"><span>GAIA<small>PROJETO · UFTM</small></span></a>'''
+        brand = f'''<a class="site-brand" href="{r('index.html')}" aria-label="Projeto GAIA — início"><img src="{r('assets/images/marca/gaia-symbol-dark.svg')}" alt="" width="44" height="44"><span>GAIA<small>PROJETO · UFTM</small></span></a>'''
         links = []
         for label, target in [('Loja', 'loja/index.html'), ('Sobre', 'index.html#sobre'), ('Projetos', 'index.html#robos'), ('Conquistas', 'index.html#conquistas'), ('Equipe', 'index.html#equipe'), ('Aprenda', 'paginas/aprenda.html'), ('Apoie', 'paginas/patrocine.html'), ('Contato', 'paginas/contato.html')]:
             active = ' aria-current="page"' if path == target or (label == 'Aprenda' and path.startswith('artigos/')) or (label == 'Conquistas' and path.startswith('conquistas/')) else ''
@@ -75,13 +75,18 @@ def main():
         footer = footer.replace('Conhecimento que vira projeto.</p>', f'Conhecimento que vira projeto.{credit}</p>')
         title, desc = escape(page['title'], quote=True), escape(page['description'], quote=True)
         url = escape(base + path, quote=True)
-        img_rel = page.get('image', 'assets/images/social/gaia-g-preview-hd.png')
-        img_alt = escape(page.get('image_alt', 'Símbolo G verde do Projeto GAIA sobre fundo azul-escuro.'), quote=True)
+        img_rel = page.get('image', 'assets/images/social/gaia-preview.png')
+        img_alt = escape(page.get('image_alt', 'Rosto da Gaia, com cabelos e circuitos, sobre azul institucional.'), quote=True)
         img_url = escape(base + img_rel, quote=True)
-        twitter_img_rel = page.get('twitter_image', page.get('image', 'assets/images/social/gaia-g-preview-horizontal-hd.png'))
+        twitter_img_rel = page.get('twitter_image', page.get('image', 'assets/images/social/gaia-preview-horizontal.png'))
         twitter_img_url = escape(base + twitter_img_rel, quote=True)
-        meta = f'''<meta name="description" content="{desc}">
-<meta name="theme-color" content="#050f26">
+        icons = f'''<link rel="icon" type="image/svg+xml" href="{r('assets/images/marca/gaia-favicon.svg')}">
+<link rel="icon" type="image/png" sizes="32x32" href="{r('assets/images/marca/gaia-favicon-32.png')}">
+<link rel="icon" type="image/png" sizes="16x16" href="{r('assets/images/marca/gaia-favicon-16.png')}">
+<link rel="apple-touch-icon" sizes="180x180" href="{r('assets/images/marca/gaia-touch-180.png')}">'''
+        meta = f'''{icons}
+<meta name="description" content="{desc}">
+<meta name="theme-color" content="#01195D">
 <link rel="canonical" href="{url}">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Projeto GAIA — UFTM">
@@ -97,6 +102,7 @@ def main():
 <meta name="twitter:image" content="{twitter_img_url}">
 <meta name="twitter:image:alt" content="{img_alt}">'''
         text = (ROOT / path).read_text(encoding='utf-8')
+        text = re.sub(r'<link\b(?=[^>]*\brel=["\']icon["\'])[^>]*>', '', text)
         text = replace_region(text, 'shared-header', header)
         text = replace_region(text, 'shared-footer', footer)
         text = replace_region(text, 'page-meta', meta)
@@ -109,10 +115,21 @@ def main():
         (ROOT / path).write_text(text, encoding='utf-8')
         if page['legacy'] != path:
             target = path
+            icons = icons.replace('../assets/', 'assets/')
             redirect = f'''<!DOCTYPE html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}</title><meta http-equiv="refresh" content="1; url={target}"><link rel="canonical" href="{url}"><meta name="robots" content="noindex"><script src="assets/js/redirect.js" defer></script></head><body><p>Esta página mudou de endereço. <a id="redirect-target" href="{target}">Continuar para {title}</a>.</p></body></html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title}</title><meta http-equiv="refresh" content="1; url={target}"><link rel="canonical" href="{url}"><meta name="robots" content="noindex">{icons}<meta name="theme-color" content="#01195D"><link rel="stylesheet" href="assets/css/tokens.css"><style>body{{background:var(--brand-deep);color:var(--brand-cream);font:1rem/1.6 sans-serif;padding:2rem}}a{{color:var(--brand-soft-green)}}</style><script src="assets/js/redirect.js" defer></script></head><body><p>Esta página mudou de endereço. <a id="redirect-target" href="{target}">Continuar para {title}</a>.</p></body></html>
 '''
             (ROOT / page['legacy']).write_text(redirect, encoding='utf-8')
+    shop = ROOT / 'loja/index.html'
+    shop_meta = '''<link rel="icon" type="image/svg+xml" href="../assets/images/marca/gaia-favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/marca/gaia-favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/images/marca/gaia-favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/images/marca/gaia-touch-180.png">
+<meta property="og:title" content="Loja GAIA · UFTM">
+<meta property="og:image" content="{base}assets/images/social/gaia-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{base}assets/images/social/gaia-preview-horizontal.png">'''.format(base=base)
+    shop.write_text(replace_region(shop.read_text(encoding='utf-8'), 'shop-meta', shop_meta), encoding='utf-8')
     sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sitemap += '\n'.join('  <url><loc>' + escape(base + page['path']) + '</loc></url>' for page in site['pages'])
     sitemap += '\n  <url><loc>' + escape(base + 'loja/') + '</loc></url>'
