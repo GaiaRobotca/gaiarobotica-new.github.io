@@ -22,3 +22,11 @@ Nao atribuir todo o site a uma pessoa sem historico que sustente a afirmacao.
 Para entender esta implementacao: estude geracao estatica, fonte versus
 artefato e caminhos relativos. Desafio: altere um bloco compartilhado numa
 branch e confirme que o gerador produz o mesmo resultado na segunda execucao.
+
+## Revisão visual de 05/11/2026
+
+Rebranding a partir de 7d986ff: tokens institucionais, rosto vetorial, ícones,
+metadados e loja integrados ao gerador. Evidências, comandos, cobertura e limites
+em [Identidade visual](visual-identity.md). A auditoria automática WCAG A/AA com
+axe/Chromium cobre 27 contextos página/tema; não certifica conformidade integral
+nem substitui testes em dispositivos físicos. Desempenho: NOT_MEASURED.

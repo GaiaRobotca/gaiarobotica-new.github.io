@@ -8,7 +8,7 @@ Site do projeto GAIA, com projetos, equipe, conquistas e guias de robótica.
 
 ## Marca
 
-O site representa o **Projeto GAIA**, que reúne as áreas **GAIA Robótica** e **GAIA Eletroquad**. O cabeçalho e o rodapé usam GAIA com a assinatura “PROJETO · UFTM”. O monograma vetorial `assets/images/marca/gaia-g.svg` também é usado como ícone das abas. Os componentes compartilhados são gerados por `scripts/sync_site.py`.
+O site representa o **Projeto GAIA**, que reúne as áreas **GAIA Robótica** e **GAIA Eletroquad**. O cabeçalho e o rodapé usam GAIA com a assinatura “PROJETO · UFTM”. A identidade usa o rosto vetorial da Gaia, derivado de `assets/images/marca/logo-gaia.png`, e um favicon com detalhes reduzidos. Os assets históricos foram preservados. Consulte [identidade visual e validação](docs/visual-identity.md). Os componentes compartilhados são gerados por `scripts/sync_site.py`.
 
 ## Organização
 
@@ -97,7 +97,7 @@ Mantenha o servidor local na porta 8765 em outro terminal. O teste cobre as 22 p
 
 ## Publicação
 
-As prévias de compartilhamento usam `assets/images/social/gaia-g-preview-hd.png` (2400 × 2400), com apenas o G verde centralizado sobre fundo azul-escuro para facilitar o reconhecimento em miniaturas quadradas. Os cartões largos do Twitter/X usam `gaia-g-preview-horizontal-hd.png` (2400 × 1260). As duas artes também estão disponíveis em SVG, sem dependências de fontes externas. O título e a descrição continuam específicos de cada página. As imagens e os metadados Open Graph/Twitter são definidos em `scripts/sync_site.py`.
+As prévias usam `assets/images/social/gaia-preview.png` (2400 × 2400) e `gaia-preview-horizontal.png` (2400 × 1260), com o rosto da Gaia sobre azul institucional. Há versões SVG e ícones SVG, PNG e ICO. Os metadados do site, dos redirecionamentos e da loja são mantidos em `scripts/sync_site.py`.
 
 O GitHub Pages deste repositório publica a raiz da branch `main`. Depois de validar, envie o commit e acompanhe a execução de `pages build and deployment` no GitHub Actions. Confira o site publicado antes de divulgar o link do portal na bio.
 
